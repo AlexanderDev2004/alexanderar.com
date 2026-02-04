@@ -1,0 +1,33 @@
+---
+// Iconify Icons Component
+// Menggunakan iconify-icon untuk dynamic icon loading
+---
+
+<script is:inline src="https://code.iconify.design/iconify-icon/1.0.8/iconify-icon.min.js"></script>
+
+<section class="container mx-auto px-6 py-4">
+  <div class="flex items-center gap-6 text-gray-600 dark:text-gray-300 flex-wrap" style="font-family: 'Plus Jakarta Sans', sans-serif;">
+    <div class="flex items-center gap-2">
+      <iconify-icon icon="mdi:account" width="20" height="20"></iconify-icon>
+      <span class="text-sm">Profile</span>
+    </div>
+    <div class="flex items-center gap-2">
+      <iconify-icon icon="mdi:briefcase" width="20" height="20"></iconify-icon>
+      <span class="text-sm">Work</span>
+    </div>
+    <div class="flex items-center gap-2">
+      <iconify-icon icon="mdi:school" width="20" height="20"></iconify-icon>
+      <span class="text-sm">Studies</span>
+    </div>
+    <div class="flex items-center gap-2">
+      <iconify-icon icon="mdi:email" width="20" height="20"></iconify-icon>
+      <span class="text-sm">Contact</span>
+    </div>
+  </div>
+</section>
+
+<style>
+  iconify-icon {
+    color: currentColor;
+  }
+</style>

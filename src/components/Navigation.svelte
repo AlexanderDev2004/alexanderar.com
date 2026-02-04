@@ -1,13 +1,13 @@
 <script>
   const sections = [
-    { id: 'about', title: 'About', icon: '📋' },
-    { id: 'work', title: 'Work', icon: '💼' },
-    { id: 'studies', title: 'Studies', icon: '🎓' },
-    { id: 'projects', title: 'Projects', icon: '🔧' },
-    { id: 'certifications', title: 'Certifications', icon: '🏆' },
-    { id: 'blogs', title: 'Blogs', icon: '✏️' },
-    { id: 'files', title: 'Files', icon: '📁' },
-    { id: 'contact', title: 'Contact', icon: '☎️' },
+    { id: 'about', title: 'About', icon: 'mdi:card-account-details-outline' },
+    { id: 'work', title: 'Work', icon: 'mdi:briefcase-outline' },
+    { id: 'studies', title: 'Studies', icon: 'mdi:school-outline' },
+    { id: 'projects', title: 'Projects', icon: 'mdi:wrench-outline' },
+    { id: 'certifications', title: 'Certifications', icon: 'mdi:certificate-outline' },
+    { id: 'blogs', title: 'Blogs', icon: 'mdi:pencil-outline' },
+    { id: 'files', title: 'Files', icon: 'mdi:folder-outline' },
+    { id: 'contact', title: 'Contact', icon: 'mdi:phone-outline' },
   ];
 
   let openSection = '';
@@ -28,7 +28,7 @@
           on:click={() => toggleSection(section.id)}
         >
           <div class="flex items-center gap-4">
-            <span class="text-2xl">{section.icon}</span>
+            <iconify-icon icon={section.icon} width="24" height="24"></iconify-icon>
             <span class="text-xl">{section.title}</span>
           </div>
           <svg
