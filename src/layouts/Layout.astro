@@ -14,6 +14,17 @@ import Footer from '../components/Footer.svelte';
     <meta name="generator" content={Astro.generator} />
     <title>Alexander Agung Raya - Software Developer</title>
     <meta name="description" content="Portfolio of Alexander Agung Raya, a Software Developer from Indonesia" />
+    <script is:inline>
+      // Dark mode initialization - runs immediately before page render
+      const theme = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      
+      if (theme === 'dark' || (!theme && prefersDark)) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    </script>
     <script is:inline src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
   </head>
   <body class="transition-colors duration-300">

@@ -1,22 +1,17 @@
 <script>
   const toggleDarkMode = () => {
-    const isDarkMode = document.documentElement.classList.toggle("dark");
-    localStorage.setItem("theme", isDarkMode ? "dark" : "light");
-  };
-
-  const initDarkMode = () => {
-    const isDark =
-      localStorage.getItem("theme") === "dark" ||
-      (!("theme" in localStorage) &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches);
-
+    const html = document.documentElement;
+    const isDark = html.classList.contains("dark");
+    
     if (isDark) {
-      document.documentElement.classList.add("dark");
+      html.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+    } else {
+      html.classList.add("dark");
+      localStorage.setItem("theme", "dark");
     }
   };
 </script>
-
-<svelte:window on:load={initDarkMode} />
 
 <header class="sticky top-0 z-50 transition-colors duration-300">
   <div class="container mx-auto px-6 py-6 md:py-8">
@@ -51,7 +46,7 @@
               width="24"
               height="24"
               viewBox="0 0 24 24"
-              {...$$props}
+              fill="currentColor"
             >
               <path
                 fill="currentColor"
@@ -66,7 +61,7 @@
       </div>
 
       <div class="flex items-center gap-3">
-        <button
+        <!-- <button
           class="p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
           aria-label="Toggle dark mode"
           on:click={toggleDarkMode}
@@ -91,7 +86,7 @@
               d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
             />
           </svg>
-        </button>
+        </button> -->
       </div>
     </div>
 
