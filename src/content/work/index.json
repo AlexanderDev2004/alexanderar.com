@@ -1,0 +1,40 @@
+{
+  "works": [
+    {
+      "company": "Ariverse Studio",
+      "jobTitle": "Game Developer",
+      "status": ["REMOTE", "PART TIME"],
+      "startDate": "Sep 2025",
+      "endDate": null,
+      "link": "https://www.ariversestudio.com/",
+      "description": [
+        "Developed engaging and interactive games using Unity and C#.",
+        "Collaborated with designers and artists to create immersive gaming experiences.",
+        "Optimized game performance for various platforms including mobile and desktop."
+      ],
+      "tags": [
+        "UNITY",
+        "C#",
+        "GAME DEVELOPMENT",
+        "Game Desaign"
+      ]
+    },
+    {
+      "company": "PT XYZ",
+      "jobTitle": "Full Stack Developer",
+      "status": ["ON-SITE", "FULL-TIME"],
+      "startDate": "Jan 2026",
+      "endDate": null,
+      "link": "",
+      "description": [
+        
+      ],
+      "tags": [
+        "Django",
+        "Python",
+        "React",
+        "PostgreSQL"
+      ]
+    }   
+  ]
+}

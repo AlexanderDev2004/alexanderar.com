@@ -1,13 +1,18 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Navigation from '../components/Navigation.svelte';
+import Work from '../components/Work.svelte';
 import AboutContent from '../content/about.md';
+import workData from '../content/work/index.json';
 ---
 
 <Layout>
-	<Navigation client:load>
-		<div slot="about" class="space-y-3 text-gray-700 dark:text-gray-300">
-			<AboutContent />
-		</div>
-	</Navigation>
+  <Navigation client:load>
+    <div slot="about" class="space-y-3 text-gray-700 dark:text-gray-300">
+      <AboutContent />
+    </div>
+    <div slot="work">
+      <Work client:load works={workData.works} />
+    </div>
+  </Navigation>
 </Layout>
