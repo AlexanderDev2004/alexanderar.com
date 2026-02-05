@@ -3,7 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import Navigation from '../components/Navigation.svelte';
 import Work from '../components/Work.svelte';
 import AboutContent from '../content/about.md';
-import workData from '../content/work/index.json';
+import { works } from '../data/work';
 ---
 
 <Layout>
@@ -12,7 +12,7 @@ import workData from '../content/work/index.json';
       <AboutContent />
     </div>
     <div slot="work">
-      <Work client:load works={workData.works} />
+      <Work client:load works={works} />
     </div>
   </Navigation>
 </Layout>
