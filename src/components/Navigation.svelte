@@ -81,6 +81,18 @@
                   Content for {section.title} section coming soon...
                 </p>
               </slot>
+            {:else if section.id === 'files'}
+              <slot name="files">
+                <p class="text-gray-600 dark:text-gray-400">
+                  Content for {section.title} section coming soon...
+                </p>
+              </slot>
+            {:else if section.id === 'contact'}
+              <slot name="contact">
+                <p class="text-gray-600 dark:text-gray-400">
+                  Content for {section.title} section coming soon...
+                </p>
+              </slot>
             {:else}
               <p class="text-gray-600 dark:text-gray-400">
                 Content for {section.title} section coming soon...
