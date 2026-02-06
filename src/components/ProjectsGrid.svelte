@@ -3,9 +3,9 @@
 </script>
 
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-  {#each items as project (project.id)}
+  {#each items as project (project.slug)}
     <a
-      href={`/projects/${project.id}`}
+      href={`/projects/${project.slug}`}
       class="group border border-gray-300 dark:border-gray-700 rounded-lg overflow-hidden hover:border-blue-500 dark:hover:border-blue-400 transition-colors cursor-pointer"
     >
       <!-- Project Image -->

@@ -13,7 +13,7 @@
 </script>
 
 <div class="space-y-4">
-  {#each items.slice(0, 5) as project, index (index)}
+  {#each items.slice(0, 5) as project, index (project.slug)}
     <div class="border border-gray-300 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors overflow-hidden">
       <!-- Header yang bisa di-click -->
       <button
@@ -25,7 +25,7 @@
           <!-- Project Title as Link -->
           <div class="flex items-baseline gap-3 mb-3 flex-wrap">
             <a 
-              href={`/projects/${project.id}`}
+              href={`/projects/${project.slug}`}
               class="text-lg font-bold hover:underline text-blue-600 dark:text-blue-400"
               style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700;"
               onclick={(e) => e.stopPropagation()}

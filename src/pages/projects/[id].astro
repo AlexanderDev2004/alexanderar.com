@@ -1,15 +1,22 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { projects } from '../../data/projects';
+import { getCollection } from 'astro:content';
 
-export function getStaticPaths() {
-  return projects.map((project) => ({
-    params: { id: project.id },
-    props: { project },
+export async function getStaticPaths() {
+  const projectEntries = await getCollection('projects');
+  return projectEntries.map((entry) => ({
+    params: { id: entry.slug },
   }));
 }
 
-const { project } = Astro.props;
+const projectEntries = await getCollection('projects');
+const project = projectEntries.find((entry) => entry.slug === Astro.params.id);
+
+if (!project) {
+  throw new Error(`Project not found: ${Astro.params.id}`);
+}
+
+const { Content } = await project.render();
 ---
 
 <Layout>
@@ -33,23 +40,23 @@ const { project } = Astro.props;
           class="font-bold text-blue-600 dark:text-blue-400"
           style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 2.25rem;"
         >
-          {project.title}
+          {project.data.title}
         </h1>
         <span class="text-sm font-semibold px-3 py-1 border border-gray-400 dark:border-gray-600 rounded">
-          {project.year}
+          {project.data.year}
         </span>
       </div>
       <p class="text-gray-600 dark:text-gray-400" style="font-size: 1.125rem; line-height: 1.75;">
-        {project.fullDescription}
+        {project.data.fullDescription}
       </p>
     </div>
 
     <!-- Project Image -->
-    {project.image && (
+    {project.data.image && (
       <div class="mb-10">
         <img 
-          src={project.image} 
-          alt={project.title}
+          src={project.data.image} 
+          alt={project.data.title}
           class="w-full rounded-lg border border-gray-300 dark:border-gray-700"
         />
       </div>
@@ -57,9 +64,9 @@ const { project } = Astro.props;
 
     <!-- Links -->
     <div class="flex gap-3 mb-10 flex-wrap">
-      {project.projectLink && (
+      {project.data.projectLink && (
         <a 
-          href={project.projectLink}
+            href={project.data.projectLink}
           target="_blank"
           rel="noopener noreferrer"
           class="inline-flex items-center gap-2 px-4 py-2 border border-blue-500 text-blue-600 dark:text-blue-400 dark:border-blue-400 rounded hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors font-medium"
@@ -71,9 +78,9 @@ const { project } = Astro.props;
         </a>
       )}
 
-      {project.repoLink && (
+      {project.data.repoLink && (
         <a 
-          href={project.repoLink}
+            href={project.data.repoLink}
           target="_blank"
           rel="noopener noreferrer"
           class="inline-flex items-center gap-2 px-4 py-2 border border-gray-400 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors font-medium"
@@ -87,7 +94,7 @@ const { project } = Astro.props;
     </div>
 
     <!-- Tech Stack -->
-    {project.technologies && project.technologies.length > 0 && (
+    {project.data.technologies && project.data.technologies.length > 0 && (
       <div class="mb-10">
         <h2 
           class="font-bold mb-4 text-gray-900 dark:text-gray-100"
@@ -96,7 +103,7 @@ const { project } = Astro.props;
           Tech Stack
         </h2>
         <div class="flex flex-wrap gap-3">
-          {project.technologies.map((tech) => (
+          {project.data.technologies.map((tech) => (
             <a
               href={tech.docLink}
               target="_blank"
@@ -113,14 +120,9 @@ const { project } = Astro.props;
     )}
 
     <!-- Detailed Content -->
-    {project.detailedContent && (
-      <div class="prose dark:prose-invert max-w-none">
-        <div 
-          class="text-gray-700 dark:text-gray-300 space-y-4"
-          set:html={project.detailedContent}
-        />
-      </div>
-    )}
+    <div class="prose dark:prose-invert max-w-none">
+      <Content />
+    </div>
   </div>
 </Layout>
 

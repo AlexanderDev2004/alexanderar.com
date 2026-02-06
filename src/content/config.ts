@@ -26,7 +26,28 @@ const blogsCollection = defineCollection({
   }),
 });
 
+const projectsCollection = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    year: z.string(),
+    description: z.string(),
+    fullDescription: z.string(),
+    image: z.string().optional().or(z.literal('')),
+    projectLink: z.string().optional().or(z.literal('')),
+    repoLink: z.string().optional().or(z.literal('')),
+    technologies: z.array(
+      z.object({
+        name: z.string(),
+        icon: z.string(),
+        docLink: z.string(),
+      })
+    ),
+  }),
+});
+
 export const collections = {
   work: workCollection,
   blogs: blogsCollection,
+  projects: projectsCollection,
 };

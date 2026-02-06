@@ -12,7 +12,6 @@ import AboutContent from '../content/about.md';
 import { getCollection } from 'astro:content';
 import { works } from '../data/work';
 import { education } from '../data/education';
-import { projects } from '../data/projects';
 import { certifications } from '../data/certifications';
 import { files } from '../data/files';
 import { contacts } from '../data/contact';
@@ -31,6 +30,19 @@ const blogs = blogEntries
     tags: entry.data.tags,
     slug: entry.slug,
   }));
+
+const projectEntries = await getCollection('projects');
+const projects = projectEntries.map((entry) => ({
+  slug: entry.slug,
+  title: entry.data.title,
+  year: entry.data.year,
+  description: entry.data.description,
+  fullDescription: entry.data.fullDescription,
+  image: entry.data.image,
+  projectLink: entry.data.projectLink,
+  repoLink: entry.data.repoLink,
+  technologies: entry.data.technologies,
+}));
 ---
 
 <Layout>
