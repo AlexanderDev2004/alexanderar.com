@@ -2,17 +2,35 @@
 import "../styles/global.css";
 import Header from '../components/Header.svelte';
 import Footer from '../components/Footer.svelte';
+
+const pageTitle = 'Alexander Agung Raya - Software Developer';
+const pageDescription = 'Portfolio of Alexander Agung Raya, a Software Developer from Indonesia.';
+const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? Astro.url);
+const ogImage = new URL('/IconAlex.jpg', Astro.site ?? Astro.url);
 ---
 
 <!doctype html>
 <html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/svg+xml" href="/IconAlex.jpg" />
     <meta name="generator" content={Astro.generator} />
-    <title>Alexander Agung Raya - Software Developer</title>
-    <meta name="description" content="Portfolio of Alexander Agung Raya, a Software Developer from Indonesia" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={pageDescription} />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href={canonicalURL.toString()} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:url" content={canonicalURL.toString()} />
+    <meta property="og:image" content={ogImage.toString()} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={pageDescription} />
+    <meta name="twitter:image" content={ogImage.toString()} />
     <script is:inline>
       // Dark mode initialization - runs immediately before page render
       const theme = localStorage.getItem('theme');
@@ -32,6 +50,45 @@ import Footer from '../components/Footer.svelte';
       <slot />
     </main>
     <Footer />
+    <script is:inline>
+      const addCopyButtons = () => {
+        document.querySelectorAll('pre').forEach((block) => {
+          if (block.querySelector('.code-copy-button')) return;
+          const button = document.createElement('button');
+          button.type = 'button';
+          button.className = 'code-copy-button';
+          button.setAttribute('aria-label', 'Copy code');
+          button.innerHTML = 'Copy';
+
+          button.addEventListener('click', async () => {
+            const code = block.querySelector('code')?.innerText ?? '';
+            try {
+              await navigator.clipboard.writeText(code);
+              button.innerHTML = 'Copied';
+              button.classList.add('copied');
+              setTimeout(() => {
+                button.innerHTML = 'Copy';
+                button.classList.remove('copied');
+              }, 2000);
+            } catch {
+              button.innerHTML = 'Failed';
+              setTimeout(() => {
+                button.innerHTML = 'Copy';
+              }, 2000);
+            }
+          });
+
+          block.style.position = 'relative';
+          block.appendChild(button);
+        });
+      };
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', addCopyButtons);
+      } else {
+        addCopyButtons();
+      }
+    </script>
   </body>
 </html>
 
