@@ -17,10 +17,10 @@ technologies:
     icon: "mdi:tailwind"
     docLink: "https://tailwindcss.com/"
   - name: "Python"
-    icon: "mdi:python"
-    docLink: "https://python.com/"
+    icon: "simple-icons:python"
+    docLink: "https://www.python.org/"
 ---
 
 **Laporsana** is a website to create and manage facility problems on campus, facility improvements with the integration of a decision support system, which provides recommendations for solving existing problems on campus.
-i using build this project using Laravel, TailwindCss and then databases using Mysql oh yeah i make feature recomended Facility Item Campus.
+i using build this project using Laravel, TailwindCss and then databases using Mysql oh yeah i make feature recomended Facility Item Campus and i make recommendation for that item. using python for the recommendation system.
 
