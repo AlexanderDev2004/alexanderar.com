@@ -9,6 +9,10 @@ import icon from 'astro-icon';
 export default defineConfig({
   integrations: [svelte(), icon()],
 
+  devToolbar: {
+    enabled: false,
+  },
+
   vite: {
     plugins: [tailwindcss()]
   },
