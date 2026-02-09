@@ -22,14 +22,13 @@
 
     if (query.startsWith('#')) {
       const tagQuery = normalize(query.replace(/^#+/, ''));
-      return tagQuery.length > 0 && tags.some((tag) => tag === tagQuery);
+      return tagQuery.length > 0 && tags.some((tag) => tag.startsWith(tagQuery));
     }
 
     const title = normalize(blog.title ?? '');
     const description = normalize(blog.description ?? '');
-    const matchesTags = tags.some((tag) => tag.includes(query));
 
-    return title.includes(query) || description.includes(query) || matchesTags;
+    return title.includes(query) || description.includes(query);
   });
 </script>
 
