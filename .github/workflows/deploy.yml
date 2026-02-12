@@ -31,7 +31,7 @@ jobs:
         run: bun run build
 
       - name: Deploy via rsync
-        uses: burnett01/rsync-deployments@v5.2.0
+        uses: burnett01/rsync-deployments@v5.1.0
         with:
           switches: -avzr --delete
           path: dist/
