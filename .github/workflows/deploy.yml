@@ -30,13 +30,13 @@ jobs:
       - name: Build
         run: bun run build
 
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -p "${{ secrets.SSH_PORT }}" "${{ secrets.SSH_HOST }}" >> ~/.ssh/known_hosts
+
       - name: Deploy via rsync
-        uses: burnett01/rsync-deployments@v5.1.0
-        with:
-          switches: -avzr --delete
-          path: dist/
-          remote_path: /var/www/alx-porto
-          remote_host: ${{ secrets.SSH_HOST }}
-          remote_user: ${{ secrets.SSH_USER }}
-          remote_key: ${{ secrets.SSH_KEY }}
-          remote_port: ${{ secrets.SSH_PORT }}
+        run: |
+          rsync -avzr --delete -e "ssh -p ${{ secrets.SSH_PORT }} -i ~/.ssh/id_rsa" dist/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/var/www/alx-porto
