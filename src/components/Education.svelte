@@ -60,7 +60,7 @@
       {#if expandedIndex === index}
         <div class="px-5 pb-5 border-t border-gray-300 dark:border-gray-700 space-y-4">
           <p class="text-sm text-gray-700 dark:text-gray-300">
-            Education details can be added here
+            Coming Soon...
           </p>
         </div>
       {/if}

@@ -17,12 +17,9 @@
   <div class="container mx-auto px-6 py-6 md:py-8">
     <div class="flex justify-between items-start mb-5 md:mb-6">
       <div class="flex-1">
-        <h1
-          class="text-4xl md:text-5xl font-bold mb-2"
-          style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700;"
-        >
+        <a href="/" aria-label="Home" class="text-4xl md:text-5xl font-bold mb-2" style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700;">
           Alexander Agung Raya
-        </h1>
+        </a>
 
         <div class="flex items-center gap-3 mb-4">
           <span
