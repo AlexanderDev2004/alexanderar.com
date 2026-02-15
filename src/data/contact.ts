@@ -24,4 +24,10 @@ export const contacts: ContactItem[] = [
     icon: 'mdi:linkedin',
     href: 'https://www.linkedin.com/in/alexanderagungraya/',
   },
+  {
+    id: 'X',
+    label: 'X',
+    icon: 'ri:twitter-x-line',
+    href: '/',
+  }
 ];

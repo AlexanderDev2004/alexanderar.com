@@ -6,7 +6,7 @@
   export { items as items };
 </script>
 
-<div class="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-3">
   {#each items as file (file.id)}
     <div class="border border-gray-300 dark:border-gray-700 rounded-xl overflow-hidden bg-white dark:bg-gray-900 w-full md:max-w-sm lg:max-w-md md:mx-auto">
       <div class="bg-gray-100 dark:bg-gray-800 h-24 md:h-24 overflow-hidden flex items-start justify-center">

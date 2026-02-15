@@ -21,7 +21,7 @@
           Alexander Agung Raya
         </a>
 
-        <div class="flex items-center gap-3 mb-4">
+        <div class="flex items-center gap-3 mb-4 py-0.5">
           <span
             class="px-3 py-1 border border-current rounded-full text-sm"
             style="font-family: 'Plus Jakarta Sans', sans-serif;"

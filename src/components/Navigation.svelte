@@ -49,7 +49,7 @@
         </button>
 
         {#if openSections.has(section.id)}
-          <div class="section-content px-4 md:px-6 pb-4 border-l-2 border-current opacity-100 ml-3" style="font-family: 'Plus Jakarta Sans', sans-serif;">
+          <div class="section-content px-4 md:px-6 pb-4 border-l-2 border-current opacity-100 ml-3 py-2" style="font-family: 'Plus Jakarta Sans', sans-serif;">
             {#if section.id === 'about'}
               <slot name="about">
                 <p class="text-gray-600 dark:text-gray-400">
