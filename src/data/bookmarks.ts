@@ -31,5 +31,21 @@ export const bookmarks: BookmarkCategory[] = [
       },
       
     ],
+  }, 
+  {
+    id: 'Programming',
+    name: 'Programming',
+    icon: 'mdi:code-braces',
+    items: [
+      {
+        id: 'Jujutsu',
+        title: 'Jujutsu CLI',
+        description: 'Jujutsu is a version control system that is designed to be fast, reliable, and easy to use. It is built on top of Git and provides a simple and intuitive interface for managing your code.',
+        url: 'https://docs.jj-vcs.dev/latest/cli-reference/',
+        preview: 'https://api.microlink.io?url=https://docs.jj-vcs.dev/latest/cli-reference/&screenshot=true&meta=false&embed=screenshot.url',
+        tags: ['programming', 'CLI', 'version control', 'jj'],
+      },
+    ],
   },
+  
 ];
