@@ -55,6 +55,16 @@
       </div>
 
       <div class="flex items-center gap-3">
+        <!-- Secret Bookmarks Link -->
+        <a
+          href="/bookmarks"
+          title="Secret Bookmarks (Easter Egg)"
+          class="p-2 rounded-lg opacity-0 hover:opacity-100 transition-opacity duration-300 hover:bg-gray-100 dark:hover:bg-gray-800"
+          aria-label="Secret Bookmarks"
+        >
+          <iconify-icon icon="mdi:bookmark" width="24" height="24"></iconify-icon>
+        </a>
+
         <!-- <button
           class="p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
           aria-label="Toggle dark mode"
