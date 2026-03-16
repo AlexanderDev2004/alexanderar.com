@@ -4,14 +4,23 @@ import ProjectsGrid from '../components/ProjectsGrid.svelte';
 import { getCollection } from 'astro:content';
 
 const projectEntries = await getCollection('projects');
-const projects = projectEntries.map((entry) => ({
-  slug: entry.slug,
-  title: entry.data.title,
-  year: entry.data.year,
-  description: entry.data.description,
-  image: entry.data.image,
-  technologies: entry.data.technologies,
-}));
+
+const parseYear = (value: string) => Number.parseInt(value, 10) || 0;
+
+const projects = projectEntries
+  .map((entry) => ({
+    slug: entry.slug,
+    title: entry.data.title,
+    year: entry.data.year,
+    description: entry.data.description,
+    image: entry.data.image,
+    technologies: entry.data.technologies,
+  }))
+  .sort((a, b) => {
+    const yearOrder = parseYear(b.year) - parseYear(a.year);
+    if (yearOrder !== 0) return yearOrder;
+    return a.title.localeCompare(b.title);
+  });
 ---
 
 <Layout>

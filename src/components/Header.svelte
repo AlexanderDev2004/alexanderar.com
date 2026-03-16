@@ -1,18 +1,5 @@
 <script lang="ts">
   import { contacts } from '../data/contact';
-
-  const toggleDarkMode = () => {
-    const html = document.documentElement;
-    const isDark = html.classList.contains("dark");
-    
-    if (isDark) {
-      html.classList.remove("dark");
-      localStorage.setItem("theme", "light");
-    } else {
-      html.classList.add("dark");
-      localStorage.setItem("theme", "dark");
-    }
-  };
 </script>
 
 <header class="sticky top-0 z-50 transition-colors duration-300">
@@ -72,43 +59,16 @@
       </div>
 
       <div class="flex items-center gap-3">
-        <!-- Secret Bookmarks Link -->
         <a
           href="/bookmarks"
-          title="Secret Bookmarks (Easter Egg)"
-          class="p-2 rounded-lg opacity-0 hover:opacity-100 transition-opacity duration-300 hover:bg-gray-100 dark:hover:bg-gray-800"
+          title="Secret Bookmarks"
+          class="p-2 rounded-lg opacity-0 hover:opacity-100 focus:opacity-100 transition-opacity duration-300 hover:bg-gray-100 dark:hover:bg-gray-800"
           aria-label="Secret Bookmarks"
         >
           <iconify-icon icon="mdi:bookmark" width="24" height="24"></iconify-icon>
         </a>
-
-        <!-- <button
-          class="p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
-          aria-label="Toggle dark mode"
-          on:click={toggleDarkMode}
-        >
-          <svg
-            class="w-6 h-6 dark:hidden"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-          >
-            <path
-              d="M21.64 10.64c-.18-1.34-.76-2.59-1.67-3.6-.9-1.01-2.16-1.64-3.56-1.85-1.4-.21-2.84.06-4.04.78-1.2.72-2.11 1.93-2.53 3.29-.42 1.36-.37 2.82.15 4.14.52 1.32 1.53 2.38 2.82 2.99 1.29.61 2.76.69 4.11.23 1.35-.46 2.47-1.4 3.1-2.65.63-1.25.71-2.72.38-4.14zm-2.04 2.07c-.38.73-.96 1.32-1.68 1.65-.73.33-1.55.38-2.34.14-.79-.24-1.47-.75-1.89-1.42-.42-.67-.58-1.49-.44-2.28.14-.79.54-1.51 1.13-2.02.59-.51 1.35-.79 2.13-.76.78.03 1.51.35 2.08.9.57.55.92 1.31.99 2.11.07.8-.15 1.6-.59 2.28z"
-            />
-          </svg>
-          <svg
-            class="w-6 h-6 hidden dark:block"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-          >
-            <path
-              d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
-            />
-          </svg>
-        </button> -->
       </div>
+
     </div>
 
     <div class="h-px bg-current opacity-20 mb-4 md:mb-6"></div>

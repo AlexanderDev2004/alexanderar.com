@@ -1,0 +1,79 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+  const bookmarkEntries = await getCollection('bookmarks');
+  return bookmarkEntries.map((entry) => ({
+    params: { slug: entry.slug },
+  }));
+}
+
+const bookmarkEntries = await getCollection('bookmarks');
+const bookmark = bookmarkEntries.find((entry) => entry.slug === Astro.params.slug);
+
+if (!bookmark) {
+  throw new Error(`Bookmark not found: ${Astro.params.slug}`);
+}
+
+const { Content } = await bookmark.render();
+
+const publishedDate = bookmark.data.date
+  ? bookmark.data.date.toLocaleDateString('en-US', {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+    })
+  : null;
+---
+
+<Layout
+  title={`${bookmark.data.title} - Bookmarks`}
+  description={bookmark.data.description || 'Bookmark note'}
+  robots="noindex, nofollow"
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-5 md:px-6 py-8 md:py-12">
+    <a
+      href="/bookmarks"
+      class="inline-flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white mb-8"
+      style="font-family: 'Plus Jakarta Sans', sans-serif;"
+    >
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+      </svg>
+      Back
+    </a>
+
+    <article class="space-y-6 expand-reveal">
+      <header class="border-b border-gray-300 dark:border-gray-700 pb-6">
+        <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-3">
+          {bookmark.data.title}
+        </h1>
+        {bookmark.data.description && (
+          <p class="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-3">
+            {bookmark.data.description}
+          </p>
+        )}
+
+        <div class="flex items-center gap-3 flex-wrap">
+          {publishedDate && (
+            <span class="text-sm text-gray-500 dark:text-gray-400">{publishedDate}</span>
+          )}
+
+          {bookmark.data.tags &&
+            bookmark.data.tags.map((tag) => (
+              <span class="text-xs px-2 py-1 border border-gray-400 dark:border-gray-600 rounded text-gray-700 dark:text-gray-300">
+                #{tag}
+              </span>
+            ))}
+        </div>
+      </header>
+
+      <div class="prose dark:prose-invert max-w-none">
+        <Content />
+      </div>
+    </article>
+  </div>
+</Layout>

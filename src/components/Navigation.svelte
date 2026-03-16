@@ -1,4 +1,6 @@
 <script>
+  import { onMount } from 'svelte';
+
   const sections = [
     { id: 'about', title: 'About', icon: 'mdi:card-account-details-outline' },
     { id: 'work', title: 'Work Experience', icon: 'mdi:briefcase-outline' },
@@ -9,7 +11,15 @@
     { id: 'files', title: 'Files', icon: 'mdi:folder-outline' },
   ];
 
-  let openSections = new Set();
+  let openSections = new Set(['about']);
+
+  onMount(() => {
+    const hashSection = window.location.hash.replace('#', '');
+    const hasMatchingSection = sections.some((section) => section.id === hashSection);
+    if (hasMatchingSection) {
+      openSections = new Set([hashSection]);
+    }
+  });
 
   const toggleSection = (id) => {
     if (openSections.has(id)) {
@@ -25,6 +35,7 @@
   <div class="space-y-2.5 sm:space-y-3 md:space-y-4">
     {#each sections as section, index}
       <div
+        id={section.id}
         class="section-item group reveal"
         data-section={section.id}
         style={`--reveal-delay: ${index}`}

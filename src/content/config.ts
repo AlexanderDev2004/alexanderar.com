@@ -46,8 +46,19 @@ const projectsCollection = defineCollection({
   }),
 });
 
+const bookmarksCollection = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    description: z.string().optional().or(z.literal('')),
+    date: z.date().optional(),
+    tags: z.array(z.string()).optional(),
+  }),
+});
+
 export const collections = {
   work: workCollection,
   blogs: blogsCollection,
   projects: projectsCollection,
+  bookmarks: bookmarksCollection,
 };
