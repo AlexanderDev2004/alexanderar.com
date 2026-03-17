@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import ProjectsGrid from '../components/ProjectsGrid.svelte';
 import { getCollection } from 'astro:content';
+import { normalizeSlug } from '../lib/slug';
 
 const projectEntries = await getCollection('projects');
 
@@ -9,7 +10,7 @@ const parseYear = (value: string) => Number.parseInt(value, 10) || 0;
 
 const projects = projectEntries
   .map((entry) => ({
-    slug: entry.slug,
+    slug: normalizeSlug(entry.slug),
     title: entry.data.title,
     year: entry.data.year,
     description: entry.data.description,
@@ -24,40 +25,55 @@ const projects = projectEntries
 ---
 
 <Layout>
-  <div class="container mx-auto px-6 py-8 max-w-6xl">
-    <!-- Back Button -->
-    <a 
-      href="/"
-      class="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:underline mb-8"
-      style="font-family: 'Plus Jakarta Sans', sans-serif;"
-    >
+  <div class="container mx-auto px-4 sm:px-5 md:px-6 py-8 md:py-11 max-w-6xl">
+    <a href="/" class="back-link">
       <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
       </svg>
       Back
     </a>
 
-    <!-- Header -->
-    <div class="mb-12">
-      <h1 
-        class="text-5xl font-bold text-gray-900 dark:text-gray-100 mb-4"
-        style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 3rem;"
-      >
-        Personal Projects
-      </h1>
-      <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl">
-        These are some of my personal projects that I made in the past. Some of them are still in use, some are not. Mostly made them just for fun and to learn new things!
+    <header class="glass-panel rounded-2xl md:rounded-3xl p-5 sm:p-6 md:p-8 mt-5 md:mt-6">
+      <h1 class="page-title">Personal Projects</h1>
+      <p class="page-copy">
+        A curated set of products and experiments that helped me sharpen engineering and product thinking.
       </p>
-    </div>
+    </header>
 
-    <!-- Projects Grid -->
-    <ProjectsGrid client:load items={projects} />
+    <div class="mt-6 md:mt-7">
+      <ProjectsGrid client:load items={projects} />
+    </div>
   </div>
 </Layout>
 
 <style>
-  :global(body) {
-    background-color: var(--bg-color);
-    color: var(--text-color);
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.48rem;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+
+  .back-link:hover {
+    color: var(--text-primary);
+  }
+
+  .page-title {
+    margin: 0;
+    font-size: clamp(1.8rem, 4.5vw, 3rem);
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    color: var(--text-primary);
+    font-weight: 780;
+  }
+
+  .page-copy {
+    margin: 0.95rem 0 0;
+    max-width: 46rem;
+    color: var(--text-muted);
+    line-height: 1.72;
+    font-size: clamp(0.95rem, 2.1vw, 1.08rem);
   }
 </style>

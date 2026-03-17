@@ -4,7 +4,7 @@
 
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
   {#each items as cert (cert.id)}
-    <div class="group border border-gray-300 dark:border-gray-700 rounded-lg overflow-hidden hover:border-blue-500 dark:hover:border-blue-400 transition-colors">
+    <div class="group surface-item rounded-lg overflow-hidden transition-colors">
       <!-- Certificate Image -->
       {#if cert.certificateImage}
         <div class="relative overflow-hidden bg-gray-200 dark:bg-gray-800 h-48">
@@ -24,18 +24,18 @@
       <div class="p-5">
         <div class="flex items-baseline gap-2 mb-2 flex-wrap">
           <h3 
-            class="text-base font-bold text-gray-900 dark:text-gray-100"
+            class="text-base font-bold primary-text"
             style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700;"
           >
             {cert.title}
           </h3>
-          <span class="text-xs font-semibold px-2 py-0.5 border border-gray-400 dark:border-gray-600 rounded text-gray-600 dark:text-gray-400">
+          <span class="pill-chip text-xs font-semibold px-2 py-0.5 muted-text">
             {cert.year}
           </span>
         </div>
 
         <!-- Description -->
-        <p class="text-sm text-gray-600 dark:text-gray-400 line-clamp-3 mb-4">
+        <p class="text-sm muted-text line-clamp-3 mb-4">
           {cert.description}
         </p>
 
@@ -45,7 +45,7 @@
             href={cert.certificateLink}
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center gap-2 text-sm text-blue-600 dark:text-blue-400 hover:underline font-medium mb-3"
+            class="inline-flex items-center gap-2 text-sm accent-link hover:underline font-medium mb-3"
           >
             <span>View Certificate</span>
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -59,14 +59,14 @@
           <div class="flex flex-wrap gap-1.5">
             {#each cert.tags.slice(0, 3) as tag}
               <span 
-                class="px-2 py-1 text-xs border border-gray-400 dark:border-gray-600 rounded text-gray-700 dark:text-gray-300"
+                class="pill-chip px-2 py-1 text-xs"
               >
                 {tag}
               </span>
             {/each}
             {#if cert.tags.length > 3}
               <span 
-                class="px-2 py-1 text-xs border border-gray-400 dark:border-gray-600 rounded text-gray-700 dark:text-gray-300"
+                class="pill-chip px-2 py-1 text-xs"
               >
                 +{cert.tags.length - 3}
               </span>

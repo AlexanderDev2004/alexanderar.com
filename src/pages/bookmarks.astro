@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
+import { normalizeSlug } from '../lib/slug';
 
 const formatDate = (date?: Date) => {
   if (!date) return null;
@@ -16,7 +17,7 @@ const bookmarkEntries = await getCollection('bookmarks');
 const bookmarks = bookmarkEntries
   .sort((a, b) => (b.data.date?.valueOf() ?? 0) - (a.data.date?.valueOf() ?? 0))
   .map((entry) => ({
-    slug: entry.slug,
+    slug: normalizeSlug(entry.slug),
     title: entry.data.title,
     description: entry.data.description,
     date: formatDate(entry.data.date),
@@ -30,28 +31,24 @@ const bookmarks = bookmarkEntries
   robots="noindex, nofollow"
 >
   <div class="max-w-6xl mx-auto px-4 sm:px-5 md:px-6 py-8 md:py-12">
-    <a
-      href="/"
-      class="inline-flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white mb-8"
-      style="font-family: 'Plus Jakarta Sans', sans-serif;"
-    >
+    <a href="/" class="back-link">
       <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
       </svg>
       Back
     </a>
 
-    <div class="mb-8 md:mb-10">
-      <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-2">
+    <header class="glass-panel rounded-2xl md:rounded-3xl p-5 sm:p-6 md:p-8 mt-5 md:mt-6 mb-6 md:mb-7">
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-2 tracking-tight">
         Bookmarks
       </h1>
-      <p class="text-base sm:text-lg text-gray-600 dark:text-gray-400">
+      <p class="text-base sm:text-lg muted-text leading-relaxed">
         Notes and references from markdown files.
       </p>
-    </div>
+    </header>
 
     {bookmarks.length === 0 ? (
-      <div class="border border-gray-300 dark:border-gray-700 rounded-lg p-5 text-gray-600 dark:text-gray-400">
+      <div class="section-shell rounded-xl p-5 muted-text">
         No bookmark notes yet. Add a new file in <code>src/content/bookmarks/</code>.
       </div>
     ) : (
@@ -59,20 +56,20 @@ const bookmarks = bookmarkEntries
         {bookmarks.map((item, index) => (
           <a
             href={`/bookmarks/${item.slug}`}
-            class="block border border-gray-300 dark:border-gray-700 rounded-lg p-4 sm:p-5 hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors reveal pressable"
+            class="section-shell block rounded-xl p-4 sm:p-5 hover:bg-gray-50/70 dark:hover:bg-gray-900/60 transition-colors reveal pressable"
             style={`--reveal-delay: ${index}`}
           >
             <div class="flex items-start justify-between gap-3">
-              <h2 class="text-lg sm:text-xl font-bold text-gray-900 dark:text-white">{item.title}</h2>
+              <h2 class="text-lg sm:text-xl font-bold primary-text">{item.title}</h2>
               {item.date && (
-                <span class="text-xs sm:text-sm text-gray-500 dark:text-gray-400 whitespace-nowrap">
+                <span class="text-xs sm:text-sm muted-text whitespace-nowrap">
                   {item.date}
                 </span>
               )}
             </div>
 
             {item.description && (
-              <p class="mt-2 text-sm sm:text-base text-gray-600 dark:text-gray-400 line-clamp-2">
+              <p class="mt-2 text-sm sm:text-base muted-text line-clamp-2">
                 {item.description}
               </p>
             )}
@@ -80,7 +77,7 @@ const bookmarks = bookmarkEntries
             {item.tags.length > 0 && (
               <div class="mt-3 flex flex-wrap gap-2">
                 {item.tags.map((tag) => (
-                  <span class="text-xs px-2 py-1 border border-gray-400 dark:border-gray-600 rounded text-gray-700 dark:text-gray-300">
+                  <span class="pill-chip text-xs px-2 py-1">
                     #{tag}
                   </span>
                 ))}
@@ -92,3 +89,18 @@ const bookmarks = bookmarkEntries
     )}
   </div>
 </Layout>
+
+<style>
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.48rem;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+
+  .back-link:hover {
+    color: var(--text-primary);
+  }
+</style>

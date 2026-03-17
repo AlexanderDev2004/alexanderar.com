@@ -15,7 +15,7 @@
 <div class="space-y-3">
   {#each works as work, index (index)}
     <div
-      class="border border-gray-300 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors reveal"
+      class="surface-item rounded-lg transition-colors reveal"
       style={`--reveal-delay: ${index}`}
     >
       <!-- Header yang bisa di-click -->
@@ -32,7 +32,7 @@
                 href={work.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="text-base sm:text-lg font-bold hover:underline text-blue-600 dark:text-blue-400"
+                class="text-base sm:text-lg font-bold hover:underline accent-link"
                 style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700;"
                 onclick={(e) => e.stopPropagation()}
               >
@@ -50,7 +50,7 @@
             {#if work.status}
               <div class="flex gap-2 flex-wrap">
                 {#each work.status as stat}
-                  <span class="text-[11px] sm:text-xs font-semibold px-2 py-1 border border-gray-400 dark:border-gray-600 rounded">
+                  <span class="pill-chip text-[11px] sm:text-xs font-semibold px-2 py-1">
                     {stat}
                   </span>
                 {/each}
@@ -59,19 +59,19 @@
           </div>
           
           <!-- Job Title -->
-          <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mb-2" style="font-family: 'Plus Jakarta Sans', sans-serif;">
+          <p class="text-xs sm:text-sm muted-text mb-2" style="font-family: 'Plus Jakarta Sans', sans-serif;">
             {work.jobTitle}
           </p>
 
           {#if work.country}
-            <p class="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mb-2" style="font-family: 'Plus Jakarta Sans', sans-serif;">
+            <p class="text-xs sm:text-sm muted-text mb-2" style="font-family: 'Plus Jakarta Sans', sans-serif;">
               {work.country}
             </p>
           {/if}
         </div>
 
         <!-- Date + Chevron -->
-        <div class="flex items-center justify-between sm:justify-end gap-3 text-xs sm:text-sm text-gray-500 dark:text-gray-400 sm:ml-auto">
+        <div class="flex items-center justify-between sm:justify-end gap-3 text-xs sm:text-sm muted-text sm:ml-auto">
           <span class="whitespace-nowrap">
             {work.startDate} - {work.endDate === null || work.endDate === undefined || work.endDate === '' ? 'Present' : work.endDate}
           </span>
@@ -90,10 +90,10 @@
 
       <!-- Content yang expandable -->
       {#if expandedIndex === index}
-        <div class="px-4 sm:px-5 pb-4 sm:pb-5 border-t border-gray-300 dark:border-gray-700 space-y-4 expand-reveal">
+        <div class="px-4 sm:px-5 pb-4 sm:pb-5 space-y-4 expand-reveal" style="border-top: 1px solid var(--surface-border);">
           <!-- Description dengan bullet points -->
           {#if work.description && work.description.length > 0}
-            <ul class="list-disc list-inside space-y-2 text-xs sm:text-sm text-gray-700 dark:text-gray-300">
+            <ul class="work-list list-disc list-inside space-y-2 text-xs sm:text-sm primary-text">
               {#each work.description as item}
                 <li>{item}</li>
               {/each}
@@ -105,7 +105,7 @@
             <div class="flex flex-wrap gap-2 pt-2">
               {#each work.tags as tag}
                 <span 
-                  class="px-2.5 sm:px-3 py-1 border border-gray-400 dark:border-gray-600 rounded text-[11px] sm:text-xs font-medium text-gray-700 dark:text-gray-300"
+                  class="pill-chip px-2.5 sm:px-3 py-1 text-[11px] sm:text-xs font-medium"
                 >
                   {tag}
                 </span>
@@ -119,7 +119,7 @@
 </div>
 
 <style>
-  :global(li) {
+  .work-list :global(li) {
     margin-left: 0.5rem;
   }
 </style>

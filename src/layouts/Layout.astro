@@ -56,9 +56,13 @@ const ogImage = new URL(ogImagePath, Astro.site ?? Astro.url);
     </script>
     <script is:inline src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
   </head>
-  <body class="transition-colors duration-300">
+  <body class="transition-colors duration-300 antialiased">
+    <div class="page-atmosphere" aria-hidden="true">
+      <span class="atmosphere-blob atmosphere-blob--left"></span>
+      <span class="atmosphere-blob atmosphere-blob--right"></span>
+    </div>
     <Header client:load />
-    <main>
+    <main class="relative z-10">
       <slot />
     </main>
     <Footer />
@@ -209,13 +213,53 @@ const ogImage = new URL(ogImagePath, Astro.site ?? Astro.url);
   html {
     font-family: "Plus Jakarta Sans", sans-serif;
   }
-  
-  body {
-    margin: 0;
-    padding: 0;
-    color-scheme: light dark;
-    color: light-dark(#000, #fff);
-    background-color: light-dark(#fff, #0f0f0f);
+
+  .page-atmosphere {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  .atmosphere-blob {
+    position: absolute;
+    width: min(44rem, 72vw);
+    aspect-ratio: 1;
+    border-radius: 999px;
+    filter: blur(84px);
+    opacity: 0.22;
+  }
+
+  .atmosphere-blob--left {
+    top: -12rem;
+    left: -18rem;
+    background: #14b8a6;
+  }
+
+  .atmosphere-blob--right {
+    top: -14rem;
+    right: -14rem;
+    background: #0284c7;
+  }
+
+  :global(html.dark) .atmosphere-blob {
+    opacity: 0.28;
+  }
+
+  :global(html.dark) .atmosphere-blob--left {
+    background: #22d3ee;
+  }
+
+  :global(html.dark) .atmosphere-blob--right {
+    background: #38bdf8;
+  }
+
+  @media (max-width: 768px) {
+    .atmosphere-blob {
+      width: 24rem;
+      filter: blur(68px);
+    }
   }
 </style>
 

@@ -15,7 +15,7 @@
 <div class="space-y-3">
   {#each items as item, index (index)}
     <div
-      class="border border-gray-300 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors reveal"
+      class="surface-item rounded-lg transition-colors reveal"
       style={`--reveal-delay: ${index}`}
     >
       <!-- Header yang bisa di-click -->
@@ -34,13 +34,13 @@
           </h3>
           
           <!-- Institution -->
-          <p class="text-sm text-gray-600 dark:text-gray-400 mt-1" style="font-family: 'Plus Jakarta Sans', sans-serif;">
+          <p class="text-sm muted-text mt-1" style="font-family: 'Plus Jakarta Sans', sans-serif;">
             {item.institution}
           </p>
         </div>
 
         <!-- Date di sebelah kanan -->
-        <div class="text-right whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
+        <div class="text-right whitespace-nowrap text-sm muted-text">
           {item.startDate} - {item.endDate === null || item.endDate === undefined || item.endDate === '' ? 'Now' : item.endDate}
         </div>
 
@@ -61,8 +61,8 @@
 
       <!-- Content yang expandable (untuk future content seperti GPA, courses, dll) -->
       {#if expandedIndex === index}
-        <div class="px-5 pb-5 border-t border-gray-300 dark:border-gray-700 space-y-4 expand-reveal">
-          <p class="text-sm text-gray-700 dark:text-gray-300">
+        <div class="px-5 pb-5 space-y-4 expand-reveal" style="border-top: 1px solid var(--surface-border);">
+          <p class="text-sm muted-text">
             Coming Soon...
           </p>
         </div>

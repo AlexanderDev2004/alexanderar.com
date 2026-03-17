@@ -1,18 +1,28 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
+import { normalizeSlug } from '../../lib/slug';
 
 export const prerender = true;
 
 export async function getStaticPaths() {
   const bookmarkEntries = await getCollection('bookmarks');
+
   return bookmarkEntries.map((entry) => ({
-    params: { slug: entry.slug },
+    params: { slug: normalizeSlug(entry.slug) },
+    props: {
+      entrySlug: entry.slug,
+    },
   }));
 }
 
 const bookmarkEntries = await getCollection('bookmarks');
-const bookmark = bookmarkEntries.find((entry) => entry.slug === Astro.params.slug);
+const requestedSlug = Astro.params.slug ?? '';
+const preloadedSlug = Astro.props.entrySlug;
+
+const bookmark = preloadedSlug
+  ? bookmarkEntries.find((entry) => entry.slug === preloadedSlug)
+  : bookmarkEntries.find((entry) => normalizeSlug(entry.slug) === normalizeSlug(requestedSlug));
 
 if (!bookmark) {
   throw new Error(`Bookmark not found: ${Astro.params.slug}`);
@@ -35,45 +45,56 @@ const publishedDate = bookmark.data.date
   robots="noindex, nofollow"
 >
   <div class="max-w-4xl mx-auto px-4 sm:px-5 md:px-6 py-8 md:py-12">
-    <a
-      href="/bookmarks"
-      class="inline-flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white mb-8"
-      style="font-family: 'Plus Jakarta Sans', sans-serif;"
-    >
+    <a href="/bookmarks" class="back-link">
       <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
       </svg>
       Back
     </a>
 
-    <article class="space-y-6 expand-reveal">
-      <header class="border-b border-gray-300 dark:border-gray-700 pb-6">
-        <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-3">
+    <article class="space-y-6 expand-reveal mt-5 md:mt-6">
+      <header class="glass-panel rounded-2xl p-5 sm:p-6 border-b pb-6" style="border-color: var(--surface-border);">
+        <h1 class="text-3xl sm:text-4xl font-bold primary-text mb-3">
           {bookmark.data.title}
         </h1>
         {bookmark.data.description && (
-          <p class="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-3">
+          <p class="text-base sm:text-lg muted-text mb-3">
             {bookmark.data.description}
           </p>
         )}
 
         <div class="flex items-center gap-3 flex-wrap">
           {publishedDate && (
-            <span class="text-sm text-gray-500 dark:text-gray-400">{publishedDate}</span>
+            <span class="text-sm muted-text">{publishedDate}</span>
           )}
 
           {bookmark.data.tags &&
             bookmark.data.tags.map((tag) => (
-              <span class="text-xs px-2 py-1 border border-gray-400 dark:border-gray-600 rounded text-gray-700 dark:text-gray-300">
+              <span class="pill-chip text-xs px-2 py-1">
                 #{tag}
               </span>
             ))}
         </div>
       </header>
 
-      <div class="prose dark:prose-invert max-w-none">
+      <div class="section-shell rounded-2xl p-5 sm:p-6 prose dark:prose-invert max-w-none">
         <Content />
       </div>
     </article>
   </div>
 </Layout>
+
+<style>
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.48rem;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+
+  .back-link:hover {
+    color: var(--text-primary);
+  }
+</style>

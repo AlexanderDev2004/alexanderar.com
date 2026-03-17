@@ -15,7 +15,7 @@
 <div class="space-y-4">
   {#each items.slice(0, 2) as cert, index (index)}
     <div
-      class="border border-gray-300 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors overflow-hidden reveal"
+      class="surface-item rounded-lg transition-colors overflow-hidden reveal"
       style={`--reveal-delay: ${index}`}
     >
       <!-- Header yang bisa di-click -->
@@ -28,18 +28,18 @@
           <!-- Certification Title -->
           <div class="flex items-baseline gap-3 mb-2 flex-wrap">
             <h3 
-              class="text-lg font-bold text-gray-900 dark:text-gray-100"
+              class="text-lg font-bold primary-text"
               style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700;"
             >
               {cert.title}
             </h3>
-            <span class="text-xs font-semibold px-3 py-1 border border-gray-400 dark:border-gray-600 rounded">
+            <span class="pill-chip text-xs font-semibold px-3 py-1">
               {cert.year}
             </span>
           </div>
           
           <!-- Description Preview -->
-          <p class="text-sm text-gray-600 dark:text-gray-400 line-clamp-2" style="font-family: 'Plus Jakarta Sans', sans-serif;">
+          <p class="text-sm muted-text line-clamp-2" style="font-family: 'Plus Jakarta Sans', sans-serif;">
             {cert.description}
           </p>
         </div>
@@ -61,10 +61,10 @@
 
       <!-- Content yang expandable -->
       {#if expandedIndex === index}
-        <div class="px-5 pb-5 border-t border-gray-300 dark:border-gray-700 space-y-4 expand-reveal">
+        <div class="px-5 pb-5 space-y-4 expand-reveal" style="border-top: 1px solid var(--surface-border);">
           <!-- Full Description -->
           <div>
-            <p class="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+            <p class="text-sm primary-text leading-relaxed">
               {cert.description}
             </p>
           </div>
@@ -76,7 +76,8 @@
                 href={cert.certificateLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="inline-flex items-center gap-2 px-4 py-2 border border-blue-500 text-blue-600 dark:text-blue-400 dark:border-blue-400 rounded hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors text-sm font-medium"
+                class="inline-flex items-center gap-2 px-4 py-2 border rounded transition-colors text-sm font-medium"
+                style="border-color: var(--accent); color: var(--accent); background: var(--accent-soft);"
                 onclick={(e) => e.stopPropagation()}
               >
                 <span>View Certificate</span>
@@ -92,7 +93,7 @@
             <div class="flex flex-wrap gap-2">
               {#each cert.tags as tag}
                 <span 
-                  class="px-3 py-1 border border-gray-400 dark:border-gray-600 rounded text-xs font-medium text-gray-700 dark:text-gray-300"
+                  class="pill-chip px-3 py-1 text-xs font-medium"
                 >
                   {tag}
                 </span>
@@ -109,8 +110,8 @@
     <div class="flex justify-center pt-4">
       <a 
         href="/all-certifications"
-        class="inline-flex items-center gap-2 px-6 py-3 border border-gray-400 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors font-medium"
-        style="font-family: 'Plus Jakarta Sans', sans-serif;"
+        class="inline-flex items-center gap-2 px-6 py-3 rounded transition-colors font-medium primary-text"
+        style="border: 1px solid var(--surface-border); background: var(--surface); font-family: 'Plus Jakarta Sans', sans-serif;"
       >
         <span>– SEE MORE</span>
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

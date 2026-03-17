@@ -1,21 +1,117 @@
 @import "tailwindcss";
 
-/* Dark Mode Support */
-@supports (color: rgb(from white r g b)) {
-  :root {
-    color-scheme: light dark;
-  }
-  
-  html {
-    --light-bg: white;
-    --light-text: #000;
-    --dark-bg: #0f0f0f;
-    --dark-text: #fff;
-  }
-  
-  html.dark {
-    color-scheme: dark;
-  }
+:root {
+  color-scheme: light;
+  --page-bg: #f3f6fb;
+  --page-bg-deep: #e7edf6;
+  --text-primary: #0f172a;
+  --text-muted: #475569;
+  --surface: rgba(255, 255, 255, 0.74);
+  --surface-strong: rgba(255, 255, 255, 0.92);
+  --surface-border: rgba(15, 23, 42, 0.12);
+  --accent: #0f766e;
+  --accent-strong: #0d9488;
+  --accent-soft: rgba(13, 148, 136, 0.14);
+  --shadow-soft: 0 20px 46px rgba(15, 23, 42, 0.12);
+}
+
+html.dark {
+  color-scheme: dark;
+  --page-bg: #020617;
+  --page-bg-deep: #0b1120;
+  --text-primary: #e2e8f0;
+  --text-muted: #94a3b8;
+  --surface: rgba(15, 23, 42, 0.72);
+  --surface-strong: rgba(15, 23, 42, 0.9);
+  --surface-border: rgba(148, 163, 184, 0.26);
+  --accent: #22d3ee;
+  --accent-strong: #38bdf8;
+  --accent-soft: rgba(56, 189, 248, 0.2);
+  --shadow-soft: 0 22px 55px rgba(2, 6, 23, 0.55);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--text-primary);
+  background-color: var(--page-bg);
+  background-image:
+    radial-gradient(56rem 56rem at -10% -8%, rgba(13, 148, 136, 0.2), transparent 55%),
+    radial-gradient(48rem 48rem at 108% -12%, rgba(14, 116, 144, 0.18), transparent 60%),
+    linear-gradient(180deg, var(--page-bg), var(--page-bg-deep));
+  background-attachment: fixed;
+}
+
+html.dark body {
+  background-image:
+    radial-gradient(58rem 58rem at -10% -8%, rgba(34, 211, 238, 0.18), transparent 58%),
+    radial-gradient(50rem 50rem at 110% -12%, rgba(59, 130, 246, 0.16), transparent 62%),
+    linear-gradient(180deg, var(--page-bg), var(--page-bg-deep));
+}
+
+.glass-panel {
+  background: var(--surface);
+  border: 1px solid var(--surface-border);
+  box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(14px);
+}
+
+.section-shell {
+  background: var(--surface-strong);
+  border: 1px solid var(--surface-border);
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
+}
+
+html.dark .section-shell {
+  box-shadow: 0 15px 34px rgba(2, 6, 23, 0.42);
+}
+
+.accent-link {
+  color: var(--accent);
+}
+
+.accent-link:hover {
+  color: var(--accent-strong);
+}
+
+.soft-divider {
+  border-top: 1px solid var(--surface-border);
+}
+
+.surface-item {
+  background: var(--surface-strong);
+  border: 1px solid var(--surface-border);
+}
+
+.surface-item:hover {
+  background: var(--surface);
+  border-color: var(--accent);
+}
+
+.primary-text {
+  color: var(--text-primary);
+}
+
+.muted-text {
+  color: var(--text-muted);
+}
+
+.pill-chip {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--surface-border);
+  background: var(--surface);
+  color: var(--text-primary);
+  border-radius: 0.55rem;
+}
+
+.pill-chip--soft {
+  background: var(--accent-soft);
+  border-color: var(--accent);
 }
 
 /* Plus Jakarta Sans Variable Font - Default */
@@ -134,11 +230,12 @@
 
 /* Markdown Code Styling */
 .code-block-wrap {
-  background: #0d1117;
-  border: 1px solid #1f2937;
-  border-radius: 14px;
+  background: #0f172a;
+  border: 1px solid #1e293b;
+  border-radius: 16px;
   overflow: hidden;
-  margin: 1.1rem 0;
+  margin: 1.2rem 0;
+  box-shadow: 0 16px 36px rgba(15, 23, 42, 0.16);
 }
 
 .code-block-toolbar {
@@ -146,28 +243,28 @@
   align-items: center;
   justify-content: space-between;
   gap: 0.75rem;
-  padding: 0.7rem 0.85rem;
-  background: #111318;
-  border-bottom: 1px solid #1f2937;
+  padding: 0.68rem 0.88rem;
+  background: linear-gradient(90deg, #111b2f, #0f1627);
+  border-bottom: 1px solid #24334f;
 }
 
 .code-language {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  color: #f3f4f6;
-  font-size: 0.9rem;
-  font-weight: 600;
+  color: #e2e8f0;
+  font-size: 0.84rem;
+  font-weight: 650;
 }
 
 .code-language-icon {
-  color: #cbd5e1;
+  color: #7dd3fc;
   font-weight: 700;
 }
 
 pre {
-  background: #0d1117;
-  color: #e5e7eb;
+  background: transparent;
+  color: #e2e8f0;
   border: none;
   border-radius: 0;
   margin: 0;
@@ -181,24 +278,28 @@ pre {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.25rem 0.6rem;
-  border-radius: 8px;
-  border: 1px solid #374151;
-  background: #181b22;
-  color: #e5e7eb;
-  font-size: 0.75rem;
+  padding: 0.28rem 0.64rem;
+  border-radius: 10px;
+  border: 1px solid #334155;
+  background: rgba(15, 23, 42, 0.78);
+  color: #e2e8f0;
+  font-size: 0.78rem;
+  font-weight: 600;
   cursor: pointer;
-  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
 }
 
 .code-copy-button:hover {
-  background: #212733;
-  border-color: #4b5563;
+  background: rgba(30, 41, 59, 0.92);
+  border-color: #60a5fa;
+  color: #f8fafc;
+  transform: translateY(-1px);
 }
 
 .code-copy-button.copied {
-  border-color: #16a34a;
-  color: #86efac;
+  border-color: var(--accent);
+  color: #ccfbf1;
+  background: rgba(13, 148, 136, 0.28);
 }
 
 pre code {
@@ -222,9 +323,35 @@ html.dark code {
   color: inherit;
 }
 
-html:not(.dark) pre {
-  background: #0d1117;
-  color: #f8fafc;
+html.dark .code-block-wrap {
+  background: #020817;
+  border-color: #1e293b;
+  box-shadow: 0 18px 40px rgba(2, 6, 23, 0.56);
+}
+
+html.dark .code-block-toolbar {
+  background: linear-gradient(90deg, #081125, #060d1d);
+  border-bottom-color: #1f2d46;
+}
+
+html.dark .code-copy-button {
+  border-color: #334155;
+  background: rgba(2, 6, 23, 0.75);
+}
+
+html:not(.dark) .code-block-wrap {
+  background: #0f172a;
+  border-color: #1e293b;
+  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.16);
+}
+
+html:not(.dark) .code-block-toolbar {
+  background: linear-gradient(90deg, #12213b, #101b31);
+  border-bottom-color: #293c5b;
+}
+
+html:not(.dark) .code-copy-button {
+  background: rgba(15, 23, 42, 0.78);
 }
 
 /* Markdown Media Cards (iframe / video / audio) */
@@ -302,12 +429,16 @@ html:not(.dark) .media-audio {
 }
 
 .reveal {
-  animation: reveal-up 0.28s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  opacity: 1;
+  transform: translateY(0);
+  animation: reveal-up 0.28s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
   animation-delay: calc(var(--reveal-delay, 0) * 60ms);
 }
 
 .reveal-pop {
-  animation: reveal-pop 0.22s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  opacity: 1;
+  transform: scale(1);
+  animation: reveal-pop 0.22s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
   animation-delay: calc(var(--reveal-delay, 0) * 60ms);
 }
 
@@ -323,7 +454,9 @@ html:not(.dark) .media-audio {
 }
 
 .expand-reveal {
-  animation: expand-reveal 0.2s ease both;
+  opacity: 1;
+  transform: translateY(0);
+  animation: expand-reveal 0.2s ease forwards;
 }
 
 .pressable {

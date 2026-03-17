@@ -3,9 +3,9 @@ title: "Decimatex"
 year: "2026"
 description: "A Decision Support System (DSS) platform that automates decision analysis using MCDM (Multi-Criteria Decision Making) methods."
 fullDescription: "Decimatex is a Decision Support System (DSS) platform that automates decision analysis using MCDM (Multi-Criteria Decision Making) methods to assist students, lecturers, and others."
-image: ""
+image: "/public/images/decimatex.png"
 projectLink: ""
-repoLink: ""
+repoLink: "https://github.com/AlexanderDev2004/decimatex"
 technologies:
   - name: "bun"
     icon: "simple-icons:bun"
@@ -28,6 +28,9 @@ technologies:
   - name: "tailwindcss"
     icon: "simple-icons:tailwindcss"
     docLink: "https://tailwindcss.com/docs"
+  - name: "electron"
+    icon: "simple-icons:electron"
+    docLink: "https://www.electronjs.org/docs"
 ---
 
 ## Project Overview

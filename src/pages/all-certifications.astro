@@ -5,33 +5,55 @@ import { certifications } from '../data/certifications';
 ---
 
 <Layout>
-  <div class="container mx-auto px-6 py-8 max-w-6xl">
-    <!-- Back Button -->
-    <a 
-      href="/"
-      class="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:underline mb-8"
-      style="font-family: 'Plus Jakarta Sans', sans-serif;"
-    >
+  <div class="container mx-auto px-4 sm:px-5 md:px-6 py-8 md:py-11 max-w-6xl">
+    <a href="/" class="back-link">
       <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
       </svg>
       Back
     </a>
 
-    <!-- Header -->
-    <div class="mb-12">
-      <h1 
-        class="font-bold text-gray-900 dark:text-gray-100 mb-4"
-        style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 3rem;"
-      >
-        Certifications
-      </h1>
-      <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl">
-        Professional certifications and training achievements that demonstrate my commitment to continuous learning and expertise in various domains.
+    <header class="glass-panel rounded-2xl md:rounded-3xl p-5 sm:p-6 md:p-8 mt-5 md:mt-6">
+      <h1 class="page-title">Certifications</h1>
+      <p class="page-copy">
+        Professional certificates and training milestones that reflect consistent growth across engineering domains.
       </p>
-    </div>
+    </header>
 
-    <!-- Certifications Grid -->
-    <CertificationsGrid client:load items={certifications} />
+    <div class="mt-6 md:mt-7">
+      <CertificationsGrid client:load items={certifications} />
+    </div>
   </div>
 </Layout>
+
+<style>
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.48rem;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+
+  .back-link:hover {
+    color: var(--text-primary);
+  }
+
+  .page-title {
+    margin: 0;
+    font-size: clamp(1.72rem, 4.3vw, 2.8rem);
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    color: var(--text-primary);
+    font-weight: 780;
+  }
+
+  .page-copy {
+    margin: 0.95rem 0 0;
+    max-width: 46rem;
+    color: var(--text-muted);
+    line-height: 1.72;
+    font-size: clamp(0.95rem, 2vw, 1.05rem);
+  }
+</style>

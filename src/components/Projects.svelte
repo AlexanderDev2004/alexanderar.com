@@ -15,7 +15,7 @@
 <div class="space-y-4">
   {#each items.slice(0, 5) as project, index (project.slug)}
     <div
-      class="border border-gray-300 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors overflow-hidden reveal"
+      class="surface-item rounded-lg transition-colors overflow-hidden reveal"
       style={`--reveal-delay: ${index}`}
     >
       <!-- Header yang bisa di-click -->
@@ -29,19 +29,19 @@
           <div class="flex items-baseline gap-3 mb-3 flex-wrap">
             <a 
               href={`/projects/${project.slug}`}
-              class="text-base sm:text-lg font-bold hover:underline text-blue-600 dark:text-blue-400"
+              class="text-base sm:text-lg font-bold hover:underline accent-link"
               style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700;"
               onclick={(e) => e.stopPropagation()}
             >
               {project.title}
             </a>
-            <span class="text-[11px] sm:text-xs font-semibold px-2.5 sm:px-3 py-1 border border-gray-400 dark:border-gray-600 rounded">
+            <span class="pill-chip text-[11px] sm:text-xs font-semibold px-2.5 sm:px-3 py-1">
               {project.year}
             </span>
           </div>
           
           <!-- Description -->
-          <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-400 line-clamp-2" style="font-family: 'Plus Jakarta Sans', sans-serif;">
+          <p class="text-xs sm:text-sm muted-text line-clamp-2" style="font-family: 'Plus Jakarta Sans', sans-serif;">
             {project.description}
           </p>
         </div>
@@ -63,10 +63,10 @@
 
       <!-- Content yang expandable -->
       {#if expandedIndex === index}
-        <div class="px-4 sm:px-5 pb-4 sm:pb-5 border-t border-gray-300 dark:border-gray-700 space-y-4 expand-reveal">
+        <div class="px-4 sm:px-5 pb-4 sm:pb-5 space-y-4 expand-reveal" style="border-top: 1px solid var(--surface-border);">
           <!-- Full Description -->
           <div>
-            <p class="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+            <p class="text-sm primary-text leading-relaxed">
               {project.fullDescription}
             </p>
           </div>
@@ -78,7 +78,8 @@
                 href={project.projectLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="inline-flex items-center gap-2 px-3 sm:px-4 py-2 border border-blue-500 text-blue-600 dark:text-blue-400 dark:border-blue-400 rounded hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors text-xs sm:text-sm font-medium"
+                class="inline-flex items-center gap-2 px-3 sm:px-4 py-2 border rounded transition-colors text-xs sm:text-sm font-medium"
+                style="border-color: var(--accent); color: var(--accent); background: var(--accent-soft);"
                 onclick={(e) => e.stopPropagation()}
               >
                 <span>View Project</span>
@@ -93,7 +94,8 @@
                 href={project.repoLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="inline-flex items-center gap-2 px-3 sm:px-4 py-2 border border-gray-400 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-xs sm:text-sm font-medium"
+                class="inline-flex items-center gap-2 px-3 sm:px-4 py-2 border rounded transition-colors text-xs sm:text-sm font-medium primary-text"
+                style="border-color: var(--surface-border); background: var(--surface);"
                 onclick={(e) => e.stopPropagation()}
               >
                 <span>View Repo</span>
@@ -107,7 +109,7 @@
           <!-- Tech Stack -->
           {#if project.technologies && project.technologies.length > 0}
             <div>
-              <h4 class="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3" style="font-family: 'Plus Jakarta Sans', sans-serif;">
+              <h4 class="text-sm font-semibold primary-text mb-3" style="font-family: 'Plus Jakarta Sans', sans-serif;">
                 Tech Stack
               </h4>
               <div class="flex flex-wrap gap-2">
@@ -116,12 +118,13 @@
                     href={tech.docLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="inline-flex items-center gap-2 px-2.5 sm:px-3 py-2 border border-gray-400 dark:border-gray-600 rounded hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-xs sm:text-sm"
+                    class="inline-flex items-center gap-2 px-2.5 sm:px-3 py-2 border rounded transition-colors text-xs sm:text-sm primary-text"
+                    style="border-color: var(--surface-border); background: var(--surface);"
                     onclick={(e) => e.stopPropagation()}
                     title={`Learn more about ${tech.name}`}
                   >
                     <iconify-icon icon={tech.icon} width="18" height="18"></iconify-icon>
-                    <span class="text-gray-700 dark:text-gray-300">{tech.name}</span>
+                    <span>{tech.name}</span>
                   </a>
                 {/each}
               </div>
@@ -137,8 +140,8 @@
     <div class="flex justify-center pt-4">
       <a 
         href="/all-projects"
-        class="inline-flex items-center gap-2 px-6 py-3 border border-gray-400 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors font-medium"
-        style="font-family: 'Plus Jakarta Sans', sans-serif;"
+        class="inline-flex items-center gap-2 px-6 py-3 rounded transition-colors font-medium primary-text"
+        style="border: 1px solid var(--surface-border); background: var(--surface); font-family: 'Plus Jakarta Sans', sans-serif;"
       >
         <span>– SEE MORE</span>
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -12,7 +12,7 @@
       href={item.href}
       target="_blank"
       rel="noopener noreferrer"
-      class="inline-flex items-center gap-2 px-4 py-2 border border-gray-400 dark:border-gray-600 text-gray-900 dark:text-gray-100 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-sm font-medium reveal pressable"
+      class="surface-item inline-flex items-center gap-2 px-4 py-2 rounded-lg transition-colors text-sm font-medium primary-text reveal pressable"
       style={`--reveal-delay: ${index}`}
     >
       <iconify-icon icon={item.icon} width="18" height="18"></iconify-icon>
