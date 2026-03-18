@@ -4,4 +4,8 @@ title: About
 
 ### About Me
 
-I am a software engineer based in Indonesia with more than 2 years of experience in software development. Most of what I create are web applications and games, but I am open to other platforms as long as it helps people solve the problems they face. I usually use TypeScript for websites and C# for game development. Besides that, I speak Indonesian and English fluently, and currently, I am learning Chinese (中国).
+I am a software engineer based in Indonesia with hands-on experience building and maintaining scalable software systems. I enjoy exploring different technologies and solving real-world problems through clean, efficient, and maintainable solutions.
+
+I have worked across multiple domains, adapting quickly to new challenges and delivering practical results. I am comfortable working with modern development tools and continuously improving my skills to stay relevant in a fast-evolving tech landscape.
+
+I am fluent in Indonesian and English, and currently learning Chinese (中国).

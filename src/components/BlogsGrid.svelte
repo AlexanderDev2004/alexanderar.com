@@ -228,7 +228,7 @@
           No posts found matching "{searchQuery}"
         </p>
       {:else}
-        <p class="muted-text">No blog posts available yet.</p>
+        <p class="muted-text">Sorry, blog posts are not available.</p>
       {/if}
     </div>
   {/if}
