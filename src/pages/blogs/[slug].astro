@@ -100,6 +100,34 @@ const editLink = `https://github.com/${githubRepo}/edit/${githubBranch}/src/cont
         <Content />
       </div>
 
+      <!-- Comments -->
+      <section class="section-shell rounded-2xl p-5 sm:p-6 comments-shell space-y-3">
+        <h2 class="text-lg sm:text-xl font-bold primary-text">Comments</h2>
+
+        <script
+          src="https://giscus.app/client.js"
+          data-repo="AlexanderDev2004/alexanderar.com"
+          data-repo-id="R_kgDORIJATw"
+          data-category="General"
+          data-category-id="DIC_kwDORIJAT84C4xSq"
+          data-mapping="specific"
+          data-term={`src/content/blogs/${blog.slug}.md`}
+          data-strict="1"
+          data-reactions-enabled="1"
+          data-emit-metadata="0"
+          data-input-position="top"
+          data-theme="preferred_color_scheme"
+          data-lang="en"
+          data-loading="lazy"
+          crossorigin="anonymous"
+          async
+        ></script>
+
+        <p class="text-sm muted-text">
+          If you don&apos;t see comment section, please turn off your adblock :)
+        </p>
+      </section>
+
       <!-- Footer -->
       <footer class="border-t pt-8 mt-12" style="border-color: var(--surface-border);">
         <a
@@ -207,5 +235,10 @@ const editLink = `https://github.com/${githubRepo}/edit/${githubBranch}/src/cont
 
   :global(html.dark .blog-prose a:visited) {
     color: #3b82f6;
+  }
+
+  :global(.comments-shell .giscus),
+  :global(.comments-shell .giscus-frame) {
+    width: 100%;
   }
 </style>
