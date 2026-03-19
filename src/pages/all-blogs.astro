@@ -90,12 +90,14 @@ const sortedTags = Object.keys(tagCounts).sort((a, b) => {
       {blogs.length > 0 ? (
         <div id="blogsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
           {blogs.map((blog) => (
-            <article
+            <a
+              href={`/blogs/${blog.slug}`}
+              aria-label={`Read post: ${blog.title}`}
               data-blog-card
               data-title={blog.title.toLowerCase()}
               data-description={blog.description.toLowerCase()}
               data-tags={(blog.tags ?? []).map((tag) => tag.toLowerCase().trim()).join(',')}
-              class="surface-item rounded-lg p-3 sm:p-4 transition-all duration-200 pressable"
+              class="group surface-item rounded-lg p-3 sm:p-4 transition-all duration-200 pressable block no-underline"
             >
               <div class="flex items-center gap-2 text-xs sm:text-sm muted-text mb-2">
                 <iconify-icon icon="mdi:calendar" width="16" height="16"></iconify-icon>
@@ -121,14 +123,11 @@ const sortedTags = Object.keys(tagCounts).sort((a, b) => {
                 </div>
               )}
 
-              <a
-                href={`/blogs/${blog.slug}`}
-                class="inline-flex items-center gap-2 accent-link font-medium text-xs sm:text-sm transition-colors"
-              >
+              <span class="inline-flex items-center gap-2 accent-link font-medium text-xs sm:text-sm transition-colors">
                 Read More
                 <iconify-icon icon="mdi:arrow-right" width="16" height="16"></iconify-icon>
-              </a>
-            </article>
+              </span>
+            </a>
           ))}
         </div>
       ) : (

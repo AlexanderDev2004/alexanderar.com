@@ -15,8 +15,10 @@
 <div class="space-y-4">
   {#if items.length > 0}
     {#each items.slice(0, 2) as blog, index (blog.slug)}
-      <div
-        class="surface-item rounded-lg p-4 transition-all duration-200 reveal pressable"
+      <a
+        href="/blogs/{blog.slug}"
+        aria-label={`Read post: ${blog.title}`}
+        class="group surface-item rounded-lg p-4 transition-all duration-200 reveal pressable block no-underline"
         style={`--reveal-delay: ${index}`}
       >
         <div class="flex items-start justify-between gap-3">
@@ -44,15 +46,12 @@
             </div>
           {/if}
 
-          <a
-            href="/blogs/{blog.slug}"
-            class="inline-flex items-center gap-2 accent-link font-medium text-sm transition-colors"
-          >
+          <span class="inline-flex items-center gap-2 accent-link font-medium text-sm transition-colors">
             Read
             <iconify-icon icon="mdi:arrow-right" width="16" height="16"></iconify-icon>
-          </a>
+          </span>
         </div>
-      </div>
+      </a>
     {/each}
 
     {#if items.length > 2}

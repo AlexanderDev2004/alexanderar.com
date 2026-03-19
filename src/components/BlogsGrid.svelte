@@ -178,8 +178,10 @@
   <!-- Blog Grid -->
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
     {#each filteredItems as blog (blog.slug)}
-      <div
-        class="surface-item rounded-lg p-3 sm:p-4 transition-all duration-200 pressable"
+      <a
+        href="/blogs/{blog.slug}"
+        aria-label={`Read post: ${blog.title}`}
+        class="group surface-item rounded-lg p-3 sm:p-4 transition-all duration-200 pressable block no-underline"
       >
         <div class="flex items-center gap-2 text-xs sm:text-sm muted-text mb-2">
           <iconify-icon icon="mdi:calendar" width="16" height="16"></iconify-icon>
@@ -209,14 +211,11 @@
           </div>
         {/if}
 
-        <a
-          href="/blogs/{blog.slug}"
-          class="inline-flex items-center gap-2 accent-link font-medium text-xs sm:text-sm transition-colors"
-        >
+        <span class="inline-flex items-center gap-2 accent-link font-medium text-xs sm:text-sm transition-colors">
           Read More
           <iconify-icon icon="mdi:arrow-right" width="16" height="16"></iconify-icon>
-        </a>
-      </div>
+        </span>
+      </a>
     {/each}
   </div>
 
