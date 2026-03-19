@@ -1,6 +1,6 @@
 ---
 title: "Escape from Alex"
-year: "2022"
+year: "2023"
 description: "Escape From Alex is a game horror game where you have to escape from a haunted house. I used Unity and C# to develop this game."
 fullDescription: "Escape From Alex is a horror game where you must escape from a haunted house. I used Unity and C# to develop this game, and it was created as a requirement for my vocational school graduation."
 image: "https://alexanderar.vercel.app/image/Games/EscapeFromAlex.png"

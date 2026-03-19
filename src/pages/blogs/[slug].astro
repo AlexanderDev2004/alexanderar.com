@@ -96,7 +96,7 @@ const editLink = `https://github.com/${githubRepo}/edit/${githubBranch}/src/cont
       </header>
 
       <!-- Content -->
-      <div class="section-shell rounded-2xl p-5 sm:p-6 prose dark:prose-invert max-w-none">
+      <div class="section-shell rounded-2xl p-5 sm:p-6 blog-prose prose dark:prose-invert max-w-none">
         <Content />
       </div>
 
@@ -172,5 +172,40 @@ const editLink = `https://github.com/${githubRepo}/edit/${githubBranch}/src/cont
 
   :global(html.dark) .reading-progress {
     background: rgba(148, 163, 184, 0.18);
+  }
+
+  :global(.blog-prose a) {
+    color: #2563eb;
+    text-decoration: underline;
+    text-underline-offset: 0.14em;
+    text-decoration-thickness: 0.09em;
+    font-weight: 600;
+    transition: color 0.2s ease;
+  }
+
+  :global(.blog-prose a:hover) {
+    color: #1d4ed8;
+  }
+
+  :global(.blog-prose a:visited) {
+    color: #1e40af;
+  }
+
+  :global(.blog-prose a:focus-visible) {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+    border-radius: 0.2rem;
+  }
+
+  :global(html.dark .blog-prose a) {
+    color: #60a5fa;
+  }
+
+  :global(html.dark .blog-prose a:hover) {
+    color: #93c5fd;
+  }
+
+  :global(html.dark .blog-prose a:visited) {
+    color: #3b82f6;
   }
 </style>
