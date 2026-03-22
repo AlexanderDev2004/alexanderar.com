@@ -10,22 +10,47 @@ const formatDate = (date: Date) =>
     year: 'numeric',
   });
 
+const normalize = (value: string) => value.toLowerCase().trim();
+
+const stripMarkdown = (value: string) =>
+  value
+    .replace(/```[\s\S]*?```/g, ' ')
+    .replace(/`[^`]*`/g, ' ')
+    .replace(/!\[[^\]]*\]\([^)]+\)/g, ' ')
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+    .replace(/^#{1,6}\s+/gm, ' ')
+    .replace(/[*_~>-]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+
 const blogEntries = await getCollection('blogs');
 const blogs = blogEntries
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
-  .map((entry) => ({
-    title: entry.data.title,
-    date: formatDate(entry.data.date),
-    description: entry.data.description,
-    tags: entry.data.tags,
-    slug: normalizeSlug(entry.slug),
-  }));
+  .map((entry, index) => {
+    const normalizedTags = (entry.data.tags ?? []).map((tag) => normalize(tag)).filter(Boolean);
+    const bodyExcerpt = stripMarkdown(entry.body).slice(0, 1200);
+    const searchCorpus = normalize([
+      entry.data.title,
+      entry.data.description,
+      normalizedTags.join(' '),
+      bodyExcerpt,
+    ].join(' '));
+
+    return {
+      title: entry.data.title,
+      date: formatDate(entry.data.date),
+      description: entry.data.description,
+      tags: entry.data.tags,
+      normalizedTags,
+      slug: normalizeSlug(entry.slug),
+      searchCorpus,
+      order: index,
+    };
+  });
 
 const tagCounts = blogs.reduce((acc, blog) => {
-  (blog.tags ?? []).forEach((tag) => {
-    const key = tag.toLowerCase().trim();
-    if (!key) return;
-    acc[key] = (acc[key] ?? 0) + 1;
+  (blog.normalizedTags ?? []).forEach((tag) => {
+    acc[tag] = (acc[tag] ?? 0) + 1;
   });
 
   return acc;
@@ -58,10 +83,12 @@ const sortedTags = Object.keys(tagCounts).sort((a, b) => {
         <input
           id="blogSearchInput"
           type="text"
-          placeholder="Find post...(start with # to find tags)"
+          placeholder="Find posts by title, tags, or content... (type # for tags)"
           class="w-full px-3.5 sm:px-4 py-2.5 sm:py-3 border rounded-lg text-sm sm:text-base transition-colors"
           style="border-color: var(--surface-border); background: var(--surface-strong); color: var(--text-primary);"
         />
+
+        <p id="blogsResultCount" class="mt-2 text-xs sm:text-sm muted-text" aria-live="polite"></p>
 
         <div id="activeTagsSection" class="mt-3 hidden">
           <div class="mt-3 flex items-center justify-between gap-3">
@@ -82,7 +109,7 @@ const sortedTags = Object.keys(tagCounts).sort((a, b) => {
           class="mt-3 border rounded-xl shadow-sm overflow-hidden hidden"
           style="border-color: var(--surface-border); background: var(--surface-strong);"
         >
-          <div class="px-4 py-2 text-xs uppercase tracking-wide muted-text">Recommended</div>
+          <div class="px-4 py-2 text-xs uppercase tracking-wide muted-text">Recommended (use up/down + Enter)</div>
           <div id="tagSuggestionList" class="max-h-64 overflow-auto" style="border-top: 1px solid var(--surface-border);"></div>
         </div>
       </div>
@@ -96,7 +123,9 @@ const sortedTags = Object.keys(tagCounts).sort((a, b) => {
               data-blog-card
               data-title={blog.title.toLowerCase()}
               data-description={blog.description.toLowerCase()}
-              data-tags={(blog.tags ?? []).map((tag) => tag.toLowerCase().trim()).join(',')}
+              data-tags={blog.normalizedTags.join(',')}
+              data-search={blog.searchCorpus}
+              data-order={blog.order}
               class="group surface-item rounded-lg p-3 sm:p-4 transition-all duration-200 pressable block no-underline"
             >
               <div class="flex items-center gap-2 text-xs sm:text-sm muted-text mb-2">
@@ -148,22 +177,151 @@ const sortedTags = Object.keys(tagCounts).sort((a, b) => {
     <script is:inline define:vars={{ sortedTags, tagCounts }}>
       (() => {
         const searchInput = document.getElementById('blogSearchInput');
+        const resultCount = document.getElementById('blogsResultCount');
         const activeTagsSection = document.getElementById('activeTagsSection');
         const activeTagsList = document.getElementById('activeTagsList');
         const clearTagsButton = document.getElementById('clearTagsButton');
         const tagSuggestionPanel = document.getElementById('tagSuggestionPanel');
         const tagSuggestionList = document.getElementById('tagSuggestionList');
+        const blogsGrid = document.getElementById('blogsGrid');
         const noResults = document.getElementById('blogsNoResults');
         const noResultsQuery = document.getElementById('noResultsQuery');
         const cards = Array.from(document.querySelectorAll('[data-blog-card]'));
 
-        if (!searchInput || !activeTagsSection || !activeTagsList || !clearTagsButton || !tagSuggestionPanel || !tagSuggestionList || !noResults || !noResultsQuery || cards.length === 0) {
+        if (!searchInput || !activeTagsSection || !activeTagsList || !clearTagsButton || !tagSuggestionPanel || !tagSuggestionList || !blogsGrid || !noResults || !noResultsQuery || cards.length === 0) {
           return;
         }
 
         const selectedTags = new Set();
+        let currentSuggestions = [];
+        let highlightedSuggestionIndex = -1;
 
         const normalize = (value) => value.toLowerCase().trim();
+        const splitTokens = (value) => normalize(value).split(/\s+/).filter(Boolean);
+
+        searchInput.setAttribute('aria-controls', 'tagSuggestionList');
+        searchInput.setAttribute('aria-autocomplete', 'list');
+        searchInput.setAttribute('aria-expanded', 'false');
+        tagSuggestionList.setAttribute('role', 'listbox');
+
+        const setTagModeInput = () => {
+          searchInput.value = '#';
+        };
+
+        const clearSearchInput = () => {
+          searchInput.value = '';
+        };
+
+        const hydrateStateFromUrl = () => {
+          const params = new URLSearchParams(window.location.search);
+          const queryParam = params.get('q');
+          const tagsParam = params.get('tags');
+
+          if (queryParam) {
+            searchInput.value = queryParam;
+          }
+
+          if (tagsParam) {
+            tagsParam
+              .split(',')
+              .map((tag) => normalize(tag))
+              .filter((tag) => tag.length > 0 && sortedTags.includes(tag))
+              .forEach((tag) => selectedTags.add(tag));
+          }
+        };
+
+        const syncUrlState = () => {
+          const params = new URLSearchParams(window.location.search);
+          const queryValue = searchInput.value.trim();
+          const selectedTagList = Array.from(selectedTags);
+
+          if (queryValue.length > 0 && queryValue !== '#') {
+            params.set('q', queryValue);
+          } else {
+            params.delete('q');
+          }
+
+          if (selectedTagList.length > 0) {
+            params.set('tags', selectedTagList.join(','));
+          } else {
+            params.delete('tags');
+          }
+
+          const nextQuery = params.toString();
+          const nextUrl = nextQuery.length > 0
+            ? `${window.location.pathname}?${nextQuery}`
+            : window.location.pathname;
+
+          window.history.replaceState(null, '', nextUrl);
+        };
+
+        const getFilterLabel = () => {
+          const rawQuery = searchInput.value.trim();
+          const queryLabel = rawQuery.length > 0 && rawQuery !== '#' ? rawQuery : '';
+          const selectedTagLabel = Array.from(selectedTags).map((tag) => `#${tag}`).join(', ');
+
+          if (queryLabel && selectedTagLabel) return `${queryLabel} + ${selectedTagLabel}`;
+          if (queryLabel) return queryLabel;
+          if (selectedTagLabel) return selectedTagLabel;
+          return 'all posts';
+        };
+
+        const applySuggestionHighlight = () => {
+          const suggestionButtons = Array.from(tagSuggestionList.querySelectorAll('[data-tag-suggestion]'));
+
+          if (highlightedSuggestionIndex < 0 || highlightedSuggestionIndex >= suggestionButtons.length) {
+            searchInput.removeAttribute('aria-activedescendant');
+          }
+
+          suggestionButtons.forEach((button, index) => {
+            const isActive = index === highlightedSuggestionIndex;
+            const activeArrow = button.querySelector('[data-active-arrow]');
+
+            button.style.background = isActive ? 'var(--surface)' : 'transparent';
+            button.setAttribute('aria-selected', isActive ? 'true' : 'false');
+
+            if (activeArrow) {
+              activeArrow.style.visibility = isActive ? 'visible' : 'hidden';
+            }
+
+            if (isActive) {
+              const optionId = button.getAttribute('id');
+              if (optionId) {
+                searchInput.setAttribute('aria-activedescendant', optionId);
+              }
+
+              button.scrollIntoView({ block: 'nearest' });
+            }
+          });
+        };
+
+        const moveSuggestionHighlight = (direction) => {
+          const totalSuggestions = currentSuggestions.length;
+          if (totalSuggestions === 0) return;
+
+          if (highlightedSuggestionIndex === -1) {
+            highlightedSuggestionIndex = direction > 0 ? 0 : totalSuggestions - 1;
+          } else {
+            highlightedSuggestionIndex = (highlightedSuggestionIndex + direction + totalSuggestions) % totalSuggestions;
+          }
+
+          applySuggestionHighlight();
+        };
+
+        const selectTag = (tag) => {
+          selectedTags.add(tag);
+          clearSearchInput();
+          renderActiveTags();
+          updateFilter();
+          searchInput.focus();
+        };
+
+        const selectHighlightedSuggestion = () => {
+          const candidate = currentSuggestions[highlightedSuggestionIndex];
+          if (!candidate) return false;
+          selectTag(candidate);
+          return true;
+        };
 
         const renderActiveTags = () => {
           activeTagsList.innerHTML = '';
@@ -203,7 +361,7 @@ const sortedTags = Object.keys(tagCounts).sort((a, b) => {
           if (!candidate || selectedTags.has(candidate) || !sortedTags.includes(candidate)) return false;
 
           selectedTags.add(candidate);
-          searchInput.value = '#';
+          clearSearchInput();
           renderActiveTags();
           return true;
         };
@@ -213,23 +371,43 @@ const sortedTags = Object.keys(tagCounts).sort((a, b) => {
           if (!query.startsWith('#')) return [];
 
           const tagQuery = normalize(query.replace(/^#+/, ''));
+          const availableTags = sortedTags.filter((tag) => !selectedTags.has(tag));
 
-          return sortedTags
-            .filter((tag) => (tagQuery.length === 0 || tag.startsWith(tagQuery)) && !selectedTags.has(tag))
-            .slice(0, 10);
+          if (tagQuery.length === 0) {
+            return availableTags.slice(0, 10);
+          }
+
+          const prefixMatches = availableTags.filter((tag) => tag.startsWith(tagQuery));
+          const containsMatches = availableTags.filter((tag) => !prefixMatches.includes(tag) && tag.includes(tagQuery));
+
+          return [...prefixMatches, ...containsMatches].slice(0, 10);
         };
 
         const renderSuggestions = () => {
           const query = normalize(searchInput.value);
           const isTagMode = query.startsWith('#');
+          searchInput.setAttribute('aria-expanded', isTagMode ? 'true' : 'false');
 
           if (!isTagMode) {
             tagSuggestionPanel.classList.add('hidden');
             tagSuggestionList.innerHTML = '';
+            currentSuggestions = [];
+            highlightedSuggestionIndex = -1;
+            searchInput.removeAttribute('aria-activedescendant');
             return;
           }
 
           const suggestions = getTagSuggestions();
+          const previousActiveTag = currentSuggestions[highlightedSuggestionIndex] ?? '';
+
+          currentSuggestions = suggestions;
+          if (currentSuggestions.length === 0) {
+            highlightedSuggestionIndex = -1;
+          } else {
+            const keepIndex = currentSuggestions.indexOf(previousActiveTag);
+            highlightedSuggestionIndex = keepIndex >= 0 ? keepIndex : 0;
+          }
+
           tagSuggestionPanel.classList.remove('hidden');
           tagSuggestionList.innerHTML = '';
 
@@ -238,6 +416,7 @@ const sortedTags = Object.keys(tagCounts).sort((a, b) => {
             emptyState.className = 'px-4 py-2 text-sm muted-text';
             emptyState.textContent = 'No tags found';
             tagSuggestionList.appendChild(emptyState);
+            searchInput.removeAttribute('aria-activedescendant');
             return;
           }
 
@@ -245,6 +424,9 @@ const sortedTags = Object.keys(tagCounts).sort((a, b) => {
             const button = document.createElement('button');
             button.type = 'button';
             button.className = 'w-full flex items-center justify-between gap-3 text-left px-4 py-2 transition-colors';
+            button.id = `tagSuggestionOption${index}`;
+            button.setAttribute('role', 'option');
+            button.setAttribute('data-tag-suggestion', 'true');
             if (index < suggestions.length - 1) {
               button.style.borderBottom = '1px solid var(--surface-border)';
             }
@@ -258,63 +440,167 @@ const sortedTags = Object.keys(tagCounts).sort((a, b) => {
             const resultCount = tagCounts[tag] ?? 0;
             count.textContent = `${resultCount} result${resultCount === 1 ? '' : 's'}`;
 
+            const countAndArrow = document.createElement('span');
+            countAndArrow.className = 'inline-flex items-center gap-2';
+
+            const activeArrow = document.createElement('span');
+            activeArrow.className = 'text-xs muted-text';
+            activeArrow.textContent = '<-';
+            activeArrow.style.visibility = 'hidden';
+            activeArrow.setAttribute('data-active-arrow', 'true');
+
+            countAndArrow.appendChild(count);
+            countAndArrow.appendChild(activeArrow);
+
             button.appendChild(label);
-            button.appendChild(count);
+            button.appendChild(countAndArrow);
+
+            button.addEventListener('mouseenter', () => {
+              highlightedSuggestionIndex = index;
+              applySuggestionHighlight();
+            });
 
             button.addEventListener('click', () => {
-              selectedTags.add(tag);
-              searchInput.value = '#';
-              renderActiveTags();
-              updateFilter();
-              searchInput.focus();
+              selectTag(tag);
             });
 
             tagSuggestionList.appendChild(button);
           });
+
+          applySuggestionHighlight();
         };
 
         const updateFilter = () => {
           const query = normalize(searchInput.value);
           const selectedTagList = Array.from(selectedTags);
-          const tagQuery = query.startsWith('#') ? normalize(query.replace(/^#+/, '')) : '';
-          const textQuery = query.startsWith('#') ? '' : query;
-          let visibleCount = 0;
+          const isTagMode = query.startsWith('#');
+          const tagQuery = isTagMode ? normalize(query.replace(/^#+/, '')) : '';
+          const textQuery = isTagMode ? '' : query;
+          const textTokens = splitTokens(textQuery);
+          const visibleCards = [];
 
           cards.forEach((card) => {
             const title = card.getAttribute('data-title') ?? '';
             const description = card.getAttribute('data-description') ?? '';
+            const searchCorpus = card.getAttribute('data-search') ?? `${title} ${description}`;
             const tags = (card.getAttribute('data-tags') ?? '').split(',').filter(Boolean);
+            const order = Number.parseInt(card.getAttribute('data-order') ?? '0', 10);
 
             const matchesSelectedTags = selectedTagList.length > 0
-              ? selectedTagList.some((tag) => tags.includes(tag))
+              ? selectedTagList.every((tag) => tags.includes(tag))
               : true;
 
             const matchesTagQuery = selectedTagList.length > 0
               ? true
               : tagQuery.length > 0
-                ? tags.some((tag) => tag.startsWith(tagQuery))
+                ? tags.some((tag) => tag.includes(tagQuery))
                 : true;
 
-            const matchesText = textQuery.length > 0
-              ? title.includes(textQuery) || description.includes(textQuery)
+            const matchesText = textTokens.length > 0
+              ? textTokens.every((token) => searchCorpus.includes(token))
               : true;
 
             const visible = matchesSelectedTags && matchesTagQuery && matchesText;
-            card.style.display = visible ? '' : 'none';
-            if (visible) visibleCount += 1;
+
+            if (!visible) {
+              card.style.display = 'none';
+              return;
+            }
+
+            let relevanceScore = 0;
+
+            textTokens.forEach((token) => {
+              if (title.includes(token)) relevanceScore += 8;
+              if (tags.some((tag) => tag.includes(token))) relevanceScore += 6;
+              if (description.includes(token)) relevanceScore += 4;
+              if (searchCorpus.includes(token)) relevanceScore += 2;
+            });
+
+            if (selectedTagList.length > 0) {
+              relevanceScore += selectedTagList.length * 10;
+            }
+
+            if (isTagMode && tagQuery.length > 0 && tags.some((tag) => tag.startsWith(tagQuery))) {
+              relevanceScore += 3;
+            }
+
+            visibleCards.push({
+              card,
+              order,
+              relevanceScore,
+            });
           });
+
+          visibleCards
+            .sort((a, b) => {
+              const scoreDiff = b.relevanceScore - a.relevanceScore;
+              if (scoreDiff !== 0) return scoreDiff;
+              return a.order - b.order;
+            })
+            .forEach(({ card }) => {
+              card.style.display = '';
+              blogsGrid.appendChild(card);
+            });
+
+          const visibleCount = visibleCards.length;
 
           const hasNoResults = visibleCount === 0;
           noResults.classList.toggle('hidden', !hasNoResults);
-          noResultsQuery.textContent = searchInput.value.trim();
+          noResultsQuery.textContent = getFilterLabel();
+
+          if (resultCount) {
+            const inputValue = searchInput.value.trim();
+            const queryText = inputValue.length > 0 && inputValue !== '#'
+              ? ` for "${inputValue}"`
+              : '';
+            const tagText = selectedTags.size > 0
+              ? ` with ${selectedTags.size} active tag${selectedTags.size === 1 ? '' : 's'}`
+              : '';
+            resultCount.textContent = `${visibleCount} post${visibleCount === 1 ? '' : 's'} found${queryText}${tagText}.`;
+          }
 
           renderSuggestions();
+          syncUrlState();
         };
 
-        searchInput.addEventListener('input', updateFilter);
+        searchInput.addEventListener('input', () => {
+          updateFilter();
+        });
 
         searchInput.addEventListener('keydown', (event) => {
+          const isTagInputMode = searchInput.value.trim().startsWith('#');
+
+          if (event.key === '#' && !isTagInputMode) {
+            event.preventDefault();
+            setTagModeInput();
+            updateFilter();
+            return;
+          }
+
+          if (isTagInputMode && event.key === 'ArrowDown') {
+            event.preventDefault();
+            moveSuggestionHighlight(1);
+            return;
+          }
+
+          if (isTagInputMode && event.key === 'ArrowUp') {
+            event.preventDefault();
+            moveSuggestionHighlight(-1);
+            return;
+          }
+
+          if (isTagInputMode && event.key === 'Escape') {
+            highlightedSuggestionIndex = -1;
+            applySuggestionHighlight();
+            return;
+          }
+
           if (event.key === 'Enter') {
+            if (isTagInputMode && selectHighlightedSuggestion()) {
+              event.preventDefault();
+              return;
+            }
+
             const added = addTagFromQuery();
             if (added) {
               event.preventDefault();
@@ -347,6 +633,7 @@ const sortedTags = Object.keys(tagCounts).sort((a, b) => {
           searchInput.focus();
         });
 
+        hydrateStateFromUrl();
         renderActiveTags();
         updateFilter();
       })();
