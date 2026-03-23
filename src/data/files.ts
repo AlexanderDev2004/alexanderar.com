@@ -11,7 +11,7 @@ export const files: FileItem[] = [
     id: 'resume',
     title: 'Resume',
     description: 'View and download my resume by clicking on the button below',
-    fileUrl: '/cv_porto/Alexander%20Agung%20Raya%20-%20Software%20Developer1%20-%20Resume.pdf',
+    fileUrl: '/cv_porto/alexander-porto-ats.pdf',
     buttonLabel: 'Download resume',
   },
   {

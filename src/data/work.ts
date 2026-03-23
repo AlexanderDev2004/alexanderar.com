@@ -48,7 +48,6 @@ export const works: WorkItem[] = [
     tags: [
       "Django",
       "Python",
-      "React",
       "PostgreSQL"
     ]
   }

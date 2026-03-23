@@ -108,7 +108,7 @@ const { Content } = await project.render();
       )}
 
       <section class="section-shell rounded-2xl md:rounded-3xl p-5 sm:p-6 md:p-7">
-        <div class="prose dark:prose-invert max-w-none">
+        <div class="project-prose prose dark:prose-invert max-w-none">
           <Content />
         </div>
       </section>
@@ -207,6 +207,41 @@ const { Content } = await project.render();
 
   :global(.prose strong) {
     font-weight: 700;
+  }
+
+  :global(.project-prose a) {
+    color: #2563eb;
+    text-decoration: underline;
+    text-underline-offset: 0.14em;
+    text-decoration-thickness: 0.09em;
+    font-weight: 600;
+    transition: color 0.2s ease;
+  }
+
+  :global(.project-prose a:hover) {
+    color: #1d4ed8;
+  }
+
+  :global(.project-prose a:visited) {
+    color: #1e40af;
+  }
+
+  :global(.project-prose a:focus-visible) {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+    border-radius: 0.2rem;
+  }
+
+  :global(html.dark .project-prose a) {
+    color: #60a5fa;
+  }
+
+  :global(html.dark .project-prose a:hover) {
+    color: #93c5fd;
+  }
+
+  :global(html.dark .project-prose a:visited) {
+    color: #3b82f6;
   }
 
   .stack-title {
