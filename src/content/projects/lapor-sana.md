@@ -19,6 +19,9 @@ technologies:
   - name: "Python"
     icon: "simple-icons:python"
     docLink: "https://www.python.org/"
+  - name: "FastAPi"
+    icon: "simple-icons:fastapi"
+    docLink: "https://fastapi.tiangolo.com/"
 ---
 
 **Laporsana** is a website to create and manage facility problems on campus, facility improvements with the integration of a decision support system, which provides recommendations for solving existing problems on campus.
