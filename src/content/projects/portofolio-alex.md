@@ -4,7 +4,7 @@ year: "2026"
 description: "This is My website Personal Portofolio"
 fullDescription: "I using Astro, Tailwindcss, Svelte, Bun for make Website Portofolio"
 image: "/images/PortoAlx.png"
-projectLink: "alexander.com"
+projectLink: "http://alexanderar.com"
 repoLink: "https://github.com/AlexanderDev2004/alexander-portoV1.0"
 technologies:
   - name: "Astro"

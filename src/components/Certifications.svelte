@@ -111,11 +111,11 @@
       <div class="flex justify-center pt-4">
         <a 
           href="/all-certifications"
-          class="inline-flex items-center gap-2 px-6 py-3 rounded transition-colors font-medium primary-text"
-          style="border: 1px solid var(--surface-border); background: var(--surface); font-family: 'Plus Jakarta Sans', sans-serif;"
+          class="see-more-btn"
+          aria-label="See more certifications"
         >
-          <span>– SEE MORE</span>
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <span>See More</span>
+          <svg class="see-more-btn-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
           </svg>
         </a>
