@@ -64,7 +64,7 @@
         {#if expandedIndex === index}
           <div class="px-5 pb-5 space-y-4 expand-reveal" style="border-top: 1px solid var(--surface-border);">
             <p class="text-sm muted-text">
-              Coming Soon...
+              Cumulative GPA: 3.81/4.0
             </p>
           </div>
         {/if}
