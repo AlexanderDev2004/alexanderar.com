@@ -32,7 +32,7 @@ export const works: WorkItem[] = [
     ]
   },
   {
-    company: "PT XYZ",
+    company: "PT. Surabaya Autocomp Indonesia",
     jobTitle: "Full Stack Developer",
     country: "Indonesia",
     status: ["ON-SITE", "FULL-TIME"],
