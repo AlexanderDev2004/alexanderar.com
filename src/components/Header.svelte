@@ -152,7 +152,7 @@
   .profile-link {
     align-self: flex-end;
     display: inline-flex;
-    width: clamp(4.35rem, 17vw, 5.8rem);
+    width: clamp(4.7rem, 18vw, 6.2rem);
     aspect-ratio: 1;
     border-radius: 999px;
     border: 1px solid var(--surface-border);
