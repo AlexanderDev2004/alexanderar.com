@@ -14,7 +14,7 @@ const {
   title = 'Alexander Agung Raya - Software Developer',
   description = 'Portfolio of Alexander Agung Raya, a Software Developer from Indonesia.',
   robots = 'index, follow',
-  ogImagePath = '/IconAlex.jpg',
+  ogImagePath = '/IconAlex.png',
 } = Astro.props as LayoutProps;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? Astro.url);
@@ -26,7 +26,7 @@ const ogImage = new URL(ogImagePath, Astro.site ?? Astro.url);
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/svg+xml" href="/IconAlex.jpg" />
+    <link rel="icon" type="image/svg+xml" href="/IconAlex.png" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <meta name="description" content={description} />

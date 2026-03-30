@@ -2,13 +2,23 @@
   import { contacts } from '../data/contact';
 
   const isExternalLink = (href: string) => /^https?:\/\//.test(href);
+  const githubHref = contacts.find((item) => item.id === 'github')?.href ?? 'https://github.com/AlexanderDev2004';
 </script>
 
 <header class="relative z-10">
+  <a
+    href="/bookmarks"
+    title="Bookmarks Vault"
+    class="bookmark-link bookmark-link--page-corner"
+    aria-label="Open bookmarks vault"
+  >
+    <iconify-icon icon="mdi:bookmark-outline" width="20" height="20"></iconify-icon>
+  </a>
+
   <div class="container mx-auto px-4 sm:px-5 md:px-6 pt-5 md:pt-8">
     <div class="glass-panel rounded-2xl md:rounded-3xl px-5 sm:px-6 md:px-8 py-5 sm:py-6 md:py-7 reveal">
       <div class="flex flex-col gap-5 sm:gap-6">
-        <div class="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+        <div class="flex flex-col gap-4 md:flex-row md:items-start md:justify-between md:gap-6">
           <div class="space-y-3 max-w-3xl">
             <p class="eyebrow">Portfolio</p>
             <a href="/" aria-label="Home" class="name-link">
@@ -25,13 +35,21 @@
           </div>
 
           <a
-            href="/bookmarks"
-            title="Bookmarks Vault"
-            class="bookmark-link"
-            aria-label="Open bookmarks vault"
+            href={githubHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="profile-link"
+            aria-label="Open GitHub profile"
+            title="GitHub Profile"
           >
-            <iconify-icon icon="mdi:bookmark-outline" width="18" height="18"></iconify-icon>
-            Bookmarks
+            <img
+              src="/IconAlex.png"
+              alt="Alexander avatar"
+              width="104"
+              height="104"
+              loading="eager"
+              decoding="async"
+            />
           </a>
         </div>
 
@@ -103,25 +121,82 @@
   .bookmark-link {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
+    justify-content: center;
     border-radius: 999px;
-    border: 1px solid transparent;
-    background: transparent;
+    border: 1px solid var(--surface-border);
+    background: var(--surface-strong);
     color: var(--text-muted);
-    font-size: 0.82rem;
-    font-weight: 600;
-    padding: 0.5rem 0.9rem;
-    opacity: 0.1;
-    transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease, opacity 0.1s ease, color 0.2s ease;
+    width: 2.7rem;
+    height: 2.7rem;
+    opacity: 0.01;
+    box-shadow: 0 10px 20px rgba(15, 23, 42, 0.16);
+    transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease, color 0.2s ease, opacity 0.1s ease;
   }
 
   .bookmark-link:hover,
   .bookmark-link:focus-visible {
     transform: translateY(-1px);
-    opacity: 0.92;
+    opacity: 0.80;
     color: var(--text-primary);
     border-color: var(--accent);
     background: var(--accent-soft);
+  }
+
+  .bookmark-link--page-corner {
+    position: absolute;
+    top: calc(env(safe-area-inset-top, 0px) + 0.9rem);
+    right: calc(env(safe-area-inset-right, 0px) + 0.9rem);
+    z-index: 20;
+  }
+
+  .profile-link {
+    align-self: flex-end;
+    display: inline-flex;
+    width: clamp(4.35rem, 17vw, 5.8rem);
+    aspect-ratio: 1;
+    border-radius: 999px;
+    border: 1px solid var(--surface-border);
+    background: var(--surface-strong);
+    padding: 0.34rem;
+    box-shadow: 0 14px 26px rgba(15, 23, 42, 0.16);
+    transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  }
+
+  .profile-link img {
+    width: 100%;
+    height: 100%;
+    border-radius: 999px;
+    object-fit: cover;
+    image-rendering: pixelated;
+    display: block;
+  }
+
+  .profile-link:hover,
+  .profile-link:focus-visible {
+    transform: translateY(-2px);
+    border-color: var(--accent);
+    background: var(--accent-soft);
+  }
+
+  @media (min-width: 768px) {
+    .profile-link {
+      align-self: flex-start;
+      margin-top: 0.18rem;
+    }
+  }
+
+  @media (min-width: 640px) {
+    .bookmark-link--page-corner {
+      top: calc(env(safe-area-inset-top, 0px) + 1.15rem);
+      right: calc(env(safe-area-inset-right, 0px) + 1.25rem);
+    }
+  }
+
+  @media (min-width: 768px) {
+    .bookmark-link--page-corner {
+      top: calc(env(safe-area-inset-top, 0px) + 1.45rem);
+      right: calc(env(safe-area-inset-right, 0px) + 1.7rem);
+    }
   }
 
   .contact-link {
