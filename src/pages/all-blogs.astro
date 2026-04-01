@@ -12,8 +12,8 @@ const formatDate = (date: Date) =>
 
 const normalize = (value: string) => value.toLowerCase().trim();
 
-const stripMarkdown = (value: string) =>
-  value
+const stripMarkdown = (value: string | undefined | null) =>
+  (value ?? '')
     .replace(/```[\s\S]*?```/g, ' ')
     .replace(/`[^`]*`/g, ' ')
     .replace(/!\[[^\]]*\]\([^)]+\)/g, ' ')
