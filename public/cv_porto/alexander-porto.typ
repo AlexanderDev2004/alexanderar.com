@@ -17,7 +17,6 @@
 Mojokerto, Indonesia · Jan 2026 — Juni 2026  
 
 - Building scalable backend services with Django
-- Creating responsive frontend interfaces with React
 - Managing PostgreSQL databases and optimization
 - Implementing RESTful APIs and authentication systems
 

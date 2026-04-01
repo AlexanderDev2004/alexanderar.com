@@ -41,7 +41,6 @@ export const works: WorkItem[] = [
     link: "",
     description: [
       "Building scalable backend services with Django",
-      "Creating responsive frontend interfaces with React",
       "Managing PostgreSQL databases and optimization",
       "Implementing RESTful APIs and authentication systems"
     ],

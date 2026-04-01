@@ -18,8 +18,8 @@
   <div class="container mx-auto px-4 sm:px-5 md:px-6 pt-5 md:pt-8">
     <div class="glass-panel rounded-2xl md:rounded-3xl px-5 sm:px-6 md:px-8 py-5 sm:py-6 md:py-7 reveal">
       <div class="flex flex-col gap-5 sm:gap-6">
-        <div class="flex flex-col gap-4 md:flex-row md:items-start md:justify-between md:gap-6">
-          <div class="space-y-3 max-w-3xl">
+        <div class="flex items-start justify-between gap-3 sm:gap-4 md:gap-6">
+          <div class="space-y-3 max-w-3xl min-w-0">
             <p class="eyebrow">Portfolio</p>
             <a href="/" aria-label="Home" class="name-link">
               Alexander Agung Raya
@@ -150,14 +150,15 @@
   }
 
   .profile-link {
-    align-self: flex-end;
     display: inline-flex;
-    width: clamp(4.7rem, 18vw, 6.2rem);
+    flex-shrink: 0;
+    width: clamp(3.8rem, 18vw, 6.2rem);
     aspect-ratio: 1;
     border-radius: 999px;
     border: 1px solid var(--surface-border);
     background: var(--surface-strong);
-    padding: 0.34rem;
+    padding: 0.28rem;
+    margin-top: 0.1rem;
     box-shadow: 0 14px 26px rgba(15, 23, 42, 0.16);
     transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
   }
@@ -178,10 +179,10 @@
     background: var(--accent-soft);
   }
 
-  @media (min-width: 768px) {
+  @media (max-width: 480px) {
     .profile-link {
-      align-self: flex-start;
-      margin-top: 0.18rem;
+      width: 3.65rem;
+      padding: 0.24rem;
     }
   }
 
