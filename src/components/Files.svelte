@@ -36,8 +36,7 @@
             <a
               href={file.fileUrl}
               download
-              class="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-4 py-2 border rounded-lg transition-colors text-sm font-medium primary-text"
-              style="border-color: var(--surface-border); background: var(--surface);"
+              class="file-download-btn w-full sm:w-auto text-sm font-medium primary-text"
             >
               {file.buttonLabel}
               <iconify-icon icon="mdi:file-pdf-box" width="18" height="18"></iconify-icon>
@@ -52,3 +51,24 @@
     <p class="muted-text">Sorry, files are not available.</p>
   </div>
 {/if}
+
+<style>
+  .file-download-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.52rem 0.9rem;
+    border: 1px solid var(--surface-border-soft);
+    border-radius: 0.65rem;
+    background: var(--surface);
+    transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  }
+
+  .file-download-btn:hover,
+  .file-download-btn:focus-visible {
+    transform: translateY(-1px);
+    border-color: var(--accent);
+    background: var(--accent-soft);
+  }
+</style>

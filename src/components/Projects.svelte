@@ -79,8 +79,7 @@
                   href={project.projectLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="inline-flex items-center gap-2 px-3 sm:px-4 py-2 border rounded transition-colors text-xs sm:text-sm font-medium"
-                  style="border-color: var(--accent); color: var(--accent); background: var(--accent-soft);"
+                  class="project-action project-action--primary text-xs sm:text-sm"
                   onclick={(e) => e.stopPropagation()}
                 >
                   <span>View Project</span>
@@ -95,8 +94,7 @@
                   href={project.repoLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="inline-flex items-center gap-2 px-3 sm:px-4 py-2 border rounded transition-colors text-xs sm:text-sm font-medium primary-text"
-                  style="border-color: var(--surface-border); background: var(--surface);"
+                  class="project-action text-xs sm:text-sm font-medium primary-text"
                   onclick={(e) => e.stopPropagation()}
                 >
                   <span>View Repo</span>
@@ -119,8 +117,7 @@
                       href={tech.docLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      class="inline-flex items-center gap-2 px-2.5 sm:px-3 py-2 border rounded transition-colors text-xs sm:text-sm primary-text"
-                      style="border-color: var(--surface-border); background: var(--surface);"
+                      class="tech-doc-link text-xs sm:text-sm primary-text"
                       onclick={(e) => e.stopPropagation()}
                       title={`Learn more about ${tech.name}`}
                     >
@@ -157,3 +154,54 @@
     </div>
   {/if}
 </div>
+
+<style>
+  .project-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.52rem 0.84rem;
+    border: 1px solid var(--surface-border-soft);
+    border-radius: 0.65rem;
+    background: var(--surface);
+    color: var(--text-primary);
+    transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+  }
+
+  .project-action:hover,
+  .project-action:focus-visible {
+    transform: translateY(-1px);
+    border-color: var(--surface-border);
+    background: var(--surface-elevated);
+  }
+
+  .project-action--primary {
+    border-color: var(--accent);
+    color: var(--accent-strong);
+    background: var(--accent-soft);
+  }
+
+  .project-action--primary:hover,
+  .project-action--primary:focus-visible {
+    border-color: var(--accent-strong);
+    background: var(--accent-soft-strong);
+    color: var(--text-primary);
+  }
+
+  .tech-doc-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.45rem 0.72rem;
+    border: 1px solid var(--surface-border-soft);
+    border-radius: 0.6rem;
+    background: var(--surface);
+    transition: border-color 0.2s ease, background 0.2s ease;
+  }
+
+  .tech-doc-link:hover,
+  .tech-doc-link:focus-visible {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+  }
+</style>

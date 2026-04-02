@@ -47,14 +47,16 @@ const ogImage = new URL(ogImagePath, Astro.site ?? Astro.url);
   </head>
   <body class="transition-colors duration-300 antialiased">
     <div class="page-atmosphere" aria-hidden="true">
-      <span class="atmosphere-blob atmosphere-blob--left"></span>
-      <span class="atmosphere-blob atmosphere-blob--right"></span>
+      <span class="page-grid-pattern"></span>
+      <span class="page-vignette"></span>
     </div>
     <Header client:load />
     <main class="relative z-10">
       <slot />
     </main>
-    <Footer />
+    <div class="relative z-10">
+      <Footer />
+    </div>
     <script is:inline>
       const formatCodeLanguage = (value) => {
         if (!value) return 'Code';
@@ -211,43 +213,59 @@ const ogImage = new URL(ogImagePath, Astro.site ?? Astro.url);
     overflow: hidden;
   }
 
-  .atmosphere-blob {
+  .page-grid-pattern {
     position: absolute;
-    width: min(44rem, 72vw);
-    aspect-ratio: 1;
-    border-radius: 999px;
-    filter: blur(84px);
-    opacity: 0.22;
+    inset: 0;
+    background-image:
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 5px,
+        rgba(129, 140, 248, 0.14) 5px,
+        rgba(129, 140, 248, 0.14) 6px,
+        transparent 6px,
+        transparent 15px
+      ),
+      repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 5px,
+        rgba(129, 140, 248, 0.14) 5px,
+        rgba(129, 140, 248, 0.14) 6px,
+        transparent 6px,
+        transparent 15px
+      ),
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 10px,
+        rgba(56, 189, 248, 0.1) 10px,
+        rgba(56, 189, 248, 0.1) 11px,
+        transparent 11px,
+        transparent 30px
+      ),
+      repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 10px,
+        rgba(56, 189, 248, 0.1) 10px,
+        rgba(56, 189, 248, 0.1) 11px,
+        transparent 11px,
+        transparent 30px
+      );
   }
 
-  .atmosphere-blob--left {
-    top: -12rem;
-    left: -18rem;
-    background: #14b8a6;
-  }
-
-  .atmosphere-blob--right {
-    top: -14rem;
-    right: -14rem;
-    background: #0284c7;
-  }
-
-  :global(html.dark) .atmosphere-blob {
-    opacity: 0.28;
-  }
-
-  :global(html.dark) .atmosphere-blob--left {
-    background: #22d3ee;
-  }
-
-  :global(html.dark) .atmosphere-blob--right {
-    background: #38bdf8;
+  .page-vignette {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(120% 75% at 50% 120%, rgba(2, 6, 23, 0.7), transparent 64%),
+      radial-gradient(90% 50% at 50% -10%, rgba(30, 41, 59, 0.3), transparent 66%);
   }
 
   @media (max-width: 768px) {
-    .atmosphere-blob {
-      width: 24rem;
-      filter: blur(68px);
+    .page-grid-pattern {
+      opacity: 0.9;
     }
   }
 </style>

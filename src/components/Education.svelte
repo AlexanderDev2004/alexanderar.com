@@ -58,7 +58,7 @@
           <div class="flex-1 min-w-0">
             <div class="flex items-center gap-2 flex-wrap">
               <h3
-                class="text-base sm:text-lg font-bold primary-text text-green-500"
+                class="text-base sm:text-lg font-bold primary-text education-degree"
                 style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700;"
               >
                 {item.degree}
@@ -127,6 +127,10 @@
 </div>
 
 <style>
+  .education-degree {
+    color: var(--accent-strong);
+  }
+
   .education-gpa {
     border: 1px solid var(--accent);
     background: var(--accent-soft);

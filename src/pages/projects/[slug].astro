@@ -154,7 +154,7 @@ const { Content } = await project.render();
     align-items: center;
     gap: 0.5rem;
     border-radius: 0.78rem;
-    border: 1px solid var(--surface-border);
+    border: 1px solid var(--surface-border-soft);
     background: var(--surface-strong);
     color: var(--text-primary);
     padding: 0.6rem 0.9rem;
@@ -210,7 +210,7 @@ const { Content } = await project.render();
   }
 
   :global(.project-prose a) {
-    color: #2563eb;
+    color: var(--accent-strong);
     text-decoration: underline;
     text-underline-offset: 0.14em;
     text-decoration-thickness: 0.09em;
@@ -219,29 +219,17 @@ const { Content } = await project.render();
   }
 
   :global(.project-prose a:hover) {
-    color: #1d4ed8;
+    color: var(--text-primary);
   }
 
   :global(.project-prose a:visited) {
-    color: #1e40af;
+    color: var(--accent);
   }
 
   :global(.project-prose a:focus-visible) {
     outline: 2px solid currentColor;
     outline-offset: 2px;
     border-radius: 0.2rem;
-  }
-
-  :global(html.dark .project-prose a) {
-    color: #60a5fa;
-  }
-
-  :global(html.dark .project-prose a:hover) {
-    color: #93c5fd;
-  }
-
-  :global(html.dark .project-prose a:visited) {
-    color: #3b82f6;
   }
 
   .stack-title {

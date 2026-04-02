@@ -173,11 +173,7 @@
 
   .section-card--open {
     border-color: var(--accent);
-    box-shadow: 0 16px 34px rgba(15, 23, 42, 0.14);
-  }
-
-  :global(html.dark) .section-card--open {
-    box-shadow: 0 18px 36px rgba(2, 6, 23, 0.52);
+    box-shadow: 0 18px 36px rgba(0, 0, 0, 0.38);
   }
 
   .section-trigger {
@@ -207,7 +203,7 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid var(--surface-border);
+    border: 1px solid var(--surface-border-soft);
     background: var(--accent-soft);
   }
 
@@ -239,7 +235,7 @@
   .section-content {
     margin: 0 0.95rem 0.95rem;
     border-radius: 0.84rem;
-    border: 1px solid var(--surface-border);
+    border: 1px solid var(--surface-border-soft);
     background: var(--surface-strong);
     padding: 0.9rem;
   }

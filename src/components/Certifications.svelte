@@ -77,8 +77,7 @@
                   href={cert.certificateLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="inline-flex items-center gap-2 px-4 py-2 border rounded transition-colors text-sm font-medium"
-                  style="border-color: var(--accent); color: var(--accent); background: var(--accent-soft);"
+                  class="cert-action cert-action--primary text-sm font-medium"
                   onclick={(e) => e.stopPropagation()}
                 >
                   <span>View Certificate</span>
@@ -127,3 +126,37 @@
     </div>
   {/if}
 </div>
+
+<style>
+  .cert-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.52rem 0.9rem;
+    border: 1px solid var(--surface-border-soft);
+    border-radius: 0.68rem;
+    background: var(--surface);
+    color: var(--text-primary);
+    transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+  }
+
+  .cert-action:hover,
+  .cert-action:focus-visible {
+    transform: translateY(-1px);
+    border-color: var(--surface-border);
+    background: var(--surface-elevated);
+  }
+
+  .cert-action--primary {
+    border-color: var(--accent);
+    color: var(--accent-strong);
+    background: var(--accent-soft);
+  }
+
+  .cert-action--primary:hover,
+  .cert-action--primary:focus-visible {
+    border-color: var(--accent-strong);
+    background: var(--accent-soft-strong);
+    color: var(--text-primary);
+  }
+</style>

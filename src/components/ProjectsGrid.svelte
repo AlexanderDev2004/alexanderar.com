@@ -12,7 +12,7 @@
       >
         <!-- Project Image -->
         {#if project.image}
-          <div class="relative overflow-hidden bg-gray-200 dark:bg-gray-800 h-40 sm:h-44 md:h-48">
+          <div class="project-media relative overflow-hidden h-40 sm:h-44 md:h-48">
             <img 
               src={project.image} 
               alt={project.title}
@@ -20,7 +20,7 @@
             />
           </div>
         {:else}
-          <div class="bg-linear-to-br from-blue-400 to-blue-600 h-48 flex items-center justify-center">
+          <div class="project-fallback h-48 flex items-center justify-center">
             <span class="text-white font-bold text-2xl" style="font-family: 'Plus Jakarta Sans', sans-serif;">
               {project.title.charAt(0)}
             </span>
@@ -74,3 +74,15 @@
     <p class="muted-text">Sorry, projects are not available.</p>
   </div>
 {/if}
+
+<style>
+  .project-media {
+    background: rgba(15, 19, 30, 0.85);
+    border-bottom: 1px solid var(--surface-border-soft);
+  }
+
+  .project-fallback {
+    background: linear-gradient(140deg, rgba(129, 140, 248, 0.7), rgba(56, 189, 248, 0.6));
+    border-bottom: 1px solid var(--surface-border-soft);
+  }
+</style>

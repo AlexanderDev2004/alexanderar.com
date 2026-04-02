@@ -106,7 +106,7 @@
     align-items: center;
     gap: 0.38rem;
     border-radius: 999px;
-    border: 1px solid var(--surface-border);
+    border: 1px solid var(--surface-border-soft);
     background: var(--accent-soft);
     color: var(--text-primary);
     padding: 0.35rem 0.72rem;
@@ -123,13 +123,13 @@
     align-items: center;
     justify-content: center;
     border-radius: 999px;
-    border: 1px solid var(--surface-border);
+    border: 1px solid var(--surface-border-soft);
     background: var(--surface-strong);
     color: var(--text-muted);
     width: 2.7rem;
     height: 2.7rem;
     opacity: 0.01;
-    box-shadow: 0 10px 20px rgba(15, 23, 42, 0.16);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.34);
     transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease, color 0.2s ease, opacity 0.1s ease;
   }
 
@@ -155,11 +155,11 @@
     width: clamp(3.8rem, 18vw, 6.2rem);
     aspect-ratio: 1;
     border-radius: 999px;
-    border: 1px solid var(--surface-border);
+    border: 1px solid var(--surface-border-soft);
     background: var(--surface-strong);
     padding: 0.28rem;
     margin-top: 0.1rem;
-    box-shadow: 0 14px 26px rgba(15, 23, 42, 0.16);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.34);
     transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
   }
 
@@ -205,7 +205,7 @@
     align-items: center;
     gap: 0.48rem;
     border-radius: 0.72rem;
-    border: 1px solid var(--surface-border);
+    border: 1px solid var(--surface-border-soft);
     background: var(--surface-strong);
     color: var(--text-primary);
     font-size: 0.8rem;
@@ -218,6 +218,13 @@
     transform: translateY(-2px);
     border-color: var(--accent);
     background: var(--accent-soft);
+  }
+
+  .contact-link:focus-visible,
+  .profile-link:focus-visible,
+  .bookmark-link:focus-visible {
+    outline: 2px solid var(--accent-strong);
+    outline-offset: 2px;
   }
 
   @media (min-width: 640px) {

@@ -8,7 +8,7 @@
       <div class="group surface-item rounded-lg overflow-hidden transition-colors">
         <!-- Certificate Image -->
         {#if cert.certificateImage}
-          <div class="relative overflow-hidden bg-gray-200 dark:bg-gray-800 h-48">
+          <div class="cert-media relative overflow-hidden h-48">
             <img 
               src={cert.certificateImage} 
               alt={cert.title}
@@ -16,7 +16,7 @@
             />
           </div>
         {:else}
-          <div class="bg-linear-to-br from-green-400 to-green-600 h-48 flex items-center justify-center">
+          <div class="cert-fallback h-48 flex items-center justify-center">
             <iconify-icon icon="mdi:certificate-outline" width="80" height="80" class="text-white"></iconify-icon>
           </div>
         {/if}
@@ -83,3 +83,15 @@
     <p class="muted-text">Sorry, certifications are not available.</p>
   </div>
 {/if}
+
+<style>
+  .cert-media {
+    background: rgba(15, 19, 30, 0.85);
+    border-bottom: 1px solid var(--surface-border-soft);
+  }
+
+  .cert-fallback {
+    background: linear-gradient(145deg, rgba(129, 140, 248, 0.66), rgba(45, 212, 191, 0.58));
+    border-bottom: 1px solid var(--surface-border-soft);
+  }
+</style>
