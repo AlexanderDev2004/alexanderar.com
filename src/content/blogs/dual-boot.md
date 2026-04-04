@@ -79,4 +79,4 @@ sudo dnf upgrade --refresh -y
 - Microsoft guide (BitLocker): [https://support.microsoft.com/windows/turn-device-encryption-on-or-off](https://support.microsoft.com/windows/turn-device-encryption-on-or-off)
 - Nobara New User Guide and General Usage Guidelines [https://wiki.nobaraproject.org](https://wiki.nobaraproject.org/en/new-user-guide-general-guidelines#:~:text=It%20is%20NOT%20recommended%20to,currently%20have%20an%20EFI%20partition.)
 
-That is the full process I used to install and set up dual boot safely. If you want, in the next chapter I can also share troubleshooting (GRUB not showing Windows, black screen after NVIDIA driver, and recovery tips). 
+
