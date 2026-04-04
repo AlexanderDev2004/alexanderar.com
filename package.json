@@ -6,7 +6,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "deploy:worker": "bunx wrangler deploy --name alexanderar-com --compatibility-date=2026-04-04 --assets=./dist"
   },
   "dependencies": {
     "@astrojs/svelte": "^7.2.5",
