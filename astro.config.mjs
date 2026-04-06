@@ -4,6 +4,7 @@ import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import svelte from '@astrojs/svelte';
 import icon from 'astro-icon';
+import remarkTermPopover from './src/lib/remark-term-popover.ts';
 // https://astro.build/config
 export default defineConfig({
   integrations: [svelte(), icon()],
@@ -17,7 +18,8 @@ export default defineConfig({
   },
 
   markdown: {
-    syntaxHighlight: 'prism'
+    syntaxHighlight: 'prism',
+    remarkPlugins: [remarkTermPopover],
   },
 
   output: 'static',
