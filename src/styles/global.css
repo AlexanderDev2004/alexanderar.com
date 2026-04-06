@@ -509,3 +509,73 @@ code {
     transform: translateY(-6px);
   }
 }
+
+/* Inline glossary tooltip for markdown (.md) content */
+.term-popover {
+  position: relative;
+  display: inline;
+  border-bottom: 1px dashed #f472b6;
+  color: #f9a8d4;
+  cursor: help;
+  font-weight: 600;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.term-popover:hover {
+  color: #fbcfe8;
+  border-bottom-color: #f9a8d4;
+}
+
+.term-popover::after {
+  content: attr(data-definition);
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 10px);
+  transform: translateX(-50%) translateY(6px);
+  width: min(280px, 72vw);
+  padding: 0.7rem 0.8rem;
+  border-radius: 12px;
+  border: 1px solid rgba(244, 114, 182, 0.35);
+  background: linear-gradient(145deg, rgba(32, 16, 30, 0.97), rgba(26, 14, 25, 0.97));
+  color: #fdf2f8;
+  font-size: 0.82rem;
+  font-weight: 500;
+  line-height: 1.45;
+  text-align: left;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+  z-index: 40;
+}
+
+.term-popover::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 4px);
+  transform: translateX(-50%) rotate(45deg);
+  width: 10px;
+  height: 10px;
+  background: rgba(29, 15, 27, 0.98);
+  border-right: 1px solid rgba(244, 114, 182, 0.35);
+  border-bottom: 1px solid rgba(244, 114, 182, 0.35);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+  z-index: 39;
+}
+
+.term-popover:hover::after,
+.term-popover:hover::before,
+.term-popover:focus-visible::after,
+.term-popover:focus-visible::before {
+  opacity: 1;
+  visibility: visible;
+}
+
+.term-popover:hover::after,
+.term-popover:focus-visible::after {
+  transform: translateX(-50%) translateY(0);
+}

@@ -53,10 +53,10 @@ Here is the practical setup flow I used, step by step. </br> </br>
      - `/` (root): 50-80 GB (or more)
      - `swap`: 4-16 GB (optional, depends on RAM/hibernation needs)
      - `/home`: the rest (optional but recommended)
-   - Continue install and let Nobara install GRUB bootloader. </br> </br>
+   - Continue install and let Nobara install <span class="term-popover" data-definition="GRUB (Grand Unified Bootloader) is the boot manager that lets you choose which operating system to start.">GRUB</span> bootloader. </br> </br>
 
 6. **First reboot and boot menu check**
-   - After installation, reboot and you should see **GRUB** with entries for Nobara and Windows Boot Manager.
+   - After installation, reboot and you should see **<span class="term-popover" data-definition="GRUB (Grand Unified Bootloader) is the menu shown at startup to choose Nobara or Windows.">GRUB</span>** with entries for Nobara and Windows Boot Manager.
    - Test both entries once to confirm both OS installations are healthy. </br> </br>
 
 7. **Post-install setup (important)**
@@ -67,7 +67,7 @@ sudo dnf upgrade --refresh -y
 ```
 
    - Install any pending GPU/NVIDIA updates from Nobara tools/software center.
-   - Set your default boot OS and timeout in GRUB if needed. </br> </br>
+   - Set your default boot OS and timeout in <span class="term-popover" data-definition="In GRUB settings, you can choose default OS and how long the boot menu appears.">GRUB</span> if needed. </br> </br>
 
 ### **Useful Links** </br> </br>
 
