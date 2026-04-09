@@ -28,7 +28,17 @@ if (!blog) {
   throw new Error(`Blog post not found: ${Astro.params.slug}`);
 }
 
-const { Content } = await blog.render();
+const { Content, headings } = await blog.render();
+
+const tocHeadings = (headings ?? [])
+  .filter((heading) => heading.depth === 2 || heading.depth === 3)
+  .map((heading) => ({
+    slug: heading.slug,
+    text: heading.text,
+    depth: heading.depth,
+  }));
+
+const hasToc = tocHeadings.length > 0;
 
 // GitHub edit link
 const githubRepo = 'AlexanderDev2004/alexanderar.com';
@@ -40,7 +50,7 @@ const editLink = `https://github.com/${githubRepo}/edit/${githubBranch}/src/cont
   <div class="reading-progress" aria-hidden="true">
     <div class="reading-progress__bar" id="readingProgressBar"></div>
   </div>
-  <div class="max-w-4xl mx-auto px-4 sm:px-5 md:px-6 py-8 md:py-11">
+  <div class="max-w-6xl mx-auto px-4 sm:px-5 md:px-6 py-8 md:py-11">
     <!-- Back Button -->
     <a
       href="/all-blogs"
@@ -50,96 +60,164 @@ const editLink = `https://github.com/${githubRepo}/edit/${githubBranch}/src/cont
       Back to Posts
     </a>
 
-    <!-- Header -->
-    <article class="space-y-6 expand-reveal">
-      <header class="glass-panel rounded-2xl p-5 sm:p-6 md:p-7 space-y-4 border-b pb-8" style="border-color: var(--surface-border);">
-        <div class="flex items-start justify-between gap-4">
-          <h1 class="text-4xl font-bold primary-text flex-1">
-            {blog.data.title}
-          </h1>
-          <a
-            href={editLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            title="Edit this post on GitHub"
-            class="edit-link flex items-center gap-2 px-3 py-2 text-sm font-medium rounded-lg whitespace-nowrap"
-          >
-            <iconify-icon icon="mdi:github" width="18" height="18"></iconify-icon>
-            <span class="hidden sm:inline">Edit</span>
-          </a>
-        </div>
-
-        <div class="flex items-center gap-4 muted-text">
-          <div class="flex items-center gap-2">
-            <iconify-icon icon="mdi:calendar" width="18" height="18"></iconify-icon>
-            <span>
-              {blog.data.date.toLocaleDateString('en-US', {
-                day: 'numeric',
-                month: 'long',
-                year: 'numeric',
-              })}
-            </span>
+    <div class="blog-layout">
+      <article class="space-y-6 expand-reveal">
+        <header class="glass-panel rounded-2xl p-5 sm:p-6 md:p-7 space-y-4 border-b pb-8" style="border-color: var(--surface-border);">
+          <div class="flex items-start justify-between gap-4">
+            <h1 class="text-4xl font-bold primary-text flex-1">
+              {blog.data.title}
+            </h1>
+            <a
+              href={editLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              title="Edit this post on GitHub"
+              class="edit-link flex items-center gap-2 px-3 py-2 text-sm font-medium rounded-lg whitespace-nowrap"
+            >
+              <iconify-icon icon="mdi:github" width="18" height="18"></iconify-icon>
+              <span class="hidden sm:inline">Edit</span>
+            </a>
           </div>
-        </div>
 
-        <!-- Tags -->
-        {blog.data.tags && blog.data.tags.length > 0 && (
-          <div class="flex flex-wrap gap-2 pt-4">
-            {blog.data.tags.map((tag) => (
-              <span class="pill-chip px-3 py-1 rounded-full text-sm font-medium">
-                #{tag}
+          <div class="flex items-center gap-4 muted-text">
+            <div class="flex items-center gap-2">
+              <iconify-icon icon="mdi:calendar" width="18" height="18"></iconify-icon>
+              <span>
+                {blog.data.date.toLocaleDateString('en-US', {
+                  day: 'numeric',
+                  month: 'long',
+                  year: 'numeric',
+                })}
               </span>
-            ))}
+            </div>
           </div>
+
+          <!-- Tags -->
+          {blog.data.tags && blog.data.tags.length > 0 && (
+            <div class="flex flex-wrap gap-2 pt-4">
+              {blog.data.tags.map((tag) => (
+                <span class="pill-chip px-3 py-1 rounded-full text-sm font-medium">
+                  #{tag}
+                </span>
+              ))}
+            </div>
+          )}
+        </header>
+
+        {hasToc && (
+          <details class="toc-mobile section-shell rounded-2xl p-4 sm:p-5">
+            <summary class="toc-mobile__summary">
+              <span class="toc-title">
+                <iconify-icon icon="mdi:format-list-bulleted" width="17" height="17"></iconify-icon>
+                On this page
+              </span>
+              <iconify-icon icon="mdi:chevron-down" width="18" height="18" class="toc-mobile__chevron"></iconify-icon>
+            </summary>
+            <nav class="toc-nav mt-3" aria-label="On this page">
+              <ol class="toc-list">
+                {tocHeadings.map((heading) => (
+                  <li class={`toc-item ${heading.depth === 3 ? 'toc-item--nested' : ''}`}>
+                    <a
+                      href={`#${heading.slug}`}
+                      class="toc-link"
+                      data-toc-link
+                      data-toc-target={heading.slug}
+                    >
+                      {heading.text}
+                    </a>
+                  </li>
+                ))}
+              </ol>
+            </nav>
+          </details>
         )}
-      </header>
 
-      <!-- Content -->
-      <div class="section-shell rounded-2xl p-5 sm:p-6 blog-prose prose dark:prose-invert max-w-none">
-        <Content />
-      </div>
+        <!-- Content -->
+        <div class="section-shell rounded-2xl p-5 sm:p-6 blog-prose prose dark:prose-invert max-w-none">
+          <Content />
+        </div>
 
-      <!-- Comments -->
-      <section class="section-shell rounded-2xl p-5 sm:p-6 comments-shell space-y-3">
-        <h2 class="text-lg sm:text-xl font-bold primary-text">Comments</h2>
+        <!-- Comments -->
+        <section class="section-shell rounded-2xl p-5 sm:p-6 comments-shell space-y-3">
+          <h2 class="text-lg sm:text-xl font-bold primary-text">Comments</h2>
 
-        <script
-          src="https://giscus.app/client.js"
-          data-repo="AlexanderDev2004/alexanderar.com"
-          data-repo-id="R_kgDORIJATw"
-          data-category="General"
-          data-category-id="DIC_kwDORIJAT84C4xSq"
-          data-mapping="specific"
-          data-term={`src/content/blogs/${blog.slug}.md`}
-          data-strict="1"
-          data-reactions-enabled="1"
-          data-emit-metadata="0"
-          data-input-position="top"
-          data-theme="preferred_color_scheme"
-          data-lang="en"
-          data-loading="lazy"
-          crossorigin="anonymous"
-          async
-        ></script>
+          <script
+            src="https://giscus.app/client.js"
+            data-repo="AlexanderDev2004/alexanderar.com"
+            data-repo-id="R_kgDORIJATw"
+            data-category="General"
+            data-category-id="DIC_kwDORIJAT84C4xSq"
+            data-mapping="specific"
+            data-term={`src/content/blogs/${blog.slug}.md`}
+            data-strict="1"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="top"
+            data-theme="preferred_color_scheme"
+            data-lang="en"
+            data-loading="lazy"
+            crossorigin="anonymous"
+            async
+          ></script>
 
-        <p class="text-sm muted-text">
-          If you don&apos;t see comment section, please turn off your adblock :)
-        </p>
-      </section>
+          <p class="text-sm muted-text">
+            If you don&apos;t see comment section, please turn off your adblock :)
+          </p>
+        </section>
 
-      <!-- Footer -->
-      <footer class="border-t pt-8 mt-12" style="border-color: var(--surface-border);">
-        <a
-          href="/all-blogs"
-          class="back-link"
-        >
-          ← Back to All Posts
-        </a>
-      </footer>
-    </article>
+        <!-- Footer -->
+        <footer class="border-t pt-8 mt-12" style="border-color: var(--surface-border);">
+          <a
+            href="/all-blogs"
+            class="back-link"
+          >
+            ← Back to All Posts
+          </a>
+        </footer>
+      </article>
+
+      {hasToc && (
+        <aside class="toc-desktop" aria-label="On this page">
+          <div class="toc-card">
+            <p class="toc-title">
+              <iconify-icon icon="mdi:format-list-bulleted" width="17" height="17"></iconify-icon>
+              On this page
+            </p>
+            <nav class="toc-nav mt-3" aria-label="Table of contents">
+              <ol class="toc-list">
+                {tocHeadings.map((heading) => (
+                  <li class={`toc-item ${heading.depth === 3 ? 'toc-item--nested' : ''}`}>
+                    <a
+                      href={`#${heading.slug}`}
+                      class="toc-link"
+                      data-toc-link
+                      data-toc-target={heading.slug}
+                    >
+                      {heading.text}
+                    </a>
+                  </li>
+                ))}
+              </ol>
+            </nav>
+          </div>
+        </aside>
+      )}
+    </div>
   </div>
   <script is:inline>
     const progressBar = document.getElementById('readingProgressBar');
+    const tocLinks = Array.from(document.querySelectorAll('[data-toc-link]'));
+
+    const headingTargets = [...new Set(
+      tocLinks
+        .map((link) => link.getAttribute('data-toc-target'))
+        .filter((target) => typeof target === 'string' && target.length > 0),
+    )];
+
+    const headingElements = headingTargets
+      .map((target) => document.getElementById(target))
+      .filter((heading) => heading instanceof HTMLElement);
+
     const updateProgress = () => {
       if (!progressBar) return;
       const scrollTop = window.scrollY || document.documentElement.scrollTop;
@@ -148,19 +226,72 @@ const editLink = `https://github.com/${githubRepo}/edit/${githubBranch}/src/cont
       progressBar.style.transform = `scaleX(${progress})`;
     };
 
+    const setActiveTocLink = (activeId) => {
+      if (!activeId || tocLinks.length === 0) return;
+
+      tocLinks.forEach((link) => {
+        const target = link.getAttribute('data-toc-target');
+        const isActive = target === activeId;
+
+        link.classList.toggle('is-active', isActive);
+
+        if (isActive) {
+          link.setAttribute('aria-current', 'true');
+        } else {
+          link.removeAttribute('aria-current');
+        }
+      });
+    };
+
+    const updateActiveTocLink = () => {
+      if (headingElements.length === 0) return;
+
+      const offset = window.innerWidth >= 1024 ? 140 : window.innerWidth >= 768 ? 126 : 114;
+      const scrollPosition = window.scrollY + offset;
+      let activeId = headingElements[0].id;
+
+      for (const heading of headingElements) {
+        if (heading.offsetTop <= scrollPosition) {
+          activeId = heading.id;
+        } else {
+          break;
+        }
+      }
+
+      const reachedBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
+      if (reachedBottom) {
+        activeId = headingElements[headingElements.length - 1].id;
+      }
+
+      setActiveTocLink(activeId);
+    };
+
+    tocLinks.forEach((link) => {
+      link.addEventListener('click', () => {
+        const mobileToc = link.closest('.toc-mobile');
+        if (mobileToc instanceof HTMLDetailsElement && window.innerWidth < 1024) {
+          window.setTimeout(() => {
+            mobileToc.open = false;
+          }, 140);
+        }
+      });
+    });
+
     let ticking = false;
-    const onScroll = () => {
+    const onViewportChange = () => {
       if (ticking) return;
       ticking = true;
       window.requestAnimationFrame(() => {
         updateProgress();
+        updateActiveTocLink();
         ticking = false;
       });
     };
 
     updateProgress();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', updateProgress);
+    updateActiveTocLink();
+    window.addEventListener('scroll', onViewportChange, { passive: true });
+    window.addEventListener('resize', onViewportChange);
   </script>
 </Layout>
 
@@ -176,6 +307,19 @@ const editLink = `https://github.com/${githubRepo}/edit/${githubBranch}/src/cont
 
   .back-link:hover {
     color: var(--text-primary);
+  }
+
+  .blog-layout {
+    display: grid;
+    align-items: start;
+    gap: 1.25rem;
+  }
+
+  @media (min-width: 1024px) {
+    .blog-layout {
+      grid-template-columns: minmax(0, 1fr) 17.5rem;
+      gap: 1.5rem;
+    }
   }
 
   .reading-progress {
@@ -236,6 +380,124 @@ const editLink = `https://github.com/${githubRepo}/edit/${githubBranch}/src/cont
   :global(.blog-prose a:focus-visible) {
     outline: 2px solid currentColor;
     outline-offset: 2px;
+    border-radius: 0.2rem;
+  }
+
+  :global(.blog-prose :is(h2, h3)) {
+    scroll-margin-top: 6.2rem;
+  }
+
+  .toc-mobile {
+    display: block;
+  }
+
+  .toc-mobile__summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .toc-mobile__summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .toc-mobile__chevron {
+    color: var(--text-muted);
+    transition: transform 0.2s ease, color 0.2s ease;
+  }
+
+  .toc-mobile[open] .toc-mobile__chevron {
+    transform: rotate(180deg);
+    color: var(--text-primary);
+  }
+
+  .toc-desktop {
+    display: none;
+  }
+
+  @media (min-width: 1024px) {
+    .toc-mobile {
+      display: none;
+    }
+
+    .toc-desktop {
+      display: block;
+      position: sticky;
+      top: 5.8rem;
+    }
+  }
+
+  .toc-card {
+    border: 1px solid var(--surface-border-soft);
+    border-radius: 1rem;
+    background: var(--surface-strong);
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.3);
+    padding: 1rem 1rem 0.95rem;
+  }
+
+  .toc-title {
+    margin: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.98rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: 0.01em;
+  }
+
+  .toc-list {
+    margin: 0;
+    padding: 0.2rem 0 0.2rem 0.8rem;
+    list-style: none;
+    border-left: 1px solid var(--surface-border-soft);
+    display: flex;
+    flex-direction: column;
+    gap: 0.14rem;
+  }
+
+  .toc-item--nested {
+    padding-left: 0.6rem;
+  }
+
+  .toc-link {
+    position: relative;
+    display: block;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.86rem;
+    line-height: 1.4;
+    padding: 0.22rem 0;
+    word-break: break-word;
+    transition: color 0.2s ease;
+  }
+
+  .toc-link:hover {
+    color: var(--text-primary);
+  }
+
+  .toc-link.is-active {
+    color: var(--accent-strong);
+    font-weight: 650;
+  }
+
+  .toc-link.is-active::before {
+    content: '';
+    position: absolute;
+    left: calc(-0.8rem - 1px);
+    top: 0.15rem;
+    bottom: 0.15rem;
+    width: 2px;
+    border-radius: 999px;
+    background: linear-gradient(180deg, var(--accent), var(--accent-strong));
+  }
+
+  .toc-link:focus-visible {
+    outline: 2px solid var(--accent-strong);
+    outline-offset: 3px;
     border-radius: 0.2rem;
   }
 
