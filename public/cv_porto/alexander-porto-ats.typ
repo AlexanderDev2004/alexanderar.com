@@ -44,11 +44,10 @@
 ], [#emph[Mojokerto, Indonesia]])
 
 - Built scalable backend services with Django for internal web applications.
-- Created responsive frontend interfaces with React to support daily operations.
 - Managed PostgreSQL queries and schema updates to improve data reliability.
 - Implemented REST API endpoints and authentication flows for core features.
 
-#text(weight: "bold")[Stack:] Django, React, PostgreSQL
+#text(weight: "bold")[Stack:] Django,PostgreSQL, REST API, JavaScript
 
 #v(0.55em)
 
