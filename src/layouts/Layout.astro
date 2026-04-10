@@ -109,6 +109,8 @@ const ogImage = new URL(ogImagePath, Astro.site ?? Astro.url);
           md: 'Markdown',
           markdown: 'Markdown',
           mdx: 'MDX',
+          diff: 'Diff',
+          patch: 'Patch',
           rst: 'reStructuredText',
           adoc: 'AsciiDoc',
           asciidoc: 'AsciiDoc',
@@ -282,6 +284,104 @@ const ogImage = new URL(ogImagePath, Astro.site ?? Astro.url);
         return aliases[normalized] ?? (normalized.charAt(0).toUpperCase() + normalized.slice(1));
       };
 
+      const normalizeNewlines = (value) => value.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
+
+      const parseDiffHunk = (line) => {
+        const match = line.match(/^@@\s*-(\d+)(?:,\d+)?\s+\+(\d+)(?:,\d+)?\s*@@/);
+        if (!match) return null;
+
+        return {
+          oldStart: Number.parseInt(match[1], 10),
+          newStart: Number.parseInt(match[2], 10),
+        };
+      };
+
+      const classifyDiffLine = (line) => {
+        if (line.startsWith('@@')) return 'hunk';
+        if (line.startsWith('diff ') || line.startsWith('index ') || line.startsWith('--- ') || line.startsWith('+++ ') || line.startsWith('\\ ')) {
+          return 'meta';
+        }
+        if (line.startsWith('+')) return 'added';
+        if (line.startsWith('-')) return 'removed';
+        return 'context';
+      };
+
+      const extractAddedDiffLines = (rawCode) => {
+        const normalizedCode = normalizeNewlines(rawCode);
+        const lines = normalizedCode.split('\n');
+
+        return lines
+          .filter((line) => classifyDiffLine(line) === 'added')
+          .map((line) => line.slice(1))
+          .join('\n');
+      };
+
+      const createDiffView = (rawCode) => {
+        const container = document.createElement('div');
+        container.className = 'code-diff-view';
+
+        const linesList = document.createElement('ol');
+        linesList.className = 'code-diff-lines';
+
+        const normalizedCode = normalizeNewlines(rawCode);
+        const lines = normalizedCode.split('\n');
+
+        if (lines.length > 1 && lines[lines.length - 1] === '') {
+          lines.pop();
+        }
+
+        if (lines.length === 0) {
+          lines.push('');
+        }
+
+        let oldLineNumber = 1;
+        let newLineNumber = 1;
+
+        lines.forEach((line) => {
+          const lineType = classifyDiffLine(line);
+
+          const row = document.createElement('li');
+          row.className = `code-diff-line code-diff-line--${lineType}`;
+
+          const oldNumber = document.createElement('span');
+          oldNumber.className = 'code-diff-line-no code-diff-line-no--old';
+
+          const newNumber = document.createElement('span');
+          newNumber.className = 'code-diff-line-no code-diff-line-no--new';
+
+          if (lineType === 'hunk') {
+            const hunk = parseDiffHunk(line);
+            if (hunk) {
+              oldLineNumber = hunk.oldStart;
+              newLineNumber = hunk.newStart;
+            }
+          } else if (lineType === 'removed') {
+            oldNumber.textContent = String(oldLineNumber);
+            oldLineNumber += 1;
+          } else if (lineType === 'added') {
+            newNumber.textContent = String(newLineNumber);
+            newLineNumber += 1;
+          } else if (lineType === 'context') {
+            oldNumber.textContent = String(oldLineNumber);
+            newNumber.textContent = String(newLineNumber);
+            oldLineNumber += 1;
+            newLineNumber += 1;
+          }
+
+          const lineCode = document.createElement('code');
+          lineCode.className = 'code-diff-line-code';
+          lineCode.textContent = line.length > 0 ? line : ' ';
+
+          row.appendChild(oldNumber);
+          row.appendChild(newNumber);
+          row.appendChild(lineCode);
+          linesList.appendChild(row);
+        });
+
+        container.appendChild(linesList);
+        return container;
+      };
+
       const addCopyButtons = () => {
         document.querySelectorAll('pre').forEach((block) => {
           if (block.closest('.code-block-wrap')) return;
@@ -291,13 +391,18 @@ const ogImage = new URL(ogImagePath, Astro.site ?? Astro.url);
           const languageClass = className
             .split(' ')
             .find((entry) => entry.startsWith('language-'));
-          const language = formatCodeLanguage(languageClass?.replace('language-', ''));
+          const languageId = languageClass?.replace('language-', '').toLowerCase() ?? '';
+          const language = formatCodeLanguage(languageId);
+          const isDiffBlock = languageId === 'diff' || languageId === 'patch';
 
           const wrapper = document.createElement('div');
           wrapper.className = 'code-block-wrap';
 
           const toolbar = document.createElement('div');
           toolbar.className = 'code-block-toolbar';
+
+          const toolbarActions = document.createElement('div');
+          toolbarActions.className = 'code-toolbar-actions';
 
           const languageBadge = document.createElement('span');
           languageBadge.className = 'code-language';
@@ -306,11 +411,13 @@ const ogImage = new URL(ogImagePath, Astro.site ?? Astro.url);
           const button = document.createElement('button');
           button.type = 'button';
           button.className = 'code-copy-button';
-          button.setAttribute('aria-label', 'Copy code');
+          button.setAttribute('aria-label', isDiffBlock ? 'Copy added lines' : 'Copy code');
           button.innerHTML = 'Copy';
 
           button.addEventListener('click', async () => {
-            const code = codeEl?.innerText ?? '';
+            const rawCode = codeEl?.textContent ?? '';
+            const copyAddedOnly = isDiffBlock && wrapper.classList.contains('is-diff-enhanced');
+            const code = copyAddedOnly ? extractAddedDiffLines(rawCode) : rawCode;
             try {
               await navigator.clipboard.writeText(code);
               button.innerHTML = 'Copied';
@@ -333,8 +440,34 @@ const ogImage = new URL(ogImagePath, Astro.site ?? Astro.url);
           wrapper.appendChild(toolbar);
           wrapper.appendChild(block);
 
+          if (isDiffBlock) {
+            wrapper.classList.add('code-block-wrap--diff', 'is-diff-enhanced');
+            block.classList.add('code-diff-source');
+
+            const rawCode = codeEl?.textContent ?? block.textContent ?? '';
+            const diffView = createDiffView(rawCode);
+            wrapper.appendChild(diffView);
+
+            const diffToggleButton = document.createElement('button');
+            diffToggleButton.type = 'button';
+            diffToggleButton.className = 'code-diff-toggle';
+            diffToggleButton.setAttribute('aria-label', 'Toggle diff styled view');
+            diffToggleButton.setAttribute('aria-pressed', 'true');
+            diffToggleButton.textContent = 'Diff view: on';
+
+            diffToggleButton.addEventListener('click', () => {
+              const isEnhanced = wrapper.classList.toggle('is-diff-enhanced');
+              diffToggleButton.setAttribute('aria-pressed', isEnhanced ? 'true' : 'false');
+              diffToggleButton.textContent = isEnhanced ? 'Diff view: on' : 'Diff view: off';
+              button.setAttribute('aria-label', isEnhanced ? 'Copy added lines' : 'Copy full diff block');
+            });
+
+            toolbarActions.appendChild(diffToggleButton);
+          }
+
+          toolbarActions.appendChild(button);
           toolbar.appendChild(languageBadge);
-          toolbar.appendChild(button);
+          toolbar.appendChild(toolbarActions);
         });
       };
 

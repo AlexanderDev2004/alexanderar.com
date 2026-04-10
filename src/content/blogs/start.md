@@ -23,3 +23,13 @@ The story starts back when I was a kid and why I loved computers so much. I forg
 Well, at first, I thought it was a computer major focused on coding, but it turned out to be focused on networking. But from there, I learned a lot about how the internet works, what IP addresses and DNS are, etc. During practical sessions, we often used physical hardware like Mikrotik for configuration. Besides that, we were trained as IT Support and I also learned about Operating Systems, specifically Linux. I learned a lot about Linux in addition to Windows, though I still taught myself programming through YouTube videos and various other sources. Long story short, leading up to our graduation exams, our whole class was told to create a project as a graduation requirement. The theme was up to us—some made websites, IoT projects, etc. I wanted to do something different from everyone else, so I decided to make a game. Since I saw no one else was doing it, I went for it and got support from my teacher. To make a long story short, the project was eventually finished using Unity 3D and C#. You can check it out [here](https://alex-game-dev-indonesia.itch.io/escape-from-alex). </br> </br> Oh yeah, this was a team project, and we finally GRADUATED. </br> </br>
 
 ### LOADING.... (wkwkwkwkw) </br> </br>
+<!-- 
+### Diff Example
+
+```diff
+--- old/greeting.txt
++++ new/greeting.txt
+@@ -1 +1 @@
+-hello
++Happy coding
+``` -->
