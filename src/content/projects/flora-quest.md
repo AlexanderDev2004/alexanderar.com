@@ -3,7 +3,7 @@ title: "Flora Quest"
 year: "2023"
 description: "Flora Quest is a game that combines exploration, combat, and storytelling. You will fight, upgrade, and survive."
 fullDescription: "Flora Quest is a game that combines exploration, combat, and storytelling. You will fight, upgrade, and survive. The game is built using Unity and C#. It features a unique combat system, dynamic lighting, and a captivating storyline. The game is available on PC platforms. Btw This Project is made in 72 hours for a Game Jam + 2023."
-image: "https://alexanderar.vercel.app/image/Games/FloraQuest.png"
+image: "/images/FloraQuesst.png"
 projectLink: "https://poligamedev.itch.io/floraquest-the-last-seed"
 repoLink: ""
 technologies:
