@@ -38,12 +38,6 @@
       hint: 'Writing and notes',
       icon: 'mdi:pencil-outline',
     },
-    {
-      id: 'files',
-      title: 'Files',
-      hint: 'Resume, portfolio, and downloads',
-      icon: 'mdi:folder-outline',
-    },
   ];
 
   let openSections = new Set(['about']);
@@ -138,12 +132,6 @@
               </slot>
             {:else if section.id === 'blogs'}
               <slot name="blogs">
-                <p class="muted-text">
-                  Content for {section.title} section coming soon...
-                </p>
-              </slot>
-            {:else if section.id === 'files'}
-              <slot name="files">
                 <p class="muted-text">
                   Content for {section.title} section coming soon...
                 </p>

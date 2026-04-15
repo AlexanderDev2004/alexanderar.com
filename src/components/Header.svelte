@@ -1,8 +1,26 @@
 <script lang="ts">
   import { contacts } from '../data/contact';
+  import { files } from '../data/files';
 
   const isExternalLink = (href: string) => /^https?:\/\//.test(href);
   const githubHref = contacts.find((item) => item.id === 'github')?.href ?? 'https://github.com/AlexanderDev2004';
+  const resumeFileUrl = files.find((item) => item.id === 'resume')?.fileUrl ?? '/cv_porto/alexander-porto-ats.pdf';
+  const portfolioFileUrl = files.find((item) => item.id === 'portfolio')?.fileUrl ?? '/cv_porto/AlexanderAgungRaya_Portfolio.pdf';
+
+  const downloadLinks = [
+    {
+      id: 'resume',
+      label: 'Resume',
+      href: resumeFileUrl,
+      icon: 'ph:read-cv-logo-bold',
+    },
+    {
+      id: 'portfolio',
+      label: 'Portofolio',
+      href: portfolioFileUrl,
+      icon: 'mdi:briefcase-download-outline',
+    },
+  ];
 </script>
 
 <header class="relative z-10">
@@ -53,7 +71,7 @@
           </a>
         </div>
 
-        <div class="flex flex-wrap gap-2.5 sm:gap-3">
+        <div class="flex flex-wrap items-center gap-2.5 sm:gap-3">
           {#each contacts as item}
             <a
               href={item.href}
@@ -62,6 +80,18 @@
               class="contact-link"
             >
               <iconify-icon icon={item.icon} width="17" height="17"></iconify-icon>
+              <span>{item.label}</span>
+            </a>
+          {/each}
+
+          {#each downloadLinks as item}
+            <a
+              href={item.href}
+              download
+              class="download-link"
+              aria-label={item.label}
+            >
+              <iconify-icon icon={item.icon} width="18" height="18"></iconify-icon>
               <span>{item.label}</span>
             </a>
           {/each}
@@ -214,6 +244,31 @@
     transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
   }
 
+  .download-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.48rem;
+    border-radius: 0.72rem;
+    border: 1px solid var(--surface-border-soft);
+    background: var(--surface-strong);
+    color: var(--text-primary);
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 0.52rem 0.84rem;
+    transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  }
+
+  .download-link:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent);
+    background: var(--accent-soft);
+  }
+
+  .download-link:focus-visible {
+    outline: 2px solid var(--accent-strong);
+    outline-offset: 2px;
+  }
+
   .contact-link:hover {
     transform: translateY(-2px);
     border-color: var(--accent);
@@ -229,6 +284,11 @@
 
   @media (min-width: 640px) {
     .contact-link {
+      font-size: 0.85rem;
+      padding: 0.58rem 0.95rem;
+    }
+
+    .download-link {
       font-size: 0.85rem;
       padding: 0.58rem 0.95rem;
     }
