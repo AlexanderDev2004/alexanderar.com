@@ -1,9 +1,7 @@
 ---
 title: "Ijen Driver"
 year: "2025"
-description: "Ijen Driver is a website Booking Tour Driver like in Banyuwangi, Bali, etc. basicl this project Using Laravel and Tailwindcss and then db using Mysql"
-fullDescription: "Ijen Driver Using Laravel and Tailwindcss and then db using Mysql. basicle
-this project Using Laravel and Tailwindcss and then db using Mysql"
+description: "Ijen Driver is a website for booking tours desired by travelers, including both domestic and international guests. Travelers can choose destinations such as Ijen Crater, Bromo, Tumpak Sewu Waterfall, and more."
 image: "/images/ijen-driver.png"
 projectLink: ""
 repoLink: "https://github.com/AlexanderDev2004/ijen-driver"
