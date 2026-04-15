@@ -19,7 +19,7 @@ technologies:
 
 ## The Problem
 This project started because of my parents' work as tour drivers in Indonesia, covering places like Ijen Crater, Bromo, Tumpak Sewu, and more.
-They actually already had their own website, but when I saw it, I thought to myself, "This could be improved and made much more user-friendly." For example, the UI/UX design could be polished, and the business processes need to be refined.
+They actually already had their own website, but when I saw it, I thought to myself, "This could be improved and made much more user-friendly." For example, the UI/UX design could be polished, and the business processes need to be refined. 
 
 ## The Solution
 I decided to develop Ijen Driver to help and make things easier for tour drivers in their work, so they can be better understood by guests who want to vacation in Indonesia.
@@ -39,4 +39,4 @@ this project Using Laravel and Tailwindcss and then databases using Mysql.
 ## Technologies Used
 - [Laravel](https://laravel.com/) - A PHP web framework for building web applications.
 - [MySQL](https://www.mysql.com/) - A popular open-source relational database management system.
-- [Tailwind CSS](https://tailwindcss.com/) - A utility-first CSS framework for rapidly building custom designs.
+- [Tailwind CSS](https://tailwindcss.com/) - A utility-first CSS framework for rapidly building custom designs. 
