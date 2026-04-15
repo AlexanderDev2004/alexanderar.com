@@ -2,6 +2,7 @@
 title: "Ijen Driver"
 year: "2025"
 description: "Ijen Driver is a website for booking tours desired by travelers, including both domestic and international guests. Travelers can choose destinations such as Ijen Crater, Bromo, Tumpak Sewu Waterfall, and more."
+fullDescription: "Ijen Driver is a tour-booking website for domestic and international travelers visiting destinations like Ijen Crater, Bromo, and Tumpak Sewu, built to improve booking clarity and usability."
 image: "/images/ijen-driver.png"
 projectLink: ""
 repoLink: "https://github.com/AlexanderDev2004/ijen-driver"
