@@ -79,6 +79,20 @@
 
 #v(0.45em)
 
+
+#two-col([
+  #text(weight: "bold")[Decimatex]
+  (#text(fill: section-color)[#link("https://github.com/AlexanderDev2004/decimatex")[github.com/AlexanderDev2004/decimatex]])
+], [2026])
+
+- Built a Decision Support System (DSS) platform that automates decision analysis using MCDM (Multi-Criteria Decision Making) methods.
+- Developed a user-friendly interface for calculating and making decisions with dashboard monitoring.
+- Created cross-platform desktop application using Electron with Bun, Hono, and PostgreSQL.
+
+#text(weight: "bold")[Stack:] Bun, Tanstack, Effect, Hono, Drizzle, PostgreSQL, Tailwind CSS, Electron
+
+#v(0.45em)
+
 #two-col([
   #text(weight: "bold")[Lapor Sana]
   (#text(fill: section-color)[#link("https://github.com/AlexanderDev2004/LaporSana")[github.com/AlexanderDev2004/LaporSana]])
@@ -102,19 +116,6 @@
 - Improved usability with a simple flow and mobile-friendly interface.
 
 #text(weight: "bold")[Stack:] Laravel, MySQL, Tailwind CSS
-
-#v(0.45em)
-
-#two-col([
-  #text(weight: "bold")[Decimatex]
-  (#text(fill: section-color)[#link("https://github.com/AlexanderDev2004/decimatex")[github.com/AlexanderDev2004/decimatex]])
-], [2026])
-
-- Built a Decision Support System (DSS) platform that automates decision analysis using MCDM (Multi-Criteria Decision Making) methods.
-- Developed a user-friendly interface for calculating and making decisions with dashboard monitoring.
-- Created cross-platform desktop application using Electron with Bun, Hono, Drizzle, and PostgreSQL.
-
-#text(weight: "bold")[Stack:] Bun, Tanstack, Effect, Hono, Drizzle, PostgreSQL, Tailwind CSS, Electron
 
 
 #section("EDUCATION")
