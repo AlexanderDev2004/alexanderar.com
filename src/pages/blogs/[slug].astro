@@ -40,6 +40,15 @@ const tocHeadings = (headings ?? [])
 
 const hasToc = tocHeadings.length > 0;
 
+// Previous / Next navigation
+const sortedBlogs = blogEntries
+  .slice()
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const currentIndex = sortedBlogs.findIndex((entry) => entry.slug === blog.slug);
+const prevBlog = currentIndex < sortedBlogs.length - 1 ? sortedBlogs[currentIndex + 1] : null;
+const nextBlog = currentIndex > 0 ? sortedBlogs[currentIndex - 1] : null;
+
 // GitHub edit link
 const githubRepo = 'AlexanderDev2004/alexanderar.com';
 const githubBranch = 'master';
@@ -165,8 +174,38 @@ const editLink = `https://github.com/${githubRepo}/edit/${githubBranch}/src/cont
           </p>
         </section>
 
+        <!-- Previous / Next Navigation -->
+        <nav class="blog-nav border-t pt-8 mt-12" style="border-color: var(--surface-border);" aria-label="Post navigation">
+          <div class="blog-nav__grid">
+            {prevBlog && (
+              <a
+                href={`/blogs/${normalizeSlug(prevBlog.slug)}`}
+                class="blog-nav__link blog-nav__link--prev"
+              >
+                <span class="blog-nav__label">
+                  <iconify-icon icon="mdi:arrow-left" width="18" height="18"></iconify-icon>
+                  Previous
+                </span>
+                <span class="blog-nav__title">{prevBlog.data.title}</span>
+              </a>
+            )}
+            {nextBlog && (
+              <a
+                href={`/blogs/${normalizeSlug(nextBlog.slug)}`}
+                class="blog-nav__link blog-nav__link--next"
+              >
+                <span class="blog-nav__label">
+                  Next
+                  <iconify-icon icon="mdi:arrow-right" width="18" height="18"></iconify-icon>
+                </span>
+                <span class="blog-nav__title">{nextBlog.data.title}</span>
+              </a>
+            )}
+          </div>
+        </nav>
+
         <!-- Footer -->
-        <footer class="border-t pt-8 mt-12" style="border-color: var(--surface-border);">
+        <footer class="pt-8 mt-8">
           <a
             href="/all-blogs"
             class="back-link"
@@ -504,5 +543,59 @@ const editLink = `https://github.com/${githubRepo}/edit/${githubBranch}/src/cont
   :global(.comments-shell .giscus),
   :global(.comments-shell .giscus-frame) {
     width: 100%;
+  }
+
+  /* Previous / Next Navigation */
+  .blog-nav__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  @media (max-width: 640px) {
+    .blog-nav__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .blog-nav__link {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    padding: 1rem;
+    border: 1px solid var(--surface-border-soft);
+    border-radius: 0.75rem;
+    background: var(--surface-strong);
+    text-decoration: none;
+    transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+  }
+
+  .blog-nav__link:hover {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+    transform: translateY(-1px);
+  }
+
+  .blog-nav__link--next {
+    text-align: right;
+    align-items: flex-end;
+  }
+
+  .blog-nav__label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--text-muted);
+  }
+
+  .blog-nav__title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.3;
   }
 </style>
