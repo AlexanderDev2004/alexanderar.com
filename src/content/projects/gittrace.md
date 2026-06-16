@@ -39,6 +39,10 @@ GitTrace is a cross-platform Flutter Desktop application built to simplify the p
 - Premium dark mode theme
 - CI/CD automation with GitHub Actions for releases
 
+## Contributors
+- [AlexanderDev2004](https://github.com/AlexanderDev2004)
+- [ekyaaa](https://github.com/ekyaaa)
+
 ## Technologies Used
 - [Flutter](https://docs.flutter.dev/) - A UI toolkit for building natively compiled applications for mobile, web, and desktop from a single codebase.
 - [Dart](https://dart.dev/) - A client-optimized programming language for apps on any platform.
