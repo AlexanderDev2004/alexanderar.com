@@ -94,6 +94,19 @@
 #v(0.45em)
 
 #two-col([
+  #text(weight: "bold")[GitTrace]
+  (#text(fill: section-color)[#link("https://github.com/ekyaaa/git_trace")[github.com/ekyaaa/git_trace]])
+], [2026])
+
+- Developed a Flutter Desktop application that generates monthly internship reports from local Git activity.
+- Built interactive calendar visualization with commit statistics and working hours tracking.
+- Implemented multi-format export (Excel, Word, PDF) with custom template support and CI/CD automation.
+
+#text(weight: "bold")[Stack:] Flutter, Dart, Git
+
+#v(0.45em)
+
+#two-col([
   #text(weight: "bold")[Lapor Sana]
   (#text(fill: section-color)[#link("https://github.com/AlexanderDev2004/LaporSana")[github.com/AlexanderDev2004/LaporSana]])
 ], [2025])
