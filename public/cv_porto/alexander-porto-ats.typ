@@ -38,7 +38,7 @@
 
 #two-col([
   #text(weight: "bold")[Fullstack Web Developer]
-], [Jan 2026 --- Present])
+], [Jan 2026 --- Juni 2026])
 #two-col([
   PT. Surabaya Autocomp Indonesia - Internship
 ], [#emph[Mojokerto, Indonesia]])

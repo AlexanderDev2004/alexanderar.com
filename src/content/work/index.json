@@ -12,29 +12,17 @@
         "Collaborated with designers and artists to create immersive gaming experiences.",
         "Optimized game performance for various platforms including mobile and desktop."
       ],
-      "tags": [
-        "UNITY",
-        "C#",
-        "GAME DEVELOPMENT",
-        "Game Desaign"
-      ]
+      "tags": ["UNITY", "C#", "GAME DEVELOPMENT", "Game Desaign"]
     },
     {
       "company": "PT XYZ",
       "jobTitle": "Full Stack Developer",
       "status": ["ON-SITE", "FULL-TIME"],
       "startDate": "Jan 2026",
-      "endDate": null,
+      "endDate": "June 2026",
       "link": "",
-      "description": [
-        
-      ],
-      "tags": [
-        "Django",
-        "Python",
-        "React",
-        "PostgreSQL"
-      ]
-    }   
+      "description": [],
+      "tags": ["Django", "Python", "React", "PostgreSQL"]
+    }
   ]
 }
