@@ -37,7 +37,7 @@ export const works: WorkItem[] = [
     country: "Indonesia",
     status: ["ON-SITE", "FULL-TIME"],
     startDate: "Jan 2026",
-    endDate: null,
+    endDate: "June 2026",
     link: "",
     description: [
       "Building scalable backend services with Django",
