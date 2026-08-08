@@ -35,7 +35,7 @@ I rebuilt my personal website from scratch using Astro, Svelte, Tailwind CSS, an
 ## Key Features
 
 ### Content Management
-- Structured content with Astro Content Collections for projects, blogs, and bookmarks.
+- Structured content with Astro Content Collections for projects and blogs.
 - Markdown-based writing flow for easier updates without touching component logic.
 - Consistent metadata (title, year, links, tags, and technologies) to keep entries organized.
 

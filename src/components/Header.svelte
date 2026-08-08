@@ -24,15 +24,6 @@
 </script>
 
 <header class="relative z-10">
-  <a
-    href="/bookmarks"
-    title="Bookmarks Vault"
-    class="bookmark-link bookmark-link--page-corner"
-    aria-label="Open bookmarks vault"
-  >
-    <iconify-icon icon="mdi:bookmark-outline" width="20" height="20"></iconify-icon>
-  </a>
-
   <div class="container mx-auto px-4 sm:px-5 md:px-6 pt-5 md:pt-8">
     <div class="glass-panel rounded-2xl md:rounded-3xl px-5 sm:px-6 md:px-8 py-5 sm:py-6 md:py-7 reveal">
       <div class="flex flex-col gap-5 sm:gap-6">
@@ -148,37 +139,6 @@
     background: var(--surface-strong);
   }
 
-  .bookmark-link {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 999px;
-    border: 1px solid var(--surface-border-soft);
-    background: var(--surface-strong);
-    color: var(--text-muted);
-    width: 2.7rem;
-    height: 2.7rem;
-    opacity: 0.01;
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.34);
-    transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease, color 0.2s ease, opacity 0.1s ease;
-  }
-
-  .bookmark-link:hover,
-  .bookmark-link:focus-visible {
-    transform: translateY(-1px);
-    opacity: 0.80;
-    color: var(--text-primary);
-    border-color: var(--accent);
-    background: var(--accent-soft);
-  }
-
-  .bookmark-link--page-corner {
-    position: absolute;
-    top: calc(env(safe-area-inset-top, 0px) + 0.9rem);
-    right: calc(env(safe-area-inset-right, 0px) + 0.9rem);
-    z-index: 20;
-  }
-
   .profile-link {
     display: inline-flex;
     flex-shrink: 0;
@@ -213,20 +173,6 @@
     .profile-link {
       width: 3.65rem;
       padding: 0.24rem;
-    }
-  }
-
-  @media (min-width: 640px) {
-    .bookmark-link--page-corner {
-      top: calc(env(safe-area-inset-top, 0px) + 1.15rem);
-      right: calc(env(safe-area-inset-right, 0px) + 1.25rem);
-    }
-  }
-
-  @media (min-width: 768px) {
-    .bookmark-link--page-corner {
-      top: calc(env(safe-area-inset-top, 0px) + 1.45rem);
-      right: calc(env(safe-area-inset-right, 0px) + 1.7rem);
     }
   }
 
@@ -276,8 +222,7 @@
   }
 
   .contact-link:focus-visible,
-  .profile-link:focus-visible,
-  .bookmark-link:focus-visible {
+  .profile-link:focus-visible {
     outline: 2px solid var(--accent-strong);
     outline-offset: 2px;
   }
