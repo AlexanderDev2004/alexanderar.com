@@ -8,6 +8,8 @@ interface LayoutProps {
   description?: string;
   robots?: string;
   ogImagePath?: string;
+  /** Hide the site header and footer (fullscreen pages, e.g. 404). */
+  standalone?: boolean;
 }
 
 const {
@@ -15,6 +17,7 @@ const {
   description = 'Portfolio of Alexander Agung Raya, a Software Developer from Indonesia.',
   robots = 'index, follow',
   ogImagePath = '/IconAlex.png',
+  standalone = false,
 } = Astro.props as LayoutProps;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? Astro.url);
@@ -50,13 +53,15 @@ const ogImage = new URL(ogImagePath, Astro.site ?? Astro.url);
       <span class="page-grid-pattern"></span>
       <span class="page-vignette"></span>
     </div>
-    <Header client:load />
+    {!standalone && <Header client:load />}
     <main class="relative z-10">
       <slot />
     </main>
-    <div class="relative z-10">
-      <Footer />
-    </div>
+    {!standalone && (
+      <div class="relative z-10">
+        <Footer />
+      </div>
+    )}
     <script is:inline>
       const formatCodeLanguage = (value) => {
         if (!value) return 'Code';
