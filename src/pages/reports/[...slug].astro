@@ -1,0 +1,353 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+import { normalizeSlug } from '../../lib/slug';
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+  const reportEntries = await getCollection('reports');
+
+  return reportEntries.map((entry) => ({
+    params: { slug: normalizeSlug(entry.slug) },
+    props: {
+      entrySlug: entry.slug,
+    },
+  }));
+}
+
+const reportEntries = await getCollection('reports');
+const requestedSlug = Astro.params.slug ?? '';
+const preloadedSlug = Astro.props.entrySlug;
+
+const report = preloadedSlug
+  ? reportEntries.find((entry) => entry.slug === preloadedSlug)
+  : reportEntries.find((entry) => normalizeSlug(entry.slug) === normalizeSlug(requestedSlug));
+
+if (!report) {
+  throw new Error(`Report not found: ${Astro.params.slug}`);
+}
+
+const { Content, headings } = await report.render();
+
+const severityColor = (severity: string) => {
+  switch (severity) {
+    case 'Critical': return 'severity-critical';
+    case 'High': return 'severity-high';
+    case 'Medium': return 'severity-medium';
+    case 'Low': return 'severity-low';
+    default: return '';
+  }
+};
+
+const headerSeverityClass = (severity: string) => {
+  switch (severity) {
+    case 'Critical': return 'severity-header--critical';
+    case 'High': return 'severity-header--high';
+    case 'Medium': return 'severity-header--medium';
+    case 'Low': return 'severity-header--low';
+    default: return '';
+  }
+};
+---
+
+<Layout title={`${report.data.title} - Security Report`}>
+  <div class="reading-progress" aria-hidden="true">
+    <div class="reading-progress__bar" id="readingProgressBar"></div>
+  </div>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-5 md:px-6 py-8 md:py-11">
+    <a href="/" class="back-link mb-8">
+      <iconify-icon icon="mdi:arrow-left" width="20" height="20"></iconify-icon>
+      Back to Portfolio
+    </a>
+
+    <article class="space-y-6 expand-reveal">
+      <header class={`glass-panel ${headerSeverityClass(report.data.severity)} rounded-2xl p-5 sm:p-6 md:p-7 space-y-4`}>
+        <div class="flex items-start gap-3 flex-wrap">
+          <span class={`severity-badge ${severityColor(report.data.severity)} text-xs font-bold px-2.5 py-0.5 rounded`}>
+            {report.data.severity}
+          </span>
+          <span class="pill-chip text-xs font-semibold px-2.5 py-0.5">
+            {report.data.cwe}
+          </span>
+          <span class="pill-chip text-xs font-semibold px-2.5 py-0.5">
+            {report.data.owasp}
+          </span>
+        </div>
+
+        <h1 class="text-3xl sm:text-4xl font-bold primary-text">
+          {report.data.title}
+        </h1>
+
+        <div class="flex items-center gap-4 muted-text flex-wrap">
+          <div class="flex items-center gap-2">
+            <iconify-icon icon="mdi:calendar" width="18" height="18"></iconify-icon>
+            <span>
+              {report.data.date.toLocaleDateString('en-US', {
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric',
+              })}
+            </span>
+          </div>
+          <div class="flex items-center gap-2">
+            <iconify-icon icon="mdi:account" width="18" height="18"></iconify-icon>
+            <span>{report.data.author}</span>
+          </div>
+        </div>
+
+        {report.data.tags && report.data.tags.length > 0 && (
+          <div class="flex flex-wrap gap-2 pt-2">
+            {report.data.tags.map((tag) => (
+              <span class="pill-chip px-3 py-1 rounded-full text-sm font-medium">
+                #{tag}
+              </span>
+            ))}
+          </div>
+        )}
+      </header>
+
+      <div class="section-shell rounded-2xl p-5 sm:p-6 blog-prose prose dark:prose-invert max-w-none">
+        <Content />
+      </div>
+
+      <footer class="pt-4">
+        <a href="/" class="back-link">
+          <iconify-icon icon="mdi:arrow-left" width="18" height="18"></iconify-icon>
+          Back to Portfolio
+        </a>
+      </footer>
+    </article>
+  </div>
+
+  <script is:inline>
+    const progressBar = document.getElementById('readingProgressBar');
+
+    const updateProgress = () => {
+      if (!progressBar) return;
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = docHeight > 0 ? Math.min(scrollTop / docHeight, 1) : 0;
+      progressBar.style.transform = `scaleX(${progress})`;
+    };
+
+    updateProgress();
+    window.addEventListener('scroll', updateProgress, { passive: true });
+  </script>
+</Layout>
+
+<style>
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    color: var(--text-muted);
+    font-weight: 600;
+    transition: color 0.2s ease;
+  }
+
+  .back-link:hover {
+    color: var(--text-primary);
+  }
+
+  .reading-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: rgba(148, 163, 184, 0.2);
+    z-index: 60;
+  }
+
+  .reading-progress__bar {
+    height: 100%;
+    width: 100%;
+    transform: scaleX(0);
+    transform-origin: left;
+    background: linear-gradient(90deg, var(--accent), var(--accent-strong));
+    transition: transform 0.08s ease-out;
+  }
+
+  .severity-badge {
+    line-height: 1.6;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .severity-critical {
+    background: rgba(239, 68, 68, 0.85);
+    color: #fff;
+    border: 1px solid #ef4444;
+    box-shadow: 0 0 12px rgba(239, 68, 68, 0.3);
+  }
+
+  .severity-high {
+    background: rgba(249, 115, 22, 0.85);
+    color: #fff;
+    border: 1px solid #f97316;
+    box-shadow: 0 0 12px rgba(249, 115, 22, 0.3);
+  }
+
+  .severity-medium {
+    background: rgba(234, 179, 8, 0.85);
+    color: #000;
+    border: 1px solid #eab308;
+    box-shadow: 0 0 12px rgba(234, 179, 8, 0.3);
+  }
+
+  .severity-low {
+    background: rgba(34, 197, 94, 0.85);
+    color: #fff;
+    border: 1px solid #22c55e;
+    box-shadow: 0 0 12px rgba(34, 197, 94, 0.3);
+  }
+
+  .severity-header {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .severity-header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: inherit;
+    z-index: 0;
+  }
+
+  .severity-header--critical {
+    border-left: 4px solid #ef4444;
+  }
+
+  .severity-header--critical::before {
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.12), transparent 60%);
+  }
+
+  .severity-header--high {
+    border-left: 4px solid #f97316;
+  }
+
+  .severity-header--high::before {
+    background: linear-gradient(135deg, rgba(249, 115, 22, 0.12), transparent 60%);
+  }
+
+  .severity-header--medium {
+    border-left: 4px solid #eab308;
+  }
+
+  .severity-header--medium::before {
+    background: linear-gradient(135deg, rgba(234, 179, 8, 0.12), transparent 60%);
+  }
+
+  .severity-header--low {
+    border-left: 4px solid #22c55e;
+  }
+
+  .severity-header--low::before {
+    background: linear-gradient(135deg, rgba(34, 197, 94, 0.12), transparent 60%);
+  }
+
+  .severity-header > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  :global(.blog-prose a) {
+    color: var(--accent-strong);
+    text-decoration: underline;
+    text-underline-offset: 0.14em;
+    text-decoration-thickness: 0.09em;
+    font-weight: 600;
+    transition: color 0.2s ease;
+  }
+
+  :global(.blog-prose a:hover) {
+    color: var(--text-primary);
+  }
+
+  :global(.blog-prose a:visited) {
+    color: var(--accent);
+  }
+
+  :global(.blog-prose a:focus-visible) {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+    border-radius: 0.2rem;
+  }
+
+  :global(.blog-prose :is(h2, h3)) {
+    scroll-margin-top: 4rem;
+  }
+
+  :global(.blog-prose table) {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: auto;
+    border-radius: 0.5rem;
+    overflow: hidden;
+  }
+
+  :global(.blog-prose th),
+  :global(.blog-prose td) {
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--surface-border-soft);
+    text-align: left;
+    word-break: normal;
+    overflow-wrap: break-word;
+  }
+
+  :global(.blog-prose th) {
+    background: var(--surface-strong);
+    font-weight: 700;
+    color: var(--text-primary);
+    white-space: nowrap;
+  }
+
+  :global(.blog-prose td) {
+    color: var(--text-muted);
+  }
+
+  :global(.blog-prose tr:hover td) {
+    background: var(--surface);
+  }
+
+  :global(.blog-prose code) {
+    background: var(--surface-strong);
+    border: 1px solid var(--surface-border-soft);
+    border-radius: 0.35rem;
+    padding: 0.15rem 0.4rem;
+    font-size: 0.88em;
+    color: var(--accent-strong);
+  }
+
+  :global(.blog-prose pre) {
+    background: var(--surface-strong) !important;
+    border: 1px solid var(--surface-border-soft);
+    border-radius: 0.75rem;
+    padding: 1rem;
+    overflow-x: auto;
+  }
+
+  :global(.blog-prose pre code) {
+    background: transparent;
+    border: none;
+    padding: 0;
+    color: var(--text-primary);
+  }
+
+  :global(.blog-prose blockquote) {
+    border-left: 3px solid var(--accent);
+    padding-left: 1rem;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+
+  :global(.blog-prose hr) {
+    border: none;
+    border-top: 1px solid var(--surface-border-soft);
+    margin: 2rem 0;
+  }
+</style>
