@@ -3,7 +3,7 @@ title: "Lapor Sana "
 year: "2025"
 description: "Lapor Sana is a website to create and manage facility problems on campus, facility improvements with the integration of a decision support system, which provides recommendations for solving existing problems on campus."
 fullDescription: "Laporsana is a website to create and manage facility problems on campus, facility improvements with the integration of a decision support system, which provides recommendations for solving existing problems on campus."
-image: "/images/laporsana.png"
+image: "/images/laporsana.webp"
 projectLink: ""
 repoLink: "https://github.com/AlexanderDev2004/LaporSana"
 technologies:

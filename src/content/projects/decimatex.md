@@ -3,7 +3,7 @@ title: "Decimatex"
 year: "2026"
 description: "A Decision Support System (DSS) platform that automates decision analysis using MCDM (Multi-Criteria Decision Making) methods."
 fullDescription: "Decimatex is a Decision Support System (DSS) platform that automates decision analysis using MCDM (Multi-Criteria Decision Making) methods to assist students, lecturers, and others."
-image: "/images/decimatex.png"
+image: "/images/decimatex.webp"
 projectLink: ""
 repoLink: "https://github.com/AlexanderDev2004/decimatex"
 technologies:

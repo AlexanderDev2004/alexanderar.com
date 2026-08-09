@@ -115,7 +115,7 @@ export const projects: ProjectItem[] = [
       "This is My website Personal Portofolio",
     fullDescription:
       "I using Astro, Tailwindcss, Svelte, Bun for make Website Portofolio",
-    image: "/images/PortoAlx.png",
+    image: "/images/PortoAlx.webp",
     projectLink: "",
     repoLink: "https://github.com/AlexanderDev2004/alexander-portoV1.0",
     detailedContent: `<h2>Project Overview</h2>
@@ -208,7 +208,7 @@ export const projects: ProjectItem[] = [
       "You were a coffee-loving barista in your previous life, but now you've been thrown into a fantasy world.",
     fullDescription:
       "One day, craving the familiar comfort of coffee, you try a local brew—only to find something terribly wrong with the taste. The flavor is dull, bitter, and completely lacking the soul you once knew.Determined to bring real coffee to this strange world, you decide to open your own coffee shop. Your mission: to share the rich, delicious taste of proper coffee with the people of this new land, and maybe, just maybe, spark a cultural revolution—one cup at a time. and this project Using Unity 2D and C# for make game",
-    image: "https://img.itch.zone/aW1hZ2UvMzc2MDU1Ny8yMjQ4MTM4My5wbmc=/794x1000/7n7tW%2B.png",
+    image: "/images/magicaffeine.webp",
     projectLink: "https://amamiyarn.itch.io/93-si-tanpa-cahaya-student-magicaffeine",
     repoLink: "",
     detailedContent: `<h2>Project Overview</h2>

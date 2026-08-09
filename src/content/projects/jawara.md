@@ -3,7 +3,7 @@ title: "RuangWarga"
 year: "2025"
 description: "RuangWarga App Managament System Citizen & Economy"
 fullDescription: "RuangWarga is a app managemnt citizen information system that allows users to create, edit, and delete their own profiles, as well as view and manage their profiles of other users."
-image: "/images/jawara.png" 
+image: "/images/jawara.webp" 
 projectLink: ""
 repoLink: "https://github.com/pblkelompok1/ti3h_k1_jawara"
 technologies:

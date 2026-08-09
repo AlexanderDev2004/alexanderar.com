@@ -3,7 +3,7 @@ title: "GitTrace"
 year: "2026"
 description: "A Flutter Desktop application that generates monthly internship reports based on local Git activity with interactive calendar visualization and multi-format export."
 fullDescription: "GitTrace is a Flutter Desktop app (Windows, macOS, Linux) designed to help interns and professionals generate monthly reports from local Git activity. It detects your Git activity, visualizes it into an interactive calendar, allows working hours and activity adjustments, and automatically generates formatted reports."
-image: "/images/gittrace.png"
+image: "/images/gittrace.webp"
 projectLink: "https://github.com/ekyaaa/git_trace/releases/tag/v2.0.0"
 repoLink: "https://github.com/ekyaaa/git_trace"
 technologies:
