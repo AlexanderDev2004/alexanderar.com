@@ -1,0 +1,142 @@
+# Turning issues into posts — ported from elianiva.com.
+#
+# How to use (from your phone, no laptop needed):
+#   1. Open GitHub Issues on this repo and create a New issue.
+#   2. Title  = post title (e.g. "Belajar Rust dalam 30 hari").
+#   3. Body   = post content in Markdown.
+#   4. Labels = add `type:blog`, plus any extra labels as tags
+#               (e.g. `rust`, `notes`). Labels are slugified.
+#   5. Submit. The bot writes `src/content/blogs/<slug>.md`, commits,
+#      pushes to master, and closes the issue.
+#
+# Safety: only runs when the issue author is the repository owner,
+# exactly like elianiva's `if: github.actor == github.repository_owner`.
+# Re-opening an issue does nothing (only `opened` triggers).
+
+name: Issue to Blog Post
+
+on:
+  issues:
+    types: [opened]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    if: github.actor == github.repository_owner
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Create blog markdown from issue
+        uses: actions/github-script@v7
+        with:
+          retries: 3
+          script: |
+            const fs = require('fs');
+            const path = require('path');
+
+            const issue = context.payload.issue;
+            if (!issue) {
+              core.setFailed('Could not get issue details');
+              return;
+            }
+
+            const title = (issue.title || '').trim();
+            const body = (issue.body || '').trim();
+            const labels = (issue.labels || [])
+              .map((l) => (typeof l === 'string' ? l : l.name))
+              .filter(Boolean);
+
+            const typeLabel = labels.find((n) => n.toLowerCase().startsWith('type:'));
+            const type = typeLabel ? typeLabel.split(':')[1].trim().toLowerCase() : '';
+
+            if (type !== 'blog') {
+              console.log(`Skipping: no 'type:blog' label (got: ${labels.join(', ') || 'none'})`);
+              return;
+            }
+            if (!title) {
+              core.setFailed('Issue title is empty — it becomes the post title');
+              return;
+            }
+            if (!body) {
+              core.setFailed('Issue body is empty — it becomes the post content');
+              return;
+            }
+
+            // Extra labels become tags, e.g. `Rust`, `TIL notes` -> `rust`, `til-notes`.
+            const tags = labels
+              .filter((n) => n !== typeLabel)
+              .map((n) =>
+                n
+                  .toLowerCase()
+                  .replace(/[^a-z0-9]+/g, '-')
+                  .replace(/(^-|-$)/g, ''),
+              )
+              .filter(Boolean);
+            if (tags.length === 0) tags.push('notes');
+
+            // Description = first non-empty paragraph, truncated — edit later if needed.
+            const firstPara = body.split(/\n\s*\n/).map((s) => s.trim()).find(Boolean) || title;
+            const description = firstPara.replace(/[#>*_`\[\]()!-]/g, '').replace(/\s+/g, ' ').slice(0, 160);
+
+            const date = new Date().toISOString().slice(0, 10);
+            const slug = title
+              .toLowerCase()
+              .replace(/[^a-z0-9]+/g, '-')
+              .replace(/(^-|-$)/g, '')
+              .slice(0, 80) || `post-${issue.number}`;
+
+            const dir = path.join(process.env.GITHUB_WORKSPACE, 'src', 'content', 'blogs');
+            fs.mkdirSync(dir, { recursive: true });
+
+            let fileName = `${slug}.md`;
+            let counter = 2;
+            while (fs.existsSync(path.join(dir, fileName))) {
+              fileName = `${slug}-${counter}.md`;
+              counter += 1;
+            }
+
+            const escapeDouble = (s) => s.replace(/"/g, '\\"');
+            const markdown =
+              `---\n` +
+              `title: "${escapeDouble(title)}"\n` +
+              `date: ${date}\n` +
+              `description: "${escapeDouble(description)}"\n` +
+              `tags: [${tags.map((t) => `"${t}"`).join(', ')}]\n` +
+              `---\n\n${body}\n`;
+
+            const filePath = path.join(dir, fileName);
+            fs.writeFileSync(filePath, markdown);
+            console.log(`Created ${filePath}`);
+            core.setOutput('file', fileName);
+
+      - name: Commit and push post
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add ./src/content/blogs/*.md
+          if git diff --staged --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "blog: add post from #${{ github.event.issue.number }} [automated]"
+            echo "Commit created."
+          fi
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref_name }}
+
+      - name: Close issue
+        if: success()
+        run: gh issue close "${{ github.event.issue.number }}" --comment "Post published from this issue. Auto-closing."
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

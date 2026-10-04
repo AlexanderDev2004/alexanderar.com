@@ -27,6 +27,18 @@
       icon: 'mdi:wrench-outline',
     },
     {
+      id: 'opensource',
+      title: 'Open Source',
+      hint: 'Merged PRs in other projects · auto-updated',
+      icon: 'mdi:source-pull',
+    },
+    {
+      id: 'activity',
+      title: 'Git Activity',
+      hint: 'Contributions heatmap · auto-updated',
+      icon: 'mdi:chart-box-outline',
+    },
+    {
       id: 'certifications',
       title: 'Certifications',
       hint: 'Proof of continuous learning',
@@ -120,6 +132,18 @@
               </slot>
             {:else if section.id === 'projects'}
               <slot name="projects">
+                <p class="muted-text">
+                  Content for {section.title} section coming soon...
+                </p>
+              </slot>
+            {:else if section.id === 'opensource'}
+              <slot name="opensource">
+                <p class="muted-text">
+                  Content for {section.title} section coming soon...
+                </p>
+              </slot>
+            {:else if section.id === 'activity'}
+              <slot name="activity">
                 <p class="muted-text">
                   Content for {section.title} section coming soon...
                 </p>

@@ -4,6 +4,8 @@ import Navigation from '../components/Navigation.svelte';
 import Work from '../components/Work.svelte';
 import Education from '../components/Education.svelte';
 import Projects from '../components/Projects.svelte';
+import OpenSource from '../components/OpenSource.svelte';
+import GitActivity from '../components/GitActivity.svelte';
 import Certifications from '../components/Certifications.svelte';
 import Blogs from '../components/Blogs.svelte';
 import AboutContent from '../content/about.md';
@@ -12,6 +14,8 @@ import { normalizeSlug } from '../lib/slug';
 import { works } from '../data/work';
 import { education } from '../data/education';
 import { certifications } from '../data/certifications';
+import githubSnapshot from '../data/github.json';
+import { GITHUB_USERNAME } from '../lib/github';
 
 const blogEntries = await getCollection('blogs');
 const blogs = blogEntries
@@ -65,6 +69,21 @@ const projects = projectEntries
     </div>
     <div slot="projects">
       <Projects client:load items={projects} />
+    </div>
+    <div slot="opensource">
+      <OpenSource
+        client:load
+        grouped={githubSnapshot.prs.grouped}
+        totalPRs={githubSnapshot.prs.totalPRs}
+        username={githubSnapshot.username ?? GITHUB_USERNAME}
+      />
+    </div>
+    <div slot="activity">
+      <GitActivity
+        client:load
+        initial={githubSnapshot.activity}
+        username={githubSnapshot.username ?? GITHUB_USERNAME}
+      />
     </div>
     <div slot="certifications">
       <Certifications client:load items={certifications} />

@@ -1,0 +1,43 @@
+# Keeps the elianiva-style dynamic sections fresh on a static site.
+# Regenerates `src/data/github.json` (merged PRs + contribution heatmap)
+# every night and commits it when the numbers change. The next push/deploy
+# then serves fresh data; clients also refresh at runtime with a 24h cache.
+
+name: Refresh GitHub Data
+
+on:
+  schedule:
+    - cron: '30 17 * * *' # ~00:30 WIB daily
+  workflow_dispatch:
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - uses: oven-sh/setup-bun@v2
+
+      - name: Install dependencies
+        run: bun install
+
+      - name: Fetch GitHub snapshot
+        run: bun run fetch:github
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN || secrets.GITHUB_TOKEN }}
+          GITHUB_USERNAME: AlexanderDev2004
+
+      - name: Commit snapshot if changed
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add ./src/data/github.json
+          if git diff --staged --quiet; then
+            echo "GitHub data unchanged."
+          else
+            git commit -m "chore(github): refresh dynamic snapshot [automated]"
+            git push
+          fi

@@ -4,7 +4,9 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "fetch:github": "bun scripts/fetch-github.mjs",
+    "prebuild": "bun run fetch:github",
+    "build": "bun run fetch:github && astro build",
     "preview": "astro preview",
     "astro": "astro",
     "deploy:worker": "bunx wrangler deploy --name alexanderar-com --compatibility-date=2026-04-04 --assets=./dist"

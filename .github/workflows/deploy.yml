@@ -15,4 +15,7 @@ jobs:
       - uses: oven-sh/setup-bun@v2
 
       - run: bun install
-      - run: bun run build
+      - name: Build (includes GitHub snapshot fetch)
+        run: bun run build
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN || secrets.GITHUB_TOKEN }}
