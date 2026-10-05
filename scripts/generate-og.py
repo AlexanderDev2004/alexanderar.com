@@ -17,18 +17,33 @@ Runs on every build (`bun run build`). New posts from the issue-to-blog
 workflow automatically get their card on the next deploy.
 Stale cards (source .md deleted/renamed) are removed so crawlers never
 get a 404 og:image.
-Requires: pip install pillow
+Requires pillow; if it is missing the script tries `python -m pip install
+pillow` once (works on CI/Cloudflare build images). If installation is
+impossible (no pip / no network), it exits 0 without touching anything so
+the build keeps working off the committed PNGs in public/og/.
 """
 
 import re
+import subprocess
 import sys
 from pathlib import Path
 
 try:
     from PIL import Image, ImageDraw, ImageFont
 except ImportError:
-    print("[og] ERROR: pillow is not installed (pip install pillow)", file=sys.stderr)
-    sys.exit(1)
+    try:
+        print("[og] pillow missing, trying: python -m pip install pillow")
+        subprocess.run(
+            [sys.executable, "-m", "pip", "install", "--quiet", "pillow"],
+            check=True,
+        )
+        from PIL import Image, ImageDraw, ImageFont
+    except Exception as exc:  # pip missing, offline, or install failed
+        print(
+            f"[og] WARNING: pillow unavailable ({exc}); skipping OG regeneration, "
+            "using committed PNGs in public/.",
+        )
+        sys.exit(0)
 
 ROOT = Path(__file__).resolve().parent.parent
 PUBLIC = ROOT / "public"
