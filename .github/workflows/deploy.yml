@@ -15,7 +15,9 @@ jobs:
       - uses: oven-sh/setup-bun@v2
 
       - run: bun install
-      - name: Build (includes GitHub snapshot fetch)
+      - name: Install Pillow (OG image generator)
+        run: python -m pip install pillow
+      - name: Build (includes GitHub snapshot fetch + OG images)
         run: bun run build
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN || secrets.GITHUB_TOKEN }}

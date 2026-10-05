@@ -51,7 +51,11 @@ const headerSeverityClass = (severity: string) => {
 };
 ---
 
-<Layout title={`${report.data.title} - Security Report`}>
+<Layout
+  title={`${report.data.title} - Security Report`}
+  description={`${report.data.severity} severity finding: ${report.data.title} (${report.data.cwe} · ${report.data.owasp})`}
+  ogImagePath={`/og/reports/${normalizeSlug(report.slug)}.png`}
+>
   <div class="reading-progress" aria-hidden="true">
     <div class="reading-progress__bar" id="readingProgressBar"></div>
   </div>

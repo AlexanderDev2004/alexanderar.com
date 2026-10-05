@@ -5,8 +5,9 @@
   "scripts": {
     "dev": "astro dev",
     "fetch:github": "bun scripts/fetch-github.mjs",
+    "generate:og": "python scripts/generate-og.py",
     "prebuild": "bun run fetch:github",
-    "build": "bun run fetch:github && astro build",
+    "build": "bun run fetch:github && python scripts/generate-og.py && astro build",
     "preview": "astro preview",
     "astro": "astro",
     "deploy:worker": "bunx wrangler deploy --name alexanderar-com --compatibility-date=2026-04-04 --assets=./dist"
