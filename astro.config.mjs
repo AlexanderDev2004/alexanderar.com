@@ -7,6 +7,7 @@ import icon from 'astro-icon';
 import remarkTermPopover from './src/lib/remark-term-popover.ts';
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://alexanderar.com',
   integrations: [svelte(), icon()],
 
   devToolbar: {

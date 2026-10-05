@@ -55,7 +55,11 @@ const githubBranch = 'master';
 const editLink = `https://github.com/${githubRepo}/edit/${githubBranch}/src/content/blogs/${blog.slug}.md`;
 ---
 
-<Layout>
+<Layout
+  title={`${blog.data.title} - Alexander Agung Raya`}
+  description={blog.data.description}
+  ogImagePath={`/og/blogs/${normalizeSlug(blog.slug)}.png`}
+>
   <div class="reading-progress" aria-hidden="true">
     <div class="reading-progress__bar" id="readingProgressBar"></div>
   </div>
