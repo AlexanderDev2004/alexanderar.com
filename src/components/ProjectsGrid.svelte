@@ -1,5 +1,12 @@
 <script>
+  import Skeleton from './ui/Skeleton.svelte';
+
   export let items = [];
+
+  // Skeleton tampil di belakang <img> sampai gambar selesai dimuat.
+  // Key per slug supaya tiap kartu punya state sendiri.
+  let loadedImages = {};
+  let failedImages = {};
 </script>
 
 {#if items.length > 0}
@@ -11,12 +18,18 @@
         style={`--reveal-delay: ${index}`}
       >
         <!-- Project Image -->
-        {#if project.image}
+        {#if project.image && !failedImages[project.slug]}
           <div class="project-media relative overflow-hidden h-40 sm:h-44 md:h-48">
-            <img 
-              src={project.image} 
+            {#if !loadedImages[project.slug]}
+              <Skeleton className="absolute inset-0 h-full w-full rounded-none" />
+            {/if}
+            <img
+              src={project.image}
               alt={project.title}
-              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              loading="lazy"
+              onload={() => (loadedImages = { ...loadedImages, [project.slug]: true })}
+              onerror={() => (failedImages = { ...failedImages, [project.slug]: true })}
+              class="project-img w-full h-full object-cover group-hover:scale-105 {loadedImages[project.slug] ? 'is-loaded' : ''}"
             />
           </div>
         {:else}
@@ -84,5 +97,16 @@
   .project-fallback {
     background: linear-gradient(140deg, rgba(129, 140, 248, 0.7), rgba(56, 189, 248, 0.6));
     border-bottom: 1px solid var(--surface-border-soft);
+  }
+
+  /* Fade-in gambar setelah selesai dimuat (skeleton di belakangnya menutup jeda). */
+  .project-img {
+    position: relative;
+    opacity: 0;
+    transition: opacity 0.5s ease, transform 0.3s ease;
+  }
+
+  .project-img.is-loaded {
+    opacity: 1;
   }
 </style>

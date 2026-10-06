@@ -1,9 +1,13 @@
 <script lang="ts">
+  import Skeleton from './ui/Skeleton.svelte';
   import type { FileItem } from '../data/files';
 
   let items: FileItem[] = [];
 
   export { items as items };
+
+  // Skeleton tampil di belakang <iframe> sampai preview PDF selesai dimuat.
+  let loadedPreviews: Record<string, boolean> = {};
 </script>
 
 {#if items.length > 0}
@@ -13,11 +17,15 @@
         class="surface-item rounded-xl overflow-hidden w-full reveal pressable"
         style={`--reveal-delay: ${index}`}
       >
-        <div class="h-28 sm:h-32 md:h-32 overflow-hidden flex items-start justify-center" style="background: var(--surface);">
+        <div class="relative h-28 sm:h-32 md:h-32 overflow-hidden flex items-start justify-center" style="background: var(--surface);">
+          {#if !loadedPreviews[file.id]}
+            <Skeleton className="absolute inset-0 h-full w-full rounded-none" />
+          {/if}
           <iframe
             title={`${file.title} preview`}
             src={`${file.fileUrl}#toolbar=0&navpanes=0&scrollbar=0`}
-            class="w-full h-28 sm:h-32 md:h-32 scale-100"
+            onload={() => (loadedPreviews = { ...loadedPreviews, [file.id]: true })}
+            class="preview-frame w-full h-28 sm:h-32 md:h-32 scale-100 {loadedPreviews[file.id] ? 'is-loaded' : ''}"
             style="border: 0;"
           ></iframe>
         </div>
@@ -53,6 +61,17 @@
 {/if}
 
 <style>
+  /* Fade-in preview setelah iframe selesai dimuat (skeleton di belakangnya menutup jeda). */
+  .preview-frame {
+    position: relative;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+
+  .preview-frame.is-loaded {
+    opacity: 1;
+  }
+
   .file-download-btn {
     display: inline-flex;
     align-items: center;
