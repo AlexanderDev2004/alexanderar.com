@@ -1,6 +1,7 @@
 <script>
   import { onMount } from 'svelte';
   import { fetchPRsClient } from '../lib/github';
+  import SkeletonOpenSource from './ui/SkeletonOpenSource.svelte';
 
   export let grouped = [];
   export let totalPRs = 0;
@@ -10,6 +11,8 @@
   let liveTotal = totalPRs;
   let refreshing = false;
   let expandedRepo = '';
+  // Skeleton hanya saat daftar kosong (tidak ada build-time data).
+  let loading = liveGrouped.length === 0;
 
   $: projects = liveGrouped.length;
 
@@ -17,7 +20,23 @@
     // Build-time data renders instantly (SEO + no layout shift).
     // Then refresh client-side so the section stays "dynamically generated"
     // like elianiva.com without needing SSR.
+    // Skeleton hanya tampil kalau awalnya kosong — kalau ada data,
+    // refresh berjalan diam-diam tanpa menukar UI (anti kedip).
+    if (liveGrouped.length > 0) {
+      try {
+        refreshing = true;
+        const fresh = await fetchPRsClient(username);
+        if (fresh && fresh.totalPRs > 0) {
+          liveGrouped = fresh.grouped;
+          liveTotal = fresh.totalPRs;
+        }
+      } finally {
+        refreshing = false;
+      }
+      return;
+    }
     try {
+      loading = true;
       refreshing = true;
       const fresh = await fetchPRsClient(username);
       if (fresh && fresh.totalPRs > 0) {
@@ -27,6 +46,7 @@
         liveTotal = fresh.totalPRs;
       }
     } finally {
+      loading = false;
       refreshing = false;
     }
   });
@@ -127,6 +147,8 @@
       {liveTotal} merged pull request{liveTotal === 1 ? '' : 's'} across {projects} project{projects === 1 ? '' : 's'}
       · <a href={`https://github.com/pulls?q=author%3A${username}+is%3Amerged`} target="_blank" rel="noopener noreferrer" class="accent-link">view on GitHub</a>
     </p>
+  {:else if loading}
+    <SkeletonOpenSource count={3} />
   {:else}
     <div class="text-center py-8 surface-item rounded-lg">
       <p class="muted-text text-sm">No merged pull requests from the last year to show.</p>

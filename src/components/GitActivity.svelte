@@ -1,12 +1,17 @@
 <script>
   import { onMount } from 'svelte';
   import { fetchActivityClient } from '../lib/github';
+  import SkeletonHeatmap from './ui/SkeletonHeatmap.svelte';
 
   export let initial = null;
   export let username = 'AlexanderDev2004';
 
   let data = initial;
   let refreshing = false;
+  // Skeleton hanya saat benar-benar tidak ada data (initial null).
+  // Kalau build-time data ada, langsung render (SEO + tanpa layout shift),
+  // refresh client-side berjalan diam-diam di belakang.
+  let loading = data == null;
 
   // Compact view shows ~6 months on small screens so nothing overflows,
   // full 53-week grid on sm+ — same idea as elianiva's HeatmapGrid.
@@ -19,11 +24,25 @@
     .reduce((sum, d) => sum + (d.contributionCount ?? 0), 0);
 
   onMount(async () => {
+    // Kalau sudah ada build-time data, cukup refresh diam-diam.
+    // Kalau tidak ada data sama sekali, tampilkan skeleton sampai fetch selesai.
+    if (data) {
+      try {
+        refreshing = true;
+        const fresh = await fetchActivityClient(username);
+        if (fresh && fresh.totalContributions > 0) data = fresh;
+      } finally {
+        refreshing = false;
+      }
+      return;
+    }
     try {
+      loading = true;
       refreshing = true;
       const fresh = await fetchActivityClient(username);
       if (fresh && fresh.totalContributions > 0) data = fresh;
     } finally {
+      loading = false;
       refreshing = false;
     }
   });
@@ -96,6 +115,8 @@
         <iconify-icon icon="mdi:open-in-new" width="14" height="14"></iconify-icon>
       </a>
     </div>
+  {:else if loading}
+    <SkeletonHeatmap />
   {:else}
     <div class="pt-1 pb-2">
       <div class="flex items-baseline gap-3">
