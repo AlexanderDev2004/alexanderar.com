@@ -507,6 +507,155 @@ details[open] .chev {
   color: var(--stone);
 }
 
+/* ============ open source contributions card ============ */
+.os-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+.os-head h3 {
+  font-weight: 800;
+  font-size: 15px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin: 0;
+}
+.os-tick {
+  width: 11px;
+  height: 11px;
+  border-radius: 3px;
+  background: var(--sage);
+  flex-shrink: 0;
+}
+.os-sub {
+  color: var(--body-muted);
+  font-size: 13.5px;
+  margin: 0 0 14px;
+}
+.os-card {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--bg);
+  padding: 4px 18px 14px;
+}
+.os-group {
+  padding-top: 10px;
+}
+.os-group + .os-group {
+  border-top: 1px solid var(--line);
+}
+.os-repo {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.os-repo-name {
+  font-family: var(--mono);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+.os-repo-name iconify-icon {
+  font-size: 13px;
+  color: var(--stone);
+}
+.os-repo-name:hover {
+  color: var(--sage-deep);
+}
+.os-repo-meta {
+  margin-left: auto;
+  display: inline-flex;
+  gap: 14px;
+  font-family: var(--mono);
+  font-size: 12.5px;
+  color: var(--olive);
+}
+.os-repo-meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.os-repo-meta iconify-icon {
+  font-size: 13px;
+  color: var(--sage-deep);
+}
+.os-last {
+  flex-basis: 100%;
+  text-align: right;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--stone);
+}
+.os-prs {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0;
+}
+.os-prs li {
+  padding: 9px 0;
+}
+.os-prs li + li {
+  border-top: 1px solid var(--line);
+}
+.os-line {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+.os-line-sub {
+  justify-content: space-between;
+  gap: 12px;
+}
+.os-pr-title {
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--ink);
+  text-decoration: none;
+  min-width: 0;
+}
+.os-pr-title:hover {
+  color: var(--sage-deep);
+}
+.os-diff {
+  margin-left: auto;
+  font-family: var(--mono);
+  font-size: 12.5px;
+  display: inline-flex;
+  gap: 8px;
+  white-space: nowrap;
+}
+.os-diff .add {
+  color: var(--sage-deep);
+}
+.os-diff .del {
+  color: #b3695e;
+}
+.os-pr-sub {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  color: var(--stone);
+}
+.os-files {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  color: var(--stone);
+  text-align: right;
+}
+.os-foot {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+  font-family: var(--mono);
+  font-size: 11.5px;
+  color: var(--stone);
+}
+
 /* ============ blog rows ============ */
 .rows {
   margin-top: 20px;

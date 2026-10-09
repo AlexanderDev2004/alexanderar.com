@@ -120,7 +120,38 @@ async function fetchPRs() {
       b.repository.stargazerCount - a.repository.stargazerCount,
   );
 
+  await enrichWithDiffStats(groups);
+
   return { grouped: groups, totalPRs, fetchedAt: new Date().toISOString() };
+}
+
+/**
+ * Attach per-PR diff stats (additions / deletions / changed_files) used by the
+ * Open Source Contributions card. One REST call per PR; capped so unauthenticated
+ * runs stay inside the rate limit. On failure the fields stay undefined and the
+ * UI simply omits them.
+ */
+async function enrichWithDiffStats(groups, cap = 30) {
+  let fetched = 0;
+  for (const group of groups) {
+    for (const pr of group.prs) {
+      if (fetched >= cap) return;
+      fetched += 1;
+      try {
+        const res = await fetch(
+          `https://api.github.com/repos/${group.repository.full_name}/pulls/${pr.number}`,
+          { headers },
+        );
+        if (!res.ok) continue;
+        const json = await res.json();
+        pr.additions = json.additions ?? 0;
+        pr.deletions = json.deletions ?? 0;
+        pr.changedFiles = json.changed_files ?? 0;
+      } catch {
+        // keep undefined — the card renders without the stat
+      }
+    }
+  }
 }
 
 async function fetchActivityGraphQL() {

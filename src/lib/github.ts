@@ -36,6 +36,10 @@ export interface GitHubPR {
   updated_at: string;
   url: string;
   repository: GitHubRepoRef;
+  /** Diff stats for the Open Source card; omitted when the detail fetch fails. */
+  additions?: number;
+  deletions?: number;
+  changedFiles?: number;
 }
 
 export interface RepositoryPRGroup {
@@ -239,6 +243,8 @@ export async function fetchPRsClient(
         b.repository.stargazerCount - a.repository.stargazerCount,
     );
 
+    await enrichWithDiffStats(grouped);
+
     const data: GitHubPRData = {
       grouped,
       totalPRs: grouped.reduce((sum, g) => sum + g.mergedCount, 0),
@@ -248,6 +254,38 @@ export async function fetchPRsClient(
     return data;
   } catch {
     return null;
+  }
+}
+
+/**
+ * Attach per-PR diff stats (additions / deletions / changed_files) for the Open
+ * Source card. One REST call per PR, capped to stay inside rate limits; on
+ * failure the fields stay undefined and the UI omits the stat.
+ */
+async function enrichWithDiffStats(groups: RepositoryPRGroup[], cap = 30): Promise<void> {
+  let fetched = 0;
+  for (const group of groups) {
+    for (const pr of group.prs) {
+      if (fetched >= cap) return;
+      fetched += 1;
+      try {
+        const res = await fetch(
+          `https://api.github.com/repos/${group.repository.full_name}/pulls/${pr.number}`,
+          { headers: { Accept: 'application/vnd.github+json', ...authHeaders() } },
+        );
+        if (!res.ok) continue;
+        const json = (await res.json()) as {
+          additions?: number;
+          deletions?: number;
+          changed_files?: number;
+        };
+        pr.additions = json.additions ?? 0;
+        pr.deletions = json.deletions ?? 0;
+        pr.changedFiles = json.changed_files ?? 0;
+      } catch {
+        // keep undefined — the card renders without the stat
+      }
+    }
   }
 }
 

@@ -8,8 +8,7 @@ export function Navigation() {
       </Link>
       <div className="links">
         <Link to="/">Home</Link>
-        <a href="/#work">Work</a>
-        <a href="/#projects">Projects</a>
+        <Link to="/projects/">Projects</Link>
         <Link to="/blogs">Blogs</Link>
       </div>
     </nav>

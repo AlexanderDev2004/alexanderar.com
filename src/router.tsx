@@ -6,6 +6,7 @@ export function getRouter() {
     routeTree,
     scrollRestoration: true,
     defaultPreload: 'intent',
+    trailingSlash: 'always',
   })
 
   return router
