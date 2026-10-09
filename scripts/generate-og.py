@@ -107,7 +107,7 @@ def draw_tracked(draw: ImageDraw.ImageDraw, text: str, font: ImageFont.FreeTypeF
 
 
 def background() -> Image.Image:
-    """Flat beige card, thin frame, two accent bars on the top edge."""
+    """Flat beige card, thin frame, accent bars, and a subtle dot grid."""
     img = Image.new("RGB", (W, H), BG)
     draw = ImageDraw.Draw(img)
     inset = 26
@@ -115,6 +115,10 @@ def background() -> Image.Image:
     # accent bars sitting on the top frame line, left-aligned
     draw.rectangle([56, 15, 246, 37], fill=SAGE_DEEP)
     draw.rectangle([242, 15, 402, 37], fill=BLUE)
+    # subtle dot grid, bottom-right corner (flat, low contrast)
+    for gy in range(H - 156, H - 62, 24):
+        for gx in range(W - 312, W - 70, 24):
+            draw.ellipse([gx - 2, gy - 2, gx + 2, gy + 2], fill=(223, 215, 200))
     return img
 
 
@@ -140,19 +144,6 @@ def wrap(draw: ImageDraw.ImageDraw, text: str, font: ImageFont.FreeTypeFont,
             lines[-1] = lines[-1][:-1]
         lines[-1] += "…"
     return lines
-
-
-def fit_title(draw: ImageDraw.ImageDraw, title: str, max_width: int,
-              start_size: int = 78) -> tuple[ImageFont.FreeTypeFont, list[str]]:
-    size = start_size
-    while size >= 40:
-        font = load_font(size, "ExtraBold")
-        lines = wrap(draw, title, font, max_width, 3)
-        if len(lines) * int(size * 1.12) <= 240:
-            return font, lines
-        size -= 6
-    font = load_font(40, "ExtraBold")
-    return font, wrap(draw, title, font, max_width, 3)
 
 
 def parse_frontmatter(path: Path) -> dict:
@@ -207,54 +198,76 @@ def card(*, kicker: str, title: str, description: str, tag: str, out: Path) -> N
     center = W / 2
 
     # kicker: "■ POST · 20 FEBRUARY 2026"
-    kick_font = load_font(26, "Bold")
+    kick_font = load_font(25, "Bold")
     kick_text = kicker.upper()
-    tracking = 6
+    tracking = 7
     square = 9
     kick_w = tracked(draw, kick_text, kick_font, tracking)
     block_w = square + 14 + kick_w
-    kick_y = 150
+    kick_y = 142
     draw.rectangle([center - block_w / 2, kick_y + 9,
                     center - block_w / 2 + square, kick_y + 9 + square],
                    fill=SAGE_DEEP)
     draw_tracked(draw, kick_text, kick_font, center + (square + 14) / 2,
                  kick_y, SAGE_DEEP, tracking)
 
-    # big uppercase title
-    title_font, lines = fit_title(draw, title.upper(), W - 260)
-    line_h = int(title_font.size * 1.14)
-    title_y = 208
-    for line in lines:
-        tw = draw.textlength(line, font=title_font)
-        draw.text((center - tw / 2, title_y), line, font=title_font, fill=INK)
-        title_y += line_h
-    title_bottom = title_y - line_h + title_font.size
+    # measure every block first, then center the whole stack vertically —
+    # long titles shrink until everything fits between kicker and footer.
+    top = 204
+    bottom_limit = H - 118
+    avail = bottom_limit - top
 
-    # short underline under the title
-    rule_y = title_bottom + 30
-    draw.rectangle([center - 32, rule_y, center + 32, rule_y + 3], fill=LINE)
-
-    # description (up to 2 centered lines)
     desc_font = load_font(30, "Regular")
     desc_lines = wrap(draw, description, desc_font, W - 320, 2) if description else []
-    desc_y = rule_y + 40
+    desc_h = len(desc_lines) * 42
+    chip_h = 52 if tag else 0
+    underline_gap, underline_h, section_gap = 30, 4, 30
+
+    def measure(size: int):
+        font = load_font(size, "ExtraBold")
+        lines = wrap(draw, title.upper(), font, W - 260, 3)
+        t_block = len(lines) * int(size * 1.1)
+        stack = t_block + underline_gap + underline_h + underline_gap
+        stack += (desc_h + section_gap) if desc_h else 0
+        stack += (section_gap + chip_h) if chip_h else 0
+        return font, lines, t_block, stack
+
+    size = 88
+    while size >= 42:
+        font, lines, t_block, stack = measure(size)
+        if stack <= avail:
+            break
+        size -= 4
+
+    y = top + max((avail - stack) / 2, 0)
+    line_h = int(font.size * 1.1)
+    for line in lines:
+        tw = draw.textlength(line, font=font)
+        draw.text((center - tw / 2, y), line, font=font, fill=INK)
+        y += line_h
+
+    # short sage underline under the title
+    y += underline_gap
+    draw.rectangle([center - 30, y, center + 30, y + underline_h], fill=SAGE_DEEP)
+    y += underline_h + underline_gap
+
+    # description (up to 2 centered lines)
     for line in desc_lines:
         tw = draw.textlength(line, font=desc_font)
-        draw.text((center - tw / 2, desc_y), line, font=desc_font, fill=OLIVE)
-        desc_y += 42
+        draw.text((center - tw / 2, y), line, font=desc_font, fill=OLIVE)
+        y += 42
 
     # "#tag" chip
     if tag:
+        y += section_gap
         tag_text = f"#{tag.lower()}"
         tag_font = load_font(26, "SemiBold")
         tw = draw.textlength(tag_text, font=tag_font)
-        chip_y = desc_y + 26
-        chip_h = 52
         draw.rounded_rectangle(
-            [center - tw / 2 - 24, chip_y, center + tw / 2 + 24, chip_y + chip_h],
-            radius=10, fill=CHIP_BG, outline=LINE, width=2,
+            [center - tw / 2 - 24, y, center + tw / 2 + 24, y + chip_h],
+            radius=12, fill=CHIP_BG, outline=LINE, width=2,
         )
-        draw.text((center - tw / 2, chip_y + (chip_h - 26) / 2 - 3),
+        draw.text((center - tw / 2, y + (chip_h - 26) / 2 - 3),
                   tag_text, font=tag_font, fill=SAGE_DEEP)
 
     # domain at the bottom
