@@ -277,7 +277,16 @@ details.job li::before {
   }
   details.job .when {
     grid-column: 1 / -1;
+    grid-row: 2;
     white-space: normal;
+  }
+  /* keep the caret pinned to the right of the title row on mobile —
+     auto-placement would otherwise push it below the meta line */
+  details.job .chev {
+    grid-column: 2;
+    grid-row: 1;
+    align-self: center;
+    justify-self: end;
   }
 }
 
