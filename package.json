@@ -1,25 +1,42 @@
 {
   "name": "alexander-porto",
   "type": "module",
-  "version": "0.0.1",
+  "version": "1.0.0",
+  "private": true,
   "scripts": {
-    "dev": "astro dev",
+    "dev": "vite dev",
     "fetch:github": "bun scripts/fetch-github.mjs",
-    "generate:og": "python scripts/generate-og.py",
-    "prebuild": "bun run fetch:github",
-    "build": "bun run fetch:github && python scripts/generate-og.py && astro build",
-    "preview": "astro preview",
-    "astro": "astro",
-    "deploy:worker": "bunx wrangler deploy --name alexanderar-com --compatibility-date=2026-04-04 --assets=./dist"
+    "generate:og": "python3 scripts/generate-og.py",
+    "build": "bun run fetch:github && bun run generate:og && bun run typecheck && vite build",
+    "build:site": "vite build",
+    "typecheck": "bunx tsc --noEmit",
+    "preview": "vite preview",
+    "deploy:worker": "bunx wrangler deploy"
   },
   "dependencies": {
-    "@astrojs/svelte": "^7.2.5",
-    "@iconify-json/mdi": "^1.2.3",
+    "@tanstack/react-query": "^5.90.2",
+    "@tanstack/react-router": "^1.170.41",
+    "@tanstack/react-start": "^1.168.60",
+    "gray-matter": "^4.0.3",
+    "iconify-icon": "^2.3.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "rehype-raw": "^7.0.0",
+    "rehype-stringify": "^10.0.1",
+    "remark-gfm": "^4.0.1",
+    "remark-parse": "^11.0.0",
+    "remark-rehype": "^11.1.2",
+    "unified": "^11.0.5"
+  },
+  "devDependencies": {
     "@tailwindcss/vite": "^4.1.18",
-    "astro": "^5.17.1",
-    "astro-icon": "^1.1.5",
-    "svelte": "^5.49.1",
+    "@types/node": "^24.7.0",
+    "@types/react": "^19.2.2",
+    "@types/react-dom": "^19.2.2",
+    "@vitejs/plugin-react": "^5.0.4",
     "tailwindcss": "^4.1.18",
-    "typescript": "^5.9.3"
+    "typescript": "npm:@typescript/typescript6@^6.0.2",
+    "vite": "^7.1.9",
+    "vite-plugin-node-polyfills": "^0.28.0"
   }
 }

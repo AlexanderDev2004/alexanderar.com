@@ -1,0 +1,11 @@
+{
+  // Deploy target: fully prerendered TanStack Start site served as
+  // Cloudflare Workers static assets (same hosting as the old Astro build).
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "alexanderar-com",
+  "compatibility_date": "2026-04-04",
+  "assets": {
+    "directory": "./dist/client",
+    "not_found_handling": "404-page"
+  }
+}
