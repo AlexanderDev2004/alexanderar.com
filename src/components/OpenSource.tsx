@@ -72,7 +72,10 @@ function RepoGroup({ group }: { group: RepositoryPRGroup }) {
             {formatStars(group.repository.stargazerCount)}
           </span>
         </div>
-        <span className="os-last">last merged {monthYear(group.lastMergedAt)}</span>
+        <span className="os-last">
+          <iconify-icon icon="mdi:source-merge" title="Merged pull request" />
+          last merged {monthYear(group.lastMergedAt)}
+        </span>
       </div>
 
       {open && (
@@ -143,7 +146,7 @@ export function OpenSource() {
       </p>
 
       {grouped.length > 0 ? (
-        <div className="os-card">
+        <div className="os-list">
           {grouped.map((group) => (
             <RepoGroup key={group.repository.full_name} group={group} />
           ))}

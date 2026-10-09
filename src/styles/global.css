@@ -581,16 +581,14 @@ details[open] .chev {
   font-size: 13.5px;
   margin: 0 0 14px;
 }
-.os-card {
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  background: var(--bg);
-  padding: 4px 18px 14px;
+.os-list {
+  margin-top: 14px;
 }
 .os-group {
-  padding-top: 10px;
+  border-bottom: 1px solid var(--line);
+  padding: 14px 2px 16px;
 }
-.os-group + .os-group {
+.os-group:first-child {
   border-top: 1px solid var(--line);
 }
 .os-repo {
@@ -599,7 +597,6 @@ details[open] .chev {
   gap: 12px;
   flex-wrap: wrap;
   cursor: pointer;
-  border-radius: 6px;
 }
 .os-repo:focus-visible {
   outline: 2px solid var(--sage-deep);
@@ -655,10 +652,18 @@ details[open] .chev {
 }
 .os-last {
   flex-basis: 100%;
-  text-align: right;
+  /* align with the repo name: caret (18px) + row gap (12px) */
+  margin-left: 30px;
   font-family: var(--mono);
   font-size: 11px;
   color: var(--stone);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.os-last iconify-icon {
+  font-size: 14px;
+  color: var(--sage-deep);
 }
 .os-prs {
   list-style: none;
@@ -716,9 +721,7 @@ details[open] .chev {
   text-align: right;
 }
 .os-foot {
-  margin-top: 12px;
-  padding-top: 12px;
-  border-top: 1px solid var(--line);
+  padding: 12px 2px 0;
   font-family: var(--mono);
   font-size: 11.5px;
   color: var(--stone);
