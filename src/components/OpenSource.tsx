@@ -135,7 +135,7 @@ export function OpenSource() {
   const totalPRs = grouped.reduce((sum, g) => sum + g.mergedCount, 0)
 
   return (
-    <div className="block os">
+    <div className="os-block">
       <div className="os-head">
         <span className="os-tick" />
         <h3>Open Source Contributions</h3>

@@ -555,7 +555,10 @@ details[open] .chev {
   color: var(--stone);
 }
 
-/* ============ open source contributions card ============ */
+/* ============ open source contributions (flat, no card box) ============ */
+.os-block {
+  margin-top: 16px;
+}
 .os-head {
   display: flex;
   align-items: center;
