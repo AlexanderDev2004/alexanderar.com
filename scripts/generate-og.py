@@ -63,7 +63,6 @@ OLIVE = (125, 132, 113)      # --olive     #7D8471
 STONE = (176, 175, 160)      # --stone     #B0AFA0
 LINE = (217, 209, 193)       # --line      #D9D1C1
 SAGE_DEEP = (130, 153, 111)  # --sage-deep #82996F
-BLUE = (143, 168, 188)       # --blue      #8FA8BC
 CHIP_BG = (250, 247, 241)    # near-white, like the reference tag chip
 
 
@@ -107,14 +106,11 @@ def draw_tracked(draw: ImageDraw.ImageDraw, text: str, font: ImageFont.FreeTypeF
 
 
 def background() -> Image.Image:
-    """Flat beige card, thin frame, accent bars, and a subtle dot grid."""
+    """Flat beige card, thin frame, and a subtle dot grid."""
     img = Image.new("RGB", (W, H), BG)
     draw = ImageDraw.Draw(img)
     inset = 26
     draw.rectangle([inset, inset, W - inset, H - inset], outline=LINE, width=2)
-    # accent bars sitting on the top frame line, left-aligned
-    draw.rectangle([56, 15, 246, 37], fill=SAGE_DEEP)
-    draw.rectangle([242, 15, 402, 37], fill=BLUE)
     # subtle dot grid, bottom-right corner (flat, low contrast)
     for gy in range(H - 156, H - 62, 24):
         for gx in range(W - 312, W - 70, 24):

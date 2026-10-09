@@ -1,8 +1,15 @@
 {
   // Deploy target: fully prerendered TanStack Start site served as
   // Cloudflare Workers static assets (same hosting as the old Astro build).
+  //
+  // NOTE: this is intentionally NOT named "alexanderar-com". That name is
+  // still bound to the old Cloudflare Workers Builds git integration, which
+  // redeploys a broken/empty bundle on every push and would clobber this
+  // worker (and the site) each time. Deploying under a fresh name keeps the
+  // custom domains on a worker nothing else touches. The old worker can be
+  // deleted once the git integration is disconnected in the dashboard.
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "alexanderar-com",
+  "name": "alexanderar-site",
   "compatibility_date": "2026-04-04",
   "routes": [
     { "pattern": "alexanderar.com", "custom_domain": true },

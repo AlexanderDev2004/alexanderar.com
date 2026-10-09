@@ -12,6 +12,7 @@
     "generate:routes": "tsr generate",
     "typecheck": "tsr generate && tsc6 --noEmit",
     "preview": "vite preview",
+    "deploy": "bun run build:site && bunx wrangler deploy",
     "deploy:worker": "bunx wrangler deploy"
   },
   "dependencies": {

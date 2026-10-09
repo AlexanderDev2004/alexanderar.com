@@ -34,7 +34,7 @@ bun run dev        # http://localhost:3000
 
 ```bash
 bun run build      # fetch GitHub snapshot + generate OG images + typecheck + prerender
-bun run deploy:worker   # wrangler deploy (serves ./dist/client via Workers assets)
+bun run deploy     # build + wrangler deploy (serves ./dist/client via Workers assets)
 ```
 
 Prerendered output lives in `dist/client/`; `wrangler.jsonc` points the Worker's
