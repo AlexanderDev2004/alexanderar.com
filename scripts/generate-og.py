@@ -1,11 +1,15 @@
 #!/usr/bin/env python3
-"""Build-time OG image generator (elianiva uses Takumi for this; here Pillow).
+"""Build-time OG image generator (Pillow).
 
 Generates 1200x630 PNG link-preview cards:
   public/og-image.png              — default (homepage / listing pages)
   public/og/blogs/<slug>.png       — one per blog post
   public/og/projects/<slug>.png    — one per project
   public/og/reports/<slug>.png     — one per security report
+
+Design mirrors src/styles/global.css (the warm sage/beige theme):
+flat #F1EBE1 background, ink text, sage accents, soft type chips,
+and the circular pixel-art avatar from the site hero bottom-right.
 
 Slug rule mirrors how page URLs are built:
   1. Astro's `entry.slug` (github-slugger): lowercase, *drop* punctuation
@@ -47,36 +51,40 @@ except ImportError:
 
 ROOT = Path(__file__).resolve().parent.parent
 PUBLIC = ROOT / "public"
-FONTS = PUBLIC
+FONTS = PUBLIC / "fonts"
+AVATAR = PUBLIC / "IconAlex.png"
 
 W, H = 1200, 630
-BG_TOP = (11, 17, 32)      # deep navy, matches site atmosphere
-BG_BOTTOM = (2, 6, 23)
-ACCENT = (129, 140, 248)   # indigo-400
-ACCENT_STRONG = (34, 211, 238)  # cyan-400
-WHITE = (241, 245, 249)
-MUTED = (148, 163, 184)
-CARD = (15, 23, 42)
 
+# Design tokens — must match src/styles/global.css
+BG = (241, 235, 225)        # --bg        #F1EBE1
+BG_SOFT = (233, 225, 211)   # --bg-soft   #E9E1D3
+INK = (74, 74, 63)          # --ink       #4A4A3F
+OLIVE = (125, 132, 113)     # --olive     #7D8471
+STONE = (176, 175, 160)     # --stone     #B0AFA0
+LINE = (217, 209, 193)      # --line      #D9D1C1
+SAGE = (156, 175, 136)      # --sage      #9CAF88
+SAGE_DEEP = (130, 153, 111)  # --sage-deep #82996F
 
-def load_font(name: str, size: int):
-    for candidate in (FONTS / name, Path(f"/usr/share/fonts/truetype/dejavu/{name}")):
-        if candidate.exists():
-            try:
-                return ImageFont.truetype(str(candidate), size)
-            except OSError:
-                continue
-    return ImageFont.load_default()
-
-
-FONT_BOLD = "PlusJakartaSans-Bold.ttf"
-FONT_XBOLD = "PlusJakartaSans-ExtraBold.ttf"
-FONT_REG = "PlusJakartaSans-Regular.ttf"
-
-MONTHS = {
-    1: "Jan", 2: "Feb", 3: "Mar", 4: "Apr", 5: "May", 6: "Jun",
-    7: "Jul", 8: "Aug", 9: "Sep", 10: "Oct", 11: "Nov", 12: "Dec",
+CHIP = {
+    "PORTFOLIO": ((235, 230, 240), (179, 166, 194), (110, 95, 130)),   # lavender
+    "BLOG": ((237, 241, 243), (197, 210, 220), (95, 123, 144)),        # dusty blue
+    "PROJECT": ((227, 232, 218), (178, 196, 158), (107, 127, 90)),     # sage
+    "SECURITY REPORT": ((244, 231, 229), (227, 196, 192), (154, 94, 88)),  # blush
 }
+
+
+def load_font(size: int, weight: str = "Regular") -> ImageFont.FreeTypeFont:
+    """Load the Plus Jakarta Sans variable font at a named weight."""
+    path = FONTS / "PlusJakartaSans-VariableFont_wght.ttf"
+    if path.exists():
+        try:
+            font = ImageFont.truetype(str(path), size)
+            font.set_variation_by_name(weight)
+            return font
+        except OSError:
+            pass
+    return ImageFont.load_default()
 
 
 def normalize_slug(value: str) -> str:
@@ -87,43 +95,54 @@ def normalize_slug(value: str) -> str:
     return re.sub(r"[^a-z0-9]+", "-", slug).strip("-")
 
 
-def lerp(a: int, b: int, t: float) -> int:
-    return round(a + (b - a) * t)
-
-
 def background() -> Image.Image:
-    img = Image.new("RGB", (W, H), BG_TOP)
+    """Flat warm beige card with a sage top bar and a tonal corner."""
+    img = Image.new("RGB", (W, H), BG)
     draw = ImageDraw.Draw(img)
-    for y in range(H):
-        t = y / (H - 1)
-        draw.line(
-            [(0, y), (W, y)],
-            fill=(lerp(BG_TOP[0], BG_BOTTOM[0], t),
-                  lerp(BG_TOP[1], BG_BOTTOM[1], t),
-                  lerp(BG_TOP[2], BG_BOTTOM[2], t)),
-        )
-    # subtle grid
-    grid = (30, 41, 59)
-    for x in range(0, W, 60):
-        draw.line([(x, 0), (x, H)], fill=grid, width=1)
-    for y in range(0, H, 60):
-        draw.line([(0, y), (W, y)], fill=grid, width=1)
-    # accent bar on top
-    draw.rectangle([0, 0, W, 10], fill=ACCENT)
-    # soft glow bottom-right
-    cx, cy = W - 200, H - 170
-    for r in range(200, 0, -10):
-        t = 1 - r / 200
-        draw.ellipse(
-            [cx - r, cy - r, cx + r, cy + r],
-            outline=(int(lerp(BG_BOTTOM[0], ACCENT[0], t * 0.35)),
-                     int(lerp(BG_BOTTOM[1], ACCENT[1], t * 0.35)),
-                     int(lerp(BG_BOTTOM[2], ACCENT[2], t * 0.35))),
-        )
+    draw.rectangle([0, 0, W, 8], fill=SAGE)
+    # tonal quarter-circle bottom-right (under everything else)
+    draw.ellipse([W - 360, H - 340, W + 160, H + 180], fill=BG_SOFT)
     return img
 
 
-def wrap(draw: ImageDraw.ImageDraw, text: str, font: ImageFont.ImageFont,
+def avatar(img: Image.Image) -> None:
+    """Circular pixel-art avatar with a thin ring, bottom-right — like the hero."""
+    size = 104
+    box = (W - 76 - size, H - 76 - size)
+    ring_pad = 6
+    draw = ImageDraw.Draw(img)
+    draw.ellipse(
+        [box[0] - ring_pad, box[1] - ring_pad,
+         box[0] + size + ring_pad, box[1] + size + ring_pad],
+        fill=BG,
+        outline=LINE,
+        width=3,
+    )
+    if AVATAR.exists():
+        pic = Image.open(AVATAR).convert("RGB").resize((size, size), Image.LANCZOS)
+        mask = Image.new("L", (size, size), 0)
+        ImageDraw.Draw(mask).ellipse([0, 0, size, size], fill=255)
+        img.paste(pic, box, mask)
+    else:
+        draw.ellipse([box[0], box[1], box[0] + size, box[1] + size], fill=SAGE)
+
+
+def chip(draw: ImageDraw.ImageDraw, label: str, right_x: int, center_y: int) -> None:
+    """Soft rounded tag, right-aligned — same chip style as the site cards."""
+    bg, border, ink = CHIP.get(label, CHIP["PORTFOLIO"])
+    font = load_font(26, "Bold")
+    text_w = draw.textlength(label.upper(), font=font)
+    pad_x, pad_y = 22, 13
+    x1 = right_x - text_w - pad_x * 2
+    y1 = center_y - pad_y - 13
+    x2 = right_x
+    y2 = center_y + pad_y + 13
+    draw.rounded_rectangle([x1, y1, x2, y2], radius=y2 - y1, fill=bg,
+                           outline=border, width=2)
+    draw.text((x1 + pad_x, y1 + pad_y), label.upper(), font=font, fill=ink)
+
+
+def wrap(draw: ImageDraw.ImageDraw, text: str, font: ImageFont.FreeTypeFont,
          max_width: int, max_lines: int = 3) -> list[str]:
     words = text.split()
     lines, current = [], ""
@@ -155,16 +174,16 @@ def wrap(draw: ImageDraw.ImageDraw, text: str, font: ImageFont.ImageFont,
 
 
 def fit_title(draw: ImageDraw.ImageDraw, title: str, max_width: int,
-              start_size: int = 84) -> tuple[ImageFont.ImageFont, list[str]]:
+              start_size: int = 84) -> tuple[ImageFont.FreeTypeFont, list[str]]:
     size = start_size
     while size >= 40:
-        font = load_font(FONT_XBOLD, size)
+        font = load_font(size, "ExtraBold")
         lines = wrap(draw, title, font, max_width, 3)
-        block_h = len(lines) * int(size * 1.12)
+        block_h = len(lines) * int(size * 1.1)
         if block_h <= 300:
             return font, lines
         size -= 6
-    font = load_font(FONT_XBOLD, 40)
+    font = load_font(40, "ExtraBold")
     return font, wrap(draw, title, font, max_width, 3)
 
 
@@ -183,31 +202,49 @@ def parse_frontmatter(path: Path) -> dict:
 
 
 def format_date(raw: str) -> str:
+    months = {
+        1: "Jan", 2: "Feb", 3: "Mar", 4: "Apr", 5: "May", 6: "Jun",
+        7: "Jul", 8: "Aug", 9: "Sep", 10: "Oct", 11: "Nov", 12: "Dec",
+    }
     match = re.match(r"(\d{4})-(\d{2})-(\d{2})", raw or "")
     if not match:
         return raw or ""
     y, m, d = int(match.group(1)), int(match.group(2)), int(match.group(3))
-    return f"{d} {MONTHS.get(m, '')} {y}"
+    return f"{d} {months.get(m, '')} {y}"
 
 
-def card(*, kicker: str, title: str, meta: str, out: Path) -> None:
+def card(*, title: str, meta: str, chip_label: str, out: Path) -> None:
     img = background()
     draw = ImageDraw.Draw(img)
-    pad = 80
+    pad = 76
     max_w = W - pad * 2
 
-    kick_font = load_font(FONT_BOLD, 30)
-    draw.text((pad, 84), kicker.upper(), font=kick_font, fill=ACCENT_STRONG)
+    # header: brand left, type chip right
+    brand_font = load_font(30, "Bold")
+    draw.rectangle([pad, 74, pad + 14, 88], fill=SAGE_DEEP)
+    draw.text((pad + 28, 66), "alexanderar.com", font=brand_font, fill=INK)
+    chip(draw, chip_label, W - pad, 80)
 
+    # title
     title_font, lines = fit_title(draw, title, max_w)
-    y = 150
-    line_h = int(title_font.size * 1.12)
+    y = 172
+    line_h = int(title_font.size * 1.1)
     for line in lines:
-        draw.text((pad, y), line, font=title_font, fill=WHITE)
+        draw.text((pad, y), line, font=title_font, fill=INK)
         y += line_h
 
-    meta_font = load_font(FONT_REG, 30)
-    draw.text((pad, H - 110), meta, font=meta_font, fill=MUTED)
+    # footer: divider, meta left, author right (avatar sits past the corner)
+    divider_y = H - 150
+    draw.line([(pad, divider_y), (W - pad, divider_y)], fill=LINE, width=2)
+    meta_font = load_font(30, "Regular")
+    name_font = load_font(30, "SemiBold")
+    meta_w = draw.textlength(meta, font=meta_font) if meta else 0
+    name = "Alexander Agung Raya"
+    name_w = draw.textlength(name, font=name_font)
+    draw.text((pad, divider_y + 34), meta, font=meta_font, fill=OLIVE)
+    draw.text((W - pad - name_w - 150, divider_y + 34), name,
+              font=name_font, fill=STONE)
+    avatar(img)
 
     out.parent.mkdir(parents=True, exist_ok=True)
     img.save(out, "PNG")
@@ -216,9 +253,9 @@ def card(*, kicker: str, title: str, meta: str, out: Path) -> None:
 
 def main() -> None:
     card(
-        kicker="alexanderar.com",
         title="Alexander Agung Raya",
-        meta="Software Developer — Portfolio",
+        meta="Software Developer — Indonesia, East Java",
+        chip_label="PORTFOLIO",
         out=PUBLIC / "og-image.png",
     )
 
@@ -232,9 +269,9 @@ def main() -> None:
         slug = normalize_slug(path.stem)
         expected[PUBLIC / "og" / "blogs"].add(f"{slug}.png")
         card(
-            kicker="blog · alexanderar.com",
             title=title,
             meta=format_date(fm.get("date", "")),
+            chip_label="BLOG",
             out=PUBLIC / "og" / "blogs" / f"{slug}.png",
         )
 
@@ -247,9 +284,9 @@ def main() -> None:
         year = fm.get("year", "")
         expected[PUBLIC / "og" / "projects"].add(f"{slug}.png")
         card(
-            kicker="project · alexanderar.com",
             title=title,
             meta=f"Project · {year}".strip(" ·"),
+            chip_label="PROJECT",
             out=PUBLIC / "og" / "projects" / f"{slug}.png",
         )
 
@@ -264,9 +301,9 @@ def main() -> None:
         meta = " · ".join(part for part in (severity, date) if part)
         expected[PUBLIC / "og" / "reports"].add(f"{slug}.png")
         card(
-            kicker="security report · alexanderar.com",
             title=title,
             meta=meta,
+            chip_label="SECURITY REPORT",
             out=PUBLIC / "og" / "reports" / f"{slug}.png",
         )
 
