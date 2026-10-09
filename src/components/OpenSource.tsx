@@ -29,7 +29,8 @@ function shortDate(iso: string): string {
 }
 
 function RepoGroup({ group }: { group: RepositoryPRGroup }) {
-  const [open, setOpen] = useState(true)
+  // Collapsed by default — matches the approved reference (caret v = closed).
+  const [open, setOpen] = useState(false)
 
   const toggle = () => setOpen((v) => !v)
 
