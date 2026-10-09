@@ -4,6 +4,10 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "alexanderar-com",
   "compatibility_date": "2026-04-04",
+  "routes": [
+    { "pattern": "alexanderar.com", "custom_domain": true },
+    { "pattern": "www.alexanderar.com", "custom_domain": true }
+  ],
   "assets": {
     "directory": "./dist/client",
     "not_found_handling": "404-page"
