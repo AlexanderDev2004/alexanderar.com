@@ -368,6 +368,45 @@ details.job li::before {
 .card-link:hover {
   color: var(--sage-deep);
 }
+
+/* project rows — flat list with hairline dividers (matches the .job list) */
+.proj-list {
+  margin-top: 26px;
+}
+.proj {
+  border-bottom: 1px solid var(--line);
+  padding: 22px 2px 24px;
+}
+.proj:first-child {
+  border-top: 1px solid var(--line);
+}
+.proj:hover .card-link {
+  color: var(--sage-deep);
+}
+.proj h3 {
+  font-size: 18px;
+  font-weight: 700;
+}
+.proj .year {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--stone);
+  margin-left: 8px;
+  font-weight: 400;
+}
+.proj p.desc {
+  font-size: 13.5px;
+  color: var(--body-muted);
+  margin-top: 8px;
+  line-height: 1.6;
+  max-width: 62ch;
+}
+.proj .actions {
+  display: flex;
+  gap: 10px;
+  padding-top: 18px;
+  flex-wrap: wrap;
+}
 .btn {
   display: inline-flex;
   align-items: center;

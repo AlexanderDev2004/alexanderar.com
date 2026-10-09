@@ -3,7 +3,7 @@ import type { Project } from '../lib/content'
 
 export function ProjectCard({ project }: { project: Project }) {
   return (
-    <article className="card">
+    <article className="proj">
       <h3>
         <Link
           to="/projects/$slug"
@@ -53,7 +53,7 @@ export function ProjectCard({ project }: { project: Project }) {
 
 export function ProjectsGrid({ items }: { items: Project[] }) {
   return (
-    <div className="grid-2">
+    <div className="proj-list">
       {items.map((project) => (
         <ProjectCard key={project.slug} project={project} />
       ))}
