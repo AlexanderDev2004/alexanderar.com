@@ -31,23 +31,32 @@ function shortDate(iso: string): string {
 function RepoGroup({ group }: { group: RepositoryPRGroup }) {
   const [open, setOpen] = useState(true)
 
+  const toggle = () => setOpen((v) => !v)
+
   return (
     <section className="os-group">
-      <div className="os-repo">
-        <button
-          type="button"
-          className="os-caret"
-          aria-expanded={open}
-          aria-label={`${open ? 'Collapse' : 'Expand'} ${group.repository.full_name} pull requests`}
-          onClick={() => setOpen((v) => !v)}
-        >
-          <iconify-icon icon="mdi:chevron-down" />
-        </button>
+      <div
+        className="os-repo"
+        role="button"
+        tabIndex={0}
+        aria-expanded={open}
+        aria-label={`${open ? 'Collapse' : 'Expand'} ${group.repository.full_name} pull requests`}
+        onClick={toggle}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault()
+            toggle()
+          }
+        }}
+      >
+        <iconify-icon className="os-caret" icon="mdi:chevron-down" />
         <a
           className="os-repo-name"
           href={group.repository.url}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={(e) => e.stopPropagation()}
+          onKeyDown={(e) => e.stopPropagation()}
         >
           {group.repository.full_name}
           <iconify-icon icon="mdi:arrow-top-right" />
