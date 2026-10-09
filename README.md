@@ -39,3 +39,8 @@ bun run deploy     # build + wrangler deploy (serves ./dist/client via Workers a
 
 Prerendered output lives in `dist/client/`; `wrangler.jsonc` points the Worker's
 assets at that folder and serves `404.html` for unknown paths.
+
+Deploys are manual (`bun run deploy`) — the live Worker is `alexanderar-site`,
+holding the custom domains `alexanderar.com` / `www.alexanderar.com`. There is no
+Git build integration: the old Workers Builds project `alexanderar-com` was deleted
+because every push made it redeploy an empty bundle and reclaim the custom domains.
