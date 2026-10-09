@@ -9,6 +9,7 @@ export const Route = createFileRoute('/uses')({
       description:
         'Hardware, gadgets, and AI agents that Alexander Agung Raya uses day to day.',
       path: '/uses',
+      ogImage: '/og/uses.png',
     }),
   component: UsesPage,
 })

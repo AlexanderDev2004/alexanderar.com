@@ -3,6 +3,7 @@
 
 Generates 1200x630 PNG link-preview cards:
   public/og-image.png              — default (homepage / listing pages)
+  public/og/uses.png               — the /uses page
   public/og/blogs/<slug>.png       — one per blog post
   public/og/projects/<slug>.png    — one per project
   public/og/reports/<slug>.png     — one per security report
@@ -285,6 +286,16 @@ def main() -> None:
     )
 
     expected: dict[Path, set[str]] = {}
+
+    # Uses page — one static card (content lives in src/data/uses.ts).
+    expected[PUBLIC / "og"] = {"uses.png"}
+    card(
+        kicker="Uses",
+        title="Uses",
+        description="Hardware and AI agents I use day to day",
+        tag="uses",
+        out=PUBLIC / "og" / "uses.png",
+    )
 
     blogs = sorted((ROOT / "src" / "content" / "blogs").glob("*.md"))
     expected[PUBLIC / "og" / "blogs"] = set()
