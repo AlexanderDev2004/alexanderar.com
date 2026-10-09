@@ -7,9 +7,10 @@
     "dev": "vite dev",
     "fetch:github": "bun scripts/fetch-github.mjs",
     "generate:og": "python3 scripts/generate-og.py",
-    "build": "bun run fetch:github && bun run generate:og && bun run typecheck && vite build",
+    "build": "bun run fetch:github && bun run generate:og && vite build && bun run typecheck",
     "build:site": "vite build",
-    "typecheck": "bunx tsc --noEmit",
+    "generate:routes": "tsr generate",
+    "typecheck": "tsr generate && tsc6 --noEmit",
     "preview": "vite preview",
     "deploy:worker": "bunx wrangler deploy"
   },
@@ -30,6 +31,7 @@
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.1.18",
+    "@tanstack/router-cli": "^1.167.40",
     "@types/node": "^24.7.0",
     "@types/react": "^19.2.2",
     "@types/react-dom": "^19.2.2",
