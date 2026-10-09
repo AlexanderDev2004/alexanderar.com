@@ -901,6 +901,36 @@ details[open] .chev {
   border-radius: 12px;
   margin: 18px 0;
 }
+/* responsive embeds — YouTube iframes, native video/audio, any fixed-width
+   media from markdown must never overflow the article on small screens */
+.md-body iframe,
+.md-body video,
+.md-body audio,
+.md-body embed,
+.md-body object {
+  max-width: 100%;
+}
+.md-body iframe {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  height: auto;
+  border: 0;
+  border-radius: 12px;
+  margin: 18px 0;
+}
+.md-body video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  margin: 18px 0;
+}
+.md-body audio {
+  display: block;
+  width: 100%;
+  margin: 18px 0;
+}
 .md-body code {
   font-family: var(--mono);
   font-size: 13px;
