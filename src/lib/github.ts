@@ -17,6 +17,12 @@ export const GITHUB_USERNAME = 'AlexanderDev2004';
  *  what matters is that other maintainers merged the work. */
 export const MIN_STARS = 0;
 
+/** Repos hidden from the Open Source card (college / trivial contributions). */
+export const EXCLUDED_REPOS: ReadonlySet<string> = new Set([
+  'pblkelompok1/backend_jawara',
+  'Dev/alex',
+]);
+
 export const GITHUB_CACHE_TTL_MS = 1000 * 60 * 60 * 24;
 
 export interface GitHubRepoRef {

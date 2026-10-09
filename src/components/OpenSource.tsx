@@ -1,5 +1,7 @@
+import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import {
+  EXCLUDED_REPOS,
   fetchPRsClient,
   GITHUB_USERNAME,
   type GitHubPRData,
@@ -27,9 +29,20 @@ function shortDate(iso: string): string {
 }
 
 function RepoGroup({ group }: { group: RepositoryPRGroup }) {
+  const [open, setOpen] = useState(true)
+
   return (
     <section className="os-group">
       <div className="os-repo">
+        <button
+          type="button"
+          className="os-caret"
+          aria-expanded={open}
+          aria-label={`${open ? 'Collapse' : 'Expand'} ${group.repository.full_name} pull requests`}
+          onClick={() => setOpen((v) => !v)}
+        >
+          <iconify-icon icon="mdi:chevron-down" />
+        </button>
         <a
           className="os-repo-name"
           href={group.repository.url}
@@ -52,36 +65,38 @@ function RepoGroup({ group }: { group: RepositoryPRGroup }) {
         <span className="os-last">last merged {monthYear(group.lastMergedAt)}</span>
       </div>
 
-      <ul className="os-prs">
-        {group.prs.map((pr) => (
-          <li key={pr.number}>
-            <div className="os-line">
-              <a
-                className="os-pr-title"
-                href={pr.url}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {pr.title}
-              </a>
-              <span className="os-diff">
-                {pr.additions !== undefined && <span className="add">+{pr.additions}</span>}
-                {pr.deletions !== undefined && <span className="del">-{pr.deletions}</span>}
-              </span>
-            </div>
-            <div className="os-line os-line-sub">
-              <span className="os-pr-sub">
-                #{pr.number} • merged {shortDate(pr.merged_at)}
-              </span>
-              {pr.changedFiles !== undefined && (
-                <span className="os-files">
-                  {pr.changedFiles} {pr.changedFiles === 1 ? 'file' : 'files'}
+      {open && (
+        <ul className="os-prs">
+          {group.prs.map((pr) => (
+            <li key={pr.number}>
+              <div className="os-line">
+                <a
+                  className="os-pr-title"
+                  href={pr.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {pr.title}
+                </a>
+                <span className="os-diff">
+                  {pr.additions !== undefined && <span className="add">+{pr.additions}</span>}
+                  {pr.deletions !== undefined && <span className="del">-{pr.deletions}</span>}
                 </span>
-              )}
-            </div>
-          </li>
-        ))}
-      </ul>
+              </div>
+              <div className="os-line os-line-sub">
+                <span className="os-pr-sub">
+                  #{pr.number} • merged {shortDate(pr.merged_at)}
+                </span>
+                {pr.changedFiles !== undefined && (
+                  <span className="os-files">
+                    {pr.changedFiles} {pr.changedFiles === 1 ? 'file' : 'files'}
+                  </span>
+                )}
+              </div>
+            </li>
+          ))}
+        </ul>
+      )}
     </section>
   )
 }
@@ -101,8 +116,10 @@ export function OpenSource() {
     staleTime: 24 * 60 * 60 * 1000,
   })
 
-  const grouped = data?.grouped ?? []
-  const totalPRs = data?.totalPRs ?? 0
+  const grouped = (data?.grouped ?? []).filter(
+    (group) => !EXCLUDED_REPOS.has(group.repository.full_name),
+  )
+  const totalPRs = grouped.reduce((sum, g) => sum + g.mergedCount, 0)
 
   return (
     <div className="block os">
