@@ -40,7 +40,8 @@ bun run deploy     # build + wrangler deploy (serves ./dist/client via Workers a
 Prerendered output lives in `dist/client/`; `wrangler.jsonc` points the Worker's
 assets at that folder and serves `404.html` for unknown paths.
 
-Deploys are manual (`bun run deploy`) — the live Worker is `alexanderar-site`,
-holding the custom domains `alexanderar.com` / `www.alexanderar.com`. There is no
-Git build integration: the old Workers Builds project `alexanderar-com` was deleted
-because every push made it redeploy an empty bundle and reclaim the custom domains.
+Deploys are automatic: every push to `master` runs the *Build & Deploy Static Site*
+workflow (GitHub Actions), which builds the site and runs `wrangler deploy` against
+the Worker `alexanderar-site` (custom domains `alexanderar.com` / `www.alexanderar.com`)
+using the `CLOUDFLARE_API_TOKEN` / `CLOUDFLARE_ACCOUNT_ID` repository secrets.
+Manual deploys still work from a machine with a Wrangler login: `bun run deploy`.
