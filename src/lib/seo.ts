@@ -2,6 +2,17 @@
 // site (alexanderar.com), matching the old Astro Layout behaviour.
 export const SITE_URL = 'https://alexanderar.com'
 
+/**
+ * Bump when the generated OG images change their look: link-preview crawlers
+ * (Discord, WhatsApp, iMessage…) cache aggressively by URL, so a version query
+ * is the reliable way to make them re-fetch. YYMMDD of the last visual change.
+ */
+export const OG_IMAGE_VERSION = '261009'
+
+function ogImageUrl(ogImage?: string) {
+  return `${SITE_URL}${ogImage ?? '/og-image.png'}?v=${OG_IMAGE_VERSION}`
+}
+
 export interface SeoInput {
   title: string
   description: string
@@ -12,7 +23,7 @@ export interface SeoInput {
 }
 
 export function seo({ title, description, path = '/', ogImage }: SeoInput) {
-  const image = `${SITE_URL}${ogImage ?? '/og-image.png'}`
+  const image = ogImageUrl(ogImage)
   return {
     meta: [
       { title },

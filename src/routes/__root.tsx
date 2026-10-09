@@ -10,6 +10,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import '../styles/global.css'
 import { Navigation } from '../components/Navigation'
 import { Footer } from '../components/Footer'
+import { OG_IMAGE_VERSION } from '../lib/seo'
 
 /**
  * Module-scope QueryClient is safe here because the site is fully
@@ -52,7 +53,7 @@ export const Route = createRootRoute({
       },
       {
         property: 'og:image',
-        content: 'https://alexanderar.com/og-image.png',
+        content: `https://alexanderar.com/og-image.png?v=${OG_IMAGE_VERSION}`,
       },
       { property: 'og:image:width', content: '1200' },
       { property: 'og:image:height', content: '630' },
