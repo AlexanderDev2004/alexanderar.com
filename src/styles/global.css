@@ -676,6 +676,49 @@ details[open] .chev {
   color: var(--stone);
 }
 
+/* ============ uses page ============ */
+.uses-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.uses-table th {
+  text-align: left;
+  vertical-align: top;
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink);
+  padding: 14px 18px 14px 0;
+  width: 230px;
+  border-bottom: 1px solid var(--line);
+}
+.uses-table td {
+  padding: 14px 0;
+  color: var(--body-muted);
+  font-size: 14px;
+  line-height: 1.65;
+  border-bottom: 1px solid var(--line);
+}
+.uses-table tr:last-child th,
+.uses-table tr:last-child td {
+  border-bottom: 0;
+}
+@media (max-width: 560px) {
+  .uses-table th {
+    display: block;
+    width: 100%;
+    padding-bottom: 4px;
+  }
+  .uses-table td {
+    display: block;
+    padding-top: 0;
+  }
+  .uses-table tr {
+    display: block;
+    padding: 12px 0;
+  }
+}
+
 /* ============ blog rows ============ */
 .rows {
   margin-top: 20px;

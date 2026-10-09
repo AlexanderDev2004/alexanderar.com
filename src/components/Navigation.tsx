@@ -9,7 +9,8 @@ export function Navigation() {
       <div className="links">
         <Link to="/">Home</Link>
         <Link to="/projects/">Projects</Link>
-        <Link to="/blogs">Blogs</Link>
+        <Link to="/blogs/">Blogs</Link>
+        <Link to="/uses/">Uses</Link>
       </div>
     </nav>
   )
