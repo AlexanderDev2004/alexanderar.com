@@ -3,7 +3,7 @@ title: "Portofolio Alex"
 year: "2026"
 description: "My personal portfolio website — rebuilt from scratch with TanStack Start"
 fullDescription: "Full rewrite of my portfolio using TanStack Start, React 19, Tailwind CSS 4, and Bun — deployed to Cloudflare Workers via CI/CD"
-image: "/images/PortoAlx.webp"
+image: "/images/PortoAlx-v2-tanstack.webp"
 projectLink: "https://alexanderar.com"
 repoLink: "https://github.com/AlexanderDev2004/alexanderar.com"
 technologies:
