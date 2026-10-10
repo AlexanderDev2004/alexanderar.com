@@ -181,7 +181,8 @@ iconify-icon {
   gap: 24px;
   flex-wrap: wrap;
 }
-.hero-links a {
+.hero-links a,
+.underline-link {
   display: inline-flex;
   align-items: center;
   gap: 7px;
@@ -191,11 +192,13 @@ iconify-icon {
   border-bottom: 2px solid var(--green-bright);
   padding-bottom: 3px;
 }
-.hero-links a:hover {
+.hero-links a:hover,
+.underline-link:hover {
   border-bottom-color: var(--sage);
   color: var(--sage-deep);
 }
-.hero-links iconify-icon {
+.hero-links iconify-icon,
+.underline-link iconify-icon {
   font-size: 16px;
   color: var(--sage-deep);
 }

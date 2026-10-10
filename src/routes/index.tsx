@@ -93,7 +93,7 @@ function Home() {
         <ProjectsGrid items={selectedProjects} />
         {projects.length > selectedProjects.length && (
           <p style={{ marginTop: 18 }}>
-            <a className="btn btn-out" href="/projects">
+            <a className="underline-link" href="/projects">
               <iconify-icon icon="mdi:arrow-right" /> All projects
             </a>
           </p>
