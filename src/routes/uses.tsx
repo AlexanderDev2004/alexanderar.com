@@ -1,6 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { uses } from '../data/uses'
 import { seo } from '../lib/seo'
+import { Icon } from "../components/Icon"
 
 export const Route = createFileRoute('/uses')({
   head: () =>
@@ -24,7 +25,7 @@ function UsesPage() {
           U<span className="sage">ses</span>
         </h1>
         <p className="hero-sub">
-          <iconify-icon icon="mdi:toolbox-outline" />
+          <Icon name="mdi:toolbox-outline" />
           {totalItems} things I use day to day
         </p>
         <p className="hero-copy">
@@ -36,7 +37,7 @@ function UsesPage() {
       {uses.map((category) => (
         <section className="block-section" key={category.id}>
           <h2 className="section-title">
-            <iconify-icon icon={category.icon} /> {category.title}
+            <Icon name={category.icon} /> {category.title}
           </h2>
           <table className="uses-table">
             <tbody>

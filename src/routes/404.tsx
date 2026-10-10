@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { seo } from '../lib/seo'
+import { Icon } from "../components/Icon"
 
 export const Route = createFileRoute('/404')({
   head: () =>
@@ -25,10 +26,10 @@ function NotFoundPage() {
       </p>
       <p style={{ marginTop: 24, display: 'flex', gap: 10, justifyContent: 'center' }}>
         <Link className="btn btn-solid" to="/">
-          <iconify-icon icon="mdi:home" /> Back home
+          <Icon name="mdi:home" /> Back home
         </Link>
         <Link className="btn btn-out" to="/blogs">
-          <iconify-icon icon="mdi:post-outline" /> Read the blog
+          <Icon name="mdi:post-outline" /> Read the blog
         </Link>
       </p>
     </div>

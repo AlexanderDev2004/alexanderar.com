@@ -1,5 +1,6 @@
 import { Link } from '@tanstack/react-router'
 import { formatDateShort, type BlogPost } from '../lib/content'
+import { Icon } from "./Icon"
 
 export function BlogRows({ posts }: { posts: BlogPost[] }) {
   return (
@@ -14,7 +15,7 @@ export function BlogRows({ posts }: { posts: BlogPost[] }) {
           <span className="t">{post.title}</span>
           <span className="d">
             <span className="read">
-              read <iconify-icon icon="mdi:arrow-right" />
+              read <Icon name="mdi:arrow-right" />
             </span>
             {formatDateShort(post.date)}
           </span>

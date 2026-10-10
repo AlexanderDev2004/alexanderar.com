@@ -1,6 +1,7 @@
 import { createFileRoute, Link, useLoaderData } from '@tanstack/react-router'
 import { getProject } from '../lib/content'
 import { seo } from '../lib/seo'
+import { Icon } from "../components/Icon"
 
 export const Route = createFileRoute('/projects/$slug')({
   head: (ctx) => {
@@ -29,7 +30,7 @@ function ProjectDetailPage() {
   return (
     <article className="article">
       <Link className="back" to="/projects">
-        <iconify-icon icon="mdi:arrow-left" /> back to all projects
+        <Icon name="mdi:arrow-left" /> back to all projects
       </Link>
       <h1>
         {project.title}
@@ -51,7 +52,7 @@ function ProjectDetailPage() {
       <div className="meta">
         {project.technologies.map((tech) => (
           <span key={tech.name}>
-            {tech.icon && <iconify-icon icon={tech.icon} />} {tech.name}
+            {tech.icon && <Icon name={tech.icon} />} {tech.name}
           </span>
         ))}
       </div>
@@ -64,7 +65,7 @@ function ProjectDetailPage() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <iconify-icon icon="mdi:github" /> Repo
+              <Icon name="mdi:github" /> Repo
             </a>
           )}
           {project.projectLink && (
@@ -74,7 +75,7 @@ function ProjectDetailPage() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <iconify-icon icon="mdi:open-in-new" /> Preview
+              <Icon name="mdi:open-in-new" /> Preview
             </a>
           )}
         </div>

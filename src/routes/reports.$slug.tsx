@@ -1,6 +1,7 @@
 import { createFileRoute, Link, useLoaderData } from '@tanstack/react-router'
 import { formatDate, getReport } from '../lib/content'
 import { seo } from '../lib/seo'
+import { Icon } from "../components/Icon"
 
 export const Route = createFileRoute('/reports/$slug')({
   head: (ctx) => {
@@ -44,7 +45,7 @@ function ReportPage() {
   return (
     <article className="article">
       <Link className="back" to="/security-findings">
-        <iconify-icon icon="mdi:arrow-left" /> back to security findings
+        <Icon name="mdi:arrow-left" /> back to security findings
       </Link>
       <h1>{report.title}</h1>
       <div className="meta">
@@ -52,7 +53,7 @@ function ReportPage() {
         <span>{report.cwe}</span>
         <span>{report.owasp}</span>
         <span>
-          <iconify-icon icon="mdi:calendar" /> {formatDate(report.date)}
+          <Icon name="mdi:calendar" /> {formatDate(report.date)}
         </span>
         <span>by {report.author}</span>
       </div>

@@ -1,5 +1,6 @@
 import { Link } from '@tanstack/react-router'
 import type { Project } from '../lib/content'
+import { Icon } from "./Icon"
 
 export function ProjectCard({ project }: { project: Project }) {
   return (
@@ -19,7 +20,7 @@ export function ProjectCard({ project }: { project: Project }) {
         <div className="tags">
           {project.technologies.map((tech) => (
             <span className="tag" key={tech.name}>
-              {tech.icon && <iconify-icon icon={tech.icon} />}
+              {tech.icon && <Icon name={tech.icon} />}
               {tech.name}
             </span>
           ))}
@@ -33,7 +34,7 @@ export function ProjectCard({ project }: { project: Project }) {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <iconify-icon icon="mdi:github" /> Repo
+            <Icon name="mdi:github" /> Repo
           </a>
         )}
         {project.projectLink && (
@@ -43,7 +44,7 @@ export function ProjectCard({ project }: { project: Project }) {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <iconify-icon icon="mdi:open-in-new" /> Preview
+            <Icon name="mdi:open-in-new" /> Preview
           </a>
         )}
       </div>

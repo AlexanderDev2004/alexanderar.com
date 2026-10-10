@@ -1,6 +1,7 @@
 import { createFileRoute, Link, useLoaderData } from '@tanstack/react-router'
 import { formatDate, getBlog } from '../lib/content'
 import { seo } from '../lib/seo'
+import { Icon } from "../components/Icon"
 
 export const Route = createFileRoute('/blogs/$slug')({
   head: (ctx) => {
@@ -29,12 +30,12 @@ function BlogPostPage() {
   return (
     <article className="article">
       <Link className="back" to="/blogs">
-        <iconify-icon icon="mdi:arrow-left" /> back to all posts
+        <Icon name="mdi:arrow-left" /> back to all posts
       </Link>
       <h1>{post.title}</h1>
       <div className="meta">
         <span>
-          <iconify-icon icon="mdi:calendar" /> {formatDate(post.date)}
+          <Icon name="mdi:calendar" /> {formatDate(post.date)}
         </span>
         {post.tags.map((tag) => (
           <span key={tag}>#{tag}</span>

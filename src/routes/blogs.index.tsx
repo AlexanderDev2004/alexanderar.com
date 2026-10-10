@@ -2,6 +2,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import { BlogRows } from '../components/BlogRows'
 import { blogs } from '../lib/content'
 import { seo } from '../lib/seo'
+import { Icon } from "../components/Icon"
 
 export const Route = createFileRoute('/blogs/')({
   head: () =>
@@ -22,7 +23,7 @@ function BlogsPage() {
           Writing <span className="thin" style={{ color: 'var(--stone)', fontWeight: 600 }}>&amp; Notes</span>
         </h1>
         <p className="hero-sub">
-          <iconify-icon icon="mdi:post-outline" />
+          <Icon name="mdi:post-outline" />
           {blogs.length} post{blogs.length === 1 ? '' : 's'} — from build logs to
           longer experiments
         </p>

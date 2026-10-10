@@ -8,6 +8,7 @@ import { blogs, projects } from '../lib/content'
 import { seo } from '../lib/seo'
 import { contacts } from '../data/contact'
 import { files } from '../data/files'
+import { Icon } from "../components/Icon"
 
 const SELECTED_PROJECT_COUNT = 4
 const LATEST_BLOG_COUNT = 4
@@ -53,7 +54,7 @@ function Home() {
           </a>
         </div>
         <p className="hero-sub">
-          <iconify-icon icon="mdi:map-marker" />
+          <Icon name="mdi:map-marker" />
           Software Developer — Indonesia, East Java
         </p>
         <p className="hero-copy">
@@ -70,13 +71,13 @@ function Home() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <iconify-icon icon={c.icon} />
+              <Icon name={c.icon} />
               {c.label.toUpperCase()}
             </a>
           ))}
           {files.map((f) => (
             <a key={f.id} href={f.fileUrl} target="_blank" rel="noopener noreferrer">
-              <iconify-icon icon="mdi:file-pdf-box" />
+              <Icon name="mdi:file-pdf-box" />
               {f.title.toUpperCase()}
             </a>
           ))}
@@ -94,7 +95,7 @@ function Home() {
         {projects.length > selectedProjects.length && (
           <p style={{ marginTop: 18 }}>
             <a className="underline-link" href="/projects">
-              <iconify-icon icon="mdi:arrow-right" /> All projects
+              <Icon name="mdi:arrow-right" /> All projects
             </a>
           </p>
         )}
@@ -114,7 +115,7 @@ function Home() {
         {blogs.length > latestBlogs.length && (
           <p style={{ marginTop: 18 }}>
             <a className="btn btn-out" href="/blogs">
-              <iconify-icon icon="mdi:arrow-right" /> All posts
+              <Icon name="mdi:arrow-right" /> All posts
             </a>
           </p>
         )}

@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { reports, formatDateShort } from '../lib/content'
 import { seo } from '../lib/seo'
+import { Icon } from "../components/Icon"
 
 export const Route = createFileRoute('/security-findings')({
   head: () =>
@@ -36,7 +37,7 @@ function SecurityFindingsPage() {
           Security <span className="sage">Findings</span>
         </h1>
         <p className="hero-sub">
-          <iconify-icon icon="mdi:shield-lock-outline" />
+          <Icon name="mdi:shield-lock-outline" />
           {reports.length} responsible disclosure report
           {reports.length === 1 ? '' : 's'}
         </p>
@@ -51,7 +52,7 @@ function SecurityFindingsPage() {
               className="row-link"
             >
               <span className="t">
-                <iconify-icon icon="mdi:chevron-right" />
+                <Icon name="mdi:chevron-right" />
                 {report.title}
               </span>
               <span

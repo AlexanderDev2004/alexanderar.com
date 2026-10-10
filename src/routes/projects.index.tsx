@@ -2,6 +2,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import { ProjectsGrid } from '../components/ProjectsGrid'
 import { projects } from '../lib/content'
 import { seo } from '../lib/seo'
+import { Icon } from "../components/Icon"
 
 export const Route = createFileRoute('/projects/')({
   head: () =>
@@ -22,7 +23,7 @@ function ProjectsPage() {
           All <span className="sage">Projects</span>
         </h1>
         <p className="hero-sub">
-          <iconify-icon icon="mdi:folder-multiple-outline" />
+          <Icon name="mdi:folder-multiple-outline" />
           {projects.length} projects — games, web apps, and tools
         </p>
       </header>

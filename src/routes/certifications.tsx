@@ -1,6 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { certifications } from '../data/certifications'
 import { seo } from '../lib/seo'
+import { Icon } from "../components/Icon"
 
 export const Route = createFileRoute('/certifications')({
   head: () =>
@@ -20,7 +21,7 @@ function CertificationsPage() {
           Certi<span className="sage">fications</span>
         </h1>
         <p className="hero-sub">
-          <iconify-icon icon="mdi:certificate-outline" />
+          <Icon name="mdi:certificate-outline" />
           {certifications.length} certifie{certifications.length === 1 ? 'd program' : 'd programs'}
         </p>
       </header>
@@ -56,7 +57,7 @@ function CertificationsPage() {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <iconify-icon icon="mdi:open-in-new" /> View certificate
+                    <Icon name="mdi:open-in-new" /> View certificate
                   </a>
                 </div>
               )}

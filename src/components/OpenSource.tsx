@@ -8,6 +8,7 @@ import {
   type RepositoryPRGroup,
 } from '../lib/github'
 import githubSnapshot from '../data/github.json'
+import { Icon } from "./Icon"
 
 function formatStars(count: number): string {
   if (count >= 1000) {
@@ -41,7 +42,6 @@ function RepoGroup({ group }: { group: RepositoryPRGroup }) {
         role="button"
         tabIndex={0}
         aria-expanded={open}
-        aria-label={`${open ? 'Collapse' : 'Expand'} ${group.repository.full_name} pull requests`}
         onClick={toggle}
         onKeyDown={(e) => {
           if (e.key === 'Enter' || e.key === ' ') {
@@ -59,21 +59,21 @@ function RepoGroup({ group }: { group: RepositoryPRGroup }) {
           onKeyDown={(e) => e.stopPropagation()}
         >
           {group.repository.full_name}
-          <iconify-icon icon="mdi:arrow-top-right" />
+          <Icon name="mdi:arrow-top-right" />
         </a>
         <div className="os-repo-meta">
           <span title={`${group.mergedCount} merged PRs`}>
-            <iconify-icon icon="mdi:source-pull" />
+            <Icon name="mdi:source-pull" />
             {group.mergedCount}
           </span>
           <span title={`${group.repository.stargazerCount} stars`}>
-            <iconify-icon icon="mdi:star-outline" />
+            <Icon name="mdi:star-outline" />
             {formatStars(group.repository.stargazerCount)}
           </span>
         </div>
-        <iconify-icon className="os-caret" icon="mdi:chevron-down" />
+        <Icon className="os-caret" name="mdi:chevron-down" />
         <span className="os-last">
-          <iconify-icon icon="mdi:source-merge" title="Merged pull request" />
+          <Icon name="mdi:source-merge" title="Merged pull request" />
           last merged {monthYear(group.lastMergedAt)}
         </span>
       </div>

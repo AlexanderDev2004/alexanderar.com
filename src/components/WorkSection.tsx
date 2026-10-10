@@ -1,4 +1,5 @@
 import { works, type WorkItem } from '../data/work'
+import { Icon } from "./Icon"
 
 /** "REMOTE" -> "Remote", "PART TIME" -> "Part-time", "ON-SITE" -> "On-site". */
 function prettyStatus(status: string): string {
@@ -35,7 +36,7 @@ export function WorkSection() {
             <span className="when">
               {period(work)} · {statusLine(work)}
             </span>
-            <iconify-icon className="chev" icon="mdi:chevron-down" />
+            <Icon className="chev" name="mdi:chevron-down" />
           </summary>
           <div className="body">
             <ul>

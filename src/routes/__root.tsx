@@ -12,6 +12,7 @@ import { Navigation } from '../components/Navigation'
 import { Footer } from '../components/Footer'
 import { PatternBackground } from '../components/PatternBackground'
 import { OG_IMAGE_VERSION } from '../lib/seo'
+import { Icon } from "../components/Icon"
 
 /**
  * Module-scope QueryClient is safe here because the site is fully
@@ -60,12 +61,7 @@ export const Route = createRootRoute({
       { property: 'og:image:height', content: '630' },
       { name: 'twitter:card', content: 'summary_large_image' },
     ],
-    links: [{ rel: 'icon', href: '/IconAlex.png' }],
-    scripts: [
-      {
-        src: 'https://code.iconify.design/iconify-icon/2.3.0/iconify-icon.min.js',
-      },
-    ],
+    links: [{ rel: 'icon', href: '/IconAlex.png' }]
   }),
   component: RootComponent,
   // Fallback for client-side navigation to unknown paths.
@@ -86,10 +82,10 @@ function RootNotFound() {
       </p>
       <p style={{ marginTop: 24, display: 'flex', gap: 10, justifyContent: 'center' }}>
         <Link className="btn btn-solid" to="/">
-          <iconify-icon icon="mdi:home" /> Back home
+          <Icon name="mdi:home" /> Back home
         </Link>
         <Link className="btn btn-out" to="/blogs">
-          <iconify-icon icon="mdi:post-outline" /> Read the blog
+          <Icon name="mdi:post-outline" /> Read the blog
         </Link>
       </p>
     </div>

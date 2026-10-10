@@ -1,5 +1,6 @@
 import { contacts } from '../data/contact'
 import { files } from '../data/files'
+import { Icon } from "./Icon"
 
 export function Footer() {
   return (
@@ -13,7 +14,7 @@ export function Footer() {
             rel="noopener noreferrer"
             className="underline-link"
           >
-            <iconify-icon icon={c.icon} /> {c.label}
+            <Icon name={c.icon} /> {c.label}
           </a>
         ))}
         {files.map((f) => (
@@ -24,7 +25,7 @@ export function Footer() {
             rel="noopener noreferrer"
             className="underline-link"
           >
-            <iconify-icon icon="mdi:file-pdf-box" /> {f.title}
+            <Icon name="mdi:file-pdf-box" /> {f.title}
           </a>
         ))}
       </div>

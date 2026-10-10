@@ -5,10 +5,10 @@
   --bg: #f1ebe1;
   --bg-soft: #e9e1d3;
   --ink: #4a4a3f;
-  --olive: #7d8471;
+  --olive: #5b6152;
   --sage: #9caf88;
-  --sage-deep: #82996f;
-  --stone: #b0afa0;
+  --sage-deep: #5e6f51;
+  --stone: #6b6a61;
   --line: #d9d1c1;
   --blue: #8fa8bc;
   --blue-ink: #5f7b90;
@@ -92,7 +92,7 @@ summary:focus-visible {
   border-radius: 4px;
 }
 
-iconify-icon {
+.icon {
   vertical-align: -3px;
 }
 
@@ -228,8 +228,8 @@ iconify-icon {
   border-bottom-color: var(--sage);
   color: var(--sage-deep);
 }
-.hero-links iconify-icon,
-.underline-link iconify-icon {
+.hero-links .icon,
+.underline-link .icon {
   font-size: 16px;
   color: var(--sage-deep);
 }
@@ -345,7 +345,7 @@ details.job li::before {
   align-items: center;
   gap: 5px;
 }
-.tag iconify-icon {
+.tag .icon {
   font-size: 13px;
 }
 
@@ -456,7 +456,7 @@ details.job li::before {
 }
 .btn-solid {
   background: var(--sage);
-  color: #fbf8f2;
+  color: var(--green-ink);
   font-weight: 600;
 }
 .btn-out {
@@ -491,7 +491,7 @@ details.job li::before {
   font-size: 15px;
   margin-bottom: 16px;
 }
-.block-head iconify-icon {
+.block-head .icon {
   color: var(--sage-deep);
   font-size: 19px;
 }
@@ -583,7 +583,7 @@ details[open] .chev {
   align-items: center;
   gap: 6px;
 }
-.chip iconify-icon {
+.chip .icon {
   color: var(--sage-deep);
   font-size: 13px;
 }
@@ -666,10 +666,11 @@ details[open] .chev {
   color: var(--ink);
   text-decoration: none;
   display: inline-flex;
+  min-height: 24px;
   align-items: center;
   gap: 3px;
 }
-.os-repo-name iconify-icon {
+.os-repo-name .icon {
   font-size: 13px;
   color: var(--stone);
 }
@@ -689,7 +690,7 @@ details[open] .chev {
   align-items: center;
   gap: 4px;
 }
-.os-repo-meta iconify-icon {
+.os-repo-meta .icon {
   font-size: 13px;
   color: var(--sage-deep);
 }
@@ -704,7 +705,7 @@ details[open] .chev {
   align-items: center;
   gap: 5px;
 }
-.os-last iconify-icon {
+.os-last .icon {
   font-size: 14px;
   color: var(--sage-deep);
 }
@@ -843,7 +844,7 @@ details[open] .chev {
   margin-right: 10px;
   transition: color 0.15s;
 }
-.row-link .read iconify-icon {
+.row-link .read .icon {
   font-size: 13px;
 }
 .row-link:hover .t {
