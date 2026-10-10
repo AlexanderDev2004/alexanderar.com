@@ -11,11 +11,13 @@ export function BlogRows({ posts }: { posts: BlogPost[] }) {
           params={{ slug: post.slug }}
           className="row-link"
         >
-          <span className="t">
-            <iconify-icon icon="mdi:chevron-right" />
-            {post.title}
+          <span className="t">{post.title}</span>
+          <span className="d">
+            <span className="read">
+              read <iconify-icon icon="mdi:arrow-right" />
+            </span>
+            {formatDateShort(post.date)}
           </span>
-          <span className="d">{formatDateShort(post.date)}</span>
         </Link>
       ))}
     </div>

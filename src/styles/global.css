@@ -800,18 +800,26 @@ details[open] .chev {
 .row-link .t {
   font-weight: 600;
   font-size: 15px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
   min-width: 0;
 }
-.row-link .t iconify-icon {
-  color: var(--stone);
-  font-size: 16px;
-  flex-shrink: 0;
+.row-link .read {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  color: var(--sage-deep);
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  margin-right: 10px;
+  transition: color 0.15s;
+}
+.row-link .read iconify-icon {
+  font-size: 13px;
 }
 .row-link:hover .t {
   color: var(--sage-deep);
+}
+.row-link:hover .read {
+  color: var(--green-ink);
 }
 .row-link .d {
   font-family: var(--mono);
@@ -1039,13 +1047,7 @@ details[open] .chev {
   justify-content: center;
   gap: 20px;
   flex-wrap: wrap;
-  font-family: var(--mono);
-  font-size: 12px;
-  color: var(--olive);
   margin-bottom: 14px;
-}
-.site-footer .links a:hover {
-  color: var(--sage-deep);
 }
 .site-footer .heart {
   color: var(--blush);
