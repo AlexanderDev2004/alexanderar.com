@@ -16,6 +16,8 @@
   --blue-bg: #edf1f3;
   --lavender: #b3a6c2;
   --blush: #e3c4c0;
+  --green-bright: #7fb069; /* bright green — hero link underlines */
+  --green-ink: #1f3d1e;    /* very dark green — hero link text */
   --body-muted: #6a6a5c;
   --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
 }
@@ -185,8 +187,8 @@ iconify-icon {
   gap: 7px;
   font-family: var(--mono);
   font-size: 12.5px;
-  color: var(--olive);
-  border-bottom: 2px solid var(--blush);
+  color: var(--green-ink);
+  border-bottom: 2px solid var(--green-bright);
   padding-bottom: 3px;
 }
 .hero-links a:hover {
