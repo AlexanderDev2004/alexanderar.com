@@ -7,7 +7,7 @@ export const SITE_URL = 'https://alexanderar.com'
  * (Discord, WhatsApp, iMessage…) cache aggressively by URL, so a version query
  * is the reliable way to make them re-fetch. YYMMDD of the last visual change.
  */
-export const OG_IMAGE_VERSION = '261009'
+export const OG_IMAGE_VERSION = '261010'
 
 function ogImageUrl(ogImage?: string) {
   return `${SITE_URL}${ogImage ?? '/og-image.png'}?v=${OG_IMAGE_VERSION}`
