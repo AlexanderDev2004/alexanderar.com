@@ -9,6 +9,9 @@ export default defineConfig({
   },
   plugins: [
     tanstackStart({
+      // Inline the single global stylesheet into the server-rendered HTML —
+      // removes the last render-blocking request (FCP/LCP win).
+      server: { build: { inlineCss: true } },
       prerender: {
         enabled: true,
         crawlLinks: true,
