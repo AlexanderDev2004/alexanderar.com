@@ -15,6 +15,12 @@ export default defineConfig({
         crawlLinks: true,
         autoStaticPathsDiscovery: true,
         failOnError: false,
+        // Static binaries linked from pages (the CV/portfolio PDFs on the
+        // files page) must not be prerendered: the renderer "prints" them
+        // through the browser, which replaces the real PDF with a screenshot
+        // of the PDF viewer — no text layer, bloated size. Vite already
+        // copies public/ verbatim, so just exclude them here.
+        filter: (page) => !page.path.endsWith('.pdf'),
       },
       pages: [
         {
