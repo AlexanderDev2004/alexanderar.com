@@ -1,18 +1,11 @@
-// Build-time markdown content pipeline (replaces Astro Content Collections).
+// Content access layer — the markdown parsing itself runs at BUILD time in
+// scripts/generate-content.mjs, which writes src/data/content.json. This
+// module only types and serves that pre-rendered data, so none of the
+// gray-matter / unified / remark toolchain ships to the browser.
 //
-// All markdown under src/content is imported raw by Vite's glob API, parsed
-// with gray-matter and rendered to HTML with the unified toolchain — the same
-// pipeline recommended by the TanStack Start "Rendering Markdown" guide.
-//
-// The GitHub "Issue to Blog Post" workflow keeps working unchanged: it simply
-// writes .md files into src/content/blogs, which this loader picks up.
-import matter from 'gray-matter';
-import { unified } from 'unified';
-import remarkParse from 'remark-parse';
-import remarkGfm from 'remark-gfm';
-import remarkRehype from 'remark-rehype';
-import rehypeRaw from 'rehype-raw';
-import rehypeStringify from 'rehype-stringify';
+// To add or edit content, change the .md files under src/content and let
+// `bun run build` (or `bun run generate:content`) regenerate the JSON.
+import raw from '../data/content.json';
 import { normalizeSlug } from './slug';
 
 export interface BlogPost {
@@ -54,128 +47,15 @@ export interface Report {
   html: string;
 }
 
-const processor = unified()
-  .use(remarkParse)
-  .use(remarkGfm)
-  .use(remarkRehype, { allowDangerousHtml: true })
-  .use(rehypeRaw)
-  .use(rehypeStringify);
+const content = raw as {
+  blogs: BlogPost[];
+  projects: Project[];
+  reports: Report[];
+};
 
-/** Blog media lives in src/content/blogs/media — served from /blogs/media. */
-function rewriteMedia(source: string): string {
-  return source
-    .replaceAll('](./media/', '](/blogs/media/')
-    .replaceAll('](media/', '](/blogs/media/');
-}
-
-async function renderMarkdown(source: string): Promise<string> {
-  const file = await processor.process(rewriteMedia(source));
-  return String(file);
-}
-
-function asString(value: unknown, fallback = ''): string {
-  return typeof value === 'string' ? value : fallback;
-}
-
-function asStringArray(value: unknown): string[] {
-  return Array.isArray(value) ? value.filter((v): v is string => typeof v === 'string') : [];
-}
-
-function isoDate(value: unknown): string {
-  const parsed = value instanceof Date ? value : new Date(String(value ?? ''));
-  return Number.isNaN(parsed.getTime()) ? new Date(0).toISOString() : parsed.toISOString();
-}
-
-const blogModules = import.meta.glob<string>('/src/content/blogs/*.md', {
-  query: '?raw',
-  import: 'default',
-  eager: true,
-});
-
-const projectModules = import.meta.glob<string>('/src/content/projects/*.md', {
-  query: '?raw',
-  import: 'default',
-  eager: true,
-});
-
-const reportModules = import.meta.glob<string>('/src/content/reports/*.md', {
-  query: '?raw',
-  import: 'default',
-  eager: true,
-});
-
-function slugOf(path: string): string {
-  const base = path.split('/').pop() ?? path;
-  return normalizeSlug(base.replace(/\.md$/, ''));
-}
-
-export const blogs: BlogPost[] = (
-  await Promise.all(
-    Object.entries(blogModules).map(async ([path, raw]) => {
-      const { data, content } = matter(raw);
-      return {
-        slug: slugOf(path),
-        title: asString(data.title, 'Untitled'),
-        date: isoDate(data.date),
-        description: asString(data.description),
-        tags: asStringArray(data.tags),
-        html: await renderMarkdown(content),
-      } satisfies BlogPost;
-    }),
-  )
-).sort((a, b) => b.date.localeCompare(a.date));
-
-export const projects: Project[] = (
-  await Promise.all(
-    Object.entries(projectModules).map(async ([path, raw]) => {
-      const { data, content } = matter(raw);
-      const technologies = Array.isArray(data.technologies)
-        ? data.technologies.map((t) => {
-            const tech = t as Record<string, unknown>;
-            return {
-              name: asString(tech.name),
-              icon: asString(tech.icon),
-              docLink: asString(tech.docLink) || undefined,
-            };
-          })
-        : [];
-      return {
-        slug: slugOf(path),
-        title: asString(data.title, 'Untitled').trim(),
-        year: asString(data.year),
-        description: asString(data.description),
-        fullDescriptionHtml: await renderMarkdown(content),
-        image: asString(data.image) || undefined,
-        projectLink: asString(data.projectLink) || undefined,
-        repoLink: asString(data.repoLink) || undefined,
-        technologies,
-      } satisfies Project;
-    }),
-  )
-).sort((a, b) => {
-  const yearDiff = Number.parseInt(b.year, 10) - Number.parseInt(a.year, 10);
-  if (Number.isFinite(yearDiff) && yearDiff !== 0) return yearDiff;
-  return a.title.localeCompare(b.title);
-});
-
-export const reports: Report[] = (
-  await Promise.all(
-    Object.entries(reportModules).map(async ([path, raw]) => {
-      const { data, content } = matter(raw);
-      return {
-        slug: slugOf(path),
-        title: asString(data.title, 'Untitled'),
-        date: isoDate(data.date),
-        author: asString(data.author),
-        severity: asString(data.severity),
-        cwe: asString(data.cwe),
-        owasp: asString(data.owasp),
-        tags: asStringArray(data.tags),
-        html: await renderMarkdown(content),
-      } satisfies Report;
-    }),
-  )
-).sort((a, b) => b.date.localeCompare(a.date));
+export const blogs: BlogPost[] = content.blogs;
+export const projects: Project[] = content.projects;
+export const reports: Report[] = content.reports;
 
 export function getBlog(slug: string): BlogPost | undefined {
   return blogs.find((b) => b.slug === normalizeSlug(slug));

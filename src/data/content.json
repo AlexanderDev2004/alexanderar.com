@@ -1,0 +1,371 @@
+{
+  "blogs": [
+    {
+      "slug": "gdlc",
+      "title": "What is the Game Development Life Cycle (GDLC)",
+      "date": "2026-04-13T00:00:00.000Z",
+      "description": "What is the Game Development Life Cycle (GDLC) and Its Stages?",
+      "tags": [
+        "yapping",
+        "experience",
+        "Game Development",
+        "GDLC"
+      ],
+      "html": "<h3><strong>Introduction</strong></h3>\n<br>\n<p><strong>Hello</strong>, I'm excited to share my journey and the experiences I've had so far. I hope you enjoy reading this and find it inspiring.\r\n<br>\r\n<br>\r\n<img src=\"/blogs/media/GDLCimage.png\" alt=\"Game Development Life Cycle diagram\">\n<br>\r\n<br>\r\nSo, the Game Development Life Cycle, or GDLC, is a series of stages from design to development of a game. Generally, the GDLC consists of six main stages: initialization, pre-production, production, testing, beta release, and the full version. A game developer has a very important role in their field, as developing game applications for mobile, platforms, PC, or the web requires them to be able to create games that meet the expectations of their audience. Therefore, it is crucial for developers to follow these GDLC stages to ensure the quality of the games they develop. Now, I will explain the various stages within the Game Development Life Cycle (GDLC) that I mentioned above.\r\n<br>\r\n<br></p>\n<h3><strong>Chapter 1</strong>: Phase One: Initiation <br> <br></h3>\n<p>At this stage, the game concept will be developed, involving an analysis of what the overall game will be like; the initiation phase will produce a game concept and a simple description. This phase will also outline the game scenario, characters, storyline, player goals, the platform to be used, and the game engine.</p>\n<h3><strong>Chapter 2</strong>: Phase Two: Pre-production <br> <br></h3>\n<p>Next, you will develop your Game Design Documents. From the initiation stage output, you need to explain your core and detail the concept at this stage. Sometimes, people create prototypes at this stage.</p>\n<h3><strong>Chapter 3</strong>: Phase Three: Production <br> <br></h3>\n<p>After developing the game design and prototype, you must complete your games from preproduction into full production to fulfill your primary target. In this stage, your team will develop asset creation, programming, services integration, if any, and other production things.</p>\n<h3><strong>Chapter 4</strong>: Phase Four: Testing <br> <br></h3>\n<p>Fourth, you will do internal testing on your build from production. Usually, you need to test out the usability and functionality. Is it aligned with your game design already? If you find a bug / that needs to be fixed, you will go back to the preproduction/production phase until all of it has been fixed.</p>\n<h3><strong>Chapter 5</strong>: Phase Five: Beta Release <br> <br></h3>\n<p>The next one is beta testing. Usually, I call this External Testing. You will gain a lot of feedback from your targeted users. It's so important to hear out your users because we often, as developers, do not realize something that is discovered by our users. Sometimes, this stage will bring you back to the production phase again.</p>\n<h3><strong>Chapter 6</strong>: Phase Six: Full Release <br> <br></h3>\n<p>Finnaly After your game passes the testing and beta testing phase, it's a sign that it is ready to release on the game marketplace. You need to decide which platform is aligned with your game market and mechanics from the initial phase.</p>"
+    },
+    {
+      "slug": "dual-boots-problem-nvdia",
+      "title": "Dual-Boot Problem - NVIDIA",
+      "date": "2026-04-01T00:00:00.000Z",
+      "description": "Why my laptop screen goes black when using Linux",
+      "tags": [
+        "yapping",
+        "journey",
+        "experiment",
+        "linux"
+      ],
+      "html": "<h3><strong>Introduction</strong></h3>\n<br>\n<p>After setting up a dual-boot system with Windows and Linux, I ran into a major issue: the screen went black every time I booted into Linux.</p>\n<p>At first, I had no idea what caused it. If you are curious about my dual-booting process, you can check it here:</p>\n<ul>\n<li><a href=\"/blogs/dual-boot\">Dual-booting process</a></li>\n</ul>\n<br>\n<h3><strong>Chapter 1</strong>: Why did this problem happen?</h3>\n<br>\n<p>I use an ASUS TUF Gaming F15 with:</p>\n<ul>\n<li>NVIDIA GeForce GTX 1650</li>\n<li>Windows 11</li>\n</ul>\n<p>After discussing with a friend, we found that the issue was related to the NVIDIA driver. This often happens because NVIDIA drivers are proprietary and are not fully integrated with the Linux kernel by default.</p>\n<br>\n<h3><strong>Chapter 2</strong>: How to fix the problem?</h3>\n<br>\n<p>Here are the steps I used to fix it:</p>\n<ol>\n<li><strong>Update the system</strong></li>\n</ol>\n<pre><code class=\"language-bash\">sudo dnf update -y\n</code></pre>\n<br>\n<p>Purpose:</p>\n<ul>\n<li>Update all packages</li>\n<li>Synchronize the system with repositories</li>\n<li>Resolve dependency conflicts</li>\n</ul>\n<br>\n<ol start=\"2\">\n<li><strong>Reinstall KDE Plasma and SDDM</strong></li>\n</ol>\n<pre><code class=\"language-bash\">sudo dnf reinstall plasma-desktop sddm -y\n</code></pre>\n<br>\n<p>Purpose:</p>\n<ul>\n<li>Reinstall KDE (Plasma desktop environment)</li>\n<li>Reinstall SDDM (login manager)</li>\n<li>Fix broken GUI components</li>\n</ul>\n<br>\n<ol start=\"3\">\n<li><strong>Install NVIDIA driver (akmod version)</strong></li>\n</ol>\n<pre><code class=\"language-bash\">sudo dnf install akmod-nvidia -y\n</code></pre>\n<br>\n<p>Purpose:</p>\n<ul>\n<li>Install NVIDIA driver with akmod support</li>\n<li>Automatically rebuild the driver when the kernel updates</li>\n</ul>\n<br>\n<ol start=\"4\">\n<li><strong>Rebuild NVIDIA driver</strong></li>\n</ol>\n<pre><code class=\"language-bash\">sudo akmods --force\n</code></pre>\n<br>\n<p>Purpose:</p>\n<ul>\n<li>Force rebuild NVIDIA driver for the current kernel</li>\n<li>Ensure compatibility with the installed kernel</li>\n</ul>\n<br>\n<ol start=\"5\">\n<li><strong>Rebuild initramfs</strong></li>\n</ol>\n<pre><code class=\"language-bash\">sudo dracut --force\n</code></pre>\n<br>\n<p>Purpose:</p>\n<ul>\n<li>Rebuild boot image (initramfs)</li>\n<li>Ensure NVIDIA driver loads during boot</li>\n</ul>\n<br>\n<h3><strong>Conclusion</strong></h3>\n<br>\n<p><strong>Initial problem:</strong></p>\n<ul>\n<li>Kernel and NVIDIA driver were not synchronized.</li>\n</ul>\n<br>\n<p><strong>Solution summary:</strong></p>\n<ol>\n<li>Synchronize the system.</li>\n<li>Reinstall GUI components.</li>\n<li>Install NVIDIA driver.</li>\n<li>Rebuild the driver.</li>\n<li>Rebuild the boot system.</li>\n</ol>\n<br>\n<p><strong>Simple analogy:</strong></p>\n<ul>\n<li>Kernel = new engine</li>\n<li>NVIDIA driver = adapter</li>\n<li>KDE = dashboard</li>\n</ul>\n<br>\n<p><strong>What happened:</strong></p>\n<ul>\n<li>The engine was updated.</li>\n<li>The adapter was not compatible.</li>\n<li>The dashboard did not work.</li>\n</ul>\n<br>\n<p><strong>What we did:</strong></p>\n<ul>\n<li>Installed the correct adapter.</li>\n<li>Matched everything again.</li>\n<li>Restarted the system.</li>\n</ul>\n<br>\n<p><strong>Why does this happen often?</strong></p>\n<ul>\n<li>Linux kernel updates frequently.</li>\n<li>NVIDIA uses proprietary drivers (not native to Linux).</li>\n</ul>\n<p>Because of that, manual bridging using tools like akmod is often required.</p>\n<br>\n<h3><strong>Useful Links</strong></h3>\n<ul>\n<li><a href=\"https://www.nvidia.com/\">NVIDIA official website</a></li>\n<li><a href=\"https://discussion.fedoraproject.org/t/installing-nvidia-on-a-dual-linux-setup/112335\">Fedora discussion</a></li>\n<li><a href=\"https://www.linux.org/threads/issue-with-nvidia-driver-message-nobara-and-i-cant-seem-to-get-rid-of-it.42506/\">Linux.org discussion</a></li>\n<li><a href=\"https://wiki.nobaraproject.org/en/new-user-guide-general-guidelines\">Nobara user guide</a></li>\n</ul>"
+    },
+    {
+      "slug": "dual-boot",
+      "title": "Dual Booting",
+      "date": "2026-03-20T00:00:00.000Z",
+      "description": "I Try to dual boot my computer",
+      "tags": [
+        "yapping",
+        "journey",
+        "Experiment",
+        "Linux",
+        "Windows"
+      ],
+      "html": "<h3><strong>Introduction</strong></h3>\n<br>\n<p><strong>Hello</strong>, after thinking it over for so long, I finally decided to dual-boot my laptop with Linux and Windows, and it's already up and running.  I'm excited to share my journey and the experiences I've had so far. I hope you enjoy reading this and find it inspiring.\n<br>\n<br>\nTo be honest I'm not much of a yapper or a writer, but I do think that writing is an important skill, and I want to practice it here, because I want do it for fun. <br> <br></p>\n<h3><strong>Chapter 1</strong>: why the consideration? <br> <br></h3>\n<p>Why the hesitation?</p>\n<p>I've been planning to dual-boot this laptop for quite a while now, but I had some concerns—like what if I mess up the setup, will my Windows OS be safe? Does this laptop even support it? How's the RAM and memory usage when dual-booting, is it safe, etc.? And it turns out... <br> <br></p>\n<h3><strong>Chapter 2</strong>: Why choose Nobara Linux? <br> <br></h3>\n<ul>\n<li>It turns out it works; I asked a friend and they suggested using Nobara. Why Nobara specifically? Because Nobara is based on Fedora and already has NVIDIA graphics support, so I'll just need to install the drivers later. Why not something else? Because other OSs can be a pain with NVIDIA graphics and don't support them well, leading to errors during installation. Plus, not all Linux distros are great for gaming, haha. So, in the end, I decided to go with Nobara as my OS of choice. <br> <br></li>\n</ul>\n<h3><strong>Chapter 3</strong>: Installing and Setting Up Dual Boot (Nobara + Windows) <br> <br></h3>\n<p>Here is the practical setup flow I used, step by step. <br> <br></p>\n<ol>\n<li>\n<p><strong>Back up important files first</strong></p>\n<ul>\n<li>Before touching partitions, I backed up my documents and game saves to an external drive/cloud.</li>\n<li>If something goes wrong during partitioning, I can recover quickly. <br> <br></li>\n</ul>\n</li>\n<li>\n<p><strong>Prepare Windows before installing Linux</strong></p>\n<ul>\n<li>Disable <strong>Fast Startup</strong> in Windows.</li>\n<li>Suspend/disable <strong>BitLocker</strong> first if your system drive is encrypted.</li>\n<li>Open <strong>Disk Management</strong> and shrink the Windows partition to create unallocated space for Nobara (I recommend at least 80-120 GB). <br> <br></li>\n</ul>\n</li>\n<li>\n<p><strong>Download Nobara ISO and create a bootable USB</strong></p>\n<ul>\n<li>Download Nobara ISO from the official page.</li>\n<li>Burn it to USB using Rufus (Windows) or balenaEtcher. <br> <br></li>\n</ul>\n</li>\n<li>\n<p><strong>Boot from the USB installer</strong></p>\n<ul>\n<li>Reboot and open BIOS/UEFI boot menu (usually by pressing F2/F12/ESC/DEL depending on laptop brand).</li>\n<li>Make sure your system is using <strong>UEFI mode</strong>.</li>\n<li>If needed, temporarily disable <strong>Secure Boot</strong> so the installer and drivers work smoothly. <br> <br></li>\n</ul>\n</li>\n<li>\n<p><strong>Install Nobara</strong></p>\n<ul>\n<li>Select language, keyboard, timezone.</li>\n<li>Choose <strong>Custom/Manual partitioning</strong> (recommended for dual boot).</li>\n<li>Use the unallocated space you created from Windows.</li>\n<li>Keep the existing <strong>EFI partition</strong> (usually FAT32) and mount it to <code>/boot/efi</code> (do not format it).</li>\n<li>Create Linux partitions, for example:\n<ul>\n<li><code>/</code> (root): 50-80 GB (or more)</li>\n<li><code>swap</code>: 4-16 GB (optional, depends on RAM/hibernation needs)</li>\n<li><code>/home</code>: the rest (optional but recommended)</li>\n</ul>\n</li>\n<li>Continue install and let Nobara install {{term:GRUB|GRUB (Grand Unified Bootloader) is the boot manager that lets you choose which operating system to start.}} bootloader. <br> <br></li>\n</ul>\n</li>\n<li>\n<p><strong>First reboot and boot menu check</strong></p>\n<ul>\n<li>After installation, reboot and you should see <strong>{{term:GRUB|GRUB (Grand Unified Bootloader) is the menu shown at startup to choose Nobara or Windows.}}</strong> with entries for Nobara and Windows Boot Manager.</li>\n<li>Test both entries once to confirm both OS installations are healthy. <br> <br></li>\n</ul>\n</li>\n<li>\n<p><strong>Post-install setup (important)</strong></p>\n<ul>\n<li>Update packages:</li>\n</ul>\n</li>\n</ol>\n<pre><code class=\"language-bash\">sudo dnf upgrade --refresh -y\n</code></pre>\n<ul>\n<li>Install any pending GPU/NVIDIA updates from Nobara tools/software center.</li>\n<li>Set your default boot OS and timeout in {{term:GRUB|In GRUB settings, you can choose default OS and how long the boot menu appears.}} if needed. <br> <br></li>\n</ul>\n<h3><strong>Useful Links</strong> <br> <br></h3>\n<ul>\n<li>Nobara official website: <a href=\"https://nobaraproject.org/\">https://nobaraproject.org/</a></li>\n<li>Nobara download page: <a href=\"https://nobaraproject.org/download-nobara/\">https://nobaraproject.org/download-nobara/</a></li>\n<li>Rufus (bootable USB tool): <a href=\"https://rufus.ie/\">https://rufus.ie/</a></li>\n<li>balenaEtcher (bootable USB tool): <a href=\"https://etcher.balena.io/\">https://etcher.balena.io/</a></li>\n<li>Microsoft guide (Disk Management): <a href=\"https://learn.microsoft.com/windows-server/storage/disk-management/overview-of-disk-management\">https://learn.microsoft.com/windows-server/storage/disk-management/overview-of-disk-management</a></li>\n<li>Microsoft guide (BitLocker): <a href=\"https://support.microsoft.com/windows/turn-device-encryption-on-or-off\">https://support.microsoft.com/windows/turn-device-encryption-on-or-off</a></li>\n<li>Nobara New User Guide and General Usage Guidelines <a href=\"https://wiki.nobaraproject.org/en/new-user-guide-general-guidelines#:~:text=It%20is%20NOT%20recommended%20to,currently%20have%20an%20EFI%20partition.\">https://wiki.nobaraproject.org</a></li>\n</ul>"
+    },
+    {
+      "slug": "start",
+      "title": "Start",
+      "date": "2026-03-19T00:00:00.000Z",
+      "description": "The origin story",
+      "tags": [
+        "yapping",
+        "journey"
+      ],
+      "html": "<h3>Introduction</h3>\n<br>\n<p><strong>Hello</strong>, so this is my first blog post. I'm excited to share my journey and the experiences I've had so far. I hope you enjoy reading this and find it inspiring.\r\n<br>\r\n<br>\r\nTo be honest I'm not much of a yapper or a writer, but I do think that writing is an important skill, and I want to practice it here, because I want do it for fun. I will talk about several topics here, from my experience, my thoughts, and my ideas. I will also talk about my thoughts on technology, my thoughts on life, my journey as a developer, and my journey as a person. SO I Hope You Enjoy Reading This. <br> <br></p>\n<h3>Childhood</h3>\n<br>\nThe story starts back when I was a kid and why I loved computers so much. I forget what grade I was in, but it was definitely back in either elementary school or kindergarten. So, at that time, I was going out to play with my friends after finishing my meal. On the way to my friend's house, I saw my neighbor playing on a computer; he was playing a game called PvZ (Plants vs. Zombies), and to this day, it's still one of my favorite games. After watching him for quite a while, I finally went on to play with my friends. Back then, cell phones were still rare, let alone touchscreens or even a computer. From that moment on, I really fell in love with computers and always Learning about computer. <br> <br>\n<h3><strong>Chapter 1</strong>: Why did you choose the COMPUTER AND NETWORK ENGINEERING major? <br> <br></h3>\n<p>Well, at first, I thought it was a computer major focused on coding, but it turned out to be focused on networking. But from there, I learned a lot about how the internet works, what IP addresses and DNS are, etc. During practical sessions, we often used physical hardware like Mikrotik for configuration. Besides that, we were trained as IT Support and I also learned about Operating Systems, specifically Linux. I learned a lot about Linux in addition to Windows, though I still taught myself programming through YouTube videos and various other sources. Long story short, leading up to our graduation exams, our whole class was told to create a project as a graduation requirement. The theme was up to us—some made websites, IoT projects, etc. I wanted to do something different from everyone else, so I decided to make a game. Since I saw no one else was doing it, I went for it and got support from my teacher. To make a long story short, the project was eventually finished using Unity 3D and C#. You can check it out <a href=\"https://alex-game-dev-indonesia.itch.io/escape-from-alex\">here</a>. <br> <br> Oh yeah, this was a team project, and we finally GRADUATED. <br> <br></p>\n<h3>LOADING.... (wkwkwkwkw) <br> <br></h3>\n<!-- \n### Diff Example\n\n```diff\n--- old/greeting.txt\n+++ new/greeting.txt\n@@ -1 +1 @@\n-hello\n+Happy coding\n``` -->"
+    }
+  ],
+  "projects": [
+    {
+      "slug": "decimatex",
+      "title": "Decimatex",
+      "year": "2026",
+      "description": "A Decision Support System (DSS) platform that automates decision analysis using MCDM (Multi-Criteria Decision Making) methods.",
+      "fullDescriptionHtml": "<h2>The Problem</h2>\n<p>So, since in the fourth semester of my study, I encountered a Decision Support System course, I needed a fast and reliable way to calculate and make decisions. However, there was no available platform to perform these calculations. While AI tools sometimes failed to provide accurate answers, I decided to develop my own DSS platform to assist students, lecturers, and others in making effective decisions.</p>\n<h2>The Solution</h2>\n<p>I decided to develop Decimatex, a Decision Support System (DSS) platform that automates decision analysis using MCDM (Multi-Criteria Decision Making) methods. The platform is designed to be user-friendly, efficient, and reliable. It provides a user-friendly interface for calculating and making decisions, and it also provides a dashboard for monitoring the system's performance.</p>\n<h2>Project Overview</h2>\n<p>Decimatex is a Decision Support System (DSS) platform designed to automate decision analysis using MCDM (Multi-Criteria Decision Making) methods. The motivation for creating this platform came from my experience during the fourth semester, when I encountered a Decision Support System course. I needed a fast and reliable way to calculate and make decisions, but there was no available platform to perform these calculations. While AI tools sometimes failed to provide accurate answers, I decided to develop my own DSS platform to assist students, lecturers, and others in making effective decisions.</p>\n<h3>Key Features</h3>\n<ul>\n<li>User-friendly interface for calculating and making decisions</li>\n<li>Dashboard for monitoring the system's performance</li>\n<li>Integration with various databases and APIs</li>\n<li>Customizable and extensible</li>\n</ul>\n<h3>Technologies Used</h3>\n<ul>\n<li><a href=\"https://bun.sh/docs\">Bun</a> - A modern and fast JavaScript runtime for Bun.</li>\n<li><a href=\"https://tanstack.com/\">Tanstack</a> - A collection of React components and hooks for building performant and accessible user interfaces.</li>\n<li><a href=\"https://effect.website/\">Effect</a> - A React state management library for building performant and reliable applications.</li>\n<li><a href=\"https://hono.dev/\">Hono</a> - A simple and powerful web framework for building web applications and APIs.</li>\n<li><a href=\"https://orm.drizzle.team/\">Drizzle</a> - A TypeScript-first ORM for PostgreSQL, MySQL, MariaDB, SQLite, and MongoDB.</li>\n<li><a href=\"https://www.postgresql.org/docs/\">PostgreSQL</a> - A powerful, open-source relational database management system.</li>\n<li><a href=\"https://tailwindcss.com/docs\">Tailwind CSS</a> - A utility-first CSS framework for rapidly building custom designs.</li>\n<li><a href=\"https://www.electronjs.org/docs\">Electron</a> - A framework for building cross-platform desktop applications using web technologies.</li>\n</ul>",
+      "image": "/images/decimatex.webp",
+      "repoLink": "https://github.com/AlexanderDev2004/decimatex",
+      "technologies": [
+        {
+          "name": "bun",
+          "icon": "simple-icons:bun",
+          "docLink": "https://bun.sh/docs"
+        },
+        {
+          "name": "tanstack",
+          "icon": "simple-icons:tanstack",
+          "docLink": "https://tanstack.com/"
+        },
+        {
+          "name": "effect",
+          "icon": "simple-icons:effect",
+          "docLink": "https://effect.website/"
+        },
+        {
+          "name": "hono",
+          "icon": "simple-icons:hono",
+          "docLink": "https://hono.dev/"
+        },
+        {
+          "name": "drizzle",
+          "icon": "simple-icons:drizzle",
+          "docLink": "https://orm.drizzle.team/"
+        },
+        {
+          "name": "postgresql",
+          "icon": "simple-icons:postgresql",
+          "docLink": "https://www.postgresql.org/docs/"
+        },
+        {
+          "name": "tailwindcss",
+          "icon": "simple-icons:tailwindcss",
+          "docLink": "https://tailwindcss.com/docs"
+        },
+        {
+          "name": "electron",
+          "icon": "simple-icons:electron",
+          "docLink": "https://www.electronjs.org/docs"
+        }
+      ]
+    },
+    {
+      "slug": "gittrace",
+      "title": "GitTrace",
+      "year": "2026",
+      "description": "A Flutter Desktop application that generates monthly internship reports based on local Git activity with interactive calendar visualization and multi-format export.",
+      "fullDescriptionHtml": "<h2>The Problem</h2>\n<p>During internships, students and professionals are often required to submit monthly activity reports based on their Git commits. However, manually compiling these reports is tedious and error-prone. There was no easy way to automatically track Git activity and generate a well-formatted report in standard formats like Excel, Word, or PDF.</p>\n<h2>The Solution</h2>\n<p>I developed GitTrace, a Flutter Desktop application that automatically scans local Git repositories, visualizes commit activity in an interactive calendar, and generates professional monthly reports in multiple formats (Excel, Word, PDF). The app also supports working hour tracking, duplicate commit resolution, and custom Word templates for institutional requirements.</p>\n<h2>Project Overview</h2>\n<p>GitTrace is a cross-platform Flutter Desktop application built to simplify the process of creating monthly internship or work reports from local Git activity. The app recursively scans your project directories, detects all Git repositories, and compiles your commit history into an interactive monthly calendar. It allows you to adjust working hours, edit activity descriptions, and export reports in Excel, Word, or PDF formats with proper formatting.</p>\n<h2>Key Features</h2>\n<ul>\n<li>Interactive calendar dashboard with daily commit statistics</li>\n<li>Automatic Git repository scanning and detection</li>\n<li>Working hours tracking with bulk set functionality</li>\n<li>Activity description editing with auto-save draft</li>\n<li>Duplicate commit merging or separation</li>\n<li>Multi-format export: Excel (.xlsx), Word (.docx), and PDF (.pdf)</li>\n<li>Custom Word template support with variable substitution</li>\n<li>Post-export file manager integration</li>\n<li>Premium dark mode theme</li>\n<li>CI/CD automation with GitHub Actions for releases</li>\n</ul>\n<h2>Contributors</h2>\n<ul>\n<li><a href=\"https://github.com/AlexanderDev2004\">AlexanderDev2004</a></li>\n<li><a href=\"https://github.com/ekyaaa\">ekyaaa</a></li>\n</ul>\n<h2>Technologies Used</h2>\n<ul>\n<li><a href=\"https://docs.flutter.dev/\">Flutter</a> - A UI toolkit for building natively compiled applications for mobile, web, and desktop from a single codebase.</li>\n<li><a href=\"https://dart.dev/\">Dart</a> - A client-optimized programming language for apps on any platform.</li>\n<li><a href=\"https://git-scm.com/doc\">Git</a> - A free and open source distributed version control system designed to handle everything from small to very large projects.</li>\n</ul>",
+      "image": "/images/gittrace.webp",
+      "projectLink": "https://github.com/ekyaaa/git_trace/releases/tag/v2.0.0",
+      "repoLink": "https://github.com/ekyaaa/git_trace",
+      "technologies": [
+        {
+          "name": "Flutter",
+          "icon": "simple-icons:flutter",
+          "docLink": "https://docs.flutter.dev/"
+        },
+        {
+          "name": "Dart",
+          "icon": "simple-icons:dart",
+          "docLink": "https://dart.dev/"
+        },
+        {
+          "name": "Git",
+          "icon": "simple-icons:git",
+          "docLink": "https://git-scm.com/doc"
+        }
+      ]
+    },
+    {
+      "slug": "portofolio-alex",
+      "title": "Portofolio Alex",
+      "year": "2026",
+      "description": "My personal portfolio website — rebuilt from scratch with TanStack Start",
+      "fullDescriptionHtml": "<h2>Project Summary</h2>\n<p>This is my personal portfolio, fully rewritten from the ground up. The previous version was built with Astro, Svelte, and Tailwind; this one moves the whole site to <strong>TanStack Start with React 19 and TypeScript</strong>, keeps a markdown-driven content flow, and deploys automatically to <strong>Cloudflare Workers</strong> on every push. The visual language stayed in the same family — a warm beige background with a matte sage palette — but everything under the hood is new.</p>\n<h2>The Problem</h2>\n<p>The old portfolio (Astro + Svelte) worked fine as a static site, but I kept running into its ceiling: I wanted live GitHub data on the home page, per-route typed metadata, and a deployment pipeline I didn't have to babysit. Mixing interactive islands into Astro also made every new feature feel bolted on. So instead of patching it, I treated it as a rewrite.</p>\n<h2>The Solution</h2>\n<p>I rebuilt the entire site on TanStack Start with a file-based, type-safe router and React 19. Content stayed in Markdown (projects, blogs, security reports) but now flows through a small typed content pipeline instead of framework-specific collections. GitHub activity and merged pull requests are fetched at build time into a snapshot and silently refreshed on the client with TanStack Query — instant first paint, fresh data after hydration. Every push to <code>master</code> builds and deploys to Cloudflare Workers through GitHub Actions.</p>\n<h2>Key Features</h2>\n<h3>Framework &#x26; Rendering</h3>\n<ul>\n<li>TanStack Start with file-based routing and a generated, fully type-safe route tree.</li>\n<li>Static prerendering for every content page, so first paint is instant.</li>\n<li>Per-route SEO metadata through typed <code>head()</code> definitions (canonical, Open Graph, Twitter cards).</li>\n</ul>\n<h3>Content Pipeline</h3>\n<ul>\n<li>Markdown sources for projects, blogs, and security reports with consistent frontmatter.</li>\n<li>A small typed loader that parses frontmatter into <code>Project</code> / <code>BlogPost</code> objects at build time.</li>\n<li>Slug normalization kept consistent between URLs, content lookups, and OG image filenames.</li>\n</ul>\n<h3>Live GitHub Integration</h3>\n<ul>\n<li>Contributions heatmap (365 days) rendered as a lightweight CSS grid.</li>\n<li>Merged pull requests grouped per repository, with additions/deletions and merge dates.</li>\n<li>Build-time snapshot + TanStack Query client refresh: fast by default, fresh when data changes.</li>\n</ul>\n<h3>OG Image Generation</h3>\n<ul>\n<li>Build-time Python (Pillow) script that renders a 1200×630 card for the home page and every blog, project, and report.</li>\n<li>Cards use the site's own palette and fonts, so link previews match the site.</li>\n<li>Versioned image URLs (<code>?v=YYMMDD</code>) so crawlers re-fetch after redesigns.</li>\n</ul>\n<h3>Design &#x26; UX</h3>\n<ul>\n<li>Matte sage/beige design system with flat hairline lists instead of heavy card boxes.</li>\n<li>Collapsible sections (work experience, open source contributions) with keyboard support.</li>\n<li>A looping \"Hideout\" pattern background revealed inside blurred circle masks, with a subtle mouse parallax — fully disabled under <code>prefers-reduced-motion</code>.</li>\n<li>Responsive down to small phones, including responsive embeds for YouTube/video/audio inside articles.</li>\n</ul>\n<h3>Deployment &#x26; Ops</h3>\n<ul>\n<li>GitHub Actions CI/CD: install → fetch GitHub data → generate OG images → typecheck → build → <code>wrangler deploy</code>.</li>\n<li>Hosted on Cloudflare Workers with a custom domain (alexanderar.com).</li>\n</ul>\n<h2>Challenges &#x26; Learnings</h2>\n<ul>\n<li>Migrating from Astro + Svelte to TanStack Start taught me how far you can push a type-safe router — routes, params, and loaders are all checked at compile time.</li>\n<li>Learned to keep hydration deterministic: randomized UI (like the background mask) is generated from a seeded PRNG so server and client agree.</li>\n<li>Got practical experience with edge deployment: static prerender + Workers assets, with CI doing the heavy lifting on every push.</li>\n</ul>",
+      "image": "/images/PortoAlx-v2-tanstack.webp",
+      "projectLink": "https://alexanderar.com",
+      "repoLink": "https://github.com/AlexanderDev2004/alexanderar.com",
+      "technologies": [
+        {
+          "name": "TanStack Start",
+          "icon": "simple-icons:tanstack",
+          "docLink": "https://tanstack.com/start"
+        },
+        {
+          "name": "React",
+          "icon": "simple-icons:react",
+          "docLink": "https://react.dev/"
+        },
+        {
+          "name": "Tailwind CSS",
+          "icon": "simple-icons:tailwindcss",
+          "docLink": "https://tailwindcss.com/"
+        },
+        {
+          "name": "Bun",
+          "icon": "simple-icons:bun",
+          "docLink": "https://bun.com/"
+        },
+        {
+          "name": "TypeScript",
+          "icon": "simple-icons:typescript",
+          "docLink": "https://www.typescriptlang.org/"
+        },
+        {
+          "name": "Cloudflare Workers",
+          "icon": "simple-icons:cloudflare",
+          "docLink": "https://workers.cloudflare.com/"
+        }
+      ]
+    },
+    {
+      "slug": "ijen-driver",
+      "title": "Ijen Driver",
+      "year": "2025",
+      "description": "Ijen Driver is a website for booking tours desired by travelers, including both domestic and international guests. Travelers can choose destinations such as Ijen Crater, Bromo, Tumpak Sewu Waterfall, and more.",
+      "fullDescriptionHtml": "<h2>The Problem</h2>\n<p>This project started because of my parents' work as tour drivers in Indonesia, covering places like Ijen Crater, Bromo, Tumpak Sewu, and more.\r\nThey actually already had their own website, but when I saw it, I thought to myself, \"This could be improved and made much more user-friendly.\" For example, the UI/UX design could be polished, and the business processes need to be refined.</p>\n<h2>The Solution</h2>\n<p>I decided to develop Ijen Driver to help and make things easier for tour drivers in their work, so they can be better understood by guests who want to vacation in Indonesia.</p>\n<h2>Project Overview</h2>\n<p>Ijen Driver is a website Booking Tour Driver like in Banyuwangi, Bali, etc. basicle\r\nthis project Using Laravel and Tailwindcss and then databases using Mysql.</p>\n<h2>Key Features</h2>\n<ul>\n<li>User-friendly interface for booking tours</li>\n<li>Easy navigation and search functionality</li>\n<li>Detailed information about tours and their locations</li>\n<li>Integration with various databases and APIs</li>\n<li>Customizable and extensible</li>\n</ul>\n<h2>Technologies Used</h2>\n<ul>\n<li><a href=\"https://laravel.com/\">Laravel</a> - A PHP web framework for building web applications.</li>\n<li><a href=\"https://www.mysql.com/\">MySQL</a> - A popular open-source relational database management system.</li>\n<li><a href=\"https://tailwindcss.com/\">Tailwind CSS</a> - A utility-first CSS framework for rapidly building custom designs.</li>\n</ul>",
+      "image": "/images/ijen-driver.webp",
+      "repoLink": "https://github.com/AlexanderDev2004/ijen-driver",
+      "technologies": [
+        {
+          "name": "Laravel",
+          "icon": "simple-icons:laravel",
+          "docLink": "https://laravel.com/"
+        },
+        {
+          "name": "MySQL",
+          "icon": "simple-icons:mysql",
+          "docLink": "https://www.mysql.com/"
+        },
+        {
+          "name": "Tailwind CSS",
+          "icon": "mdi:tailwind",
+          "docLink": "https://tailwindcss.com/"
+        }
+      ]
+    },
+    {
+      "slug": "lapor-sana",
+      "title": "Lapor Sana",
+      "year": "2025",
+      "description": "Lapor Sana is a website to create and manage facility problems on campus, facility improvements with the integration of a decision support system, which provides recommendations for solving existing problems on campus.",
+      "fullDescriptionHtml": "<h2>The Problem</h2>\n<p>Facility problems on campus are a common issue that students, faculty, and staff face. These problems can range from maintenance issues to safety concerns, and they can be challenging to address. Facility improvements are another area where the campus needs improvement. However, there is a lack of resources and expertise to make these improvements happen.</p>\n<h2>The Solution</h2>\n<p>Laporsana is a website to create and manage facility problems on campus, facility improvements with the integration of a decision support system, which provides recommendations for solving existing problems on campus.</p>\n<h2>Project Overview</h2>\n<p><strong>Laporsana</strong> is a website to create and manage facility problems on campus, facility improvements with the integration of a decision support system, which provides recommendations for solving existing problems on campus.\r\ni using build this project using Laravel, TailwindCss and then databases using Mysql oh yeah i make feature recomended Facility Item Campus and i make recommendation for that item. using python for the recommendation system.</p>\n<h2>Key Features</h2>\n<ul>\n<li>User-friendly interface for creating and managing facility problems</li>\n<li>Integration with a decision support system for recommending solutions</li>\n<li>Customizable and extensible</li>\n</ul>\n<h2>Technologies Used</h2>\n<ul>\n<li><a href=\"https://laravel.com/\">Laravel</a> - A PHP web framework for building web applications.</li>\n<li><a href=\"https://www.mysql.com/\">MySQL</a> - A popular open-source relational database management system.</li>\n<li><a href=\"https://tailwindcss.com/\">Tailwind CSS</a> - A utility-first CSS framework for rapidly building custom designs.</li>\n<li><a href=\"https://www.python.org/\">Python</a> - A high-level, interpreted, and general-purpose programming language.</li>\n<li><a href=\"https://fastapi.tiangolo.com/\">FastAPI</a> - A modern, fast (high-performance), web framework for building APIs with Python 3.7+ based on standard Python type hints.</li>\n</ul>",
+      "image": "/images/laporsana.webp",
+      "repoLink": "https://github.com/AlexanderDev2004/LaporSana",
+      "technologies": [
+        {
+          "name": "Laravel",
+          "icon": "simple-icons:laravel",
+          "docLink": "https://laravel.com/"
+        },
+        {
+          "name": "MySQL",
+          "icon": "simple-icons:mysql",
+          "docLink": "https://www.mysql.com/"
+        },
+        {
+          "name": "Tailwind CSS",
+          "icon": "mdi:tailwind",
+          "docLink": "https://tailwindcss.com/"
+        },
+        {
+          "name": "Python",
+          "icon": "simple-icons:python",
+          "docLink": "https://www.python.org/"
+        },
+        {
+          "name": "FastAPi",
+          "icon": "simple-icons:fastapi",
+          "docLink": "https://fastapi.tiangolo.com/"
+        }
+      ]
+    },
+    {
+      "slug": "magicaffeine-story",
+      "title": "Magicaffeine Story",
+      "year": "2025",
+      "description": "You were a coffee-loving barista in your previous life, but now you've been thrown into a fantasy world.",
+      "fullDescriptionHtml": "<h2>What is this project?</h2>\n<p>In your past life, you were a coffee-loving barista, but now you've been thrust into a fantasy world. One day, longing for the familiar comfort of coffee, you try a local brew—only to find that something is terribly wrong with the taste. It's bland, bitter, and completely lacks the soul you once knew. Determined to bring real coffee to this foreign land, you decide to open your own coffee shop. Your mission: to share the rich, delicious flavors of coffee with the inhabitants of this new realm, and maybe, just maybe, spark a cultural revolution—one cup at a time.</p>\n<h2>The Solution</h2>\n<p>This project demonstrates my ability to build games with a narrative feel and focused mechanics. The game was developed using Unity 2D and C#. The focus is on character-driven exploration as well as gameplay aspects that are relaxing yet still engaging for players.</p>\n<h2>Project Overview</h2>\n<p>In your past life, you were a coffee-loving barista, but now you've been thrust into a fantasy world.</p>\n<h3>Key Features</h3>\n<ul>\n<li><strong>Exploration:</strong> Explore various environments filled with secrets and hidden challenges.</li>\n<li><strong>Game Design:</strong> Engaging and challenging game mechanics to keep players hooked.</li>\n</ul>\n<h3>Technical Implementation</h3>\n<p>The game was developed using Unity 2D and C#. The focus is on character-driven exploration as well as gameplay aspects that are relaxing yet still engaging for players. Overall, this project showcases my ability to build games with a narrative feel and focused mechanics, and my role as a Game Designer in developing the story and game systems.</p>\n<h2>Technologies Used</h2>\n<ul>\n<li><a href=\"https://unity.com\">Unity</a> - A game engine that allows developers to create 2D and 3D games.</li>\n<li><a href=\"https://learn.microsoft.com/en-us/dotnet/csharp/\">C#</a> - A programming language developed by Microsoft.</li>\n<li><a href=\"https://en.wikipedia.org/wiki/Game_design\">Game Design</a> - A process of designing and developing games.</li>\n</ul>",
+      "image": "/images/magicaffeine.webp",
+      "projectLink": "https://amamiyarn.itch.io/93-si-tanpa-cahaya-student-magicaffeine",
+      "technologies": [
+        {
+          "name": "Unity",
+          "icon": "mdi:unity",
+          "docLink": "https://unity.com"
+        },
+        {
+          "name": "C#",
+          "icon": "mdi:language-csharp",
+          "docLink": "https://learn.microsoft.com/en-us/dotnet/csharp/"
+        },
+        {
+          "name": "Game Design",
+          "icon": "mdi:gamepad-variant",
+          "docLink": "https://en.wikipedia.org/wiki/Game_design"
+        }
+      ]
+    },
+    {
+      "slug": "jawara",
+      "title": "RuangWarga",
+      "year": "2025",
+      "description": "RuangWarga App Managament System Citizen & Economy",
+      "fullDescriptionHtml": "<h1>🏘️ Jawara (RuangWarga)</h1>\n<p>Jawara is a neighborhood (RT) management mobile app built with Flutter and a FastAPI backend. It helps citizens and admins handle daily community tasks in one place.</p>\n<hr>\n<h2>✨ Key Features</h2>\n<p><strong>For Citizens</strong></p>\n<ul>\n<li>Dashboard with announcements and quick actions.</li>\n<li>Marketplace for buying and selling items.</li>\n<li>Monthly fee payments and transaction history.</li>\n<li>Digital document requests (domicile/business letters).</li>\n<li>Issue reporting (security, infrastructure, etc.).</li>\n<li>Community activities and events.</li>\n<li>Profile and family data management.</li>\n</ul>\n<p><strong>For Admins</strong></p>\n<ul>\n<li>Admin dashboard with statistics and overview.</li>\n<li>Approve/reject new registrations.</li>\n<li>Manage banners and announcements.</li>\n<li>Full CRUD for activities (with photo uploads).</li>\n<li>Review document requests and citizen reports.</li>\n<li>Finance monitoring and fee management.</li>\n<li>Marketplace transaction oversight.</li>\n</ul>\n<hr>\n<h2>🛠️ Tech Stack</h2>\n<ul>\n<li>Flutter (Riverpod, GoRouter, Dio)</li>\n<li>FastAPI (Python)</li>\n<li>PostgreSQL</li>\n<li>SharedPreferences, FlutterSecureStorage</li>\n</ul>\n<hr>\n<h2>📱 Platform</h2>\n<ul>\n<li>Android (Min SDK 21)</li>\n</ul>\n<hr>\n<h2>👥 Team</h2>\n<ul>\n<li>Alex (Full-Stack Developer)</li>\n<li>Ninis (ML/AI Developer)</li>\n<li>Candra (Frontend Developer)</li>\n<li>Ekya (Full-Stack Developer)</li>\n</ul>",
+      "image": "/images/jawara.webp",
+      "repoLink": "https://github.com/pblkelompok1/ti3h_k1_jawara",
+      "technologies": [
+        {
+          "name": "Flutter",
+          "icon": "simple-icons:flutter",
+          "docLink": "https://flutter.dev/"
+        },
+        {
+          "name": "python",
+          "icon": "simple-icons:python",
+          "docLink": "https://www.python.org/"
+        },
+        {
+          "name": "PostgreSQL",
+          "icon": "simple-icons:postgresql",
+          "docLink": "https://www.postgresql.org/"
+        },
+        {
+          "name": "FastAPI",
+          "icon": "simple-icons:fastapi",
+          "docLink": "https://fastapi.tiangolo.com/"
+        },
+        {
+          "name": "Go",
+          "icon": "simple-icons:go",
+          "docLink": "https://go.dev/"
+        }
+      ]
+    },
+    {
+      "slug": "escape-from-alex",
+      "title": "Escape from Alex",
+      "year": "2023",
+      "description": "Escape From Alex is a game horror game where you have to escape from a haunted house. I used Unity and C# to develop this game.",
+      "fullDescriptionHtml": "<h2>Project Overview</h2>\n<p>Escape From Alex is a horror game where you must escape from a haunted house. I used Unity and C# to develop this game, and it was created as a requirement for my vocational school graduation. with my team.</p>\n<h3>Demo Video</h3>\n<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/9xY0kRSgVW8?si=xItQWNonl2dkvEVU\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>\n<h3>Key Features</h3>\n<ul>\n<li><strong>Exploration:</strong> Navigate through diverse environments filled with hidden secrets and challenges.</li>\n<li><strong>Desain Game:</strong> Engaging and challenging game mechanics to keep players engaged.</li>\n<li><strong>Combat:</strong> Engage in dynamic combat with a diverse arsenal of weapons and enemies.</li>\n<li><strong>Storyline:</strong> Witness a gripping storyline that unfolds as you progress through the game.</li>\n<li><strong>User Interface:</strong> A modern and intuitive user interface that enhances the overall gaming experience.</li>\n<li><strong>Performance:</strong> Optimized for fast loading times and smooth gameplay on various platforms.</li>\n</ul>\n<h3>Technical Implementation</h3>\n<p>The game is developed using Unity, leveraging its powerful features for 2D game development. C# is used for scripting game mechanics, AI behavior, and user interactions. The game utilizes Unity's built-in lighting system to create dynamic and immersive environments. and in project my role is Game Desain and Game Developer.</p>",
+      "image": "/images/logoiconhorror.webp",
+      "projectLink": "https://alex-game-dev-indonesia.itch.io/escape-from-alex",
+      "technologies": [
+        {
+          "name": "Unity",
+          "icon": "mdi:unity",
+          "docLink": "https://unity.com"
+        },
+        {
+          "name": "C#",
+          "icon": "mdi:language-csharp",
+          "docLink": "https://learn.microsoft.com/en-us/dotnet/csharp/"
+        },
+        {
+          "name": "Game Design",
+          "icon": "mdi:gamepad-variant",
+          "docLink": "https://en.wikipedia.org/wiki/Game_design"
+        }
+      ]
+    },
+    {
+      "slug": "flora-quest",
+      "title": "Flora Quest",
+      "year": "2023",
+      "description": "Flora Quest is a game that combines exploration, combat, and storytelling. You will fight, upgrade, and survive.",
+      "fullDescriptionHtml": "<h2>Project Overview</h2>\n<p>Flora Quest is a game that combines exploration, combat, and storytelling. You will fight, upgrade, and survive. The game is built using Unity and C#. It features a unique combat system, dynamic lighting, and a captivating storyline. The game is available on PC platforms. Btw This Project is made in 72 hours for a Game Jam + 2023.</p>\n<h3>Demo Video</h3>\n<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/AWvBH-RxmzI?si=GFpf2eHwRNaVhKOx\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>\n<h3>Key Features</h3>\n<ul>\n<li><strong>Exploration:</strong> Navigate through diverse environments filled with hidden secrets and challenges.</li>\n<li><strong>Combat:</strong> Engage in dynamic combat with a diverse arsenal of weapons and enemies.</li>\n<li><strong>Storyline:</strong> Witness a gripping storyline that unfolds as you progress through the game.</li>\n<li><strong>User Interface:</strong> A modern and intuitive user interface that enhances the overall gaming experience.</li>\n<li><strong>Performance:</strong> Optimized for fast loading times and smooth gameplay on various platforms.</li>\n<li><strong>Desain Game:</strong> Engaging and challenging game mechanics to keep players engaged.</li>\n</ul>\n<h3>Technical Implementation</h3>\n<p>The game is developed using Unity, leveraging its powerful features for 2D game development. C# is used for scripting game mechanics, AI behavior, and user interactions. The game utilizes Unity's built-in lighting system to create dynamic and immersive environments. and in project my role is Game Desain.</p>",
+      "image": "/images/FloraQuesst.webp",
+      "projectLink": "https://poligamedev.itch.io/floraquest-the-last-seed",
+      "technologies": [
+        {
+          "name": "Unity",
+          "icon": "mdi:unity",
+          "docLink": "https://unity.com"
+        },
+        {
+          "name": "C#",
+          "icon": "mdi:language-csharp",
+          "docLink": "https://learn.microsoft.com/en-us/dotnet/csharp/"
+        },
+        {
+          "name": "Game Design",
+          "icon": "mdi:gamepad-variant",
+          "docLink": "https://en.wikipedia.org/wiki/Game_design"
+        }
+      ]
+    }
+  ],
+  "reports": [
+    {
+      "slug": "polinema-simmagang-idor-2026-06-17-v1-0",
+      "title": "Broken Access Control (IDOR) on Student Internship Information System",
+      "date": "2026-06-17T00:00:00.000Z",
+      "author": "Alexander Agung Raya",
+      "severity": "Critical",
+      "cwe": "CWE-639",
+      "owasp": "OWASP A01",
+      "tags": [
+        "IDOR",
+        "Broken Access Control",
+        "Web Security",
+        "Authorization Bypass"
+      ],
+      "html": "<h2><strong>Executive Summary</strong></h2>\n<p>A critical <strong>Insecure Direct Object Reference (IDOR)</strong> vulnerability was discovered in the Student Internship Information System's internship registration module. The flaw enables authenticated users to access, view, and potentially modify other students' personal data — including National Identity Numbers, academic records, and supporting documents — by simply altering the ID parameter in the URL. This represents a severe breach of access control that compromises the confidentiality and integrity of student data across the platform.</p>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n<table><thead><tr><th>Severity</th><th>Category</th><th>Impact Scope</th></tr></thead><tbody><tr><td><strong>Critical</strong></td><td>Broken Access Control</td><td>All registered students</td></tr></tbody></table>\n<hr>\n<h2><strong>Finding Information</strong></h2>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n<table><thead><tr><th>Field</th><th>Value</th></tr></thead><tbody><tr><td><strong>Title</strong></td><td>Broken Access Control (IDOR) on Student Internship Information System</td></tr><tr><td><strong>Discovery Date</strong></td><td>June 17, 2026</td></tr><tr><td><strong>Discovered By</strong></td><td>Alexander Agung Raya</td></tr><tr><td><strong>Risk Severity</strong></td><td>High / Critical</td></tr></tbody></table>\n<hr>\n<h2><strong>Summary</strong></h2>\n<p>A Broken Access Control (IDOR) vulnerability was discovered in the internship registration module. Authenticated users can access other students' data by simply modifying the ID parameter in the URL.</p>\n<h3>Exposed Data Fields</h3>\n<ul>\n<li>Full Name</li>\n<li>Student ID (NIM)</li>\n<li>National Identity Number (NIK)</li>\n<li>GPA (IPK)</li>\n<li>Department</li>\n<li>Study Program</li>\n<li>City/Regency</li>\n<li>Supporting Documents</li>\n<li>Internship Company Information</li>\n</ul>\n<hr>\n<h2><strong>Affected URL</strong></h2>\n<p><strong>Example:</strong></p>\n<pre><code>https://[REDACTED]/mw/pendaftar/proses/pr1/[ID_XXXXX]\n</code></pre>\n<p>When the parameter is modified to:</p>\n<pre><code>https://[REDACTED]/mw/pendaftar/proses/pr1/[ID_YYYYY]\n</code></pre>\n<p>The system displays another student's data.</p>\n<hr>\n<h2><strong>Reproduction Steps</strong></h2>\n<h3>Step 1</h3>\n<p>Log in using a valid student account.</p>\n<h3>Step 2</h3>\n<p>Navigate to the personal internship data page.</p>\n<pre><code>https://[REDACTED]/mw/pendaftar/proses/pr1/[ID_XXXXX]\n</code></pre>\n<h3>Step 3</h3>\n<p>Modify the ID parameter in the URL to a different ID.</p>\n<p><strong>Example:</strong></p>\n<pre><code>https://[REDACTED]/mw/pendaftar/proses/pr1/[ID_YYYYY]\n</code></pre>\n<h3>Step 4</h3>\n<p>Press Enter.</p>\n<hr>\n<h2><strong>Results</strong></h2>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n<table><thead><tr><th></th><th>Description</th></tr></thead><tbody><tr><td><strong>Actual Result</strong></td><td>Another student's data is accessible.</td></tr><tr><td><strong>Expected Result</strong></td><td>The system should deny access (403 Forbidden), display a not found page (404), or ensure only the data owner can access their data.</td></tr></tbody></table>\n<hr>\n<h2><strong>Impact</strong></h2>\n<p>Potential exposure of student personal data:</p>\n<ul>\n<li>Full Name</li>\n<li>Student ID (NIM)</li>\n<li>National Identity Number (NIK)</li>\n<li>Academic Information</li>\n<li>Supporting Documents</li>\n</ul>\n<p>If the edit function is also exploitable, an attacker could:</p>\n<ul>\n<li>Modify other students' data</li>\n<li>Replace uploaded documents</li>\n<li>Compromise the integrity of internship registration data</li>\n</ul>\n<hr>\n<h2><strong>Evidence</strong></h2>\n<p>Screenshots are pending; the following commands reproduce the issue end-to-end. The host, session identifier, and all personal values are redacted.</p>\n<blockquote>\n<p><strong>Note:</strong> Route suffixes and parameter names are illustrative and may differ from the live platform.</p>\n</blockquote>\n<pre><code class=\"language-bash\"># 1. Personal data of the authenticated user\ncurl -s \"https://[REDACTED]/mw/pendaftar/proses/pr1/[ID_XXXXX]\" \\\n  -b \"laravel_session=[REDACTED]\"\n# Response: HTTP/1.1 200 OK — the user's own personal data is returned\n</code></pre>\n<pre><code class=\"language-bash\"># 2. Another student's data accessed by changing the URL ID\ncurl -s \"https://[REDACTED]/mw/pendaftar/proses/pr1/[ID_YYYYY]\" \\\n  -b \"laravel_session=[REDACTED]\"\n# Response: HTTP/1.1 200 OK — another student's personal data is returned\n</code></pre>\n<pre><code class=\"language-bash\"># 3. Edit form rendered for another student's data\ncurl -s \"https://[REDACTED]/mw/pendaftar/proses/pr1/[ID_YYYYY]/edit\" \\\n  -b \"laravel_session=[REDACTED]\"\n# Response: HTTP/1.1 200 OK — edit form is accessible without an ownership check\n</code></pre>\n<pre><code class=\"language-bash\"># 4. Editing another student's data\ncurl -s -X POST \"https://[REDACTED]/mw/pendaftar/proses/pr1/[ID_YYYYY]\" \\\n  -b \"laravel_session=[REDACTED]\" \\\n  -d \"nama=[REDACTED]&#x26;nik=[REDACTED]&#x26;ipk=[REDACTED]\"\n# Response: HTTP/1.1 200 OK — the submitted changes are accepted\n</code></pre>\n<pre><code class=\"language-bash\"># 5. Modified data appears in the attacker's registration list\ncurl -s \"https://[REDACTED]/mw/pendaftar/proses/pr1\" \\\n  -b \"laravel_session=[REDACTED]\"\n</code></pre>\n<pre><code class=\"language-bash\"># 6. The record now belongs to the attacker (originally another student's)\ncurl -s \"https://[REDACTED]/mw/pendaftar/proses/pr1/[ID_YYYYY]\" \\\n  -b \"laravel_session=[REDACTED]\"\n</code></pre>\n<blockquote>\n<p><strong>Note:</strong> Sensitive personal information has been redacted for privacy.</p>\n</blockquote>\n<hr>\n<h2><strong>Recommendations</strong></h2>\n<p>The backend must verify data ownership before displaying or modifying records.</p>\n<h3>Example Logic</h3>\n<pre><code class=\"language-php\">if ($magang->user_id != auth()->id()) {\n    abort(403);\n}\n</code></pre>\n<p>Or alternatively:</p>\n<pre><code class=\"language-php\">if ($magang->nim != session('nim')) {\n    abort(403);\n}\n</code></pre>\n<hr>\n<h2><strong>Classification</strong></h2>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n<table><thead><tr><th>Classification</th><th>Description</th></tr></thead><tbody><tr><td><strong>CWE</strong></td><td>CWE-639: Authorization Bypass Through User-Controlled Key</td></tr><tr><td><strong>Category</strong></td><td>IDOR (Insecure Direct Object Reference)</td></tr><tr><td><strong>OWASP</strong></td><td>OWASP A01: Broken Access Control</td></tr></tbody></table>\n<hr>\n<h2><strong>Impact Summary</strong></h2>\n<p>An authenticated student can access other students' data without authorization by modifying URL parameters.</p>\n<h3>Exposed Data</h3>\n<ul>\n<li>National Identity Number (NIK)</li>\n<li>Student ID (NIM)</li>\n<li>Academic Records</li>\n<li>Supporting Documents</li>\n<li>Internship Information</li>\n</ul>\n<hr>\n<h2><strong>Conclusion</strong></h2>\n<p>A Broken Access Control (IDOR) vulnerability was discovered that allows authenticated users to access other students' data by modifying URL parameters. It is recommended that the system implement authorization checks on every data access request to prevent unauthorized access.</p>\n<hr>\n<h2><strong>References</strong></h2>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n<table><thead><tr><th>Reference</th><th>Description</th><th>Link</th></tr></thead><tbody><tr><td><strong>CWE-639</strong></td><td>Authorization Bypass Through User-Controlled Key</td><td><a href=\"https://cwe.mitre.org/data/definitions/639.html\">cwe.mitre.org</a></td></tr><tr><td><strong>OWASP A01</strong></td><td>Broken Access Control</td><td><a href=\"https://owasp.org/Top10/A01_2021-Broken_Access_Control/\">owasp.org</a></td></tr><tr><td><strong>OWASP IDOR</strong></td><td>Insecure Direct Object Reference Prevention</td><td><a href=\"https://cheatsheetseries.owasp.org/cheatsheets/Insecure_Direct_Object_Reference_Prevention_Cheat_Sheet.html\">cheatsheetseries.owasp.org</a></td></tr></tbody></table>"
+    }
+  ]
+}

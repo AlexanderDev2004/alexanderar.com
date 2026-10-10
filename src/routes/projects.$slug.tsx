@@ -79,7 +79,7 @@ function ProjectDetailPage() {
           )}
         </div>
       )}
-      {project.image && <img className="cover" src={project.image} alt={project.title} />}
+      {project.image && <img className="cover" src={project.image} alt={project.title} decoding="async" />}
       <div
         className="md-body"
         dangerouslySetInnerHTML={{ __html: project.fullDescriptionHtml }}

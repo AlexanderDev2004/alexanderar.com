@@ -6,8 +6,9 @@
   "scripts": {
     "dev": "vite dev",
     "fetch:github": "bun scripts/fetch-github.mjs",
+    "generate:content": "bun scripts/generate-content.mjs",
     "generate:og": "python3 scripts/generate-og.py",
-    "build": "bun run fetch:github && bun run generate:og && vite build && bun run typecheck",
+    "build": "bun run fetch:github && bun run generate:og && bun run generate:content && bun run typecheck && vite build",
     "build:site": "vite build",
     "generate:routes": "tsr generate",
     "typecheck": "tsr generate && tsc6 --noEmit",
@@ -19,16 +20,9 @@
     "@tanstack/react-query": "^5.90.2",
     "@tanstack/react-router": "^1.170.41",
     "@tanstack/react-start": "^1.168.60",
-    "gray-matter": "^4.0.3",
     "iconify-icon": "^2.3.0",
     "react": "^19.2.0",
-    "react-dom": "^19.2.0",
-    "rehype-raw": "^7.0.0",
-    "rehype-stringify": "^10.0.1",
-    "remark-gfm": "^4.0.1",
-    "remark-parse": "^11.0.0",
-    "remark-rehype": "^11.1.2",
-    "unified": "^11.0.5"
+    "react-dom": "^19.2.0"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.1.18",
@@ -37,8 +31,15 @@
     "@types/react": "^19.2.2",
     "@types/react-dom": "^19.2.2",
     "@vitejs/plugin-react": "^5.0.4",
+    "gray-matter": "^4.0.3",
+    "rehype-raw": "^7.0.0",
+    "rehype-stringify": "^10.0.1",
+    "remark-gfm": "^4.0.1",
+    "remark-parse": "^11.0.0",
+    "remark-rehype": "^11.1.2",
     "tailwindcss": "^4.1.18",
     "typescript": "npm:@typescript/typescript6@^6.0.2",
+    "unified": "^11.0.5",
     "vite": "^7.1.9",
     "vite-plugin-node-polyfills": "^0.28.0"
   }
