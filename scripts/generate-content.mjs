@@ -73,6 +73,49 @@ function readDir(dir) {
   }
 }
 
+/**
+ * WebP dimensions without a dependency. Covers all three bitstreams:
+ * VP8X (extended), VP8 (lossy), VP8L (lossless) — format per the RIFF
+ * container spec. Returns null for anything unparseable.
+ */
+function webpSize(buf) {
+  if (buf.length < 30 || buf.toString('ascii', 0, 4) !== 'RIFF' || buf.toString('ascii', 8, 12) !== 'WEBP') {
+    return null;
+  }
+  let off = 12;
+  while (off + 8 <= buf.length) {
+    const fourcc = buf.toString('ascii', off, off + 4);
+    const size = buf.readUInt32LE(off + 4);
+    const body = off + 8;
+    if (fourcc === 'VP8X') {
+      // 24-bit canvas width-1 / height-1 after 4 flag bytes.
+      return { width: buf.readUIntLE(body + 4, 3) + 1, height: buf.readUIntLE(body + 7, 3) + 1 };
+    }
+    if (fourcc === 'VP8 ' && size >= 10) {
+      // Keyframe: sync code 0x9D 0x01 0x2A, then 14-bit width/height.
+      if (buf[body + 3] === 0x9d && buf[body + 4] === 0x01 && buf[body + 5] === 0x2a) {
+        return { width: buf.readUInt16LE(body + 6) & 0x3fff, height: buf.readUInt16LE(body + 8) & 0x3fff };
+      }
+    }
+    if (fourcc === 'VP8L' && size >= 5 && buf[body] === 0x2f) {
+      // 14-bit width-1 / height-1 packed in the first 32 bits after the signature.
+      const bits = buf.readUInt32LE(body + 1);
+      return { width: (bits & 0x3fff) + 1, height: ((bits >>> 14) & 0x3fff) + 1 };
+    }
+    off = body + size + (size % 2);
+  }
+  return null;
+}
+
+/** Dimensions of a public/ image (currently WebP-only covers), or null. */
+function imageSize(publicPath) {
+  try {
+    return webpSize(readFileSync(join(root, 'public', publicPath)));
+  } catch {
+    return null;
+  }
+}
+
 const slugOf = (path) => normalizeSlug(basename(path, '.md'));
 
 const blogs = [];
@@ -101,13 +144,19 @@ for (const file of readDir(join(root, 'src', 'content', 'projects'))) {
         docLink: asString(t?.docLink) || undefined,
       }))
     : [];
+  // Cover dimensions (parsed from the WebP header) reserve the image's exact
+  // box in the markup, so the loading skeleton matches and nothing shifts.
+  const image = asString(data.image) || undefined;
+  const dims = image ? imageSize(image) : null;
   projects.push({
     slug: slugOf(file),
     title: asString(data.title, 'Untitled').trim(),
     year: asString(data.year),
     description: asString(data.description),
     fullDescriptionHtml: await renderMarkdown(content),
-    image: asString(data.image) || undefined,
+    image,
+    imageWidth: dims?.width,
+    imageHeight: dims?.height,
     projectLink: asString(data.projectLink) || undefined,
     repoLink: asString(data.repoLink) || undefined,
     technologies,

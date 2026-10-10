@@ -30,6 +30,9 @@ export interface Project {
   description: string;
   fullDescriptionHtml: string;
   image?: string;
+  /** Cover intrinsic size, parsed at build time — reserves the exact box. */
+  imageWidth?: number;
+  imageHeight?: number;
   projectLink?: string;
   repoLink?: string;
   technologies: ProjectTech[];

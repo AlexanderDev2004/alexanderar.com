@@ -1,7 +1,9 @@
 import { createFileRoute, Link, useLoaderData } from '@tanstack/react-router'
+import { useEffect, useRef, useState } from 'react'
 import { getProject } from '../lib/content'
 import { seo } from '../lib/seo'
 import { Icon } from "../components/Icon"
+import { Skeleton } from '../components/Skeleton'
 
 export const Route = createFileRoute('/projects/$slug')({
   head: (ctx) => {
@@ -80,11 +82,49 @@ function ProjectDetailPage() {
           )}
         </div>
       )}
-      {project.image && <img className="cover" src={project.image} alt={project.title} decoding="async" />}
+      <CoverImage project={project} />
       <div
         className="md-body"
         dangerouslySetInnerHTML={{ __html: project.fullDescriptionHtml }}
       />
     </article>
+  )
+}
+
+/**
+ * Project cover. The build-time content pipeline stores the image's intrinsic
+ * size, so the frame reserves the exact final box: the skeleton fills it while
+ * the file is in flight and the photo fades in without any layout shift.
+ */
+function CoverImage({ project }: { project: { image: string; imageWidth?: number; imageHeight?: number; title: string } }) {
+  const [loaded, setLoaded] = useState(false)
+  const ref = useRef<HTMLImageElement>(null)
+
+  // If the image finished loading before hydration attached onLoad (fast
+  // cache, prerendered HTML), React never sees the event — check up front.
+  useEffect(() => {
+    if (ref.current?.complete) setLoaded(true)
+  }, [])
+
+  const style =
+    project.imageWidth && project.imageHeight
+      ? { aspectRatio: `${project.imageWidth} / ${project.imageHeight}` }
+      : undefined
+
+  return (
+    <div className="cover-frame" style={style}>
+      {!loaded && <Skeleton className="cover-skeleton" />}
+      <img
+        ref={ref}
+        className={`cover${loaded ? ' is-loaded' : ''}`}
+        src={project.image}
+        alt={project.title}
+        width={project.imageWidth}
+        height={project.imageHeight}
+        decoding="async"
+        fetchPriority="high"
+        onLoad={() => setLoaded(true)}
+      />
+    </div>
   )
 }
