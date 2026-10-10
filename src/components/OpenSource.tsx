@@ -9,6 +9,7 @@ import {
 } from '../lib/github'
 import githubSnapshot from '../data/github.json'
 import { Icon } from "./Icon"
+import { Skeleton } from "./Skeleton"
 
 function formatStars(count: number): string {
   if (count >= 1000) {
@@ -156,7 +157,7 @@ export function OpenSource() {
           </div>
         </div>
       ) : (
-        <div className="skeleton" style={{ height: 120, maxWidth: 560 }} />
+        <Skeleton height={120} style={{ maxWidth: 560 }} />
       )}
     </div>
   )

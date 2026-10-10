@@ -6,6 +6,7 @@ import {
 } from '../lib/github'
 import githubSnapshot from '../data/github.json'
 import { Icon } from "./Icon"
+import { Skeleton } from "./Skeleton"
 
 const INTENSITY_CLASS = ['', 'l1', 'l2', 'l3', 'l4'] as const
 
@@ -50,7 +51,7 @@ export function GitActivity() {
           <Icon name="mdi:git" /> Git Activity
           <span className="right">last 365 days</span>
         </div>
-        <div className="skeleton" style={{ height: 92, maxWidth: 560 }} />
+        <Skeleton height={92} style={{ maxWidth: 560 }} />
       </div>
     )
   }
