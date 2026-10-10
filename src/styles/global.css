@@ -560,7 +560,10 @@ details[open] .chev {
   color: var(--stone);
 }
 
-/* ============ open source contributions (flat, no card box) ============ */
+/* ============ git activity + open source (flat, no card boxes) ============ */
+.git-block {
+  margin-top: 26px;
+}
 .os-block {
   margin-top: 16px;
 }
@@ -617,6 +620,7 @@ details[open] .chev {
   align-self: center;
   font-size: 18px;
   transition: transform 0.2s;
+  /* caret di ujung kanan baris — konsisten dengan chevron Work Experience */
 }
 .os-repo[aria-expanded='true'] .os-caret {
   transform: rotate(180deg);
@@ -660,8 +664,8 @@ details[open] .chev {
 }
 .os-last {
   flex-basis: 100%;
-  /* align with the repo name: caret (18px) + row gap (12px) */
-  margin-left: 30px;
+  /* align dengan nama repo (padding baris 2px) */
+  margin-left: 2px;
   font-family: var(--mono);
   font-size: 11px;
   color: var(--stone);

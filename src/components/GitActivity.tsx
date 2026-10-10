@@ -44,7 +44,7 @@ export function GitActivity() {
 
   if (!data || data.totalContributions === 0) {
     return (
-      <div className="block">
+      <div className="git-block">
         <div className="block-head">
           <iconify-icon icon="mdi:git" /> Git Activity
           <span className="right">last 365 days</span>
@@ -55,7 +55,7 @@ export function GitActivity() {
   }
 
   return (
-    <div className="block">
+    <div className="git-block">
       <div className="block-head">
         <iconify-icon icon="mdi:git" /> Git Activity
         <span className="right">last 365 days</span>

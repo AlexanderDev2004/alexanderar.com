@@ -50,7 +50,6 @@ function RepoGroup({ group }: { group: RepositoryPRGroup }) {
           }
         }}
       >
-        <iconify-icon className="os-caret" icon="mdi:chevron-down" />
         <a
           className="os-repo-name"
           href={group.repository.url}
@@ -72,6 +71,7 @@ function RepoGroup({ group }: { group: RepositoryPRGroup }) {
             {formatStars(group.repository.stargazerCount)}
           </span>
         </div>
+        <iconify-icon className="os-caret" icon="mdi:chevron-down" />
         <span className="os-last">
           <iconify-icon icon="mdi:source-merge" title="Merged pull request" />
           last merged {monthYear(group.lastMergedAt)}
