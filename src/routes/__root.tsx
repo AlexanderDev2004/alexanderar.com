@@ -10,6 +10,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import '../styles/global.css'
 import { Navigation } from '../components/Navigation'
 import { Footer } from '../components/Footer'
+import { PatternBackground } from '../components/PatternBackground'
 import { OG_IMAGE_VERSION } from '../lib/seo'
 
 /**
@@ -111,6 +112,7 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
       </head>
       <body>
         <QueryClientProvider client={queryClient}>
+          <PatternBackground />
           <Navigation />
           <main>{children}</main>
           <Footer />
