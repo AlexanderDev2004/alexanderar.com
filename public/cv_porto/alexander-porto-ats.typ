@@ -71,11 +71,11 @@
   (#text(fill: section-color)[#link("https://alexanderar.com")[alexanderar.com]])
 ], [2026 --- Present])
 
-- Rebuilt my personal portfolio using Astro, Svelte, Tailwind CSS, and Bun.
-- Implemented content-driven pages for projects, blogs, and bookmarks using Markdown collections.
-- Focused on responsive UX, fast page loads, and SEO-ready metadata structure.
+- Rebuilt my personal portfolio from scratch using TanStack Start, React 19, Tailwind CSS 4, and Bun, deployed to Cloudflare Workers via GitHub Actions CI/CD.
+- Built a typed Markdown content pipeline for projects, blogs, and security reports, with live GitHub data (contributions and merged PRs) snapshotted at build time and refreshed on the client via TanStack Query.
+- Automated build-time OG image generation (Python/Pillow) for every page, with per-route SEO metadata and a fully type-safe file-based router.
 
-#text(weight: "bold")[Stack:] Astro, Svelte, Tailwind CSS, Bun, TypeScript
+#text(weight: "bold")[Stack:] TanStack Start, React, Tailwind CSS, TypeScript, Bun, Cloudflare Workers
 
 #v(0.45em)
 
