@@ -5,6 +5,8 @@
 export interface UseItem {
   name: string;
   description: string;
+  /** Optional external link (official site / repo) shown next to the name. */
+  link?: string;
 }
 
 export interface UseCategory {
@@ -44,16 +46,19 @@ export const uses: UseCategory[] = [
     items: [
       {
         name: "OpenCode",
+        link: "https://opencode.ai",
         description:
           "My go-to open-source AI coding agent in the terminal — quick edits, refactors, and shell work without leaving the CLI.",
       },
       {
         name: "AMPCode",
+        link: "https://ampcode.com",
         description:
           "The agent I reach for on bigger jobs — large refactors, new features, and shipping this very site.",
       },
       {
         name: "Pi",
+        link: "https://pi.dev",
         description:
           "A lightweight assistant I keep around for quick questions, drafting, and brainstorming on the go.",
       },
