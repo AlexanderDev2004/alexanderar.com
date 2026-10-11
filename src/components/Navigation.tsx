@@ -10,6 +10,7 @@ export function Navigation() {
         <Link to="/">Home</Link>
         <Link to="/projects/">Projects</Link>
         <Link to="/blogs/">Blogs</Link>
+        <Link to="/music/">Music</Link>
         <Link to="/uses/">Uses</Link>
       </div>
     </nav>

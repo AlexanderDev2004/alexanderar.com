@@ -830,6 +830,30 @@ details[open] .chev {
   }
 }
 
+/* ============ music page ============ */
+.grid-two {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 48px;
+  align-items: start;
+}
+.grid-two section.block-section:first-child {
+  margin-top: 92px;
+}
+@media (max-width: 768px) {
+  .grid-two {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .grid-two section.block-section:first-child {
+    margin-top: 92px;
+  }
+}
+.muted {
+  color: var(--stone);
+  font-size: 13px;
+}
+
 /* ============ blog rows ============ */
 .rows {
   margin-top: 20px;

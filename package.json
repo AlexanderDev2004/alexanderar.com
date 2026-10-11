@@ -6,10 +6,11 @@
   "scripts": {
     "dev": "vite dev",
     "fetch:github": "bun scripts/fetch-github.mjs",
+    "fetch:lastfm": "bun scripts/fetch-lastfm.mjs",
     "generate:content": "bun scripts/generate-content.mjs",
     "generate:icons": "bun scripts/generate-icons.mjs",
     "generate:og": "python3 scripts/generate-og.py",
-    "build": "bun run fetch:github && bun run generate:og && bun run generate:content && bun run generate:icons && bun run typecheck && vite build",
+    "build": "bun run fetch:github && bun run fetch:lastfm && bun run generate:og && bun run generate:content && bun run generate:icons && bun run typecheck && vite build",
     "build:site": "vite build",
     "generate:routes": "tsr generate",
     "typecheck": "tsr generate && tsc6 --noEmit",

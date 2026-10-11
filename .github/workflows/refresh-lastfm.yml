@@ -1,0 +1,45 @@
+# Keeps the /music page fresh: refetches the Last.fm snapshot
+# (recent tracks + monthly top artists/tracks) every night and commits it
+# when the scrobbles change. The next push/deploy then serves fresh data.
+#
+# Requires the LASTFM_API_KEY secret (free key from
+# https://www.last.fm/api/account/create).
+
+name: Refresh Last.fm Data
+
+on:
+  schedule:
+    - cron: '0 19 * * *' # ~02:00 WIB daily
+  workflow_dispatch:
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - uses: oven-sh/setup-bun@v2
+
+      - name: Install dependencies
+        run: bun install
+
+      - name: Fetch Last.fm snapshot
+        run: bun run fetch:lastfm
+        env:
+          LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
+          LASTFM_USERNAME: Alexander_110
+
+      - name: Commit snapshot if changed
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add ./src/data/music.json
+          if git diff --staged --quiet; then
+            echo "Music data unchanged."
+          else
+            git commit -m "chore(lastfm): refresh music snapshot [automated]"
+            git push
+          fi

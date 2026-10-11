@@ -288,13 +288,22 @@ def main() -> None:
     expected: dict[Path, set[str]] = {}
 
     # Uses page — one static card (content lives in src/data/uses.ts).
-    expected[PUBLIC / "og"] = {"uses.png"}
+    expected[PUBLIC / "og"] = {"uses.png", "music.png"}
     card(
         kicker="Uses",
         title="Uses",
         description="Hardware and AI agents I use day to day",
         tag="uses",
         out=PUBLIC / "og" / "uses.png",
+    )
+
+    # Music page — one static card (content lives in src/data/music.json).
+    card(
+        kicker="Music",
+        title="Music",
+        description="What I'm listening to, straight from Last.fm",
+        tag="music",
+        out=PUBLIC / "og" / "music.png",
     )
 
     blogs = sorted((ROOT / "src" / "content" / "blogs").glob("*.md"))
