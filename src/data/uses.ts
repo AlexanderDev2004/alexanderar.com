@@ -40,6 +40,43 @@ export const uses: UseCategory[] = [
     ],
   },
   {
+    id: "software",
+    title: "Software",
+    icon: "mdi:apps",
+    items: [
+      {
+        name: "Raycast + Vicinae",
+        link: "https://www.raycast.com",
+        description:
+          "One launcher to rule both my operating systems: Raycast keeps Windows snappy, Vicinae gives Linux the same superpowers, and my muscle memory has never been this confused yet this productive.",
+      },
+      {
+        name: "Ghostty",
+        link: "https://ghostty.org",
+        description:
+          "omg is cool. A terminal so fast it finishes rendering my excuses before I even finish typing them.",
+      },
+      {
+        name: "Brave",
+        link: "https://brave.com",
+        description:
+          "It blocks ads so aggressively that the web finally feels peaceful — my battery lasts past lunch and my sanity made a full recovery.",
+      },
+      {
+        name: "Zed",
+        link: "https://zed.dev",
+        description:
+          "A Rust-powered editor that opens my project before my finger leaves the Enter key. Waiting for a load bar is now a vintage experience.",
+      },
+      {
+        name: "Herdr",
+        link: "https://herdr.dev",
+        description:
+          "One-click PHP dev environments that just work. The classic 'it works on my machine' excuse is officially retired.",
+      },
+    ],
+  },
+  {
     id: "agents",
     title: "Agents",
     icon: "mdi:robot-outline",
