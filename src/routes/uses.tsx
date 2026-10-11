@@ -43,7 +43,21 @@ function UsesPage() {
             <tbody>
               {category.items.map((item) => (
                 <tr key={item.name}>
-                  <th scope="row">{item.name}</th>
+                  <th scope="row">
+                    {item.link ? (
+                      <a
+                        className="uses-link"
+                        href={item.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {item.name}
+                        <Icon name="mdi:arrow-top-right" />
+                      </a>
+                    ) : (
+                      item.name
+                    )}
+                  </th>
                   <td>{item.description}</td>
                 </tr>
               ))}

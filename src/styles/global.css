@@ -794,6 +794,22 @@ details[open] .chev {
   line-height: 1.65;
   border-bottom: 1px solid var(--line);
 }
+/* linked item name (official site / repo) */
+.uses-link {
+  color: var(--ink);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 24px;
+}
+.uses-link .icon {
+  font-size: 12px;
+  color: var(--sage-deep);
+}
+.uses-link:hover {
+  color: var(--sage-deep);
+}
 .uses-table tr:last-child th,
 .uses-table tr:last-child td {
   border-bottom: 0;
