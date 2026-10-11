@@ -72,7 +72,7 @@ export const uses: UseCategory[] = [
         name: "Herdr",
         link: "https://herdr.dev",
         description:
-          "One-click PHP dev environments that just work. The classic 'it works on my machine' excuse is officially retired.",
+          "The runtime my coding agents live on — real terminals that stay alive when the laptop lid closes, ready to reattach from any tty. My agents now work harder than my sleep schedule.",
       },
     ],
   },
