@@ -19,6 +19,7 @@ interface Track {
   name: string
   artist: string
   url?: string
+  image?: string
   date: number | null
   nowPlaying: boolean
 }
@@ -27,12 +28,14 @@ interface Artist {
   name: string
   playcount: number
   url?: string
+  image?: string
 }
 
 interface TopTrack {
   name: string
   artist: string
   url?: string
+  image?: string
   playcount: number
 }
 
@@ -59,26 +62,55 @@ function relTime(ms: number | null): string {
   return `${Math.floor(months / 12)}y ago`
 }
 
-function TrackLink({ track }: { track: Track | TopTrack }) {
-  if (track.url) {
+/** Album art with a graceful icon fallback when Last.fm has no artwork. */
+function Artwork({ src, alt, className }: { src?: string; alt: string; className?: string }) {
+  if (src) {
     return (
-      <a
-        className="uses-link"
-        href={track.url}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        {track.name}
-        <Icon name="mdi:arrow-top-right" />
-      </a>
+      <img
+        className={className}
+        src={src}
+        alt={alt}
+        width="174"
+        height="174"
+        loading="lazy"
+        decoding="async"
+      />
     )
   }
-  return <>{track.name}</>
+  return (
+    <div className={`music-art-fallback ${className ?? ''}`} role="img" aria-label={alt}>
+      <Icon name="mdi:music" />
+    </div>
+  )
+}
+
+function NowPlayingCard({ track }: { track: Track }) {
+  return (
+    <a
+      className="np-card"
+      href={track.url ?? `https://www.last.fm/user/${data.username}`}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <Artwork src={track.image} alt={`${track.name} album art`} className="np-art" />
+      <div className="np-body">
+        <p className="np-label">
+          <span className="np-pulse" aria-hidden="true" /> Scrobbling now
+        </p>
+        <p className="np-track">{track.name}</p>
+        <p className="np-artist">{track.artist}</p>
+        <div className="eq" aria-hidden="true">
+          <span /><span /><span /><span /><span />
+        </div>
+      </div>
+    </a>
+  )
 }
 
 function MusicPage() {
   const { recent, topArtists, topTracks, username, fetchedAt } = data
   const nowPlaying = recent.find((t) => t.nowPlaying)
+  const history = recent.filter((t) => !t.nowPlaying)
   const empty = recent.length === 0 && topArtists.length === 0 && topTracks.length === 0
 
   return (
@@ -123,103 +155,100 @@ function MusicPage() {
               <h2 className="section-title">
                 <Icon name="mdi:play-circle-outline" /> Now Playing
               </h2>
-              <table className="uses-table">
-                <tbody>
-                  <tr>
-                    <th scope="row">
-                      <TrackLink track={nowPlaying} />
-                    </th>
-                    <td>
-                      {nowPlaying.artist}
-                      {nowPlaying.artist ? ' — ' : ''}
-                      <span className="sage">live from Last.fm</span>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+              <NowPlayingCard track={nowPlaying} />
             </section>
           )}
 
-          {recent.length > 0 && (
+          {history.length > 0 && (
             <section className="block-section">
               <h2 className="section-title">
                 <Icon name="mdi:history" /> Recent Tracks
               </h2>
-              <table className="uses-table">
-                <tbody>
-                  {recent.map((track, i) => (
-                    <tr key={`${track.name}-${track.artist}-${i}`}>
-                      <th scope="row">
-                        <TrackLink track={track} />
-                      </th>
-                      <td>
-                        {track.artist}
-                        {track.date ? `${track.artist ? ' — ' : ''}${relTime(track.date)}` : ''}
-                        {track.nowPlaying ? ' — now playing' : ''}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+              <div className="music-grid">
+                {history.map((track, i) => (
+                  <a
+                    className="music-card"
+                    key={`${track.name}-${track.artist}-${i}`}
+                    href={track.url ?? undefined}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Artwork
+                      src={track.image}
+                      alt={`${track.name} album art`}
+                      className="music-card-art"
+                    />
+                    <p className="music-card-title">{track.name}</p>
+                    <p className="music-card-sub">{track.artist}</p>
+                    <p className="music-card-meta">
+                      {track.date ? relTime(track.date) : ''}
+                    </p>
+                  </a>
+                ))}
+              </div>
             </section>
           )}
 
-          <div className="grid-two">
-            {topArtists.length > 0 && (
-              <section className="block-section">
-                <h2 className="section-title">
-                  <Icon name="mdi:fire" /> Top Artists · 1 Month
-                </h2>
-                <table className="uses-table">
-                  <tbody>
-                    {topArtists.map((artist) => (
-                      <tr key={artist.name}>
-                        <th scope="row">
-                          {artist.url ? (
-                            <a
-                              className="uses-link"
-                              href={artist.url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              {artist.name}
-                              <Icon name="mdi:arrow-top-right" />
-                            </a>
-                          ) : (
-                            artist.name
-                          )}
-                        </th>
-                        <td>{artist.playcount.toLocaleString('en-US')} plays</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </section>
-            )}
+          {topArtists.length > 0 && (
+            <section className="block-section">
+              <h2 className="section-title">
+                <Icon name="mdi:fire" /> Top Artists{' '}
+                <span className="thin">· 1 Month</span>
+              </h2>
+              <div className="music-grid artists">
+                {topArtists.map((artist) => (
+                  <a
+                    className="music-card"
+                    key={artist.name}
+                    href={artist.url ?? undefined}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Artwork
+                      src={artist.image}
+                      alt={`${artist.name} artist photo`}
+                      className="music-card-art round"
+                    />
+                    <p className="music-card-title">{artist.name}</p>
+                    <p className="music-card-meta">
+                      {artist.playcount.toLocaleString('en-US')} plays
+                    </p>
+                  </a>
+                ))}
+              </div>
+            </section>
+          )}
 
-            {topTracks.length > 0 && (
-              <section className="block-section">
-                <h2 className="section-title">
-                  <Icon name="mdi:trending-up" /> Top Tracks · 1 Month
-                </h2>
-                <table className="uses-table">
-                  <tbody>
-                    {topTracks.map((track) => (
-                      <tr key={`${track.name}-${track.artist}`}>
-                        <th scope="row">
-                          <TrackLink track={track} />
-                        </th>
-                        <td>
-                          {track.artist} —{' '}
-                          {track.playcount.toLocaleString('en-US')} plays
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </section>
-            )}
-          </div>
+          {topTracks.length > 0 && (
+            <section className="block-section">
+              <h2 className="section-title">
+                <Icon name="mdi:trending-up" /> Top Tracks{' '}
+                <span className="thin">· 1 Month</span>
+              </h2>
+              <div className="music-grid">
+                {topTracks.map((track) => (
+                  <a
+                    className="music-card"
+                    key={`${track.name}-${track.artist}`}
+                    href={track.url ?? undefined}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Artwork
+                      src={track.image}
+                      alt={`${track.name} album art`}
+                      className="music-card-art"
+                    />
+                    <p className="music-card-title">{track.name}</p>
+                    <p className="music-card-sub">{track.artist}</p>
+                    <p className="music-card-meta">
+                      {track.playcount.toLocaleString('en-US')} plays
+                    </p>
+                  </a>
+                ))}
+              </div>
+            </section>
+          )}
         </>
       )}
 

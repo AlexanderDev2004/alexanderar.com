@@ -831,6 +831,178 @@ details[open] .chev {
 }
 
 /* ============ music page ============ */
+.music-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 18px;
+  margin-top: 22px;
+}
+.music-card {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  text-decoration: none;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 12px;
+  transition: border-color 0.18s ease, transform 0.18s ease;
+}
+.music-card:hover {
+  border-color: var(--sage-deep);
+  transform: translateY(-2px);
+}
+.music-card-art,
+.music-art-fallback {
+  width: 100%;
+  aspect-ratio: 1;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+  background: var(--bg-soft);
+  margin-bottom: 10px;
+}
+.music-card-art.round {
+  border-radius: 50%;
+}
+.music-art-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--sage-deep);
+  font-size: 34px;
+}
+.music-card-title {
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--ink);
+  line-height: 1.35;
+  /* clamp long titles to two lines */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.music-card-sub {
+  font-size: 12.5px;
+  color: var(--body-muted);
+  line-height: 1.4;
+}
+.music-card-meta {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--stone);
+  margin-top: 4px;
+}
+
+/* now playing — mini player */
+.np-card {
+  margin-top: 22px;
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  text-decoration: none;
+  border: 1px solid var(--sage-deep);
+  border-radius: 14px;
+  padding: 18px 22px;
+  max-width: 480px;
+  background: rgba(156, 175, 136, 0.08);
+}
+.np-art,
+.np-card .music-art-fallback {
+  width: 96px;
+  height: 96px;
+  flex: 0 0 96px;
+  aspect-ratio: 1;
+  border-radius: 10px;
+  object-fit: cover;
+  margin-bottom: 0;
+}
+.np-card .music-art-fallback {
+  font-size: 30px;
+}
+.np-body {
+  min-width: 0;
+}
+.np-label {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--sage-deep);
+}
+.np-pulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--green-bright);
+  animation: np-pulse 1.6s ease-in-out infinite;
+}
+@keyframes np-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.35; transform: scale(0.75); }
+}
+.np-track {
+  margin-top: 6px;
+  font-weight: 800;
+  font-size: 17px;
+  color: var(--ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.np-artist {
+  font-size: 13.5px;
+  color: var(--body-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/* tiny equalizer — 5 bars, staggered bounce */
+.eq {
+  margin-top: 10px;
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 16px;
+}
+.eq span {
+  width: 3px;
+  border-radius: 2px;
+  background: var(--sage-deep);
+  animation: eq-bounce 1s ease-in-out infinite;
+}
+.eq span:nth-child(1) { height: 40%; animation-delay: 0s; }
+.eq span:nth-child(2) { height: 75%; animation-delay: 0.15s; }
+.eq span:nth-child(3) { height: 100%; animation-delay: 0.3s; }
+.eq span:nth-child(4) { height: 60%; animation-delay: 0.45s; }
+.eq span:nth-child(5) { height: 85%; animation-delay: 0.6s; }
+@keyframes eq-bounce {
+  0%, 100% { transform: scaleY(0.45); }
+  50% { transform: scaleY(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .np-pulse,
+  .eq span {
+    animation: none;
+  }
+}
+@media (max-width: 560px) {
+  .np-card {
+    max-width: 100%;
+    gap: 16px;
+    padding: 16px;
+  }
+  .np-art,
+  .np-card .music-art-fallback {
+    width: 72px;
+    height: 72px;
+    flex-basis: 72px;
+  }
+}
+
 .grid-two {
   display: grid;
   grid-template-columns: 1fr 1fr;

@@ -67,6 +67,7 @@ function mapTopTrack(t) {
     name: t.name,
     artist: t.artist?.name ?? '',
     url: t.url || undefined,
+    image: imageOf(t.image),
     playcount: Number(t.playcount) || 0,
   };
 }
