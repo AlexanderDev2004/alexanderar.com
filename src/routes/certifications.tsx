@@ -2,6 +2,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import { certifications } from '../data/certifications'
 import { seo } from '../lib/seo'
 import { Icon } from "../components/Icon"
+import { AsyncImage } from '../components/Skeleton'
 
 export const Route = createFileRoute('/certifications')({
   head: () =>
@@ -30,11 +31,12 @@ function CertificationsPage() {
           {certifications.map((cert) => (
             <article className="card" key={cert.id}>
               {cert.certificateImage && (
-                <img
+                <AsyncImage
                   className="cert-image"
                   src={`/${cert.certificateImage}`}
                   alt={cert.title}
                   loading="lazy"
+                  radius={10}
                 />
               )}
               <h3 style={{ marginTop: 14 }}>

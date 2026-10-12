@@ -3,6 +3,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import music from '../data/music.json'
 import { seo } from '../lib/seo'
 import { Icon } from '../components/Icon'
+import { AsyncImage, SkeletonCard } from '../components/Skeleton'
 
 export const Route = createFileRoute('/music')({
   head: () =>
@@ -67,23 +68,18 @@ function relTime(ms: number | null): string {
 
 /** Album art with a graceful icon fallback when Last.fm has no artwork. */
 function Artwork({ src, alt, className }: { src?: string; alt: string; className?: string }) {
-  if (src) {
-    return (
-      <img
-        className={className}
-        src={src}
-        alt={alt}
-        width="174"
-        height="174"
-        loading="lazy"
-        decoding="async"
-      />
-    )
-  }
   return (
-    <div className={`music-art-fallback ${className ?? ''}`} role="img" aria-label={alt}>
-      <Icon name="mdi:music" />
-    </div>
+    <AsyncImage
+      src={src}
+      alt={alt}
+      className={className}
+      radius={8}
+      fallback={
+        <div className={`music-art-fallback ${className ?? ''}`} role="img" aria-label={alt}>
+          <Icon name="mdi:music" />
+        </div>
+      }
+    />
   )
 }
 
@@ -111,9 +107,10 @@ function NowPlayingCard({ track }: { track: Track }) {
 }
 
 /** Re-fetch the snapshot from the worker proxy every minute. */
-function useLiveSnapshot(): { snap: Snapshot; isLive: boolean } {
+function useLiveSnapshot(): { snap: Snapshot; isLive: boolean; firstLoad: boolean } {
   const [snap, setSnap] = useState<Snapshot>(data)
   const [isLive, setIsLive] = useState(false)
+  const [firstLoad, setFirstLoad] = useState(true)
 
   useEffect(() => {
     let alive = true
@@ -128,6 +125,8 @@ function useLiveSnapshot(): { snap: Snapshot; isLive: boolean } {
         }
       } catch {
         // Offline or dev server without the proxy — keep the build snapshot.
+      } finally {
+        if (alive) setFirstLoad(false)
       }
     }
     poll()
@@ -138,11 +137,11 @@ function useLiveSnapshot(): { snap: Snapshot; isLive: boolean } {
     }
   }, [])
 
-  return { snap, isLive }
+  return { snap, isLive, firstLoad }
 }
 
 function MusicPage() {
-  const { snap, isLive } = useLiveSnapshot()
+  const { snap, isLive, firstLoad } = useLiveSnapshot()
   const { recent, topArtists, topTracks, username, fetchedAt } = snap
   const nowPlaying = recent.find((t) => t.nowPlaying)
   const history = recent.filter((t) => !t.nowPlaying)
@@ -173,7 +172,18 @@ function MusicPage() {
         </p>
       </header>
 
-      {empty ? (
+      {empty && firstLoad ? (
+        // Build snapshot is empty and the first live poll is still in
+        // flight — show card skeletons instead of flashing the empty state.
+        <section className="block-section" role="status" aria-live="polite">
+          <span className="sr-only">Loading music…</span>
+          <div className="music-grid">
+            {Array.from({ length: 8 }, (_, i) => (
+              <SkeletonCard key={i} />
+            ))}
+          </div>
+        </section>
+      ) : empty ? (
         <section className="block-section">
           <h2 className="section-title">
             <Icon name="mdi:music-note-outline" /> Nothing here yet

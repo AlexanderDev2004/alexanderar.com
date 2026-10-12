@@ -1375,6 +1375,43 @@ details[open] .chev {
     padding: 56px 20px 0;
   }
 }
+/* --- skeleton variants (Text / Image / Card / Form) --- */
+.skeleton-text {
+  display: grid;
+  gap: 9px;
+}
+/* AsyncImage wrapper: the skeleton overlays the real image's box, so the
+   swap never shifts layout. The <img> inside keeps its own sizing class. */
+.async-img {
+  position: relative;
+  display: block;
+}
+.async-img > .skeleton {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.skeleton-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+  border: 1px solid var(--line);
+}
+.skeleton-card .skeleton-img {
+  aspect-ratio: 1;
+  height: auto;
+}
+.skeleton-form {
+  display: grid;
+  gap: 16px;
+  max-width: 460px;
+}
+.skeleton-form-row {
+  display: grid;
+  gap: 7px;
+}
 .sr-only {
   position: absolute;
   width: 1px;
