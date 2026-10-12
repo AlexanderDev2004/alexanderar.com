@@ -1,7 +1,52 @@
 {
   "username": "Alexander_110",
-  "recent": [],
-  "topArtists": [],
-  "topTracks": [],
-  "fetchedAt": "2026-10-12T03:37:07.385Z"
+  "recent": [
+    {
+      "name": "Hitchcock",
+      "artist": "Yorushika",
+      "url": "https://www.last.fm/music/Yorushika/_/Hitchcock",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/f09fdb780153e7f90640ee2af4ed5fc1.jpg",
+      "date": null,
+      "nowPlaying": true
+    },
+    {
+      "name": "Hitchcock",
+      "artist": "Yorushika",
+      "url": "https://www.last.fm/music/Yorushika/_/Hitchcock",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/f09fdb780153e7f90640ee2af4ed5fc1.jpg",
+      "date": 1791777627000,
+      "nowPlaying": false
+    },
+    {
+      "name": "Say it.",
+      "artist": "Yorushika",
+      "url": "https://www.last.fm/music/Yorushika/_/Say+it.",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2ea84619f2a364d6db916ff70df7a982.jpg",
+      "date": 1791777383000,
+      "nowPlaying": false
+    }
+  ],
+  "topArtists": [
+    {
+      "name": "Yorushika",
+      "playcount": 2,
+      "url": "https://www.last.fm/music/Yorushika",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png"
+    }
+  ],
+  "topTracks": [
+    {
+      "name": "Hitchcock",
+      "artist": "Yorushika",
+      "url": "https://www.last.fm/music/Yorushika/_/Hitchcock",
+      "playcount": 1
+    },
+    {
+      "name": "Say it.",
+      "artist": "Yorushika",
+      "url": "https://www.last.fm/music/Yorushika/_/Say+it.",
+      "playcount": 1
+    }
+  ],
+  "fetchedAt": "2026-10-12T04:03:55.532Z"
 }
