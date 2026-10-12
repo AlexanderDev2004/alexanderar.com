@@ -5,6 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "vite dev",
+    "dev:worker": "bunx wrangler@4 dev --port 8789",
     "fetch:github": "bun scripts/fetch-github.mjs",
     "fetch:lastfm": "bun scripts/fetch-lastfm.mjs",
     "generate:content": "bun scripts/generate-content.mjs",

@@ -6,6 +6,14 @@ import tailwindcss from '@tailwindcss/vite'
 export default defineConfig({
   server: {
     port: 3000,
+    // Local dev: the /api/lastfm live proxy only exists on the deployed
+    // Cloudflare Worker. Forward it to `bun run dev:worker` (wrangler dev
+    // on :8789) so localhost:3000/music/ polls live data too. If the
+    // worker is not running, requests fail and the page quietly keeps
+    // the build snapshot — same behaviour as before.
+    proxy: {
+      '/api/lastfm': 'http://localhost:8789',
+    },
   },
   plugins: [
     tanstackStart({
