@@ -112,8 +112,8 @@ function MusicPage() {
             <Icon name="mdi:music-note-outline" /> Nothing here yet
           </h2>
           <p className="hero-copy">
-            Music data hasn't been fetched yet — it will show up automatically
-            once the Last.fm snapshot runs on the next build.
+            No scrobbles here yet — once I play something with scrobbling on,
+            it shows up here automatically.
           </p>
         </section>
       ) : (
