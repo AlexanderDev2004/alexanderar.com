@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import { createFileRoute } from '@tanstack/react-router'
 import music from '../data/music.json'
 import { seo } from '../lib/seo'
@@ -46,6 +47,8 @@ const data = music as {
   topTracks: TopTrack[]
   fetchedAt: string
 }
+
+type Snapshot = typeof data
 
 function relTime(ms: number | null): string {
   if (!ms) return ''
@@ -107,8 +110,40 @@ function NowPlayingCard({ track }: { track: Track }) {
   )
 }
 
+/** Re-fetch the snapshot from the worker proxy every minute. */
+function useLiveSnapshot(): { snap: Snapshot; isLive: boolean } {
+  const [snap, setSnap] = useState<Snapshot>(data)
+  const [isLive, setIsLive] = useState(false)
+
+  useEffect(() => {
+    let alive = true
+    async function poll() {
+      try {
+        const res = await fetch('/api/lastfm')
+        if (!res.ok) return
+        const next = (await res.json()) as Snapshot
+        if (alive && Array.isArray(next.recent)) {
+          setSnap(next)
+          setIsLive(true)
+        }
+      } catch {
+        // Offline or dev server without the proxy — keep the build snapshot.
+      }
+    }
+    poll()
+    const id = setInterval(poll, 60_000)
+    return () => {
+      alive = false
+      clearInterval(id)
+    }
+  }, [])
+
+  return { snap, isLive }
+}
+
 function MusicPage() {
-  const { recent, topArtists, topTracks, username, fetchedAt } = data
+  const { snap, isLive } = useLiveSnapshot()
+  const { recent, topArtists, topTracks, username, fetchedAt } = snap
   const nowPlaying = recent.find((t) => t.nowPlaying)
   const history = recent.filter((t) => !t.nowPlaying)
   const empty = recent.length === 0 && topArtists.length === 0 && topTracks.length === 0
@@ -259,6 +294,7 @@ function MusicPage() {
           month: 'long',
           year: 'numeric',
         })}
+        {isLive ? ' · live, refreshes every minute' : ''}
       </p>
     </div>
   )
