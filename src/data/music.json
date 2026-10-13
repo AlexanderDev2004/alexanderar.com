@@ -2,93 +2,333 @@
   "username": "Alexander_110",
   "recent": [
     {
-      "name": "Dramaturgy",
+      "name": "Shinkai",
       "artist": "Eve",
-      "url": "https://www.last.fm/music/Eve/_/Dramaturgy",
-      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/246698d41e49ea6bfc8afd13db61350c.jpg",
-      "date": null,
-      "nowPlaying": true
+      "url": "https://www.last.fm/music/Eve/_/Shinkai",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/65bb92ba255da8bcc6df031cc59b6c2b.jpg",
+      "date": 1791799029000,
+      "nowPlaying": false
     },
     {
-      "name": "Sparkle",
+      "name": "Moon Serenade",
+      "artist": "Tayori",
+      "url": "https://www.last.fm/music/Tayori/_/Moon+Serenade",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/9f17d758f45b9ce86ead61cca21824b1.png",
+      "date": 1791798784000,
+      "nowPlaying": false
+    },
+    {
+      "name": "Grand Escape",
       "artist": "RADWIMPS",
-      "url": "https://www.last.fm/music/RADWIMPS/_/Sparkle",
-      "date": 1791778160000,
+      "url": "https://www.last.fm/music/RADWIMPS/_/Grand+Escape",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/ccf6385ae88ce78ccce23c51f177487e.jpg",
+      "date": 1791798444000,
       "nowPlaying": false
     },
     {
-      "name": "ライラック",
-      "artist": "Minami",
-      "url": "https://www.last.fm/music/Minami/_/%E3%83%A9%E3%82%A4%E3%83%A9%E3%83%83%E3%82%AF",
-      "date": 1791777856000,
-      "nowPlaying": false
-    },
-    {
-      "name": "Hitchcock",
+      "name": "嘘月",
       "artist": "Yorushika",
-      "url": "https://www.last.fm/music/Yorushika/_/Hitchcock",
-      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/f09fdb780153e7f90640ee2af4ed5fc1.jpg",
-      "date": 1791777627000,
+      "url": "https://www.last.fm/music/Yorushika/_/%E5%98%98%E6%9C%88",
+      "date": 1791798154000,
       "nowPlaying": false
     },
     {
-      "name": "Say it.",
-      "artist": "Yorushika",
-      "url": "https://www.last.fm/music/Yorushika/_/Say+it.",
-      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2ea84619f2a364d6db916ff70df7a982.jpg",
-      "date": 1791777383000,
+      "name": "貴方の恋人になりたい",
+      "artist": "チョーキューメイ",
+      "url": "https://www.last.fm/music/%E3%83%81%E3%83%A7%E3%83%BC%E3%82%AD%E3%83%A5%E3%83%BC%E3%83%A1%E3%82%A4/_/%E8%B2%B4%E6%96%B9%E3%81%AE%E6%81%8B%E4%BA%BA%E3%81%AB%E3%81%AA%E3%82%8A%E3%81%9F%E3%81%84",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/1fc8137bc2714aabaa34b8c94f7bc51c.jpg",
+      "date": 1791797919000,
+      "nowPlaying": false
+    },
+    {
+      "name": "snowspring",
+      "artist": "チョーキューメイ",
+      "url": "https://www.last.fm/music/%E3%83%81%E3%83%A7%E3%83%BC%E3%82%AD%E3%83%A5%E3%83%BC%E3%83%A1%E3%82%A4/_/snowspring",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/d8adb37540c145f01474c884ff088dc5.jpg",
+      "date": 1791797696000,
+      "nowPlaying": false
+    },
+    {
+      "name": "一路生花",
+      "artist": "温奕心",
+      "url": "https://www.last.fm/music/%E6%B8%A9%E5%A5%95%E5%BF%83/_/%E4%B8%80%E8%B7%AF%E7%94%9F%E8%8A%B1",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png",
+      "date": 1791797500000,
+      "nowPlaying": false
+    },
+    {
+      "name": "辞九门回忆",
+      "artist": "等什么君",
+      "url": "https://www.last.fm/music/%E7%AD%89%E4%BB%80%E4%B9%88%E5%90%9B/_/%E8%BE%9E%E4%B9%9D%E9%97%A8%E5%9B%9E%E5%BF%86",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/02cd8cadaf01b567453b26622a13e60c.png",
+      "date": 1791796836000,
+      "nowPlaying": false
+    },
+    {
+      "name": "青花瓷 Blue and White Porcelain",
+      "artist": "FM Station",
+      "url": "https://www.last.fm/music/FM+Station/_/%E9%9D%92%E8%8A%B1%E7%93%B7+Blue+and+White+Porcelain",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png",
+      "date": 1791796606000,
+      "nowPlaying": false
+    },
+    {
+      "name": "我这一生",
+      "artist": "🎵❤马健涛一曲",
+      "url": "https://www.last.fm/music/%F0%9F%8E%B5%E2%9D%A4%E9%A9%AC%E5%81%A5%E6%B6%9B%E4%B8%80%E6%9B%B2/_/%E6%88%91%E8%BF%99%E4%B8%80%E7%94%9F",
+      "date": 1791796305000,
+      "nowPlaying": false
+    },
+    {
+      "name": "若月亮没来",
+      "artist": "王宇宙Leto dan 乔浚丞",
+      "url": "https://www.last.fm/music/%E7%8E%8B%E5%AE%87%E5%AE%99Leto+dan+%E4%B9%94%E6%B5%9A%E4%B8%9E/_/%E8%8B%A5%E6%9C%88%E4%BA%AE%E6%B2%A1%E6%9D%A5",
+      "date": 1791796129000,
+      "nowPlaying": false
+    },
+    {
+      "name": "你是我唯一的执着",
+      "artist": "马健涛",
+      "url": "https://www.last.fm/music/%E9%A9%AC%E5%81%A5%E6%B6%9B/_/%E4%BD%A0%E6%98%AF%E6%88%91%E5%94%AF%E4%B8%80%E7%9A%84%E6%89%A7%E7%9D%80",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/ba685fef81d20e883f5f72102ea8fd57.jpg",
+      "date": 1791795896000,
+      "nowPlaying": false
+    },
+    {
+      "name": "Riders on the Storm",
+      "artist": "Snoop Dogg",
+      "url": "https://www.last.fm/music/Snoop+Dogg/_/Riders+on+the+Storm",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png",
+      "date": 1791795522000,
+      "nowPlaying": false
+    },
+    {
+      "name": "八方來財(Stacks from All Sides)",
+      "artist": "攬佬SKAI ISYOURGOD",
+      "url": "https://www.last.fm/music/%E6%94%AC%E4%BD%ACSKAI+ISYOURGOD/_/%E5%85%AB%E6%96%B9%E4%BE%86%E8%B2%A1(Stacks+from+All+Sides)",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/37df85e24b4efaffa3c08d3f3007b219.png",
+      "date": 1791788002000,
+      "nowPlaying": false
+    },
+    {
+      "name": "Bling-Bang-Bang-Born",
+      "artist": "Creepy Nuts",
+      "url": "https://www.last.fm/music/Creepy+Nuts/_/Bling-Bang-Bang-Born",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/7fcb0a7db6d51486403d6864fb62aada.png",
+      "date": 1791787832000,
+      "nowPlaying": false
+    },
+    {
+      "name": "因果(Karma Code)",
+      "artist": "攬佬SKAI ISYOURGOD",
+      "url": "https://www.last.fm/music/%E6%94%AC%E4%BD%ACSKAI+ISYOURGOD/_/%E5%9B%A0%E6%9E%9C(Karma+Code)",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/37df85e24b4efaffa3c08d3f3007b219.png",
+      "date": 1791787680000,
+      "nowPlaying": false
+    },
+    {
+      "name": "UNDEAD",
+      "artist": "YOASOBI",
+      "url": "https://www.last.fm/music/YOASOBI/_/UNDEAD",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/25c18a9e9309a36b8a968a9bacef040f.jpg",
+      "date": 1791787464000,
+      "nowPlaying": false
+    },
+    {
+      "name": "If I could be a constellation",
+      "artist": "kessoku band",
+      "url": "https://www.last.fm/music/kessoku+band/_/If+I+could+be+a+constellation",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/9e4c0f751ef7dc62c9622c122dea0187.jpg",
+      "date": 1791787205000,
+      "nowPlaying": false
+    },
+    {
+      "name": "seisyun complex",
+      "artist": "kessoku band",
+      "url": "https://www.last.fm/music/kessoku+band/_/seisyun+complex",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/9e4c0f751ef7dc62c9622c122dea0187.jpg",
+      "date": 1791787002000,
+      "nowPlaying": false
+    },
+    {
+      "name": "Yukidoke",
+      "artist": "Islet",
+      "url": "https://www.last.fm/music/Islet/_/Yukidoke",
+      "date": 1791786729000,
+      "nowPlaying": false
+    },
+    {
+      "name": "Kokoronashi",
+      "artist": "Akane",
+      "url": "https://www.last.fm/music/Akane/_/Kokoronashi",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/d9674a0c51a98ddda96fa1cc84dcab62.jpg",
+      "date": 1791786452000,
+      "nowPlaying": false
+    },
+    {
+      "name": "愛が灯る",
+      "artist": "Rokudenashi",
+      "url": "https://www.last.fm/music/Rokudenashi/_/%E6%84%9B%E3%81%8C%E7%81%AF%E3%82%8B",
+      "date": 1791786252000,
+      "nowPlaying": false
+    },
+    {
+      "name": "たぶん",
+      "artist": "YOASOBI",
+      "url": "https://www.last.fm/music/YOASOBI/_/%E3%81%9F%E3%81%B6%E3%82%93",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/ccc3a0f04e09fe273415511de88af4b0.jpg",
+      "date": 1791785995000,
+      "nowPlaying": false
+    },
+    {
+      "name": "Anytime Anywhere",
+      "artist": "Milet",
+      "url": "https://www.last.fm/music/Milet/_/Anytime+Anywhere",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/9119342e0721f14aa925185a87db873c.png",
+      "date": 1791785764000,
+      "nowPlaying": false
+    },
+    {
+      "name": "いってらっしゃい",
+      "artist": "Ai Higuchi",
+      "url": "https://www.last.fm/music/Ai+Higuchi/_/%E3%81%84%E3%81%A3%E3%81%A6%E3%82%89%E3%81%A3%E3%81%97%E3%82%83%E3%81%84",
+      "date": 1791785527000,
       "nowPlaying": false
     }
   ],
   "topArtists": [
     {
+      "name": "*LUNA",
+      "playcount": 7,
+      "url": "https://www.last.fm/music/*LUNA",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png"
+    },
+    {
       "name": "Yorushika",
-      "playcount": 2,
+      "playcount": 6,
       "url": "https://www.last.fm/music/Yorushika",
       "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png"
     },
     {
-      "name": "Minami",
-      "playcount": 1,
-      "url": "https://www.last.fm/music/Minami",
+      "name": "Eve",
+      "playcount": 3,
+      "url": "https://www.last.fm/music/Eve",
       "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png"
     },
     {
       "name": "RADWIMPS",
-      "playcount": 1,
+      "playcount": 3,
       "url": "https://www.last.fm/music/RADWIMPS",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png"
+    },
+    {
+      "name": "YOASOBI",
+      "playcount": 3,
+      "url": "https://www.last.fm/music/YOASOBI",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png"
+    },
+    {
+      "name": "*Luna feat. Yuaru",
+      "playcount": 2,
+      "url": "https://www.last.fm/music/*Luna+feat.+Yuaru",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png"
+    },
+    {
+      "name": "Ai Higuchi",
+      "playcount": 2,
+      "url": "https://www.last.fm/music/Ai+Higuchi",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png"
+    },
+    {
+      "name": "kessoku band",
+      "playcount": 2,
+      "url": "https://www.last.fm/music/kessoku+band",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png"
+    },
+    {
+      "name": "Rokudenashi",
+      "playcount": 2,
+      "url": "https://www.last.fm/music/Rokudenashi",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png"
+    },
+    {
+      "name": "Tayori",
+      "playcount": 2,
+      "url": "https://www.last.fm/music/Tayori",
       "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png"
     }
   ],
   "topTracks": [
     {
-      "name": "ライラック",
-      "artist": "Minami",
-      "url": "https://www.last.fm/music/Minami/_/%E3%83%A9%E3%82%A4%E3%83%A9%E3%83%83%E3%82%AF",
+      "name": "Aria",
+      "artist": "*LUNA",
+      "url": "https://www.last.fm/music/*LUNA/_/Aria",
       "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png",
       "playcount": 1
     },
     {
-      "name": "Sparkle",
-      "artist": "RADWIMPS",
-      "url": "https://www.last.fm/music/RADWIMPS/_/Sparkle",
+      "name": "Sense",
+      "artist": "*LUNA",
+      "url": "https://www.last.fm/music/*LUNA/_/Sense",
       "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png",
       "playcount": 1
     },
     {
-      "name": "Hitchcock",
-      "artist": "Yorushika",
-      "url": "https://www.last.fm/music/Yorushika/_/Hitchcock",
+      "name": "Unveil",
+      "artist": "*LUNA",
+      "url": "https://www.last.fm/music/*LUNA/_/Unveil",
       "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png",
       "playcount": 1
     },
     {
-      "name": "Say it.",
-      "artist": "Yorushika",
-      "url": "https://www.last.fm/music/Yorushika/_/Say+it.",
+      "name": "アトラクトライト",
+      "artist": "*LUNA",
+      "url": "https://www.last.fm/music/*LUNA/_/%E3%82%A2%E3%83%88%E3%83%A9%E3%82%AF%E3%83%88%E3%83%A9%E3%82%A4%E3%83%88",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png",
+      "playcount": 1
+    },
+    {
+      "name": "イグニッション",
+      "artist": "*LUNA",
+      "url": "https://www.last.fm/music/*LUNA/_/%E3%82%A4%E3%82%B0%E3%83%8B%E3%83%83%E3%82%B7%E3%83%A7%E3%83%B3",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png",
+      "playcount": 1
+    },
+    {
+      "name": "イリオス",
+      "artist": "*LUNA",
+      "url": "https://www.last.fm/music/*LUNA/_/%E3%82%A4%E3%83%AA%E3%82%AA%E3%82%B9",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png",
+      "playcount": 1
+    },
+    {
+      "name": "タイムカプセル",
+      "artist": "*LUNA",
+      "url": "https://www.last.fm/music/*LUNA/_/%E3%82%BF%E3%82%A4%E3%83%A0%E3%82%AB%E3%83%97%E3%82%BB%E3%83%AB",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png",
+      "playcount": 1
+    },
+    {
+      "name": "ラストラス",
+      "artist": "*Luna dan 初音ミク",
+      "url": "https://www.last.fm/music/*Luna+dan+%E5%88%9D%E9%9F%B3%E3%83%9F%E3%82%AF/_/%E3%83%A9%E3%82%B9%E3%83%88%E3%83%A9%E3%82%B9",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png",
+      "playcount": 1
+    },
+    {
+      "name": "あの夏のいつかは(2023 Ver.)",
+      "artist": "*Luna feat. Nenne",
+      "url": "https://www.last.fm/music/*Luna+feat.+Nenne/_/%E3%81%82%E3%81%AE%E5%A4%8F%E3%81%AE%E3%81%84%E3%81%A4%E3%81%8B%E3%81%AF(2023+Ver.)",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png",
+      "playcount": 1
+    },
+    {
+      "name": "ΔV",
+      "artist": "*Luna feat. Yuaru",
+      "url": "https://www.last.fm/music/*Luna+feat.+Yuaru/_/%CE%94V",
       "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png",
       "playcount": 1
     }
   ],
-  "fetchedAt": "2026-10-12T04:13:26.419Z"
+  "fetchedAt": "2026-10-13T01:04:13.888Z"
 }
