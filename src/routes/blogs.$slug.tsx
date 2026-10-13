@@ -1,7 +1,8 @@
 import { createFileRoute, Link, useLoaderData } from '@tanstack/react-router'
-import { formatDate, getBlog } from '../lib/content'
+import { blogs, formatDate, getAdjacent, getBlog } from '../lib/content'
 import { seo } from '../lib/seo'
 import { Icon } from "../components/Icon"
+import { PrevNext } from '../components/PrevNext'
 
 export const Route = createFileRoute('/blogs/$slug')({
   head: (ctx) => {
@@ -26,6 +27,7 @@ export const Route = createFileRoute('/blogs/$slug')({
 
 function BlogPostPage() {
   const { post } = useLoaderData({ from: '/blogs/$slug' })
+  const { prev, next } = getAdjacent(blogs, post.slug)
 
   return (
     <article className="article">
@@ -44,6 +46,11 @@ function BlogPostPage() {
       <div
         className="md-body"
         dangerouslySetInnerHTML={{ __html: post.html }}
+      />
+      <PrevNext
+        basePath="/blogs"
+        prev={prev && { slug: prev.slug, title: prev.title }}
+        next={next && { slug: next.slug, title: next.title }}
       />
     </article>
   )

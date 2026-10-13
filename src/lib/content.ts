@@ -72,6 +72,21 @@ export function getReport(slug: string): Report | undefined {
   return reports.find((r) => r.slug === normalizeSlug(slug));
 }
 
+/**
+ * Neighbours of an entry in its list (array order = display order).
+ * "prev" follows the site's reading direction (the item shown before it on
+ * the index page), "next" the one after. Either side can be missing at the
+ * ends of the list.
+ */
+export function getAdjacent<T extends { slug: string }>(
+  list: T[],
+  slug: string,
+): { prev: T | undefined; next: T | undefined } {
+  const i = list.findIndex((item) => item.slug === normalizeSlug(slug));
+  if (i === -1) return { prev: undefined, next: undefined };
+  return { prev: list[i - 1], next: list[i + 1] };
+}
+
 export function formatDate(iso: string): string {
   return new Date(iso).toLocaleDateString('en-US', {
     day: 'numeric',

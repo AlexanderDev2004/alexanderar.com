@@ -1412,6 +1412,81 @@ details[open] .chev {
   display: grid;
   gap: 7px;
 }
+/* ============ prev/next pager (project & blog detail) ============ */
+.prev-next {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 64px;
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
+}
+.pn-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  text-decoration: none;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  transition: border-color 0.18s ease;
+}
+.pn-link:hover {
+  border-color: var(--sage-deep);
+}
+.pn-link .icon {
+  flex: 0 0 auto;
+  font-size: 17px;
+  color: var(--sage-deep);
+}
+.pn-next {
+  justify-content: flex-end;
+  text-align: right;
+}
+.pn-body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.pn-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--stone);
+}
+.pn-title {
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--ink);
+  line-height: 1.35;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.pn-link:hover .pn-title {
+  color: var(--sage-deep);
+}
+/* end-of-list side: quiet placeholder keeps the two columns balanced */
+.pn-empty {
+  border-style: dashed;
+  border-color: var(--line);
+}
+@media (max-width: 560px) {
+  .prev-next {
+    grid-template-columns: 1fr;
+  }
+  /* "next" is the page you're more likely to continue to — put it on top */
+  .pn-next {
+    order: -1;
+  }
+  .pn-empty {
+    display: none;
+  }
+}
+
 .sr-only {
   position: absolute;
   width: 1px;

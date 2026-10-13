@@ -1,9 +1,10 @@
 import { createFileRoute, Link, useLoaderData } from '@tanstack/react-router'
 import { useEffect, useRef, useState } from 'react'
-import { getProject } from '../lib/content'
+import { getAdjacent, getProject, projects } from '../lib/content'
 import { seo } from '../lib/seo'
 import { Icon } from "../components/Icon"
 import { Skeleton } from '../components/Skeleton'
+import { PrevNext } from '../components/PrevNext'
 
 export const Route = createFileRoute('/projects/$slug')({
   head: (ctx) => {
@@ -28,6 +29,7 @@ export const Route = createFileRoute('/projects/$slug')({
 
 function ProjectDetailPage() {
   const { project } = useLoaderData({ from: '/projects/$slug' })
+  const { prev, next } = getAdjacent(projects, project.slug)
 
   return (
     <article className="article">
@@ -86,6 +88,11 @@ function ProjectDetailPage() {
       <div
         className="md-body"
         dangerouslySetInnerHTML={{ __html: project.fullDescriptionHtml }}
+      />
+      <PrevNext
+        basePath="/projects"
+        prev={prev && { slug: prev.slug, title: prev.title }}
+        next={next && { slug: next.slug, title: next.title }}
       />
     </article>
   )
