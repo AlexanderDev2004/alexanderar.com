@@ -1,4 +1,59 @@
-/*
-  Cache-Control: public, max-age=0, must-revalidate
+# Cloudflare Workers assets header rules.
+# NOTE: Cloudflare JOINS duplicate header names across matching rules instead
+# of overriding, so every path must match exactly ONE Cache-Control rule here.
+# /assets/* holds only content-hashed files — safe to cache forever.
+# Everything else revalidates, so deploys show up after one refresh.
+
 /assets/*
   Cache-Control: public, max-age=31536000, immutable
+
+/
+  Cache-Control: public, max-age=0, must-revalidate
+/404
+  Cache-Control: public, max-age=0, must-revalidate
+/music*
+  Cache-Control: public, max-age=0, must-revalidate
+/projects*
+  Cache-Control: public, max-age=0, must-revalidate
+/blogs*
+  Cache-Control: public, max-age=0, must-revalidate
+/uses*
+  Cache-Control: public, max-age=0, must-revalidate
+/certifications*
+  Cache-Control: public, max-age=0, must-revalidate
+/security-findings*
+  Cache-Control: public, max-age=0, must-revalidate
+/reports/*
+  Cache-Control: public, max-age=0, must-revalidate
+
+# static binaries (og images, covers, avatars, fonts, media, sitemap/robots)
+/*.png
+  Cache-Control: public, max-age=0, must-revalidate
+/*.jpg
+  Cache-Control: public, max-age=0, must-revalidate
+/*.jpeg
+  Cache-Control: public, max-age=0, must-revalidate
+/*.webp
+  Cache-Control: public, max-age=0, must-revalidate
+/*.gif
+  Cache-Control: public, max-age=0, must-revalidate
+/*.svg
+  Cache-Control: public, max-age=0, must-revalidate
+/*.ico
+  Cache-Control: public, max-age=0, must-revalidate
+/*.ttf
+  Cache-Control: public, max-age=0, must-revalidate
+/*.woff2
+  Cache-Control: public, max-age=0, must-revalidate
+/*.pdf
+  Cache-Control: public, max-age=0, must-revalidate
+/*.mp4
+  Cache-Control: public, max-age=0, must-revalidate
+/*.webm
+  Cache-Control: public, max-age=0, must-revalidate
+/*.mp3
+  Cache-Control: public, max-age=0, must-revalidate
+/*.txt
+  Cache-Control: public, max-age=0, must-revalidate
+/*.xml
+  Cache-Control: public, max-age=0, must-revalidate
