@@ -13,7 +13,7 @@
 
 const LASTFM_API = 'https://ws.audioscrobbler.com/2.0/';
 const USERNAME = 'Alexander_110';
-const CACHE_TTL = 45; // seconds at the edge
+const CACHE_TTL = 25; // seconds at the edge
 
 function imageOf(images) {
   const last = Array.isArray(images) ? images[images.length - 1] : null;

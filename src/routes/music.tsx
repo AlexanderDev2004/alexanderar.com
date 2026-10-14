@@ -130,7 +130,7 @@ function useLiveSnapshot(): { snap: Snapshot; isLive: boolean; firstLoad: boolea
       }
     }
     poll()
-    const id = setInterval(poll, 60_000)
+    const id = setInterval(poll, 30_000)
     return () => {
       alive = false
       clearInterval(id)
@@ -304,7 +304,7 @@ function MusicPage() {
           month: 'long',
           year: 'numeric',
         })}
-        {isLive ? ' · live, refreshes every minute' : ''}
+        {isLive ? ' · live, refreshes every 30s' : ''}
       </p>
     </div>
   )
