@@ -2,6 +2,132 @@
   "username": "Alexander_110",
   "recent": [
     {
+      "name": "少年",
+      "artist": "梦然",
+      "url": "https://www.last.fm/music/%E6%A2%A6%E7%84%B6/_/%E5%B0%91%E5%B9%B4",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/71a38fafdfb9272a41c351075353b50b.jpg",
+      "date": 1792052565000,
+      "nowPlaying": false
+    },
+    {
+      "name": "Flower And Badger Game",
+      "artist": "Yorushika",
+      "url": "https://www.last.fm/music/Yorushika/_/Flower+And+Badger+Game",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/95e8222571d237d64eb522a7c34697ae.jpg",
+      "date": 1792052231000,
+      "nowPlaying": false
+    },
+    {
+      "name": "小美滿 (電影《熱辣滾燙》熱辣陪伴曲)",
+      "artist": "周深",
+      "url": "https://www.last.fm/music/%E5%91%A8%E6%B7%B1/_/%E5%B0%8F%E7%BE%8E%E6%BB%BF+(%E9%9B%BB%E5%BD%B1%E3%80%8A%E7%86%B1%E8%BE%A3%E6%BB%BE%E7%87%99%E3%80%8B%E7%86%B1%E8%BE%A3%E9%99%AA%E4%BC%B4%E6%9B%B2)",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/3fcbca1ce358aa3a7805adccd80d1b06.png",
+      "date": 1792052016000,
+      "nowPlaying": false
+    },
+    {
+      "name": "再見",
+      "artist": "張震嶽",
+      "url": "https://www.last.fm/music/%E5%BC%B5%E9%9C%87%E5%B6%BD/_/%E5%86%8D%E8%A6%8B",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/92c7d6fcde404fa9cf5fc41b238b9a12.png",
+      "date": 1792051802000,
+      "nowPlaying": false
+    },
+    {
+      "name": "再見",
+      "artist": "張震嶽",
+      "url": "https://www.last.fm/music/%E5%BC%B5%E9%9C%87%E5%B6%BD/_/%E5%86%8D%E8%A6%8B",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/92c7d6fcde404fa9cf5fc41b238b9a12.png",
+      "date": 1792051597000,
+      "nowPlaying": false
+    },
+    {
+      "name": "若月亮没来（若是月亮还没来）",
+      "artist": "王宇宙Leto dan 乔浚丞",
+      "url": "https://www.last.fm/music/%E7%8E%8B%E5%AE%87%E5%AE%99Leto+dan+%E4%B9%94%E6%B5%9A%E4%B8%9E/_/%E8%8B%A5%E6%9C%88%E4%BA%AE%E6%B2%A1%E6%9D%A5%EF%BC%88%E8%8B%A5%E6%98%AF%E6%9C%88%E4%BA%AE%E8%BF%98%E6%B2%A1%E6%9D%A5%EF%BC%89",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png",
+      "date": 1792051424000,
+      "nowPlaying": false
+    },
+    {
+      "name": "Wavin' Flag (Coca-Cola® Celebration Mix)",
+      "artist": "K'naan",
+      "url": "https://www.last.fm/music/K%27naan/_/Wavin%27+Flag+(Coca-Cola%C2%AE+Celebration+Mix)",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/c00d971e18c4286b8edcf10cdb2a35cf.jpg",
+      "date": 1792051187000,
+      "nowPlaying": false
+    },
+    {
+      "name": "Rockn' Roll, Morning Light Falls on You",
+      "artist": "kessoku band",
+      "url": "https://www.last.fm/music/kessoku+band/_/Rockn%27+Roll,+Morning+Light+Falls+on+You",
+      "date": 1792050914000,
+      "nowPlaying": false
+    },
+    {
+      "name": "Sunny",
+      "artist": "Yorushika",
+      "url": "https://www.last.fm/music/Yorushika/_/Sunny",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/c6b0c678e12cd6a6b69edb1a03319327.jpg",
+      "date": 1792050654000,
+      "nowPlaying": false
+    },
+    {
+      "name": "ALIVE",
+      "artist": "ClariS",
+      "url": "https://www.last.fm/music/ClariS/_/ALIVE",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/15cc5f93b344fcfbae796a58ee7bef96.jpg",
+      "date": 1792050436000,
+      "nowPlaying": false
+    },
+    {
+      "name": "Aitoka.",
+      "artist": "riria.",
+      "url": "https://www.last.fm/music/riria./_/Aitoka.",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png",
+      "date": 1792050200000,
+      "nowPlaying": false
+    },
+    {
+      "name": "「僕は...」",
+      "artist": "Atarayo",
+      "url": "https://www.last.fm/music/Atarayo/_/%E3%80%8C%E5%83%95%E3%81%AF...%E3%80%8D",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/0b4e9d2ba0ce58c83775a26e45df3fe0.jpg",
+      "date": 1792049969000,
+      "nowPlaying": false
+    },
+    {
+      "name": "乙女どもよ。",
+      "artist": "高嶺のなでしこ",
+      "url": "https://www.last.fm/music/%E9%AB%98%E5%B6%BA%E3%81%AE%E3%81%AA%E3%81%A7%E3%81%97%E3%81%93/_/%E4%B9%99%E5%A5%B3%E3%81%A9%E3%82%82%E3%82%88%E3%80%82",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/0c487bb99a735f4a0bce56ad279dd468.png",
+      "date": 1792049582000,
+      "nowPlaying": false
+    },
+    {
+      "name": "Tower of Flower",
+      "artist": "Sayuri",
+      "url": "https://www.last.fm/music/Sayuri/_/Tower+of+Flower",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/ed1190451b7abce95e3e1c8fc69255b2.jpg",
+      "date": 1792049305000,
+      "nowPlaying": false
+    },
+    {
+      "name": "Trust in God",
+      "artist": "Elevation Worship",
+      "url": "https://www.last.fm/music/Elevation+Worship/_/Trust+in+God",
+      "date": 1792048652000,
+      "nowPlaying": false
+    },
+    {
+      "name": "Make-up Shadow",
+      "artist": "Yorushika",
+      "url": "https://www.last.fm/music/Yorushika/_/Make-up+Shadow",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/d664f655835183fb4b4f746161c374e4.jpg",
+      "date": 1792045828000,
+      "nowPlaying": false
+    },
+    {
       "name": "Mephisto",
       "artist": "Queen Bee",
       "url": "https://www.last.fm/music/Queen+Bee/_/Mephisto",
@@ -70,146 +196,25 @@
       "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/f0de0bebe59d8d767a6d92a195b81597.jpg",
       "date": 1791982909000,
       "nowPlaying": false
-    },
-    {
-      "name": "KICK BACK",
-      "artist": "Kenshi Yonezu",
-      "url": "https://www.last.fm/music/Kenshi+Yonezu/_/KICK+BACK",
-      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/4c4e6c93455689e610c1e0789a91eef0.jpg",
-      "date": 1791982615000,
-      "nowPlaying": false
-    },
-    {
-      "name": "ΔV (Delta V) feat.ゆある",
-      "artist": "*LUNA",
-      "url": "https://www.last.fm/music/*LUNA/_/%CE%94V+(Delta+V)+feat.%E3%82%86%E3%81%82%E3%82%8B",
-      "date": 1791978588000,
-      "nowPlaying": false
-    },
-    {
-      "name": "miyakōchi",
-      "artist": "Yorushika",
-      "url": "https://www.last.fm/music/Yorushika/_/miyak%C5%8Dchi",
-      "date": 1791978322000,
-      "nowPlaying": false
-    },
-    {
-      "name": "Haru Wo Matsu",
-      "artist": "Tayori",
-      "url": "https://www.last.fm/music/Tayori/_/Haru+Wo+Matsu",
-      "date": 1791978056000,
-      "nowPlaying": false
-    },
-    {
-      "name": "Ao no Waltz",
-      "artist": "Eve",
-      "url": "https://www.last.fm/music/Eve/_/Ao+no+Waltz",
-      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/65bb92ba255da8bcc6df031cc59b6c2b.jpg",
-      "date": 1791977767000,
-      "nowPlaying": false
-    },
-    {
-      "name": "Suzume",
-      "artist": "RADWIMPS",
-      "url": "https://www.last.fm/music/RADWIMPS/_/Suzume",
-      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/ad7bc8a479fd08c8898fd5cf10cc93d8.png",
-      "date": 1791977530000,
-      "nowPlaying": false
-    },
-    {
-      "name": "あの夏のいつかは",
-      "artist": "♫Original Songs",
-      "url": "https://www.last.fm/music/%E2%99%ABOriginal+Songs/_/%E3%81%82%E3%81%AE%E5%A4%8F%E3%81%AE%E3%81%84%E3%81%A4%E3%81%8B%E3%81%AF",
-      "date": 1791977188000,
-      "nowPlaying": false
-    },
-    {
-      "name": "UNDEAD",
-      "artist": "YOASOBI",
-      "url": "https://www.last.fm/music/YOASOBI/_/UNDEAD",
-      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/25c18a9e9309a36b8a968a9bacef040f.jpg",
-      "date": 1791977000000,
-      "nowPlaying": false
-    },
-    {
-      "name": "Happy Lucky Chappy",
-      "artist": "Ano",
-      "url": "https://www.last.fm/music/Ano/_/Happy+Lucky+Chappy",
-      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/07ae23485338a67231f4e30ac39ced76.jpg",
-      "date": 1791976812000,
-      "nowPlaying": false
-    },
-    {
-      "name": "あぶく",
-      "artist": "Yorushika",
-      "url": "https://www.last.fm/music/Yorushika/_/%E3%81%82%E3%81%B6%E3%81%8F",
-      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/6c6b385621f08b700a1ca613da4442c9.jpg",
-      "date": 1791976576000,
-      "nowPlaying": false
-    },
-    {
-      "name": "Say it.",
-      "artist": "Yorushika",
-      "url": "https://www.last.fm/music/Yorushika/_/Say+it.",
-      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2ea84619f2a364d6db916ff70df7a982.jpg",
-      "date": 1791976332000,
-      "nowPlaying": false
-    },
-    {
-      "name": "Die In A Fire",
-      "artist": "The Living Tombstone",
-      "url": "https://www.last.fm/music/The+Living+Tombstone/_/Die+In+A+Fire",
-      "date": 1791976060000,
-      "nowPlaying": false
-    },
-    {
-      "name": "春の魔法",
-      "artist": "*Luna feat. Nenne",
-      "url": "https://www.last.fm/music/*Luna+feat.+Nenne/_/%E6%98%A5%E3%81%AE%E9%AD%94%E6%B3%95",
-      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/1a3f9c60eb3642cbeaae023e15a1319e.jpg",
-      "date": 1791975849000,
-      "nowPlaying": false
-    },
-    {
-      "name": "イグニッション",
-      "artist": "*LUNA",
-      "url": "https://www.last.fm/music/*LUNA/_/%E3%82%A4%E3%82%B0%E3%83%8B%E3%83%83%E3%82%B7%E3%83%A7%E3%83%B3",
-      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/f4ebed5a13c21310338613d9d13acda8.jpg",
-      "date": 1791975696000,
-      "nowPlaying": false
-    },
-    {
-      "name": "Unveil",
-      "artist": "*LUNA",
-      "url": "https://www.last.fm/music/*LUNA/_/Unveil",
-      "date": 1791975432000,
-      "nowPlaying": false
-    },
-    {
-      "name": "夏が僕らを呼ぶのなら",
-      "artist": "Luna",
-      "url": "https://www.last.fm/music/Luna/_/%E5%A4%8F%E3%81%8C%E5%83%95%E3%82%89%E3%82%92%E5%91%BC%E3%81%B6%E3%81%AE%E3%81%AA%E3%82%89",
-      "date": 1791975157000,
-      "nowPlaying": false
     }
   ],
   "topArtists": [
     {
       "name": "kessoku band",
-      "playcount": 14,
+      "playcount": 15,
       "url": "https://www.last.fm/music/kessoku+band",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png"
+    },
+    {
+      "name": "Yorushika",
+      "playcount": 13,
+      "url": "https://www.last.fm/music/Yorushika",
       "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png"
     },
     {
       "name": "*LUNA",
       "playcount": 11,
       "url": "https://www.last.fm/music/*LUNA",
-      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png"
-    },
-    {
-      "name": "Yorushika",
-      "playcount": 10,
-      "url": "https://www.last.fm/music/Yorushika",
       "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png"
     },
     {
@@ -320,12 +325,12 @@
       "playcount": 2
     },
     {
-      "name": "Say it.",
+      "name": "Make-up Shadow",
       "artist": "Yorushika",
-      "url": "https://www.last.fm/music/Yorushika/_/Say+it.",
+      "url": "https://www.last.fm/music/Yorushika/_/Make-up+Shadow",
       "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png",
       "playcount": 2
     }
   ],
-  "fetchedAt": "2026-10-14T21:59:59.448Z"
+  "fetchedAt": "2026-10-15T21:53:51.916Z"
 }
