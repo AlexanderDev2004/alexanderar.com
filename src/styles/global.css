@@ -1247,6 +1247,50 @@ details[open] .chev {
   border: none;
   padding: 0;
 }
+/* copy button — floats over the code block's top-right corner */
+.md-body pre {
+  position: relative;
+}
+.code-copy {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--stone);
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+/* always visible on touch devices, where there is no hover */
+@media (hover: none) {
+  .code-copy {
+    opacity: 1;
+  }
+}
+.md-body pre:hover .code-copy,
+.code-copy:focus-visible {
+  opacity: 1;
+}
+.code-copy:hover {
+  border-color: var(--sage-deep);
+  color: var(--sage-deep);
+}
+.code-copy .icon {
+  font-size: 15px;
+}
+.code-copy.copied {
+  opacity: 1;
+  color: var(--green-ink);
+  background: var(--green-bright);
+  border-color: var(--green-bright);
+}
 .md-body blockquote {
   border-left: 3px solid var(--sage);
   padding-left: 16px;
