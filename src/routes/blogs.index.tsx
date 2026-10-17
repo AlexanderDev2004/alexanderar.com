@@ -11,6 +11,7 @@ export const Route = createFileRoute('/blogs/')({
       description:
         'Notes and write-ups about development, games, and experiments by Alexander Agung Raya.',
       path: '/blogs',
+      ogImage: '/og/blogs.png',
     }),
   component: BlogsPage,
 })

@@ -11,6 +11,7 @@ export const Route = createFileRoute('/projects/')({
       description:
         'Games, web apps, and tools built by Alexander Agung Raya.',
       path: '/projects',
+      ogImage: '/og/projects.png',
     }),
   component: ProjectsPage,
 })

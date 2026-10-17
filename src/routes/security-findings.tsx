@@ -10,6 +10,7 @@ export const Route = createFileRoute('/security-findings')({
       description:
         'Responsible disclosure reports written by Alexander Agung Raya.',
       path: '/security-findings',
+      ogImage: '/og/security-findings.png',
     }),
   component: SecurityFindingsPage,
 })

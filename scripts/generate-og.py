@@ -2,8 +2,12 @@
 """Build-time OG image generator (Pillow).
 
 Generates 1200x630 PNG link-preview cards:
-  public/og-image.png              — default (homepage / listing pages)
-  public/og/uses.png               — the /uses page
+  public/og-image.png                    — homepage (profile card)
+  public/og/projects.png                 — /projects listing
+  public/og/blogs.png                    — /blogs listing
+  public/og/music.png                    — /music
+  public/og/uses.png                     — /uses
+  public/og/security-findings.png        — /security-findings
   public/og/blogs/<slug>.png       — one per blog post
   public/og/projects/<slug>.png    — one per project
   public/og/reports/<slug>.png     — one per security report
@@ -189,6 +193,92 @@ def format_date(raw: str) -> str:
     return f"{d} {months.get(m, '')} {y}"
 
 
+def profile_card(*, kicker: str, description: str, out: Path) -> None:
+    """Page card: page kicker on top, the owner's name as the big title,
+    a one-line description, and a row of palette dots. Same tokens, frame,
+    and dot grid as `card` — so the family stays visually consistent."""
+    img = background()
+    draw = ImageDraw.Draw(img)
+    center = W / 2
+
+    # kicker: "■ PROJECTS" — same treatment as card()'s kicker
+    kick_font = load_font(25, "Bold")
+    kick_text = kicker.upper()
+    tracking = 7
+    square = 9
+    kick_w = tracked(draw, kick_text, kick_font, tracking)
+    kick_y = 132
+    draw.rectangle([center - (square + 14 + kick_w) / 2, kick_y + 9,
+                    center - (square + 14 + kick_w) / 2 + square, kick_y + 9 + square],
+                   fill=SAGE_DEEP)
+    draw_tracked(draw, kick_text, kick_font,
+                 center + (square + 14) / 2, kick_y, SAGE_DEEP, tracking)
+
+    # name — shrink until it fits (wraps to at most 2 lines)
+    name = "ALEXANDER AGUNG RAYA"
+    top = 200
+    bottom_limit = H - 118
+    avail = bottom_limit - top
+
+    desc_font = load_font(30, "Regular")
+    desc_lines = wrap(draw, description, desc_font, W - 320, 2) if description else []
+    desc_h = len(desc_lines) * 42
+    underline_gap, underline_h, section_gap = 30, 4, 30
+    dots_h = 18 + section_gap  # dot row + gap below the description
+
+    def measure(size: int):
+        font = load_font(size, "ExtraBold")
+        lines = wrap(draw, name, font, W - 260, 2)
+        block = len(lines) * int(size * 1.1)
+        stack = block + underline_gap + underline_h + underline_gap
+        stack += (desc_h + section_gap) if desc_h else 0
+        stack += dots_h
+        return font, lines, block, stack
+
+    size = 80
+    while size >= 42:
+        font, lines, block, stack = measure(size)
+        if stack <= avail:
+            break
+        size -= 4
+
+    y = top + max((avail - stack) / 2, 0)
+    line_h = int(font.size * 1.1)
+    for line in lines:
+        tw = draw.textlength(line, font=font)
+        draw.text((center - tw / 2, y), line, font=font, fill=INK)
+        y += line_h
+
+    # short sage underline under the name
+    y += underline_gap
+    draw.rectangle([center - 30, y, center + 30, y + underline_h], fill=SAGE_DEEP)
+    y += underline_h + underline_gap
+
+    # description (up to 2 centered lines)
+    for line in desc_lines:
+        tw = draw.textlength(line, font=desc_font)
+        draw.text((center - tw / 2, y), line, font=desc_font, fill=OLIVE)
+        y += 42
+
+    # palette dots — one per site accent color
+    y += section_gap
+    dot_r, dot_gap = 7, 26
+    colors = [SAGE_DEEP, (143, 168, 188), (179, 166, 194), (227, 196, 192), STONE]
+    total_w = (len(colors) - 1) * dot_gap
+    dx = center - total_w / 2
+    for color in colors:
+        draw.ellipse([dx - dot_r, y - dot_r, dx + dot_r, y + dot_r], fill=color)
+        dx += dot_gap
+
+    # domain at the bottom
+    foot_font = load_font(24, "Bold")
+    draw_tracked(draw, "ALEXANDERAR.COM", foot_font, center, H - 92, STONE, 6)
+
+    out.parent.mkdir(parents=True, exist_ok=True)
+    img.save(out, "PNG")
+    print(f"[og] {out.relative_to(ROOT)}")
+
+
 def card(*, kicker: str, title: str, description: str, tag: str, out: Path) -> None:
     img = background()
     draw = ImageDraw.Draw(img)
@@ -277,34 +367,26 @@ def card(*, kicker: str, title: str, description: str, tag: str, out: Path) -> N
 
 
 def main() -> None:
-    card(
-        kicker="Portfolio",
-        title="Alexander Agung Raya",
-        description="Software Developer — Indonesia, East Java",
-        tag="portfolio",
-        out=PUBLIC / "og-image.png",
-    )
+    # Page cards — one per top-level page, each carrying the owner's name.
+    page_cards = [
+        ("Portfolio", "Software Developer — Indonesia, East Java",
+         PUBLIC / "og-image.png"),
+        ("Projects", "Things I've built — web, tools, and experiments",
+         PUBLIC / "og" / "projects.png"),
+        ("Blogs", "Notes on my journey — dual booting, tools, and more",
+         PUBLIC / "og" / "blogs.png"),
+        ("Music", "What I'm listening to, straight from Last.fm",
+         PUBLIC / "og" / "music.png"),
+        ("Uses", "Hardware and AI agents I use day to day",
+         PUBLIC / "og" / "uses.png"),
+        ("Security Findings", "Reports and responsible disclosures",
+         PUBLIC / "og" / "security-findings.png"),
+    ]
+    for kicker, description, out in page_cards:
+        profile_card(kicker=kicker, description=description, out=out)
 
     expected: dict[Path, set[str]] = {}
-
-    # Uses page — one static card (content lives in src/data/uses.ts).
-    expected[PUBLIC / "og"] = {"uses.png", "music.png"}
-    card(
-        kicker="Uses",
-        title="Uses",
-        description="Hardware and AI agents I use day to day",
-        tag="uses",
-        out=PUBLIC / "og" / "uses.png",
-    )
-
-    # Music page — one static card (content lives in src/data/music.json).
-    card(
-        kicker="Music",
-        title="Music",
-        description="What I'm listening to, straight from Last.fm",
-        tag="music",
-        out=PUBLIC / "og" / "music.png",
-    )
+    expected[PUBLIC / "og"] = {out.name for _, _, out in page_cards if out.parent == PUBLIC / "og"}
 
     blogs = sorted((ROOT / "src" / "content" / "blogs").glob("*.md"))
     expected[PUBLIC / "og" / "blogs"] = set()
