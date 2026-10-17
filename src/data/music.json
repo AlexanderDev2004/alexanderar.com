@@ -2,6 +2,14 @@
   "username": "Alexander_110",
   "recent": [
     {
+      "name": "One Call Away",
+      "artist": "Charlie Puth",
+      "url": "https://www.last.fm/music/Charlie+Puth/_/One+Call+Away",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/29e688c6878b784fd8eb9755641b2b97.jpg",
+      "date": 1792243615000,
+      "nowPlaying": false
+    },
+    {
       "name": "At My Worst",
       "artist": "Pink Sweat$",
       "url": "https://www.last.fm/music/Pink+Sweat$/_/At+My+Worst",
@@ -184,14 +192,6 @@
       "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png",
       "date": 1792138603000,
       "nowPlaying": false
-    },
-    {
-      "name": "Antanante.",
-      "artist": "riria.",
-      "url": "https://www.last.fm/music/riria./_/Antanante.",
-      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/5fbde33547d24d7f1fed4460f50d8be3.jpg",
-      "date": 1792138357000,
-      "nowPlaying": false
     }
   ],
   "topArtists": [
@@ -328,5 +328,5 @@
       "playcount": 2
     }
   ],
-  "fetchedAt": "2026-10-16T21:51:51.444Z"
+  "fetchedAt": "2026-10-17T21:10:50.841Z"
 }
