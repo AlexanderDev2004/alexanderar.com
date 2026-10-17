@@ -2,6 +2,7 @@ import { createFileRoute, Link, useLoaderData } from '@tanstack/react-router'
 import { formatDate, getReport } from '../lib/content'
 import { seo } from '../lib/seo'
 import { Icon } from "../components/Icon"
+import { MarkdownBody } from '../components/MarkdownBody'
 
 export const Route = createFileRoute('/reports/$slug')({
   head: (ctx) => {
@@ -57,10 +58,7 @@ function ReportPage() {
         </span>
         <span>by {report.author}</span>
       </div>
-      <div
-        className="md-body"
-        dangerouslySetInnerHTML={{ __html: report.html }}
-      />
+      <MarkdownBody html={report.html} />
     </article>
   )
 }

@@ -1247,9 +1247,15 @@ details[open] .chev {
   border: none;
   padding: 0;
 }
-/* copy button — floats over the code block's top-right corner */
-.md-body pre {
+/* code blocks — MarkdownBody renders each fenced block as a figure.frame
+   wrapping the highlighted <pre class="th-code"> plus a copy button and
+   language label; the frame owns positioning so the pre stays untouched */
+.md-body .code-frame {
   position: relative;
+  margin: 16px 0;
+}
+.md-body .code-frame pre {
+  margin: 0;
 }
 .code-copy {
   position: absolute;
@@ -1268,13 +1274,28 @@ details[open] .chev {
   opacity: 0;
   transition: opacity 0.15s ease, border-color 0.15s ease, color 0.15s ease;
 }
+.code-lang {
+  position: absolute;
+  top: 18px;
+  right: 48px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--stone);
+  opacity: 0;
+  transition: opacity 0.15s ease;
+  pointer-events: none;
+}
 /* always visible on touch devices, where there is no hover */
 @media (hover: none) {
-  .code-copy {
+  .code-copy,
+  .code-lang {
     opacity: 1;
   }
 }
-.md-body pre:hover .code-copy,
+.code-frame:hover .code-copy,
+.code-frame:hover .code-lang,
 .code-copy:focus-visible {
   opacity: 1;
 }
@@ -1290,6 +1311,93 @@ details[open] .chev {
   color: var(--green-ink);
   background: var(--green-bright);
   border-color: var(--green-bright);
+}
+/* TanStack Highlight token theme — the highlighter emits stable semantic
+   classes (.th-token.th-comment, .th-keyword, …) with no inline styles, so
+   the whole theme lives here in CSS variables: one markup tree works across
+   themes, and a future dark mode only remaps the variables below. */
+:root {
+  --tok-plain: var(--ink);
+  --tok-comment: #99a18c;
+  --tok-keyword: var(--sage-deep);
+  --tok-command: #6d5f3e;
+  --tok-string: var(--blue-ink);
+  --tok-number: #a4807a;
+  --tok-literal: #a4807a;
+  --tok-function: #7f6f96;
+  --tok-type: #6a7b53;
+  --tok-operator: var(--stone);
+  --tok-variable: var(--ink);
+  --tok-property: var(--olive);
+  --tok-attr: #7f6f96;
+  --tok-tag: var(--sage-deep);
+  --tok-meta: var(--stone);
+  --tok-inserted: #47703c;
+  --tok-deleted: #a05248;
+  --tok-heading: var(--green-ink);
+  --tok-link: var(--blue-ink);
+}
+.th-code {
+  color: var(--tok-plain);
+}
+.th-code .th-comment {
+  color: var(--tok-comment);
+  font-style: italic;
+}
+.th-code .th-keyword {
+  color: var(--tok-keyword);
+}
+.th-code .th-command {
+  color: var(--tok-command);
+  font-weight: 600;
+}
+.th-code .th-string {
+  color: var(--tok-string);
+}
+.th-code .th-number {
+  color: var(--tok-number);
+}
+.th-code .th-literal {
+  color: var(--tok-literal);
+}
+.th-code .th-function {
+  color: var(--tok-function);
+}
+.th-code .th-type {
+  color: var(--tok-type);
+}
+.th-code .th-operator {
+  color: var(--tok-operator);
+}
+.th-code .th-variable {
+  color: var(--tok-variable);
+}
+.th-code .th-property {
+  color: var(--tok-property);
+}
+.th-code .th-attr {
+  color: var(--tok-attr);
+}
+.th-code .th-tag {
+  color: var(--tok-tag);
+}
+.th-code .th-meta {
+  color: var(--tok-meta);
+  font-style: italic;
+}
+.th-code .th-inserted {
+  color: var(--tok-inserted);
+}
+.th-code .th-deleted {
+  color: var(--tok-deleted);
+}
+.th-code .th-heading {
+  color: var(--tok-heading);
+  font-weight: 600;
+}
+.th-code .th-link {
+  color: var(--tok-link);
+  text-decoration: underline;
 }
 .md-body blockquote {
   border-left: 3px solid var(--sage);

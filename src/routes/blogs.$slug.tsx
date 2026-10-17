@@ -3,7 +3,7 @@ import { blogs, formatDate, getAdjacent, getBlog } from '../lib/content'
 import { seo } from '../lib/seo'
 import { Icon } from "../components/Icon"
 import { PrevNext } from '../components/PrevNext'
-import { CodeCopyEnhancer } from '../components/CodeCopyEnhancer'
+import { MarkdownBody } from '../components/MarkdownBody'
 
 export const Route = createFileRoute('/blogs/$slug')({
   head: (ctx) => {
@@ -44,11 +44,7 @@ function BlogPostPage() {
           <span key={tag}>#{tag}</span>
         ))}
       </div>
-      <div
-        className="md-body"
-        dangerouslySetInnerHTML={{ __html: post.html }}
-      />
-      <CodeCopyEnhancer />
+      <MarkdownBody html={post.html} />
       <PrevNext
         basePath="/blogs"
         prev={prev && { slug: prev.slug, title: prev.title }}
