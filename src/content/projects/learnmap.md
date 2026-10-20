@@ -1,8 +1,8 @@
 ---
 title: "LearnMap"
 year: "2026"
-description: "Modern reimplementation of the KitBuild Concept Map platform — automatic map diagnosis, kit generation, and research analytics for formative assessment."
-fullDescription: "LearnMap is a modern, researcher-friendly reimplementation of the KitBuild Concept Map platform (Hiroshima University) built for my bachelor thesis — goal-map editor, automatic kit generation and diagnosis, segmentation experiments, and research dashboards on Cloudflare Workers."
+description: "Modern reimplementation of the KitBuild Concept Map platform — automatic map diagnosis, kit generation, and research analytics for formative assessment. Built as a thesis, survived the defense."
+fullDescription: "LearnMap is a modern, researcher-friendly reimplementation of the KitBuild Concept Map platform (Hiroshima University) built for my bachelor thesis — goal-map editor, automatic kit generation and diagnosis, segmentation experiments, and research dashboards on Cloudflare Workers. The thesis passed. The deadline anxiety is now open source."
 image: "/images/learnmap.webp"
 projectLink: ""
 repoLink: "https://github.com/AlexanderDev2004/Learmap-kitbuild"
@@ -31,6 +31,8 @@ technologies:
 
 **LearnMap** is a modern reimplementation of the [KitBuild Concept Map](https://collab.kit-build.net/) platform, originally developed by the Learning Engineering Laboratory at Hiroshima University. Built as part of my bachelor thesis, it recreates the proven KitBuild pedagogy — concept map reconstruction for formative assessment — on a modern web stack, and extends it with the segmentation experiment that my research focuses on.
 
+Yes, this is a *thesis project*. That sentence alone explains the git history at 3 AM. But unlike most thesis projects, this one didn't get abandoned two weeks after the defense — it's deployed, it runs, and it diagnoses student misconceptions better than my sleep schedule ever diagnosed itself.
+
 ## The Problem
 
 The original KitBuild system has been operational since 2009 and is used across 1700+ institutions, but its stack shows its age. Researchers who want to run concept-map experiments need external tools for questionnaires, manual kit preparation, and offline score analysis. My thesis also needed a platform that could compare two segmentation models (Paragraph vs Depth-Topic) for distributing kit segments to students — something the original system does not support.
@@ -58,4 +60,4 @@ LearnMap reimplements the full KitBuild workflow: instructors draw a goal map in
 
 ## Attribution
 
-All core assessment methods come directly from the original KitBuild research (Hirashima et al.). LearnMap introduces no new pedagogy — it reimplements proven methods in a maintainable form.
+All core assessment methods come directly from the original KitBuild research (Hirashima et al.). LearnMap introduces no new pedagogy — it reimplements proven methods in a maintainable form. The procrastination, however, is entirely original work.
