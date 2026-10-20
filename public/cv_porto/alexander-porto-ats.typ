@@ -67,6 +67,32 @@
 #section("PROJECTS")
 
 #two-col([
+  #text(weight: "bold")[LearnMap]
+  (#text(fill: section-color)[#link("https://github.com/AlexanderDev2004/Learmap-kitbuild")[github.com/AlexanderDev2004/Learmap-kitbuild]])
+], [2026])
+
+- Reimplemented the KitBuild Concept Map platform (Hiroshima University) as my bachelor thesis: goal-map editor, automatic kit generation, and automatic diagnosis of student concept maps for formative assessment.
+- Implemented the thesis experiment as a first-class feature — segmenting goal maps into ordered kit segments with Paragraph and Depth-Topic models — plus quiz builder, assignments, and a research analytics dashboard with CSV export.
+- Deployed end-to-end on Cloudflare Workers with a typed Effect service layer, Drizzle ORM on LibSQL/Turso, and a drag-and-drop concept map canvas.
+
+#text(weight: "bold")[Stack:] TanStack Start, React, TypeScript, Effect, Drizzle ORM, LibSQL/Turso, Cloudflare Workers
+
+#v(0.45em)
+
+#two-col([
+  #text(weight: "bold")[LogBook Internship]
+  (#text(fill: section-color)[#link("https://logbook.alexanderar.com")[logbook.alexanderar.com]])
+], [2026])
+
+- Built a deployed internship log book platform that replaces the manual Word/Typst workflow: weekly activities, AI text refinement with bring-your-own API keys, and PDF export in the exact official campus template.
+- Designed a three-party signing flow (student, field supervisor, academic advisor) through private single-use links with drawn signatures and lock-on-sign rules.
+- Compiled the final PDF in-browser with the Typst WASM compiler and metric-compatible fonts, deployed via Alchemy to Cloudflare Workers with Drizzle on Cloudflare D1.
+
+#text(weight: "bold")[Stack:] TanStack Start, React, TypeScript, Effect, Drizzle ORM, Cloudflare D1, Typst WASM, Alchemy
+
+#v(0.45em)
+
+#two-col([
   #text(weight: "bold")[Portofolio Alex]
   (#text(fill: section-color)[#link("https://alexanderar.com")[alexanderar.com]])
 ], [2026 --- Present])
