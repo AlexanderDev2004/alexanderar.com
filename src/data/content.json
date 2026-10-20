@@ -136,6 +136,93 @@
       ]
     },
     {
+      "slug": "learnmap",
+      "title": "LearnMap",
+      "year": "2026",
+      "description": "Modern reimplementation of the KitBuild Concept Map platform — automatic map diagnosis, kit generation, and research analytics for formative assessment.",
+      "fullDescriptionHtml": "<h2>Project Summary</h2>\n<p><strong>LearnMap</strong> is a modern reimplementation of the <a href=\"https://collab.kit-build.net/\">KitBuild Concept Map</a> platform, originally developed by the Learning Engineering Laboratory at Hiroshima University. Built as part of my bachelor thesis, it recreates the proven KitBuild pedagogy — concept map reconstruction for formative assessment — on a modern web stack, and extends it with the segmentation experiment that my research focuses on.</p>\n<h2>The Problem</h2>\n<p>The original KitBuild system has been operational since 2009 and is used across 1700+ institutions, but its stack shows its age. Researchers who want to run concept-map experiments need external tools for questionnaires, manual kit preparation, and offline score analysis. My thesis also needed a platform that could compare two segmentation models (Paragraph vs Depth-Topic) for distributing kit segments to students — something the original system does not support.</p>\n<h2>The Solution</h2>\n<p>LearnMap reimplements the full KitBuild workflow: instructors draw a goal map in a visual concept-map editor, the system disassembles it into student-ready kits, students reconstruct the map, and the engine automatically diagnoses the result against the goal map to surface misconceptions. The thesis experiment is built in as a first-class feature: a goal map can be segmented into ordered kit segments using either the Paragraph or the Depth-Topic model, so both conditions can run on the same platform and the same data model. Everything — pre-test, post-test, delayed test, questionnaires, analytics, CSV export — lives in one place, deployed on Cloudflare Workers with LibSQL/Turso, so no VPS is required.</p>\n<h2>Key Features</h2>\n<ul>\n<li><strong>Concept Map Editor</strong> — visual editor for goal maps with bi-directional and multi-link support, named/colored visual frames, and drag-and-drop canvas built on XYFlow.</li>\n<li><strong>Automatic Kit Generation &#x26; Diagnosis</strong> — goal maps are disassembled into kits; learner maps are automatically compared against the goal map with targeted feedback.</li>\n<li><strong>Segmentation Models</strong> — Paragraph and Depth-Topic segmentation split a goal map into the kit segments students work through, in order — the core of the thesis experiment.</li>\n<li><strong>Extended Assessments</strong> — quiz builder for MCQ, short answer, and Likert-scale questions with Aiken format import/export and \"Show Answer\" review control.</li>\n<li><strong>Assignment Management</strong> — deadlines, time limits, access control, and per-assignment forms (pretest/posttest/questionnaire).</li>\n<li><strong>Research Dashboard</strong> — analytics sheets, per-student results, and exportable CSV for research analysis.</li>\n</ul>\n<h2>Technologies Used</h2>\n<ul>\n<li><a href=\"https://tanstack.com/start\">TanStack Start</a> — full-stack React framework with SSR and type-safe routing.</li>\n<li><a href=\"https://effect.website/\">Effect</a> — typed functional core for services and error handling.</li>\n<li><a href=\"https://orm.drizzle.team/\">Drizzle ORM</a> + LibSQL/Turso — schema-safe data layer.</li>\n<li><a href=\"https://workers.cloudflare.com/\">Cloudflare Workers</a> — edge deployment with R2 for material images.</li>\n<li>Tailwind CSS v4 + shadcn/ui for the interface.</li>\n</ul>\n<h2>Attribution</h2>\n<p>All core assessment methods come directly from the original KitBuild research (Hirashima et al.). LearnMap introduces no new pedagogy — it reimplements proven methods in a maintainable form.</p>",
+      "image": "/images/learnmap.webp",
+      "imageWidth": 1600,
+      "imageHeight": 1000,
+      "repoLink": "https://github.com/AlexanderDev2004/Learmap-kitbuild",
+      "technologies": [
+        {
+          "name": "TanStack Start",
+          "icon": "simple-icons:tanstack",
+          "docLink": "https://tanstack.com/start"
+        },
+        {
+          "name": "React",
+          "icon": "simple-icons:react",
+          "docLink": "https://react.dev/"
+        },
+        {
+          "name": "TypeScript",
+          "icon": "simple-icons:typescript",
+          "docLink": "https://www.typescriptlang.org/"
+        },
+        {
+          "name": "Effect",
+          "icon": "simple-icons:effect",
+          "docLink": "https://effect.website/"
+        },
+        {
+          "name": "Drizzle ORM",
+          "icon": "simple-icons:drizzle",
+          "docLink": "https://orm.drizzle.team/"
+        },
+        {
+          "name": "Cloudflare Workers",
+          "icon": "simple-icons:cloudflare",
+          "docLink": "https://workers.cloudflare.com/"
+        }
+      ]
+    },
+    {
+      "slug": "logbook-internship",
+      "title": "LogBook Internship",
+      "year": "2026",
+      "description": "Web app that replaces the manual Typst/Word log book workflow for Magang Kampus Merdeka — daily activities, AI text refinement, three-party signing, and PDF export in the official format.",
+      "fullDescriptionHtml": "<h2>Project Summary</h2>\n<p><strong>LogBook Internship</strong> is a web app that replaces the manual Typst/Word log book workflow for <strong>Magang Kampus Merdeka</strong> (Polinema). Students write daily activities, let AI polish the wording, collect the three required signatures, and export the signed PDF in the exact official format — no more copy-pasting between documents or chasing signatures over chat. Live at <a href=\"https://logbook.alexanderar.com\">logbook.alexanderar.com</a>.</p>\n<h2>The Problem</h2>\n<p>The internship log book at Polinema is still a manual document: a Word/Typst template that must be filled weekly, printed, signed by three different parties (student, field supervisor, academic advisor), then scanned and archived. The workflow is slow, signatures get lost, revisions mean rewriting whole pages, and the layout constantly breaks.</p>\n<h2>The Solution</h2>\n<p>A self-contained log book platform: weekly pages match the official Polinema template exactly (letterhead, student info table, activities table with Hari/Tanggal, Jam Masuk, Jam Pulang, Kegiatan, and the three-party signature block). Entries can be refined with AI in one click — each user brings their own API key (OpenRouter, [OI], Claude, Groq, and more), stored server-side and never sent to the browser. Each party signs through a private, single-use link with a drawn signature; weeks lock once signed. The final PDF is compiled in the browser with the Typst WASM compiler using metric-compatible fonts (Liberation Serif, Carlito), so the export is pixel-faithful to the official template.</p>\n<h2>Key Features</h2>\n<ul>\n<li><strong>Official template fidelity</strong> — weekly log book pages replicate the Polinema letterhead, student info table, activities table, and signature block exactly.</li>\n<li><strong>AI text refinement</strong> — one click per entry or per week; BYO API key with a provider/model picker, keys stored server-side only.</li>\n<li><strong>Three-step signing</strong> — student, Pembimbing Lapangan, and Dosen Pembimbing each sign via private single-use links drawn in the browser; signed weeks lock from editing.</li>\n<li><strong>PDF export</strong> — Typst WASM compilation in the browser with bundled metric-compatible fonts; export a single week or everything at once.</li>\n<li><strong>Fully customizable</strong> — letterhead logo and lines, titles, fonts, student identity, supervisor names, and a stored personal signature.</li>\n<li><strong>Page-shaped signature editor</strong> — drag, resize, and rotate signature boxes on a live page preview with scale support.</li>\n</ul>\n<h2>Technologies Used</h2>\n<ul>\n<li><a href=\"https://tanstack.com/start\">TanStack Start</a> — SSR framework with type-safe file-based routing.</li>\n<li><a href=\"https://effect.website/\">Effect</a> — the AI service layer with typed errors.</li>\n<li><a href=\"https://orm.drizzle.team/\">Drizzle ORM</a> on Cloudflare D1 — data layer.</li>\n<li><a href=\"https://typst.app/\">Typst (WASM)</a> — in-browser PDF generation.</li>\n<li><a href=\"https://alchemy.run/\">Alchemy</a> — infrastructure-as-code deployment to Cloudflare Workers.</li>\n</ul>",
+      "image": "/images/logbook-internship.webp",
+      "imageWidth": 1600,
+      "imageHeight": 1256,
+      "projectLink": "https://logbook.alexanderar.com",
+      "repoLink": "https://github.com/AlexanderDev2004/logbook-internship",
+      "technologies": [
+        {
+          "name": "TanStack Start",
+          "icon": "simple-icons:tanstack",
+          "docLink": "https://tanstack.com/start"
+        },
+        {
+          "name": "React",
+          "icon": "simple-icons:react",
+          "docLink": "https://react.dev/"
+        },
+        {
+          "name": "TypeScript",
+          "icon": "simple-icons:typescript",
+          "docLink": "https://www.typescriptlang.org/"
+        },
+        {
+          "name": "Effect",
+          "icon": "simple-icons:effect",
+          "docLink": "https://effect.website/"
+        },
+        {
+          "name": "Drizzle ORM",
+          "icon": "simple-icons:drizzle",
+          "docLink": "https://orm.drizzle.team/"
+        },
+        {
+          "name": "Cloudflare Workers",
+          "icon": "simple-icons:cloudflare",
+          "docLink": "https://workers.cloudflare.com/"
+        }
+      ]
+    },
+    {
       "slug": "portofolio-alex",
       "title": "Portofolio Alex",
       "year": "2026",
