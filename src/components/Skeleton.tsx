@@ -46,13 +46,18 @@ export function SkeletonImage({ radius = 8, className }: { radius?: number | str
   return <Skeleton width="100%" height="100%" radius={radius} className={`skeleton-img ${className ?? ''}`} />;
 }
 
-/** Card-shaped placeholder — image block on top, two text lines below. */
+/** Card-shaped placeholder — mirrors .music-card: square art, two-line
+ * title, artist line, meta line. Sized from a Playwright audit of the real
+ * cards (2026-10): art + 10px gap, 19px title lines, 18px sub/meta, 2px
+ * gaps, so the grid does not jump when the real cards replace it. */
 export function SkeletonCard({ radius = 12 }: { radius?: number | string }) {
   return (
     <div className="skeleton-card" style={{ borderRadius: radius }} aria-hidden="true">
-      <SkeletonImage radius={8} />
-      <Skeleton width="85%" />
-      <Skeleton width="55%" />
+      <Skeleton width="100%" height="auto" radius={8} className="skeleton-img" />
+      <Skeleton width="100%" height={19} radius={6} />
+      <Skeleton width="88%" height={19} radius={6} />
+      <Skeleton width="70%" height={18} radius={6} />
+      <Skeleton width="45%" height={18} radius={6} className="skeleton-meta" />
     </div>
   );
 }
@@ -132,11 +137,21 @@ export function PageSkeleton() {
     <main role="status" aria-live="polite">
       <span className="sr-only">Loading…</span>
       <div className="page-skeleton">
-        <Skeleton width={260} height={36} radius={10} />
-        <Skeleton width={420} height={13} />
-        <Skeleton width={180} height={13} />
-        <Skeleton height={96} radius={12} />
-        <Skeleton height={96} radius={12} />
+        <Skeleton width="62%" height={64} radius={10} />
+        <Skeleton width="44%" height={28} radius={8} />
+        <Skeleton width="26%" height={30} radius={8} className="page-skeleton-title" />
+        <div className="page-skeleton-cards">
+          <Skeleton height={190} radius={12} />
+          <Skeleton height={190} radius={12} />
+          <Skeleton height={190} radius={12} />
+          <Skeleton height={190} radius={12} />
+        </div>
+        <div className="page-skeleton-cards">
+          <Skeleton height={190} radius={12} />
+          <Skeleton height={190} radius={12} />
+          <Skeleton height={190} radius={12} />
+          <Skeleton height={190} radius={12} />
+        </div>
       </div>
     </main>
   );

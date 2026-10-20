@@ -1547,13 +1547,30 @@ details[open] .chev {
 .skeleton-card {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  /* mirrors .music-card's 2px gap and 12px padding so the swap doesn't jump */
+  gap: 2px;
   padding: 12px;
   border: 1px solid var(--line);
 }
 .skeleton-card .skeleton-img {
   aspect-ratio: 1;
   height: auto;
+  /* matches .music-card-art's margin-bottom */
+  margin-bottom: 10px;
+}
+.skeleton-card .skeleton-meta {
+  /* matches .music-card-meta's margin-top */
+  margin-top: 4px;
+}
+/* PageSkeleton card rows — same track the real listing grids use */
+.page-skeleton-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 18px;
+}
+.page-skeleton-title {
+  /* space where a real section heading sits */
+  margin-top: 26px;
 }
 .skeleton-form {
   display: grid;
