@@ -2,6 +2,14 @@
   "username": "Alexander_110",
   "recent": [
     {
+      "name": "热恋冰淇淋",
+      "artist": "yihuik苡慧",
+      "url": "https://www.last.fm/music/yihuik%E8%8B%A1%E6%85%A7/_/%E7%83%AD%E6%81%8B%E5%86%B0%E6%B7%87%E6%B7%8B",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/a5a46a3af6384fcf8849724f5467ed64.jpg",
+      "date": 1792563544000,
+      "nowPlaying": false
+    },
+    {
       "name": "One Call Away",
       "artist": "Charlie Puth",
       "url": "https://www.last.fm/music/Charlie+Puth/_/One+Call+Away",
@@ -184,14 +192,6 @@
       "url": "https://www.last.fm/music/Yorushika/_/Fireworks+of+shoes+(Re-Recording)",
       "date": 1792138840000,
       "nowPlaying": false
-    },
-    {
-      "name": "Hitohira",
-      "artist": "Motohiro Hata",
-      "url": "https://www.last.fm/music/Motohiro+Hata/_/Hitohira",
-      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png",
-      "date": 1792138603000,
-      "nowPlaying": false
     }
   ],
   "topArtists": [
@@ -328,5 +328,5 @@
       "playcount": 2
     }
   ],
-  "fetchedAt": "2026-10-20T22:00:03.888Z"
+  "fetchedAt": "2026-10-21T22:03:26.230Z"
 }
