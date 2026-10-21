@@ -151,8 +151,9 @@ interface Particle {
 }
 
 function seedParticle(p: Particle, initial: boolean, index: number, total: number, width: number, height: number, columns: number): Particle {
-  // Radius 90-260px, square-skewed so most windows are mid-sized.
-  p.radius = MIN_RADIUS + Math.random() ** 2 * (MAX_RADIUS - MIN_RADIUS - 90 + 170)
+  // Radius 90-260px, square-skewed so most windows are mid-sized. Matches the
+  // original: MIN_RADIUS + Math.random()**2 * 170.
+  p.radius = MIN_RADIUS + Math.random() ** 2 * 170
   // Each window commits to one direction for its whole life: it only ever
   // grows or only ever shrinks. The sign is redrawn on recycle, never
   // mid-flight, so a window cannot pulse.
