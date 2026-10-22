@@ -54,11 +54,26 @@ function ProjectDetailPage() {
         )}
       </h1>
       <div className="meta">
-        {project.technologies.map((tech) => (
-          <span key={tech.name}>
-            {tech.icon && <Icon name={tech.icon} />} {tech.name}
-          </span>
-        ))}
+        {project.technologies.map((tech) => {
+          const item = (
+            <>
+              {tech.icon && <Icon name={tech.icon} />} {tech.name}
+            </>
+          )
+          return tech.docLink ? (
+            <a
+              key={tech.name}
+              href={tech.docLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              title={`${tech.name} — official site`}
+            >
+              {item}
+            </a>
+          ) : (
+            <span key={tech.name}>{item}</span>
+          )
+        })}
       </div>
       {(project.repoLink || project.projectLink) && (
         <div className="actions" style={{ marginTop: 20, display: 'flex', gap: 10 }}>

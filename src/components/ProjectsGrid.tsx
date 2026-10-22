@@ -18,12 +18,30 @@ export function ProjectCard({ project }: { project: Project }) {
       <p className="desc">{project.description}</p>
       {project.technologies.length > 0 && (
         <div className="tags">
-          {project.technologies.map((tech) => (
-            <span className="tag" key={tech.name}>
-              {tech.icon && <Icon name={tech.icon} />}
-              {tech.name}
-            </span>
-          ))}
+          {project.technologies.map((tech) => {
+            const tag = (
+              <>
+                {tech.icon && <Icon name={tech.icon} />}
+                {tech.name}
+              </>
+            )
+            return tech.docLink ? (
+              <a
+                className="tag"
+                key={tech.name}
+                href={tech.docLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                title={`${tech.name} — official site`}
+              >
+                {tag}
+              </a>
+            ) : (
+              <span className="tag" key={tech.name}>
+                {tag}
+              </span>
+            )
+          })}
         </div>
       )}
       <div className="actions">
