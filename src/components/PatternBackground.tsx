@@ -27,8 +27,11 @@ function getTilePath(): Path2D {
 
 // Pattern color: muted dark lavender on the beige --bg (#f1ebe1) — the
 // palette the refactor aimed for, close to nuarthy's original purple but
-// warmed slightly so it sits on the beige without clashing.
-const PATTERN_FILL = 'rgba(150, 138, 172, 0.7)'
+// warmed slightly so it sits on the beige without clashing. More saturated
+// than it looks: at the halo's low composite alpha the beige background
+// dominates, and only a blue-green gap this wide keeps the soft tail reading
+// as purple instead of a neutral grey that looks white-ish.
+const PATTERN_FILL = 'rgba(130, 108, 180, 0.75)'
 const DRIFT_SECONDS = 12
 
 // Soft-edged shape sprites: a white silhouette on transparent, so only the
@@ -97,15 +100,16 @@ function makeSprite(kind: ShapeKind, ramped: boolean, blur: number): HTMLCanvasE
   s.filter = 'none'
   s.globalCompositeOperation = 'destination-in'
   const ramp = s.createRadialGradient(0, 0, 0, 0, 0, R + BLUR)
-  // Falloff retuned for this lighter background: a wide full-strength core
-  // (the window reads as a solid purple island) with a short fade at the rim.
-  // The original's long gradual tail composites into a pale grayish wash on
-  // beige that reads as white patches; the fill color itself is unchanged.
+  // Exact falloff from the original repo: a long, soft tail — that halo is
+  // most of the drifting look. The earlier "white patch" problem is solved at
+  // the fill color (more saturated purple) instead of by cutting this tail,
+  // so the pale areas tint purple rather than neutral grey.
   ramp.addColorStop(0, 'rgba(255, 255, 255, 1)')
-  ramp.addColorStop(0.3, 'rgba(255, 255, 255, 0.97)')
-  ramp.addColorStop(0.55, 'rgba(255, 255, 255, 0.85)')
-  ramp.addColorStop(0.8, 'rgba(255, 255, 255, 0.62)')
-  ramp.addColorStop(1, 'rgba(255, 255, 255, 0.32)')
+  ramp.addColorStop(0.2, 'rgba(255, 255, 255, 0.93)')
+  ramp.addColorStop(0.45, 'rgba(255, 255, 255, 0.82)')
+  ramp.addColorStop(0.7, 'rgba(255, 255, 255, 0.65)')
+  ramp.addColorStop(0.88, 'rgba(255, 255, 255, 0.56)')
+  ramp.addColorStop(1, 'rgba(255, 255, 255, 0.42)')
   s.fillStyle = ramp
   s.beginPath()
   s.arc(0, 0, R + BLUR, 0, Math.PI * 2)
@@ -285,12 +289,10 @@ export function PatternBackground() {
 
       // 1. Paint the reveal windows. Overlaps accumulate, so two windows
       //    meeting brighten towards full pattern rather than cancelling out.
-      //    Each window carries an offset copy for depth. The original stamps
-      //    it at half alpha, which is near-invisible on its dark grey-lavender
-      //    bg but reads as a pale white blob on this lighter beige — a quarter
-      //    alpha keeps the depth cue without the white-ish wash.
+      //    Each window carries a half-opacity offset copy for depth, exactly
+      //    as in the original repo.
       for (const p of particles) {
-        stamp(p, p.ghostScale, p.alpha * 0.25, p.ghostOffset, p.ghost, p.ghostTurn)
+        stamp(p, p.ghostScale, p.alpha * 0.5, p.ghostOffset, p.ghost, p.ghostTurn)
         stamp(p)
       }
       ctx!.globalAlpha = 1
