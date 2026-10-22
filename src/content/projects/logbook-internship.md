@@ -1,8 +1,8 @@
 ---
 title: "LogBook Internship"
 year: "2026"
-description: "Web app that replaces the manual Typst/Word log book workflow for Magang Kampus Merdeka — daily activities, AI text refinement, three-party signing, and PDF export in the official format."
-fullDescription: "LogBook Internship replaces the manual Typst/Word log book workflow for Magang Kampus Merdeka (Polinema): write daily activities, polish wording with AI, collect three required signatures through private single-use links, and export the signed PDF in the exact official format."
+description: "Web app that replaces the manual Typst/Word log book workflow for Program internship Campus — daily activities, AI text refinement, three-party signing, and PDF export in the official format."
+fullDescription: "LogBook Internship replaces the manual Typst/Word log book workflow for Program internship Campus (Polinema): write daily activities, polish wording with AI, collect three required signatures through private single-use links, and export the signed PDF in the exact official format."
 image: "/images/logbook-internship.webp"
 projectLink: "https://logbook.alexanderar.com"
 repoLink: "https://github.com/AlexanderDev2004/logbook-internship"
@@ -29,7 +29,7 @@ technologies:
 
 ## Project Summary
 
-**LogBook Internship** is a web app that replaces the manual Typst/Word log book workflow for **Magang Kampus Merdeka** (Polinema). Students write daily activities, let AI polish the wording, collect the three required signatures, and export the signed PDF in the exact official format — no more copy-pasting between documents or chasing signatures over chat. Live at [logbook.alexanderar.com](https://logbook.alexanderar.com).
+**LogBook Internship** is a web app that replaces the manual Typst/Word log book workflow for **Program internship Campus** (Polinema). Students write daily activities, let AI polish the wording, collect the three required signatures, and export the signed PDF in the exact official format — no more copy-pasting between documents or chasing signatures over chat. Live at [logbook.alexanderar.com](https://logbook.alexanderar.com).
 
 ## The Problem
 

@@ -31,7 +31,7 @@ function getTilePath(): Path2D {
 // than it looks: at the halo's low composite alpha the beige background
 // dominates, and only a blue-green gap this wide keeps the soft tail reading
 // as purple instead of a neutral grey that looks white-ish.
-const PATTERN_FILL = 'rgba(130, 108, 180, 0.75)'
+const PATTERN_FILL = 'rgba(118, 96, 170, 0.78)'
 const DRIFT_SECONDS = 12
 
 // Soft-edged shape sprites: a white silhouette on transparent, so only the
