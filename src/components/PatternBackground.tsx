@@ -97,16 +97,15 @@ function makeSprite(kind: ShapeKind, ramped: boolean, blur: number): HTMLCanvasE
   s.filter = 'none'
   s.globalCompositeOperation = 'destination-in'
   const ramp = s.createRadialGradient(0, 0, 0, 0, 0, R + BLUR)
-  // Same falloff as the original except the last two stops: the tail is
-  // steepened so the rim fades out sooner. On the original's darker bg the
-  // long 0.56/0.42 tail is subtle; on this lighter beige it leaves a broad
-  // pale halo around each window that reads as a white patch.
+  // Falloff retuned for this lighter background: a wide full-strength core
+  // (the window reads as a solid purple island) with a short fade at the rim.
+  // The original's long gradual tail composites into a pale grayish wash on
+  // beige that reads as white patches; the fill color itself is unchanged.
   ramp.addColorStop(0, 'rgba(255, 255, 255, 1)')
-  ramp.addColorStop(0.2, 'rgba(255, 255, 255, 0.93)')
-  ramp.addColorStop(0.45, 'rgba(255, 255, 255, 0.82)')
-  ramp.addColorStop(0.7, 'rgba(255, 255, 255, 0.65)')
-  ramp.addColorStop(0.88, 'rgba(255, 255, 255, 0.48)')
-  ramp.addColorStop(1, 'rgba(255, 255, 255, 0.3)')
+  ramp.addColorStop(0.3, 'rgba(255, 255, 255, 0.97)')
+  ramp.addColorStop(0.55, 'rgba(255, 255, 255, 0.85)')
+  ramp.addColorStop(0.8, 'rgba(255, 255, 255, 0.62)')
+  ramp.addColorStop(1, 'rgba(255, 255, 255, 0.32)')
   s.fillStyle = ramp
   s.beginPath()
   s.arc(0, 0, R + BLUR, 0, Math.PI * 2)
