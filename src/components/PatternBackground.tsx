@@ -97,12 +97,16 @@ function makeSprite(kind: ShapeKind, ramped: boolean, blur: number): HTMLCanvasE
   s.filter = 'none'
   s.globalCompositeOperation = 'destination-in'
   const ramp = s.createRadialGradient(0, 0, 0, 0, 0, R + BLUR)
+  // Same falloff as the original except the last two stops: the tail is
+  // steepened so the rim fades out sooner. On the original's darker bg the
+  // long 0.56/0.42 tail is subtle; on this lighter beige it leaves a broad
+  // pale halo around each window that reads as a white patch.
   ramp.addColorStop(0, 'rgba(255, 255, 255, 1)')
   ramp.addColorStop(0.2, 'rgba(255, 255, 255, 0.93)')
   ramp.addColorStop(0.45, 'rgba(255, 255, 255, 0.82)')
   ramp.addColorStop(0.7, 'rgba(255, 255, 255, 0.65)')
-  ramp.addColorStop(0.88, 'rgba(255, 255, 255, 0.56)')
-  ramp.addColorStop(1, 'rgba(255, 255, 255, 0.42)')
+  ramp.addColorStop(0.88, 'rgba(255, 255, 255, 0.48)')
+  ramp.addColorStop(1, 'rgba(255, 255, 255, 0.3)')
   s.fillStyle = ramp
   s.beginPath()
   s.arc(0, 0, R + BLUR, 0, Math.PI * 2)
@@ -282,9 +286,12 @@ export function PatternBackground() {
 
       // 1. Paint the reveal windows. Overlaps accumulate, so two windows
       //    meeting brighten towards full pattern rather than cancelling out.
-      //    Each window carries a half-opacity offset copy, which reads as depth.
+      //    Each window carries an offset copy for depth. The original stamps
+      //    it at half alpha, which is near-invisible on its dark grey-lavender
+      //    bg but reads as a pale white blob on this lighter beige — a quarter
+      //    alpha keeps the depth cue without the white-ish wash.
       for (const p of particles) {
-        stamp(p, p.ghostScale, p.alpha * 0.5, p.ghostOffset, p.ghost, p.ghostTurn)
+        stamp(p, p.ghostScale, p.alpha * 0.25, p.ghostOffset, p.ghost, p.ghostTurn)
         stamp(p)
       }
       ctx!.globalAlpha = 1
