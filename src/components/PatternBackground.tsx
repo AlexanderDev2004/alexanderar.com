@@ -25,10 +25,10 @@ function getTilePath(): Path2D {
   return tilePath
 }
 
-// Pattern color: slightly darker than the beige --bg (#f1ebe1), matching the
-// old CSS pattern fill (#e2dac9) at reduced alpha so overlapping windows
-// accumulate instead of saturating.
-const PATTERN_FILL = 'rgba(226, 218, 201, 0.8)'
+// Pattern color: muted dark lavender on the beige --bg (#f1ebe1) — the
+// palette the refactor aimed for, close to nuarthy's original purple but
+// warmed slightly so it sits on the beige without clashing.
+const PATTERN_FILL = 'rgba(150, 138, 172, 0.5)'
 const DRIFT_SECONDS = 12
 
 // Soft-edged shape sprites: a white silhouette on transparent, so only the
