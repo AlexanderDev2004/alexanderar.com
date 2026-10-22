@@ -28,7 +28,7 @@ function getTilePath(): Path2D {
 // Pattern color: muted dark lavender on the beige --bg (#f1ebe1) — the
 // palette the refactor aimed for, close to nuarthy's original purple but
 // warmed slightly so it sits on the beige without clashing.
-const PATTERN_FILL = 'rgba(150, 138, 172, 0.5)'
+const PATTERN_FILL = 'rgba(150, 138, 172, 0.7)'
 const DRIFT_SECONDS = 12
 
 // Soft-edged shape sprites: a white silhouette on transparent, so only the
@@ -129,6 +129,12 @@ function getSprites() {
 const MIN_RADIUS = 90
 const MAX_RADIUS = 260
 
+// The wrap bleeds 80px past the viewport (CSS inset: -80px) so the pointer
+// parallax never exposes an edge. Windows live in VIEWPORT coordinates — like
+// the original demo — and are shifted by BLEED only when drawn, so seeding,
+// recycling, and window counts match the original exactly.
+const BLEED = 80
+
 interface Particle {
   x: number
   y: number
@@ -213,6 +219,10 @@ export function PatternBackground() {
     let dpr = 1
     let width = 0
     let height = 0
+    // Viewport size: what seeding and recycling are measured against, like the
+    // original demo. The canvas is larger by 2 * BLEED for the parallax.
+    let vw = 0
+    let vh = 0
     let columns = 1
     let pattern: CanvasPattern | null = null
     const particles: Particle[] = []
@@ -232,11 +242,11 @@ export function PatternBackground() {
     function populate() {
       // A few well-separated windows only, so the pattern shows in small
       // islands and the plain background holds most of the frame.
-      const target = Math.round(Math.min(8, Math.max(2, (width * height) / 250000)))
-      columns = Math.max(1, Math.ceil(Math.sqrt(target * (width / height))))
+      const target = Math.round(Math.min(8, Math.max(2, (vw * vh) / 250000)))
+      columns = Math.max(1, Math.ceil(Math.sqrt(target * (vw / vh))))
       particles.length = 0
       for (let i = 0; i < target; i += 1) {
-        particles.push(seedParticle({} as Particle, true, i, target, width, height, columns))
+        particles.push(seedParticle({} as Particle, true, i, target, vw, vh, columns))
       }
     }
 
@@ -244,6 +254,8 @@ export function PatternBackground() {
       dpr = Math.min(window.devicePixelRatio || 1, 2)
       width = wrap!.clientWidth
       height = wrap!.clientHeight
+      vw = window.innerWidth
+      vh = window.innerHeight
       canvas!.width = Math.round(width * dpr)
       canvas!.height = Math.round(height * dpr)
       ctx!.setTransform(dpr, 0, 0, dpr, 0, 0)
@@ -256,7 +268,9 @@ export function PatternBackground() {
       const r = p.radius * scale
       ctx!.save()
       ctx!.globalAlpha = alpha
-      ctx!.translate(p.x, p.y)
+      // Window coords are viewport-relative; shift by the bleed so the pattern
+      // extends under the wrap's hidden margin.
+      ctx!.translate(p.x + BLEED, p.y + BLEED)
       ctx!.rotate(p.rotation + turn)
       if (offset) ctx!.translate(0, offset)
       ctx!.drawImage(sprite, -r, -r, r * 2, r * 2)
@@ -299,10 +313,11 @@ export function PatternBackground() {
         p.radius = Math.min(MAX_RADIUS, Math.max(MIN_RADIUS, p.radius))
         p.rotation += p.spin * dt
 
-        // Recycle only when the window has left the frame: over the top, or
-        // out past either side. Size never retires a window.
-        if (p.y + p.radius < 0 || p.x < -p.radius * 2 || p.x > width + p.radius * 2) {
-          seedParticle(p, false, 0, 1, width, height, columns)
+        // Recycle only when the window has left the VIEWPORT (same bounds as
+        // the original demo — the hidden bleed margin never retires a window,
+        // and respawns enter view after radius px, not radius + 160).
+        if (p.y + p.radius < 0 || p.x < -p.radius * 2 || p.x > vw + p.radius * 2) {
+          seedParticle(p, false, 0, 1, vw, vh, columns)
         }
       }
 
