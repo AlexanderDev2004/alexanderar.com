@@ -25,9 +25,10 @@ function getTilePath(): Path2D {
   return tilePath
 }
 
-// Pattern color: muted dark lavender on the lavender --bg (#d5d0df) — the
-// background itself is now nuarthy's tint, a step darker. More saturated
-// than it looks: at the halo's low composite alpha the lavender background
+// Pattern color: muted dark lavender on the beige --bg (#f1ebe1) — the
+// palette the refactor aimed for, close to nuarthy's original purple but
+// warmed slightly so it sits on the beige without clashing. More saturated
+// than it looks: at the halo's low composite alpha the beige background
 // dominates, and only a blue-green gap this wide keeps the soft tail reading
 // as purple instead of a neutral grey that looks white-ish.
 const PATTERN_FILL = 'rgba(118, 96, 170, 0.78)'
