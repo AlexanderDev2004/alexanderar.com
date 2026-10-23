@@ -25,9 +25,10 @@ function getTilePath(): Path2D {
   return tilePath
 }
 
-// Pattern color: warm tan — rgba(226,218,201,0.8) requested by the user,
-// a soft sand tone that sits one step darker than the warm beige --bg.
-const PATTERN_FILL = 'rgba(226, 218, 201, 0.8)'
+// Pattern color: warm tan, darkened a few steps from the user's original
+// rgba(226,218,201,0.8) so it stays in the sand family but reads clearly
+// against the warm beige --bg (#e8e1d4 = rgb 232,225,212).
+const PATTERN_FILL = 'rgba(202, 190, 165, 0.85)'
 const DRIFT_SECONDS = 12
 
 // Soft-edged shape sprites: a white silhouette on transparent, so only the
