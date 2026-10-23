@@ -25,12 +25,9 @@ function getTilePath(): Path2D {
   return tilePath
 }
 
-// Pattern color: muted dark lavender on the warm beige --bg (#e8e1d4) —
-// rgba(226,218,201,0.8) composited over white. More saturated than it
-// looks: at the halo's low composite alpha the beige background
-// dominates, and only a blue-green gap this wide keeps the soft tail reading
-// as purple instead of a neutral grey that looks white-ish.
-const PATTERN_FILL = 'rgba(118, 96, 170, 0.78)'
+// Pattern color: warm tan — rgba(226,218,201,0.8) requested by the user,
+// a soft sand tone that sits one step darker than the warm beige --bg.
+const PATTERN_FILL = 'rgba(226, 218, 201, 0.8)'
 const DRIFT_SECONDS = 12
 
 // Soft-edged shape sprites: a white silhouette on transparent, so only the
