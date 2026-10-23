@@ -98,6 +98,23 @@ summary:focus-visible {
   font-family: var(--mono);
   font-size: 12.5px;
 }
+.top-nav .nav-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.top-nav .nav-burger {
+  display: none;
+  background: none;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 4px;
+  font-size: 20px;
+  line-height: 1;
+  color: var(--ink);
+  cursor: pointer;
+}
 .top-nav .brand {
   font-weight: 700;
   color: var(--ink);
@@ -114,8 +131,25 @@ summary:focus-visible {
   .top-nav {
     padding: 12px 20px;
   }
+  .top-nav .nav-burger {
+    display: flex;
+    align-items: center;
+  }
   .top-nav .links {
-    gap: 14px;
+    display: none;
+    flex-direction: column;
+    gap: 16px;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(232, 225, 212, 0.98);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--line);
+    padding: 16px 20px 20px;
+  }
+  .top-nav .links.open {
+    display: flex;
   }
 }
 
