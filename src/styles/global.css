@@ -2,14 +2,14 @@
 
 /* Design tokens — Concept B "Sage Display" (approved mockup) */
 :root {
-  --bg: #f1ebe1;
-  --bg-soft: #e9e1d3;
+  --bg: #e8e1d4;
+  --bg-soft: #e0d8c6;
   --ink: #4a4a3f;
   --olive: #5b6152;
   --sage: #9caf88;
   --sage-deep: #5e6f51;
   --stone: #6b6a61;
-  --line: #d9d1c1;
+  --line: #d0c7b6;
   --blue: #8fa8bc;
   --blue-ink: #5f7b90;
   --blue-border: #c5d2dc;
@@ -88,7 +88,7 @@ summary:focus-visible {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(241, 235, 225, 0.9);
+  background: rgba(232, 225, 212, 0.9);
   backdrop-filter: blur(6px);
   border-bottom: 1px solid var(--line);
   display: flex;
