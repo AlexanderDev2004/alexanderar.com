@@ -2,6 +2,67 @@
   "username": "Alexander_110",
   "recent": [
     {
+      "name": "Silhouette",
+      "artist": "KANA-BOON",
+      "url": "https://www.last.fm/music/KANA-BOON/_/Silhouette",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/3cf9d76383e1cc977aa21e7d79e5c60c.jpg",
+      "date": 1792824030000,
+      "nowPlaying": false
+    },
+    {
+      "name": "青と夏",
+      "artist": "Mrs. GREEN APPLE",
+      "url": "https://www.last.fm/music/Mrs.+GREEN+APPLE/_/%E9%9D%92%E3%81%A8%E5%A4%8F",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/dd83d29f77e62d219060e2ce251eb5d4.jpg",
+      "date": 1792823709000,
+      "nowPlaying": false
+    },
+    {
+      "name": "One Voice",
+      "artist": "Rokudenashi",
+      "url": "https://www.last.fm/music/Rokudenashi/_/One+Voice",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/836d368743ae3131536c28c7457aab01.jpg",
+      "date": 1792823541000,
+      "nowPlaying": false
+    },
+    {
+      "name": "依然爱你",
+      "artist": "Yihuik",
+      "url": "https://www.last.fm/music/Yihuik/_/%E4%BE%9D%E7%84%B6%E7%88%B1%E4%BD%A0",
+      "date": 1792823321000,
+      "nowPlaying": false
+    },
+    {
+      "name": "99次我爱他",
+      "artist": "很美味",
+      "url": "https://www.last.fm/music/%E5%BE%88%E7%BE%8E%E5%91%B3/_/99%E6%AC%A1%E6%88%91%E7%88%B1%E4%BB%96",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png",
+      "date": 1792823128000,
+      "nowPlaying": false
+    },
+    {
+      "name": "小美滿 (電影《熱辣滾燙》熱辣陪伴曲)",
+      "artist": "ZhouShen Official",
+      "url": "https://www.last.fm/music/ZhouShen+Official/_/%E5%B0%8F%E7%BE%8E%E6%BB%BF+(%E9%9B%BB%E5%BD%B1%E3%80%8A%E7%86%B1%E8%BE%A3%E6%BB%BE%E7%87%99%E3%80%8B%E7%86%B1%E8%BE%A3%E9%99%AA%E4%BC%B4%E6%9B%B2)",
+      "date": 1792822907000,
+      "nowPlaying": false
+    },
+    {
+      "name": "若月亮没来",
+      "artist": "王宇宙Leto",
+      "url": "https://www.last.fm/music/%E7%8E%8B%E5%AE%87%E5%AE%99Leto/_/%E8%8B%A5%E6%9C%88%E4%BA%AE%E6%B2%A1%E6%9D%A5",
+      "date": 1792822728000,
+      "nowPlaying": false
+    },
+    {
+      "name": "Jumping Machine (跳楼机)",
+      "artist": "LBI",
+      "url": "https://www.last.fm/music/LBI/_/Jumping+Machine+(%E8%B7%B3%E6%A5%BC%E6%9C%BA)",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/f074dc1072e37d1a4193d9609f9091ec.jpg",
+      "date": 1792822520000,
+      "nowPlaying": false
+    },
+    {
       "name": "热恋冰淇淋",
       "artist": "yihuik苡慧",
       "url": "https://www.last.fm/music/yihuik%E8%8B%A1%E6%85%A7/_/%E7%83%AD%E6%81%8B%E5%86%B0%E6%B7%87%E6%B7%8B",
@@ -131,67 +192,6 @@
       "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/9d9ff726f53086f2120f2fa6af09c1b0.jpg",
       "date": 1792140840000,
       "nowPlaying": false
-    },
-    {
-      "name": "Orange",
-      "artist": "7!!",
-      "url": "https://www.last.fm/music/7!!/_/Orange",
-      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/b072fa3eba1daabdaf1da5ff64bd17e4.jpg",
-      "date": 1792140488000,
-      "nowPlaying": false
-    },
-    {
-      "name": "フレグランス",
-      "artist": "mahiru dan RINZO",
-      "url": "https://www.last.fm/music/mahiru+dan+RINZO/_/%E3%83%95%E3%83%AC%E3%82%B0%E3%83%A9%E3%83%B3%E3%82%B9",
-      "date": 1792140281000,
-      "nowPlaying": false
-    },
-    {
-      "name": "はるのとなり",
-      "artist": "Eri Sasaki",
-      "url": "https://www.last.fm/music/Eri+Sasaki/_/%E3%81%AF%E3%82%8B%E3%81%AE%E3%81%A8%E3%81%AA%E3%82%8A",
-      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/78406a0ee8815c34d24e01d774bf4f0f.jpg",
-      "date": 1792140060000,
-      "nowPlaying": false
-    },
-    {
-      "name": "The Old Man and the Sea",
-      "artist": "Yorushika",
-      "url": "https://www.last.fm/music/Yorushika/_/The+Old+Man+and+the+Sea",
-      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a8bb17adef274aa8a618f17e97b4dcb.jpg",
-      "date": 1792139804000,
-      "nowPlaying": false
-    },
-    {
-      "name": "森の小さなレストラン",
-      "artist": "Aoi Teshima",
-      "url": "https://www.last.fm/music/Aoi+Teshima/_/%E6%A3%AE%E3%81%AE%E5%B0%8F%E3%81%95%E3%81%AA%E3%83%AC%E3%82%B9%E3%83%88%E3%83%A9%E3%83%B3",
-      "date": 1792139649000,
-      "nowPlaying": false
-    },
-    {
-      "name": "Ao To Natsu",
-      "artist": "Mrs. GREEN APPLE",
-      "url": "https://www.last.fm/music/Mrs.+GREEN+APPLE/_/Ao+To+Natsu",
-      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png",
-      "date": 1792139371000,
-      "nowPlaying": false
-    },
-    {
-      "name": "小さな恋のうた",
-      "artist": "モンゴル800",
-      "url": "https://www.last.fm/music/%E3%83%A2%E3%83%B3%E3%82%B4%E3%83%AB800/_/%E5%B0%8F%E3%81%95%E3%81%AA%E6%81%8B%E3%81%AE%E3%81%86%E3%81%9F",
-      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/1d7f47dd949d147feadf5cef0fdde1a0.jpg",
-      "date": 1792139147000,
-      "nowPlaying": false
-    },
-    {
-      "name": "Fireworks of shoes (Re-Recording)",
-      "artist": "Yorushika",
-      "url": "https://www.last.fm/music/Yorushika/_/Fireworks+of+shoes+(Re-Recording)",
-      "date": 1792138840000,
-      "nowPlaying": false
     }
   ],
   "topArtists": [
@@ -244,15 +244,15 @@
       "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png"
     },
     {
-      "name": "riria.",
+      "name": "Mrs. GREEN APPLE",
       "playcount": 3,
-      "url": "https://www.last.fm/music/riria.",
+      "url": "https://www.last.fm/music/Mrs.+GREEN+APPLE",
       "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png"
     },
     {
-      "name": "Tayori",
+      "name": "riria.",
       "playcount": 3,
-      "url": "https://www.last.fm/music/Tayori",
+      "url": "https://www.last.fm/music/riria.",
       "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png"
     }
   ],
@@ -328,5 +328,5 @@
       "playcount": 2
     }
   ],
-  "fetchedAt": "2026-10-23T21:47:45.300Z"
+  "fetchedAt": "2026-10-24T21:22:04.099Z"
 }
