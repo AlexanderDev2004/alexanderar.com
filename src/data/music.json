@@ -2,6 +2,46 @@
   "username": "Alexander_110",
   "recent": [
     {
+      "name": "你是我唯一的执着",
+      "artist": "马健涛",
+      "url": "https://www.last.fm/music/%E9%A9%AC%E5%81%A5%E6%B6%9B/_/%E4%BD%A0%E6%98%AF%E6%88%91%E5%94%AF%E4%B8%80%E7%9A%84%E6%89%A7%E7%9D%80",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/ba685fef81d20e883f5f72102ea8fd57.jpg",
+      "date": 1793079673000,
+      "nowPlaying": false
+    },
+    {
+      "name": "フィナーレ。",
+      "artist": "eill",
+      "url": "https://www.last.fm/music/eill/_/%E3%83%95%E3%82%A3%E3%83%8A%E3%83%BC%E3%83%AC%E3%80%82",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/9d6775cafb6f7d32bd1b94463f222751.png",
+      "date": 1793079430000,
+      "nowPlaying": false
+    },
+    {
+      "name": "展示中毒",
+      "artist": "AnythingBecomeMoe",
+      "url": "https://www.last.fm/music/AnythingBecomeMoe/_/%E5%B1%95%E7%A4%BA%E4%B8%AD%E6%AF%92",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/91cec0a1ca68a3a436e6635f66f13087.png",
+      "date": 1793079290000,
+      "nowPlaying": false
+    },
+    {
+      "name": "若月亮没来",
+      "artist": "王宇宙Leto dan 乔浚丞",
+      "url": "https://www.last.fm/music/%E7%8E%8B%E5%AE%87%E5%AE%99Leto+dan+%E4%B9%94%E6%B5%9A%E4%B8%9E/_/%E8%8B%A5%E6%9C%88%E4%BA%AE%E6%B2%A1%E6%9D%A5",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png",
+      "date": 1793079052000,
+      "nowPlaying": false
+    },
+    {
+      "name": "热恋冰淇淋",
+      "artist": "yihuik苡慧",
+      "url": "https://www.last.fm/music/yihuik%E8%8B%A1%E6%85%A7/_/%E7%83%AD%E6%81%8B%E5%86%B0%E6%B7%87%E6%B7%8B",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png",
+      "date": 1793078918000,
+      "nowPlaying": false
+    },
+    {
       "name": "This I Believe (The Creed)",
       "artist": "Hillsong Worship",
       "url": "https://www.last.fm/music/Hillsong+Worship/_/This+I+Believe+(The+Creed)",
@@ -151,44 +191,6 @@
       "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/3e060aae2309e4f8fb60a16676394f4b.jpg",
       "date": 1792143636000,
       "nowPlaying": false
-    },
-    {
-      "name": "Godzilla",
-      "artist": "Eminem",
-      "url": "https://www.last.fm/music/Eminem/_/Godzilla",
-      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/18dd4f35db9405188f44b7ca8fe2cfb8.png",
-      "date": 1792143422000,
-      "nowPlaying": false
-    },
-    {
-      "name": "Goodness of God",
-      "artist": "Bethel Music & Jenn Johnson",
-      "url": "https://www.last.fm/music/Bethel+Music+&+Jenn+Johnson/_/Goodness+of+God",
-      "date": 1792143123000,
-      "nowPlaying": false
-    },
-    {
-      "name": "This I Believe (The Creed)",
-      "artist": "Hillsong Worship dan Matt Crocker",
-      "url": "https://www.last.fm/music/Hillsong+Worship+dan+Matt+Crocker/_/This+I+Believe+(The+Creed)",
-      "date": 1792142720000,
-      "nowPlaying": false
-    },
-    {
-      "name": "Rap God",
-      "artist": "Eminem",
-      "url": "https://www.last.fm/music/Eminem/_/Rap+God",
-      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/b342c5474f978937730cd5e3220c3182.png",
-      "date": 1792142350000,
-      "nowPlaying": false
-    },
-    {
-      "name": "mo koi nante shinai",
-      "artist": "槇原敬之",
-      "url": "https://www.last.fm/music/%E6%A7%87%E5%8E%9F%E6%95%AC%E4%B9%8B/_/mo+koi+nante+shinai",
-      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/17f321f43345d001ead68562abe2353d.jpg",
-      "date": 1792141999000,
-      "nowPlaying": false
     }
   ],
   "topArtists": [
@@ -325,5 +327,5 @@
       "playcount": 2
     }
   ],
-  "fetchedAt": "2026-10-26T22:58:53.707Z"
+  "fetchedAt": "2026-10-27T22:48:10.147Z"
 }
