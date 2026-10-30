@@ -2,206 +2,199 @@
   "username": "Alexander_110",
   "recent": [
     {
+      "name": "あぶく - Bubble",
+      "artist": "Yorushika",
+      "url": "https://www.last.fm/music/Yorushika/_/%E3%81%82%E3%81%B6%E3%81%8F+-+Bubble",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/1080fac7b1303afe79a2e53ed6e5760e.jpg",
+      "date": 1793351605000,
+      "nowPlaying": false
+    },
+    {
+      "name": "私は、わたしの事が好き。 - Watashiwa Watashino Kotoga Suki",
+      "artist": "HoneyWorks",
+      "url": "https://www.last.fm/music/HoneyWorks/_/%E7%A7%81%E3%81%AF%E3%80%81%E3%82%8F%E3%81%9F%E3%81%97%E3%81%AE%E4%BA%8B%E3%81%8C%E5%A5%BD%E3%81%8D%E3%80%82+-+Watashiwa+Watashino+Kotoga+Suki",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/89fe1b60c8aac277b43cc14bf35b3685.jpg",
+      "date": 1793351353000,
+      "nowPlaying": false
+    },
+    {
+      "name": "夜を破って - Tear Through the Night",
+      "artist": "*Luna feat. Nenne",
+      "url": "https://www.last.fm/music/*Luna+feat.+Nenne/_/%E5%A4%9C%E3%82%92%E7%A0%B4%E3%81%A3%E3%81%A6+-+Tear+Through+the+Night",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png",
+      "date": 1793351117000,
+      "nowPlaying": false
+    },
+    {
+      "name": "水平線のような僕らへ - To us like the horizon (feat. hana)",
+      "artist": "Vivid Lila",
+      "url": "https://www.last.fm/music/Vivid+Lila/_/%E6%B0%B4%E5%B9%B3%E7%B7%9A%E3%81%AE%E3%82%88%E3%81%86%E3%81%AA%E5%83%95%E3%82%89%E3%81%B8+-+To+us+like+the+horizon+(feat.+hana)",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/c3fc62a28ee235b209532fcc73cea5e5.jpg",
+      "date": 1793350827000,
+      "nowPlaying": false
+    },
+    {
+      "name": "夏空メドレー：Tell Your World/ただ風を追いかけて - Summeretto Medley: Tell Your World/Only by Chasing the Wind (feat. 初音ミク&ロビン&Chevy)",
+      "artist": "inosoo",
+      "url": "https://www.last.fm/music/inosoo/_/%E5%A4%8F%E7%A9%BA%E3%83%A1%E3%83%89%E3%83%AC%E3%83%BC%EF%BC%9ATell+Your+World%2F%E3%81%9F%E3%81%A0%E9%A2%A8%E3%82%92%E8%BF%BD%E3%81%84%E3%81%8B%E3%81%91%E3%81%A6+-+Summeretto+Medley:+Tell+Your+World%2FOnly+by+Chasing+the+Wind+(feat.+%E5%88%9D%E9%9F%B3%E3%83%9F%E3%82%AF&%E3%83%AD%E3%83%93%E3%83%B3&Chevy)",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/155d43569c95dbeb6cac02aafc6dc3ab.jpg",
+      "date": 1793350651000,
+      "nowPlaying": false
+    },
+    {
+      "name": "又三郎 - Matasaburo",
+      "artist": "Yorushika",
+      "url": "https://www.last.fm/music/Yorushika/_/%E5%8F%88%E4%B8%89%E9%83%8E+-+Matasaburo",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/a3c5e23f3c4c56c32fb707429a319764.jpg",
+      "date": 1793350422000,
+      "nowPlaying": false
+    },
+    {
+      "name": "Check this out (feat. Hatsune Miku)",
+      "artist": "*LUNA",
+      "url": "https://www.last.fm/music/*LUNA/_/Check+this+out+(feat.+Hatsune+Miku)",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/8564935a43c04a8f2d81b80232e615c9.jpg",
+      "date": 1793350168000,
+      "nowPlaying": false
+    },
+    {
+      "name": "你是我唯一的执着",
+      "artist": "马健涛",
+      "url": "https://www.last.fm/music/%E9%A9%AC%E5%81%A5%E6%B6%9B/_/%E4%BD%A0%E6%98%AF%E6%88%91%E5%94%AF%E4%B8%80%E7%9A%84%E6%89%A7%E7%9D%80",
+      "date": 1793349915000,
+      "nowPlaying": false
+    },
+    {
+      "name": "snowspring",
+      "artist": "ChoQMay",
+      "url": "https://www.last.fm/music/ChoQMay/_/snowspring",
+      "date": 1793349692000,
+      "nowPlaying": false
+    },
+    {
       "name": "揽佬 SKAI ISYOURGOD—八方来财·因果（Official Music Video）",
       "artist": "揽佬SKAI ISYOURGOD",
       "url": "https://www.last.fm/music/%E6%8F%BD%E4%BD%ACSKAI+ISYOURGOD/_/%E6%8F%BD%E4%BD%AC+SKAI+ISYOURGOD%E2%80%94%E5%85%AB%E6%96%B9%E6%9D%A5%E8%B4%A2%C2%B7%E5%9B%A0%E6%9E%9C%EF%BC%88Official+Music+Video%EF%BC%89",
-      "date": 1793260872000,
+      "date": 1793349461000,
       "nowPlaying": false
     },
     {
-      "name": "Jesus Loves Me",
-      "artist": "Souvenirs Worship",
-      "url": "https://www.last.fm/music/Souvenirs+Worship/_/Jesus+Loves+Me",
-      "date": 1793260577000,
+      "name": "This I Believe (The Creed) (Live at Hillsong Conference in Sydney 2014)",
+      "artist": "Hillsong Worship",
+      "url": "https://www.last.fm/music/Hillsong+Worship/_/This+I+Believe+(The+Creed)+(Live+at+Hillsong+Conference+in+Sydney+2014)",
+      "date": 1793349056000,
       "nowPlaying": false
     },
     {
-      "name": "「僕は...」 - I am...",
-      "artist": "Atarayo",
-      "url": "https://www.last.fm/music/Atarayo/_/%E3%80%8C%E5%83%95%E3%81%AF...%E3%80%8D+-+I+am...",
-      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/70c55c882bf69f4eb6fb1248e5247783.jpg",
-      "date": 1793260307000,
-      "nowPlaying": false
-    },
-    {
-      "name": "愛♡スクリ～ム！ - AI SCREAM!",
-      "artist": "Aiscream",
-      "url": "https://www.last.fm/music/Aiscream/_/%E6%84%9B%E2%99%A1%E3%82%B9%E3%82%AF%E3%83%AA%EF%BD%9E%E3%83%A0%EF%BC%81+-+AI+SCREAM!",
-      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/cc673cb9a84ae507dc9e381c0b021d8f.jpg",
-      "date": 1793257099000,
-      "nowPlaying": false
-    },
-    {
-      "name": "質問、恋って何でしょうか? - Shitsumon Koitte nandeshoka? (feat. Himari Inuzuka(CV:Sayumi Suzushiro))",
-      "artist": "MARUMOCHI from HoneyWorks",
-      "url": "https://www.last.fm/music/MARUMOCHI+from+HoneyWorks/_/%E8%B3%AA%E5%95%8F%E3%80%81%E6%81%8B%E3%81%A3%E3%81%A6%E4%BD%95%E3%81%A7%E3%81%97%E3%82%87%E3%81%86%E3%81%8B%3F+-+Shitsumon+Koitte+nandeshoka%3F+(feat.+Himari+Inuzuka(CV:Sayumi+Suzushiro))",
-      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/8b19077950db6954336a5095bdc111b9.jpg",
-      "date": 1793256730000,
-      "nowPlaying": false
-    },
-    {
-      "name": "Watch Me",
-      "artist": "Amano Ririsa (CV:Maeda Kaori)",
-      "url": "https://www.last.fm/music/Amano+Ririsa+(CV:Maeda+Kaori)/_/Watch+Me",
-      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/680daa489b4246f490533f39356f3ecd.jpg",
-      "date": 1793256522000,
-      "nowPlaying": false
-    },
-    {
-      "name": "#あくあ色ぱれっと",
-      "artist": "湊あくあ",
-      "url": "https://www.last.fm/music/%E6%B9%8A%E3%81%82%E3%81%8F%E3%81%82/_/%23%E3%81%82%E3%81%8F%E3%81%82%E8%89%B2%E3%81%B1%E3%82%8C%E3%81%A3%E3%81%A8",
-      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/039f5a5c6c4cb0c6489a8c3b633383d4.jpg",
-      "date": 1793254720000,
-      "nowPlaying": false
-    },
-    {
-      "name": "ハッピーラッキーチャッピー - Happy Lucky Chappy",
-      "artist": "Ano",
-      "url": "https://www.last.fm/music/Ano/_/%E3%83%8F%E3%83%83%E3%83%94%E3%83%BC%E3%83%A9%E3%83%83%E3%82%AD%E3%83%BC%E3%83%81%E3%83%A3%E3%83%83%E3%83%94%E3%83%BC+-+Happy+Lucky+Chappy",
-      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/07ae23485338a67231f4e30ac39ced76.jpg",
-      "date": 1793254525000,
-      "nowPlaying": false
-    },
-    {
-      "name": "メルト (やなぎなぎ ver.) [CPK! Remix] - Melt (yanaginagi ver.) [CPK! Remix] (feat. ChoKaguyaHime)",
-      "artist": "ryo (supercell)",
-      "url": "https://www.last.fm/music/ryo+(supercell)/_/%E3%83%A1%E3%83%AB%E3%83%88+(%E3%82%84%E3%81%AA%E3%81%8E%E3%81%AA%E3%81%8E+ver.)+%5BCPK!+Remix%5D+-+Melt+(yanaginagi+ver.)+%5BCPK!+Remix%5D+(feat.+ChoKaguyaHime)",
-      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/cb31fa860b3b02f3550e6662777dd729.jpg",
-      "date": 1793254253000,
-      "nowPlaying": false
-    },
-    {
-      "name": "千鳥 - Plover",
+      "name": "ヨルシカ - 藍二乗 (Music Video) - Deep Indigo",
       "artist": "Yorushika",
-      "url": "https://www.last.fm/music/Yorushika/_/%E5%8D%83%E9%B3%A5+-+Plover",
-      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/c6b0c678e12cd6a6b69edb1a03319327.jpg",
-      "date": 1793254000000,
+      "url": "https://www.last.fm/music/Yorushika/_/%E3%83%A8%E3%83%AB%E3%82%B7%E3%82%AB+-+%E8%97%8D%E4%BA%8C%E4%B9%97+(Music+Video)+-+Deep+Indigo",
+      "date": 1793348806000,
       "nowPlaying": false
     },
     {
-      "name": "星降る海 - Starry Sea",
-      "artist": "Aqu3ra",
-      "url": "https://www.last.fm/music/Aqu3ra/_/%E6%98%9F%E9%99%8D%E3%82%8B%E6%B5%B7+-+Starry+Sea",
-      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/80191c25055aed6cf95828bd727e44ee.jpg",
-      "date": 1793253489000,
+      "name": "Rap God",
+      "artist": "Eminem",
+      "url": "https://www.last.fm/music/Eminem/_/Rap+God",
+      "date": 1793348436000,
       "nowPlaying": false
     },
     {
-      "name": "ray (超かぐや姫！ Version) - Ray (Cosmic Princess Kaguya! Version)",
-      "artist": "Kaguya(cv.Yuko Natsuyoshi)",
-      "url": "https://www.last.fm/music/Kaguya(cv.Yuko+Natsuyoshi)/_/ray+(%E8%B6%85%E3%81%8B%E3%81%90%E3%82%84%E5%A7%AB%EF%BC%81+Version)+-+Ray+(Cosmic+Princess+Kaguya!+Version)",
-      "date": 1793253186000,
+      "name": "热爱105°C的你",
+      "artist": "阿肆",
+      "url": "https://www.last.fm/music/%E9%98%BF%E8%82%86/_/%E7%83%AD%E7%88%B1105%C2%B0C%E7%9A%84%E4%BD%A0",
+      "date": 1793348241000,
       "nowPlaying": false
     },
     {
-      "name": "再見",
-      "artist": "Ayal Komod",
-      "url": "https://www.last.fm/music/Ayal+Komod/_/%E5%86%8D%E8%A6%8B",
-      "date": 1793252822000,
+      "name": "Trust In God (feat. Chris Brown & Isaiah Templeton)",
+      "artist": "Elevation Worship",
+      "url": "https://www.last.fm/music/Elevation+Worship/_/Trust+In+God+(feat.+Chris+Brown+&+Isaiah+Templeton)",
+      "date": 1793347675000,
       "nowPlaying": false
     },
     {
-      "name": "黄昏",
-      "artist": "吕口口",
-      "url": "https://www.last.fm/music/%E5%90%95%E5%8F%A3%E5%8F%A3/_/%E9%BB%84%E6%98%8F",
-      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png",
-      "date": 1793252554000,
+      "name": "花の塔 - Tower of Flower",
+      "artist": "Sayuri",
+      "url": "https://www.last.fm/music/Sayuri/_/%E8%8A%B1%E3%81%AE%E5%A1%94+-+Tower+of+Flower",
+      "date": 1793347398000,
       "nowPlaying": false
     },
     {
-      "name": "好きだから。 - Sukidakara",
-      "artist": "YUIKA",
-      "url": "https://www.last.fm/music/YUIKA/_/%E5%A5%BD%E3%81%8D%E3%81%A0%E3%81%8B%E3%82%89%E3%80%82+-+Sukidakara",
-      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/7b971c597291680fe27411ba23ec3a1f.jpg",
-      "date": 1793249754000,
+      "name": "Make-up Shadow",
+      "artist": "Yorushika",
+      "url": "https://www.last.fm/music/Yorushika/_/Make-up+Shadow",
+      "date": 1793347160000,
       "nowPlaying": false
     },
     {
-      "name": "如一",
-      "artist": "不是花火呀",
-      "url": "https://www.last.fm/music/%E4%B8%8D%E6%98%AF%E8%8A%B1%E7%81%AB%E5%91%80/_/%E5%A6%82%E4%B8%80",
-      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/9ad3efb59fcd10b7eefa099cc8e8f3c0.jpg",
-      "date": 1793249502000,
+      "name": "ひまわりの約束 - Himawari No Yakusoku",
+      "artist": "Motohiro Hata",
+      "url": "https://www.last.fm/music/Motohiro+Hata/_/%E3%81%B2%E3%81%BE%E3%82%8F%E3%82%8A%E3%81%AE%E7%B4%84%E6%9D%9F+-+Himawari+No+Yakusoku",
+      "date": 1793346852000,
       "nowPlaying": false
     },
     {
-      "name": "错位时空",
-      "artist": "艾辰",
-      "url": "https://www.last.fm/music/%E8%89%BE%E8%BE%B0/_/%E9%94%99%E4%BD%8D%E6%97%B6%E7%A9%BA",
-      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/70b99653269d8d839e38954125e9a096.jpg",
-      "date": 1793249298000,
+      "name": "夏が僕らを呼ぶのなら(2026 Ver.) - If Summer calling us(2026 Ver.) (feat. Yuaru & Nenne)",
+      "artist": "*LUNA",
+      "url": "https://www.last.fm/music/*LUNA/_/%E5%A4%8F%E3%81%8C%E5%83%95%E3%82%89%E3%82%92%E5%91%BC%E3%81%B6%E3%81%AE%E3%81%AA%E3%82%89(2026+Ver.)+-+If+Summer+calling+us(2026+Ver.)+(feat.+Yuaru+&+Nenne)",
+      "date": 1793346577000,
       "nowPlaying": false
     },
     {
-      "name": "寂寞烟火",
-      "artist": "蓝心羽",
-      "url": "https://www.last.fm/music/%E8%93%9D%E5%BF%83%E7%BE%BD/_/%E5%AF%82%E5%AF%9E%E7%83%9F%E7%81%AB",
-      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/4ab3c2e286350347de6d5dec95480748.jpg",
-      "date": 1793249045000,
+      "name": "Die for you (Remix)",
+      "artist": "The Weeknd",
+      "url": "https://www.last.fm/music/The+Weeknd/_/Die+for+you+(Remix)",
+      "date": 1793346306000,
       "nowPlaying": false
     },
     {
-      "name": "潮汐",
-      "artist": "傅梦彤",
-      "url": "https://www.last.fm/music/%E5%82%85%E6%A2%A6%E5%BD%A4/_/%E6%BD%AE%E6%B1%90",
-      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/9324b7172ee0f74fbb2e83c7d8ffb399.jpg",
-      "date": 1793248873000,
+      "name": "Starboy ft. Daft Punk (Official Video) (feat. Daft Punk)",
+      "artist": "The Weeknd",
+      "url": "https://www.last.fm/music/The+Weeknd/_/Starboy+ft.+Daft+Punk+(Official+Video)+(feat.+Daft+Punk)",
+      "date": 1793346032000,
       "nowPlaying": false
     },
     {
-      "name": "恋爱告急",
-      "artist": "旺仔小乔",
-      "url": "https://www.last.fm/music/%E6%97%BA%E4%BB%94%E5%B0%8F%E4%B9%94/_/%E6%81%8B%E7%88%B1%E5%91%8A%E6%80%A5",
-      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png",
-      "date": 1793248667000,
+      "name": "Save Your Tears",
+      "artist": "The Weeknd",
+      "url": "https://www.last.fm/music/The+Weeknd/_/Save+Your+Tears",
+      "date": 1793345782000,
       "nowPlaying": false
     },
     {
-      "name": "白月光与朱砂痣",
-      "artist": "胖虎",
-      "url": "https://www.last.fm/music/%E8%83%96%E8%99%8E/_/%E7%99%BD%E6%9C%88%E5%85%89%E4%B8%8E%E6%9C%B1%E7%A0%82%E7%97%A3",
-      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/33e81c60a421295ed38cf5b90724f036.jpg",
-      "date": 1793248463000,
+      "name": "One of the Girls",
+      "artist": "The Weeknd",
+      "url": "https://www.last.fm/music/The+Weeknd/_/One+of+the+Girls",
+      "date": 1793345523000,
       "nowPlaying": false
     },
     {
-      "name": "做自己的月亮",
-      "artist": "小蓝背心",
-      "url": "https://www.last.fm/music/%E5%B0%8F%E8%93%9D%E8%83%8C%E5%BF%83/_/%E5%81%9A%E8%87%AA%E5%B7%B1%E7%9A%84%E6%9C%88%E4%BA%AE",
-      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/946a70e5b6a1e2ac85a0cb6cb649f03f.jpg",
-      "date": 1793248278000,
+      "name": "Blinding Lights",
+      "artist": "The Weeknd",
+      "url": "https://www.last.fm/music/The+Weeknd/_/Blinding+Lights",
+      "date": 1793345321000,
       "nowPlaying": false
     },
     {
-      "name": "missing you in winter",
-      "artist": "yihuik苡慧",
-      "url": "https://www.last.fm/music/yihuik%E8%8B%A1%E6%85%A7/_/missing+you+in+winter",
-      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png",
-      "date": 1793248091000,
-      "nowPlaying": false
-    },
-    {
-      "name": "热恋冰淇淋",
-      "artist": "yihuik苡慧",
-      "url": "https://www.last.fm/music/yihuik%E8%8B%A1%E6%85%A7/_/%E7%83%AD%E6%81%8B%E5%86%B0%E6%B7%87%E6%B7%8B",
-      "date": 1793247961000,
-      "nowPlaying": false
-    },
-    {
-      "name": "ピースサイン - Peace Sign",
-      "artist": "Kenshi Yonezu",
-      "url": "https://www.last.fm/music/Kenshi+Yonezu/_/%E3%83%94%E3%83%BC%E3%82%B9%E3%82%B5%E3%82%A4%E3%83%B3+-+Peace+Sign",
-      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/491f40a2cabd832e03e76389cbcefb03.jpg",
-      "date": 1793247723000,
+      "name": "Die for you (Remix)",
+      "artist": "The Weeknd",
+      "url": "https://www.last.fm/music/The+Weeknd/_/Die+for+you+(Remix)",
+      "date": 1793345088000,
       "nowPlaying": false
     }
   ],
   "topArtists": [
     {
       "name": "Yorushika",
-      "playcount": 20,
+      "playcount": 26,
       "url": "https://www.last.fm/music/Yorushika",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png"
+    },
+    {
+      "name": "*LUNA",
+      "playcount": 16,
+      "url": "https://www.last.fm/music/*LUNA",
       "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png"
     },
     {
@@ -211,15 +204,15 @@
       "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png"
     },
     {
-      "name": "*LUNA",
-      "playcount": 11,
-      "url": "https://www.last.fm/music/*LUNA",
-      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png"
-    },
-    {
       "name": "YOASOBI",
       "playcount": 10,
       "url": "https://www.last.fm/music/YOASOBI",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png"
+    },
+    {
+      "name": "The Weeknd",
+      "playcount": 9,
+      "url": "https://www.last.fm/music/The+Weeknd",
       "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png"
     },
     {
@@ -229,37 +222,73 @@
       "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png"
     },
     {
+      "name": "yihuik苡慧",
+      "playcount": 7,
+      "url": "https://www.last.fm/music/yihuik%E8%8B%A1%E6%85%A7",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png"
+    },
+    {
+      "name": "ClariS",
+      "playcount": 5,
+      "url": "https://www.last.fm/music/ClariS",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png"
+    },
+    {
       "name": "Eve",
       "playcount": 5,
       "url": "https://www.last.fm/music/Eve",
       "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png"
     },
     {
-      "name": "Tayori",
+      "name": "Motohiro Hata",
       "playcount": 5,
-      "url": "https://www.last.fm/music/Tayori",
-      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png"
-    },
-    {
-      "name": "yihuik苡慧",
-      "playcount": 5,
-      "url": "https://www.last.fm/music/yihuik%E8%8B%A1%E6%85%A7",
-      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png"
-    },
-    {
-      "name": "ClariS",
-      "playcount": 4,
-      "url": "https://www.last.fm/music/ClariS",
-      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png"
-    },
-    {
-      "name": "Kenshi Yonezu",
-      "playcount": 4,
-      "url": "https://www.last.fm/music/+noredirect/Kenshi+Yonezu",
+      "url": "https://www.last.fm/music/+noredirect/Motohiro+Hata",
       "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png"
     }
   ],
   "topTracks": [
+    {
+      "name": "热恋冰淇淋",
+      "artist": "yihuik苡慧",
+      "url": "https://www.last.fm/music/yihuik%E8%8B%A1%E6%85%A7/_/%E7%83%AD%E6%81%8B%E5%86%B0%E6%B7%87%E6%B7%8B",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png",
+      "playcount": 5
+    },
+    {
+      "name": "Make-up Shadow",
+      "artist": "Yorushika",
+      "url": "https://www.last.fm/music/Yorushika/_/Make-up+Shadow",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png",
+      "playcount": 5
+    },
+    {
+      "name": "ひまわりの約束 - Himawari No Yakusoku",
+      "artist": "Motohiro Hata",
+      "url": "https://www.last.fm/music/Motohiro+Hata/_/%E3%81%B2%E3%81%BE%E3%82%8F%E3%82%8A%E3%81%AE%E7%B4%84%E6%9D%9F+-+Himawari+No+Yakusoku",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png",
+      "playcount": 4
+    },
+    {
+      "name": "热爱105°C的你",
+      "artist": "阿肆",
+      "url": "https://www.last.fm/music/%E9%98%BF%E8%82%86/_/%E7%83%AD%E7%88%B1105%C2%B0C%E7%9A%84%E4%BD%A0",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png",
+      "playcount": 4
+    },
+    {
+      "name": "再見",
+      "artist": "Ayal Komod",
+      "url": "https://www.last.fm/music/Ayal+Komod/_/%E5%86%8D%E8%A6%8B",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png",
+      "playcount": 3
+    },
+    {
+      "name": "Jumping Machine (跳楼机)",
+      "artist": "LBI",
+      "url": "https://www.last.fm/music/LBI/_/Jumping+Machine+(%E8%B7%B3%E6%A5%BC%E6%9C%BA)",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png",
+      "playcount": 3
+    },
     {
       "name": "夏が僕らを呼ぶのなら",
       "artist": "Luna",
@@ -268,68 +297,26 @@
       "playcount": 3
     },
     {
-      "name": "热恋冰淇淋",
-      "artist": "yihuik苡慧",
-      "url": "https://www.last.fm/music/yihuik%E8%8B%A1%E6%85%A7/_/%E7%83%AD%E6%81%8B%E5%86%B0%E6%B7%87%E6%B7%8B",
+      "name": "花の塔 - Tower of Flower",
+      "artist": "Sayuri",
+      "url": "https://www.last.fm/music/Sayuri/_/%E8%8A%B1%E3%81%AE%E5%A1%94+-+Tower+of+Flower",
       "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png",
       "playcount": 3
     },
     {
-      "name": "Unveil",
-      "artist": "*LUNA",
-      "url": "https://www.last.fm/music/*LUNA/_/Unveil",
-      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png",
-      "playcount": 2
-    },
-    {
-      "name": "アトラクトライト",
-      "artist": "*LUNA",
-      "url": "https://www.last.fm/music/*LUNA/_/%E3%82%A2%E3%83%88%E3%83%A9%E3%82%AF%E3%83%88%E3%83%A9%E3%82%A4%E3%83%88",
-      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png",
-      "playcount": 2
-    },
-    {
-      "name": "イグニッション",
-      "artist": "*LUNA",
-      "url": "https://www.last.fm/music/*LUNA/_/%E3%82%A4%E3%82%B0%E3%83%8B%E3%83%83%E3%82%B7%E3%83%A7%E3%83%B3",
-      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png",
-      "playcount": 2
-    },
-    {
-      "name": "ラストラス",
-      "artist": "*Luna dan 初音ミク",
-      "url": "https://www.last.fm/music/*Luna+dan+%E5%88%9D%E9%9F%B3%E3%83%9F%E3%82%AF/_/%E3%83%A9%E3%82%B9%E3%83%88%E3%83%A9%E3%82%B9",
-      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png",
-      "playcount": 2
-    },
-    {
       "name": "再見",
-      "artist": "Ayal Komod",
-      "url": "https://www.last.fm/music/Ayal+Komod/_/%E5%86%8D%E8%A6%8B",
+      "artist": "張震嶽",
+      "url": "https://www.last.fm/music/%E5%BC%B5%E9%9C%87%E5%B6%BD/_/%E5%86%8D%E8%A6%8B",
       "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png",
-      "playcount": 2
+      "playcount": 3
     },
     {
-      "name": "Goodness of God",
-      "artist": "Bethel Music & Jenn Johnson",
-      "url": "https://www.last.fm/music/Bethel+Music+&+Jenn+Johnson/_/Goodness+of+God",
+      "name": "揽佬 SKAI ISYOURGOD—八方来财·因果（Official Music Video）",
+      "artist": "揽佬SKAI ISYOURGOD",
+      "url": "https://www.last.fm/music/%E6%8F%BD%E4%BD%ACSKAI+ISYOURGOD/_/%E6%8F%BD%E4%BD%AC+SKAI+ISYOURGOD%E2%80%94%E5%85%AB%E6%96%B9%E6%9D%A5%E8%B4%A2%C2%B7%E5%9B%A0%E6%9E%9C%EF%BC%88Official+Music+Video%EF%BC%89",
       "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png",
-      "playcount": 2
-    },
-    {
-      "name": "Trust in God",
-      "artist": "Elevation Worship",
-      "url": "https://www.last.fm/music/Elevation+Worship/_/Trust+in+God",
-      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png",
-      "playcount": 2
-    },
-    {
-      "name": "Ao no Waltz",
-      "artist": "Eve",
-      "url": "https://www.last.fm/music/Eve/_/Ao+no+Waltz",
-      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png",
-      "playcount": 2
+      "playcount": 3
     }
   ],
-  "fetchedAt": "2026-10-29T23:03:56.937Z"
+  "fetchedAt": "2026-10-30T22:44:56.351Z"
 }
