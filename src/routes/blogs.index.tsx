@@ -1,5 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { BlogRows } from '../components/BlogRows'
+import { BlogSearch } from '../components/BlogSearch'
 import { blogs } from '../lib/content'
 import { seo } from '../lib/seo'
 import { Icon } from "../components/Icon"
@@ -30,7 +30,7 @@ function BlogsPage() {
         </p>
       </header>
       <section className="block-section">
-        <BlogRows posts={blogs} />
+        <BlogSearch posts={blogs} />
       </section>
     </div>
   )
