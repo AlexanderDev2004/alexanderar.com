@@ -67,6 +67,19 @@
 #section("PROJECTS")
 
 #two-col([
+  #text(weight: "bold")[G2W — Game to Website]
+  (#text(fill: section-color)[#link("https://g2w.alexanderar.com")[g2w.alexanderar.com]])
+], [2026])
+
+- Built and shipped an open-source, TypeScript-first framework for browser games as a pnpm monorepo of 8 published npm packages: renderer-agnostic core, Effect-based runtime, PixiJS renderer, DOM/gamepad input, web audio, devtools, and a `create-g2w` CLI scaffold.
+- Enforced architecture by tests — the core has zero runtime dependencies and the same conformance suite runs against WebGL, Canvas, and WebGPU backends in real headless browsers; 453/453 tests green in CI on every commit.
+- Shipped a live Astro documentation site with Ctrl+K search, playground, and a headless-Chrome benchmark harness (60 fps up to 5,000 sprites) comparing against raw PixiJS, Phaser 4, and Three.js, deployed to Cloudflare Pages via CI.
+
+#text(weight: "bold")[Stack:] TypeScript, pnpm Workspaces, PixiJS, Effect, Vitest, Astro, Cloudflare Pages, npm Trusted Publishing
+
+#v(0.45em)
+
+#two-col([
   #text(weight: "bold")[LearnMap]
   (#text(fill: section-color)[#link("https://github.com/AlexanderDev2004/Learmap-kitbuild")[github.com/AlexanderDev2004/Learmap-kitbuild]])
 ], [2026])

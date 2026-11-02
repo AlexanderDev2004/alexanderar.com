@@ -107,6 +107,55 @@
       ]
     },
     {
+      "slug": "g2w",
+      "title": "G2W — Game to Website",
+      "year": "2026",
+      "description": "Open-source, TypeScript-first game framework for the browser — zero-dependency core, renderer-agnostic (WebGL/Canvas/WebGPU), 8 npm packages, CLI scaffold, and a live docs site.",
+      "fullDescriptionHtml": "<h2>Project Summary</h2>\n<p><strong>g2w (Game to Website)</strong> is an open-source, TypeScript-first framework for building and shipping HTML5 games — 2D first, 3D planned — for desktop and mobile web browsers. Instead of installing a multi-gigabyte engine, you run <code>pnpm create g2w my-game</code> and your game runs directly in the browser, TypeScript end to end. Live docs at <a href=\"https://g2w.alexanderar.com\">g2w.alexanderar.com</a>, source on <a href=\"https://github.com/AlexanderDev2004/g2w\">GitHub</a>, published to npm under the <a href=\"https://www.npmjs.com/org/g2w\">@g2w</a> organization.</p>\n<h2>The Problem</h2>\n<p>Browser-game tooling sits at two extremes: all-in-one engines (Phaser) bundle everything and decide everything for you, while pure renderers (PixiJS) leave every architectural decision to you. Neither gives you a framework <em>structure</em> — game loop, scenes, input, audio, lifecycle, devtools — that survives changing the rendering technology underneath.</p>\n<h2>The Solution</h2>\n<p>g2w is the middle layer: a framework skeleton with a <strong>zero-dependency core</strong> where the renderer is not an implementation detail but a <strong>tested contract</strong> — the same conformance suite (12 features per backend) runs against WebGL, Canvas, and WebGPU backends in real headless browsers. Architecture rules are enforced by tests themselves: <code>@g2w/core</code> cannot depend on PixiJS, the DOM, or Effect, and an architecture test fails the build if that ever changes.</p>\n<h2>Key Features</h2>\n<ul>\n<li><strong>Renderer-agnostic core</strong> — swap WebGL/Canvas/WebGPU backends behind one tested contract; core has zero runtime dependencies.</li>\n<li><strong>8 npm packages</strong> — core, Effect-based runtime, Pixi renderer, DOM + gamepad input, web audio, devtools, and the <code>create-g2w</code> CLI scaffold.</li>\n<li><strong>453/453 tests</strong> — architecture rules, lifecycle/disposal ownership, and cross-backend conformance all enforced in CI on every commit.</li>\n<li><strong>npm trusted publishing</strong> — OIDC-based release workflow with fail-safe version validation gates.</li>\n<li><strong>Live docs site</strong> — Astro documentation with Ctrl+K search, playground, benchmarks, and an honest roadmap, deployed to Cloudflare Pages via CI.</li>\n<li><strong>Real benchmarks</strong> — headless Chrome CDP harness, median-of-3: 60 fps up to 5,000 sprites; cross-framework comparison against raw PixiJS, Phaser 4, and Three.js on identical workloads.</li>\n</ul>\n<h2>Technologies Used</h2>\n<ul>\n<li><a href=\"https://www.typescriptlang.org/\">TypeScript (strict)</a> — end to end, no un-justified <code>any</code>.</li>\n<li><a href=\"https://pnpm.io/\">pnpm workspaces</a> — monorepo for the 8-package ecosystem.</li>\n<li><a href=\"https://pixijs.com/\">PixiJS 8</a> — first renderer backend (WebGL/Canvas/WebGPU).</li>\n<li><a href=\"https://effect.website/\">Effect</a> — application runtime lifecycle (<code>G2WGame</code>), kept out of the core.</li>\n<li><a href=\"https://vitest.dev/\">Vitest</a> — 453 tests including the architecture-enforcement suite.</li>\n<li><a href=\"https://astro.build/\">Astro</a> — documentation website with search and playground.</li>\n<li><a href=\"https://pages.cloudflare.com/\">Cloudflare Pages</a> — CI/CD deployment for the docs site.</li>\n</ul>",
+      "image": "/images/g2w.webp",
+      "imageWidth": 1280,
+      "imageHeight": 640,
+      "projectLink": "https://g2w.alexanderar.com",
+      "repoLink": "https://github.com/AlexanderDev2004/g2w",
+      "technologies": [
+        {
+          "name": "TypeScript",
+          "icon": "simple-icons:typescript",
+          "docLink": "https://www.typescriptlang.org/"
+        },
+        {
+          "name": "pnpm",
+          "icon": "simple-icons:pnpm",
+          "docLink": "https://pnpm.io/"
+        },
+        {
+          "name": "PixiJS",
+          "icon": "simple-icons:pixijs",
+          "docLink": "https://pixijs.com/"
+        },
+        {
+          "name": "Effect",
+          "icon": "simple-icons:effect",
+          "docLink": "https://effect.website/"
+        },
+        {
+          "name": "Vitest",
+          "icon": "simple-icons:vitest",
+          "docLink": "https://vitest.dev/"
+        },
+        {
+          "name": "Astro",
+          "icon": "simple-icons:astro",
+          "docLink": "https://astro.build/"
+        },
+        {
+          "name": "Cloudflare Pages",
+          "icon": "simple-icons:cloudflare",
+          "docLink": "https://pages.cloudflare.com/"
+        }
+      ]
+    },
+    {
       "slug": "gittrace",
       "title": "GitTrace",
       "year": "2026",
