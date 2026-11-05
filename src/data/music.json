@@ -2,6 +2,120 @@
   "username": "Alexander_110",
   "recent": [
     {
+      "name": "Make-up Shadow",
+      "artist": "Yorushika",
+      "url": "https://www.last.fm/music/Yorushika/_/Make-up+Shadow",
+      "date": 1793770246000,
+      "nowPlaying": false
+    },
+    {
+      "name": "Night Changes",
+      "artist": "One Direction",
+      "url": "https://www.last.fm/music/One+Direction/_/Night+Changes",
+      "date": 1793769979000,
+      "nowPlaying": false
+    },
+    {
+      "name": "Midnight Memories",
+      "artist": "One Direction",
+      "url": "https://www.last.fm/music/One+Direction/_/Midnight+Memories",
+      "date": 1793769779000,
+      "nowPlaying": false
+    },
+    {
+      "name": "等花开 (绽放在人海)",
+      "artist": "googoo",
+      "url": "https://www.last.fm/music/googoo/_/%E7%AD%89%E8%8A%B1%E5%BC%80+(%E7%BB%BD%E6%94%BE%E5%9C%A8%E4%BA%BA%E6%B5%B7)",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png",
+      "date": 1793769587000,
+      "nowPlaying": false
+    },
+    {
+      "name": "我期待的不是雪 (而是有你的冬天) (1.1x版)",
+      "artist": "张妙格",
+      "url": "https://www.last.fm/music/%E5%BC%A0%E5%A6%99%E6%A0%BC/_/%E6%88%91%E6%9C%9F%E5%BE%85%E7%9A%84%E4%B8%8D%E6%98%AF%E9%9B%AA+(%E8%80%8C%E6%98%AF%E6%9C%89%E4%BD%A0%E7%9A%84%E5%86%AC%E5%A4%A9)+(1.1x%E7%89%88)",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/274d13276bdfe54daf7a21d2e75be847.png",
+      "date": 1793769437000,
+      "nowPlaying": false
+    },
+    {
+      "name": "清空 (甜美女声版)",
+      "artist": "黎林添娇",
+      "url": "https://www.last.fm/music/%E9%BB%8E%E6%9E%97%E6%B7%BB%E5%A8%87/_/%E6%B8%85%E7%A9%BA+(%E7%94%9C%E7%BE%8E%E5%A5%B3%E5%A3%B0%E7%89%88)",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png",
+      "date": 1793769259000,
+      "nowPlaying": false
+    },
+    {
+      "name": "若月亮没来（若是月亮还没来）",
+      "artist": "王宇宙Leto",
+      "url": "https://www.last.fm/music/%E7%8E%8B%E5%AE%87%E5%AE%99Leto/_/%E8%8B%A5%E6%9C%88%E4%BA%AE%E6%B2%A1%E6%9D%A5%EF%BC%88%E8%8B%A5%E6%98%AF%E6%9C%88%E4%BA%AE%E8%BF%98%E6%B2%A1%E6%9D%A5%EF%BC%89",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/f5826c24a374b5d576e8a5bfc200fbcc.jpg",
+      "date": 1793769085000,
+      "nowPlaying": false
+    },
+    {
+      "name": "Namu",
+      "artist": "Sable Hills",
+      "url": "https://www.last.fm/music/Sable+Hills/_/Namu",
+      "date": 1793768869000,
+      "nowPlaying": false
+    },
+    {
+      "name": "Tenanglah Kini Hatiku",
+      "artist": "Herlin Pirena",
+      "url": "https://www.last.fm/music/Herlin+Pirena/_/Tenanglah+Kini+Hatiku",
+      "date": 1793768548000,
+      "nowPlaying": false
+    },
+    {
+      "name": "Tenanglah Kini Hatiku (KJ 410) (Cover) | GKDI Worship | Lagu Rohani Kristen",
+      "artist": "GKDI Worship",
+      "url": "https://www.last.fm/music/GKDI+Worship/_/Tenanglah+Kini+Hatiku+(KJ+410)+(Cover)+%7C+GKDI+Worship+%7C+Lagu+Rohani+Kristen",
+      "date": 1793768243000,
+      "nowPlaying": false
+    },
+    {
+      "name": "甜蜜爱情",
+      "artist": "陈玉建",
+      "url": "https://www.last.fm/music/%E9%99%88%E7%8E%89%E5%BB%BA/_/%E7%94%9C%E8%9C%9C%E7%88%B1%E6%83%85",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/b6e1b7f7afa93de2ba93afb879d180b0.jpg",
+      "date": 1793768034000,
+      "nowPlaying": false
+    },
+    {
+      "name": "ほめてよ、ほまれ - Praise me, Homare (feat. Homare Udagawa(CV:Miyu Tomita))",
+      "artist": "MARUMOCHI from HoneyWorks",
+      "url": "https://www.last.fm/music/MARUMOCHI+from+HoneyWorks/_/%E3%81%BB%E3%82%81%E3%81%A6%E3%82%88%E3%80%81%E3%81%BB%E3%81%BE%E3%82%8C+-+Praise+me,+Homare+(feat.+Homare+Udagawa(CV:Miyu+Tomita))",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/c0bc110c1b79e99dbd10f53836ee4ca2.jpg",
+      "date": 1793767826000,
+      "nowPlaying": false
+    },
+    {
+      "name": "Distortion!!",
+      "artist": "kessoku band",
+      "url": "https://www.last.fm/music/kessoku+band/_/Distortion!!",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/9e4c0f751ef7dc62c9622c122dea0187.jpg",
+      "date": 1793767599000,
+      "nowPlaying": false
+    },
+    {
+      "name": "ひとりぼっち東京 - hitoribocchi tokyo",
+      "artist": "kessoku band",
+      "url": "https://www.last.fm/music/kessoku+band/_/%E3%81%B2%E3%81%A8%E3%82%8A%E3%81%BC%E3%81%A3%E3%81%A1%E6%9D%B1%E4%BA%AC+-+hitoribocchi+tokyo",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/9e4c0f751ef7dc62c9622c122dea0187.jpg",
+      "date": 1793767367000,
+      "nowPlaying": false
+    },
+    {
+      "name": "青春コンプレックス - seisyun complex",
+      "artist": "kessoku band",
+      "url": "https://www.last.fm/music/kessoku+band/_/%E9%9D%92%E6%98%A5%E3%82%B3%E3%83%B3%E3%83%97%E3%83%AC%E3%83%83%E3%82%AF%E3%82%B9+-+seisyun+complex",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/9e4c0f751ef7dc62c9622c122dea0187.jpg",
+      "date": 1793767163000,
+      "nowPlaying": false
+    },
+    {
       "name": "ほめてよ、ほまれ - Praise me, Homare (feat. Homare Udagawa(CV:Miyu Tomita))",
       "artist": "MARUMOCHI from HoneyWorks",
       "url": "https://www.last.fm/music/MARUMOCHI+from+HoneyWorks/_/%E3%81%BB%E3%82%81%E3%81%A6%E3%82%88%E3%80%81%E3%81%BB%E3%81%BE%E3%82%8C+-+Praise+me,+Homare+(feat.+Homare+Udagawa(CV:Miyu+Tomita))",
@@ -78,124 +192,12 @@
       "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/3ed8395acd35fe625f35cdcba4707170.jpg",
       "date": 1793683500000,
       "nowPlaying": false
-    },
-    {
-      "name": "spiral",
-      "artist": "Longman",
-      "url": "https://www.last.fm/music/Longman/_/spiral",
-      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/5aaabe0c024534007cda2f4a0342ae5d.png",
-      "date": 1793683269000,
-      "nowPlaying": false
-    },
-    {
-      "name": "Far Beyond the Stars",
-      "artist": "Yoshimasa Terui",
-      "url": "https://www.last.fm/music/Yoshimasa+Terui/_/Far+Beyond+the+Stars",
-      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png",
-      "date": 1793682965000,
-      "nowPlaying": false
-    },
-    {
-      "name": "怪物",
-      "artist": "YOASOBI",
-      "url": "https://www.last.fm/music/YOASOBI/_/%E6%80%AA%E7%89%A9",
-      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/4bd5d7e26c626c75a70498698a62a9e5.jpg",
-      "date": 1793682620000,
-      "nowPlaying": false
-    },
-    {
-      "name": "相対性理論 - 気になるあの娘",
-      "artist": "hajura0619",
-      "url": "https://www.last.fm/music/hajura0619/_/%E7%9B%B8%E5%AF%BE%E6%80%A7%E7%90%86%E8%AB%96+-+%E6%B0%97%E3%81%AB%E3%81%AA%E3%82%8B%E3%81%82%E3%81%AE%E5%A8%98",
-      "date": 1793682441000,
-      "nowPlaying": false
-    },
-    {
-      "name": "ハッピーラッキーチャッピー - Happy Lucky Chappy",
-      "artist": "Ano",
-      "url": "https://www.last.fm/music/Ano/_/%E3%83%8F%E3%83%83%E3%83%94%E3%83%BC%E3%83%A9%E3%83%83%E3%82%AD%E3%83%BC%E3%83%81%E3%83%A3%E3%83%83%E3%83%94%E3%83%BC+-+Happy+Lucky+Chappy",
-      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/07ae23485338a67231f4e30ac39ced76.jpg",
-      "date": 1793682256000,
-      "nowPlaying": false
-    },
-    {
-      "name": "【エンドフィールド/スー】*Luna - Find Me feat.Hina from miolly",
-      "artist": "*LUNA",
-      "url": "https://www.last.fm/music/*LUNA/_/%E3%80%90%E3%82%A8%E3%83%B3%E3%83%89%E3%83%95%E3%82%A3%E3%83%BC%E3%83%AB%E3%83%89%2F%E3%82%B9%E3%83%BC%E3%80%91*Luna+-+Find+Me+feat.Hina+from+miolly",
-      "date": 1793682096000,
-      "nowPlaying": false
-    },
-    {
-      "name": "【鳴潮/エイメス】*Luna - Aria feat.ねんね",
-      "artist": "*LUNA",
-      "url": "https://www.last.fm/music/*LUNA/_/%E3%80%90%E9%B3%B4%E6%BD%AE%2F%E3%82%A8%E3%82%A4%E3%83%A1%E3%82%B9%E3%80%91*Luna+-+Aria+feat.%E3%81%AD%E3%82%93%E3%81%AD",
-      "date": 1793681816000,
-      "nowPlaying": false
-    },
-    {
-      "name": "夏が僕らを呼ぶのなら - If Summer is calling us",
-      "artist": "*LUNA",
-      "url": "https://www.last.fm/music/*LUNA/_/%E5%A4%8F%E3%81%8C%E5%83%95%E3%82%89%E3%82%92%E5%91%BC%E3%81%B6%E3%81%AE%E3%81%AA%E3%82%89+-+If+Summer+is+calling+us",
-      "date": 1793681436000,
-      "nowPlaying": false
-    },
-    {
-      "name": "Rise up",
-      "artist": "Hatsune Miku",
-      "url": "https://www.last.fm/music/Hatsune+Miku/_/Rise+up",
-      "date": 1793681191000,
-      "nowPlaying": false
-    },
-    {
-      "name": "イグニッション - Ignition (feat. Yuaru & Nenne)",
-      "artist": "*LUNA",
-      "url": "https://www.last.fm/music/*LUNA/_/%E3%82%A4%E3%82%B0%E3%83%8B%E3%83%83%E3%82%B7%E3%83%A7%E3%83%B3+-+Ignition+(feat.+Yuaru+&+Nenne)",
-      "date": 1793680978000,
-      "nowPlaying": false
-    },
-    {
-      "name": "言って。 - Say It.",
-      "artist": "Yorushika",
-      "url": "https://www.last.fm/music/Yorushika/_/%E8%A8%80%E3%81%A3%E3%81%A6%E3%80%82+-+Say+It.",
-      "date": 1793680734000,
-      "nowPlaying": false
-    },
-    {
-      "name": "Nyalakan ApiMu (Live)",
-      "artist": "GMS Live",
-      "url": "https://www.last.fm/music/GMS+Live/_/Nyalakan+ApiMu+(Live)",
-      "date": 1793680193000,
-      "nowPlaying": false
-    },
-    {
-      "name": "未来へ - Mirai e",
-      "artist": "Kiroro",
-      "url": "https://www.last.fm/music/Kiroro/_/%E6%9C%AA%E6%9D%A5%E3%81%B8+-+Mirai+e",
-      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/80b3b901543dd69dadc9a23b44ebb5a6.jpg",
-      "date": 1793611482000,
-      "nowPlaying": false
-    },
-    {
-      "name": "ラズベリー - Raspberry",
-      "artist": "kakizaki yuta",
-      "url": "https://www.last.fm/music/kakizaki+yuta/_/%E3%83%A9%E3%82%BA%E3%83%99%E3%83%AA%E3%83%BC+-+Raspberry",
-      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/27130712bd4941fd9d6a4562850c9478.jpg",
-      "date": 1793611320000,
-      "nowPlaying": false
-    },
-    {
-      "name": "恋 - Koi",
-      "artist": "Gen Hoshino",
-      "url": "https://www.last.fm/music/Gen+Hoshino/_/%E6%81%8B+-+Koi",
-      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/c91e05d28d700e4b7c4c6fe457044cba.jpg",
-      "date": 1793611067000,
-      "nowPlaying": false
     }
   ],
   "topArtists": [
     {
       "name": "Yorushika",
-      "playcount": 30,
+      "playcount": 31,
       "url": "https://www.last.fm/music/Yorushika",
       "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png"
     },
@@ -207,7 +209,7 @@
     },
     {
       "name": "kessoku band",
-      "playcount": 15,
+      "playcount": 18,
       "url": "https://www.last.fm/music/kessoku+band",
       "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png"
     },
@@ -236,6 +238,12 @@
       "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png"
     },
     {
+      "name": "MARUMOCHI from HoneyWorks",
+      "playcount": 7,
+      "url": "https://www.last.fm/music/MARUMOCHI+from+HoneyWorks",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png"
+    },
+    {
       "name": "Motohiro Hata",
       "playcount": 7,
       "url": "https://www.last.fm/music/+noredirect/Motohiro+Hata",
@@ -246,26 +254,20 @@
       "playcount": 7,
       "url": "https://www.last.fm/music/Tayori",
       "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png"
-    },
-    {
-      "name": "*Luna feat. Nenne",
-      "playcount": 6,
-      "url": "https://www.last.fm/music/*Luna+feat.+Nenne",
-      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png"
     }
   ],
   "topTracks": [
     {
-      "name": "热恋冰淇淋",
-      "artist": "yihuik苡慧",
-      "url": "https://www.last.fm/music/yihuik%E8%8B%A1%E6%85%A7/_/%E7%83%AD%E6%81%8B%E5%86%B0%E6%B7%87%E6%B7%8B",
-      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png",
-      "playcount": 6
-    },
-    {
       "name": "Make-up Shadow",
       "artist": "Yorushika",
       "url": "https://www.last.fm/music/Yorushika/_/Make-up+Shadow",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png",
+      "playcount": 7
+    },
+    {
+      "name": "热恋冰淇淋",
+      "artist": "yihuik苡慧",
+      "url": "https://www.last.fm/music/yihuik%E8%8B%A1%E6%85%A7/_/%E7%83%AD%E6%81%8B%E5%86%B0%E6%B7%87%E6%B7%8B",
       "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png",
       "playcount": 6
     },
@@ -298,6 +300,20 @@
       "playcount": 4
     },
     {
+      "name": "ほめてよ、ほまれ - Praise me, Homare (feat. Homare Udagawa(CV:Miyu Tomita))",
+      "artist": "MARUMOCHI from HoneyWorks",
+      "url": "https://www.last.fm/music/MARUMOCHI+from+HoneyWorks/_/%E3%81%BB%E3%82%81%E3%81%A6%E3%82%88%E3%80%81%E3%81%BB%E3%81%BE%E3%82%8C+-+Praise+me,+Homare+(feat.+Homare+Udagawa(CV:Miyu+Tomita))",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png",
+      "playcount": 4
+    },
+    {
+      "name": "Night Changes",
+      "artist": "One Direction",
+      "url": "https://www.last.fm/music/One+Direction/_/Night+Changes",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png",
+      "playcount": 4
+    },
+    {
       "name": "花の塔 - Tower of Flower",
       "artist": "Sayuri",
       "url": "https://www.last.fm/music/Sayuri/_/%E8%8A%B1%E3%81%AE%E5%A1%94+-+Tower+of+Flower",
@@ -310,21 +326,7 @@
       "url": "https://www.last.fm/music/%E9%A9%AC%E5%81%A5%E6%B6%9B/_/%E4%BD%A0%E6%98%AF%E6%88%91%E5%94%AF%E4%B8%80%E7%9A%84%E6%89%A7%E7%9D%80",
       "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png",
       "playcount": 4
-    },
-    {
-      "name": "snowspring",
-      "artist": "ChoQMay",
-      "url": "https://www.last.fm/music/ChoQMay/_/snowspring",
-      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png",
-      "playcount": 3
-    },
-    {
-      "name": "きゃぴ - Kyapi",
-      "artist": "Houshou Marine",
-      "url": "https://www.last.fm/music/Houshou+Marine/_/%E3%81%8D%E3%82%83%E3%81%B4+-+Kyapi",
-      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png",
-      "playcount": 3
     }
   ],
-  "fetchedAt": "2026-11-03T23:50:28.710Z"
+  "fetchedAt": "2026-11-05T00:04:30.089Z"
 }
