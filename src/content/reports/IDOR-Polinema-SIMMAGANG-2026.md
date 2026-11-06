@@ -6,6 +6,7 @@ severity: "Critical"
 cwe: "CWE-639"
 owasp: "OWASP A01"
 tags: ["IDOR", "Broken Access Control", "Web Security", "Authorization Bypass"]
+pdf: "/reports/IDOR-Polinema-SIMMAGANG-2026.pdf"
 ---
 
 ## **Executive Summary**

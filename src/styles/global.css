@@ -1273,6 +1273,18 @@ details[open] .chev {
   flex-wrap: wrap;
   align-items: center;
 }
+.article .report-actions {
+  margin-top: 18px;
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.article .report-actions-note {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--stone);
+}
 .article .cover {
   margin-top: 26px;
   border: 1px solid var(--line);

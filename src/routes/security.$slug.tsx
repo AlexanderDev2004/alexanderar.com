@@ -58,6 +58,14 @@ function ReportPage() {
         </span>
         <span>by {report.author}</span>
       </div>
+      {report.pdf && (
+        <div className="report-actions">
+          <a className="btn btn-out" href={report.pdf} target="_blank" rel="noopener noreferrer">
+            <Icon name="mdi:file-pdf-box" /> View full report (PDF)
+          </a>
+          <span className="report-actions-note">URLs and personal data are redacted in the public PDF.</span>
+        </div>
+      )}
       <MarkdownBody html={report.html} />
     </article>
   )

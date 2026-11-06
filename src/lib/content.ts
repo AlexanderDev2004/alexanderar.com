@@ -47,6 +47,7 @@ export interface Report {
   cwe: string;
   owasp: string;
   tags: string[];
+  pdf?: string;
   html: string;
 }
 

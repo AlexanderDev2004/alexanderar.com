@@ -181,6 +181,7 @@ for (const file of readDir(join(root, 'src', 'content', 'reports'))) {
     cwe: asString(data.cwe),
     owasp: asString(data.owasp),
     tags: asStringArray(data.tags),
+    pdf: asString(data.pdf) || undefined,
     html: await renderMarkdown(content),
   });
 }
