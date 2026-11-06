@@ -3,14 +3,14 @@ import { reports, formatDateShort } from '../lib/content'
 import { seo } from '../lib/seo'
 import { Icon } from "../components/Icon"
 
-export const Route = createFileRoute('/security-findings')({
+export const Route = createFileRoute('/security/')({
   head: () =>
     seo({
       title: 'Security Findings - Alexander Agung Raya',
       description:
         'Responsible disclosure reports written by Alexander Agung Raya.',
-      path: '/security-findings',
-      ogImage: '/og/security-findings.png',
+      path: '/security/',
+      ogImage: '/og/security.png',
     }),
   component: SecurityFindingsPage,
 })
@@ -48,7 +48,7 @@ function SecurityFindingsPage() {
           {reports.map((report) => (
             <Link
               key={report.slug}
-              to="/reports/$slug"
+              to="/security/$slug"
               params={{ slug: report.slug }}
               className="row-link"
             >

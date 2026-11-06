@@ -7,10 +7,10 @@ Generates 1200x630 PNG link-preview cards:
   public/og/blogs.png                    — /blogs listing
   public/og/music.png                    — /music
   public/og/uses.png                     — /uses
-  public/og/security-findings.png        — /security-findings
+  public/og/security.png                — /security/
   public/og/blogs/<slug>.png       — one per blog post
   public/og/projects/<slug>.png    — one per project
-  public/og/reports/<slug>.png     — one per security report
+  public/og/security/<slug>.png     — one per security report
 
 Design: simple centered layout in the site's warm sage/beige palette
 (src/styles/global.css) — thin frame, two accent bars on the top edge,
@@ -380,7 +380,7 @@ def main() -> None:
         ("Uses", "Hardware and AI agents I use day to day",
          PUBLIC / "og" / "uses.png"),
         ("Security Findings", "Reports and responsible disclosures",
-         PUBLIC / "og" / "security-findings.png"),
+         PUBLIC / "og" / "security.png"),
     ]
     for kicker, description, out in page_cards:
         profile_card(kicker=kicker, description=description, out=out)
@@ -416,7 +416,7 @@ def main() -> None:
         )
 
     reports = sorted((ROOT / "src" / "content" / "reports").glob("*.md"))
-    expected[PUBLIC / "og" / "reports"] = set()
+    expected[PUBLIC / "og" / "security"] = set()
     for path in reports:
         fm = parse_frontmatter(path)
         slug = normalize_slug(path.stem)
@@ -424,13 +424,13 @@ def main() -> None:
         cwe = fm.get("cwe", "")
         meta = " · ".join(part for part in
                           (f"Severity {severity}" if severity else "", cwe) if part)
-        expected[PUBLIC / "og" / "reports"].add(f"{slug}.png")
+        expected[PUBLIC / "og" / "security"].add(f"{slug}.png")
         card(
             kicker=f"Security Report · {format_date(fm.get('date', ''))}",
             title=fm.get("title", path.stem),
             description=meta,
             tag=first_list_item(fm, "tags"),
-            out=PUBLIC / "og" / "reports" / f"{slug}.png",
+            out=PUBLIC / "og" / "security" / f"{slug}.png",
         )
 
     # Remove stale cards whose source .md was deleted/renamed so that

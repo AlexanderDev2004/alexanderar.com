@@ -4,15 +4,15 @@ import { seo } from '../lib/seo'
 import { Icon } from "../components/Icon"
 import { MarkdownBody } from '../components/MarkdownBody'
 
-export const Route = createFileRoute('/reports/$slug')({
+export const Route = createFileRoute('/security/$slug')({
   head: (ctx) => {
     const report = getReport(ctx.params.slug)
     if (!report) return {}
     return seo({
       title: `${report.title} - Alexander Agung Raya`,
       description: `Security report — ${report.severity} · ${report.cwe} · ${report.owasp}`,
-      path: `/reports/${report.slug}`,
-      ogImage: `/og/reports/${report.slug}.png`,
+      path: `/security/${report.slug}`,
+      ogImage: `/og/security/${report.slug}.png`,
     })
   },
   component: ReportPage,
@@ -41,11 +41,11 @@ function severityClass(severity: string): string {
 }
 
 function ReportPage() {
-  const { report } = useLoaderData({ from: '/reports/$slug' })
+  const { report } = useLoaderData({ from: '/security/$slug' })
 
   return (
     <article className="article">
-      <Link className="back" to="/security-findings">
+      <Link className="back" to="/security">
         <Icon name="mdi:arrow-left" /> back to security findings
       </Link>
       <h1>{report.title}</h1>

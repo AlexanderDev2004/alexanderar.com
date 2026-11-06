@@ -2,8 +2,9 @@
 //
 // Static assets are still served first by the Workers static-assets layer;
 // this script only receives requests that do NOT match a file in dist/client.
-// Today that is exactly one route:
+// Today that is:
 //
+//   GET /security-findings, /reports/<slug>  — 301 redirects to /security/...
 //   GET /api/lastfm — live Last.fm snapshot (same shape as src/data/music.json)
 //
 // The Last.fm API has no CORS, so the browser cannot call it directly.
@@ -84,6 +85,21 @@ function jsonResponse(body, status, extraHeaders = {}) {
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
+
+    // Legacy security-report URLs -> /security/ (slug format: method-target-year).
+    const legacySlugs = {
+      'polinema-simmagang-idor-2026-06-17-v1-0': 'idor-polinema-simmagang-2026',
+    };
+    let redirectTo;
+    if (url.pathname === '/security-findings' || url.pathname === '/security-findings/') {
+      redirectTo = '/security/';
+    } else if (url.pathname.startsWith('/reports/')) {
+      const slug = url.pathname.slice('/reports/'.length).replace(/\/+$/, '');
+      if (slug) redirectTo = `/security/${legacySlugs[slug] ?? slug}/`;
+    }
+    if (redirectTo) {
+      return Response.redirect(new URL(redirectTo, url).toString(), 301);
+    }
 
     if (url.pathname === '/api/lastfm') {
       if (!env.LASTFM_API_KEY) {

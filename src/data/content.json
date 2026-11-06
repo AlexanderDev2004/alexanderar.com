@@ -506,7 +506,7 @@
   ],
   "reports": [
     {
-      "slug": "polinema-simmagang-idor-2026-06-17-v1-0",
+      "slug": "idor-polinema-simmagang-2026",
       "title": "Broken Access Control (IDOR) on Student Internship Information System",
       "date": "2026-06-17T00:00:00.000Z",
       "author": "Alexander Agung Raya",
