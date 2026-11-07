@@ -2,6 +2,30 @@
   "username": "Alexander_110",
   "recent": [
     {
+      "name": "嘘月",
+      "artist": "Yorushika",
+      "url": "https://www.last.fm/music/Yorushika/_/%E5%98%98%E6%9C%88",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/dc91faeb41e6028a81583a27ee1a7e41.jpg",
+      "date": 1794054030000,
+      "nowPlaying": false
+    },
+    {
+      "name": "桜",
+      "artist": "FUNKY MONKEY BABYS",
+      "url": "https://www.last.fm/music/FUNKY+MONKEY+BABYS/_/%E6%A1%9C",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/e750d789a1408bcdfe149de4022be707.jpg",
+      "date": 1794053709000,
+      "nowPlaying": false
+    },
+    {
+      "name": "It's Been So Long",
+      "artist": "The Living Tombstone",
+      "url": "https://www.last.fm/music/The+Living+Tombstone/_/It%27s+Been+So+Long",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/5647740916c04891c8f3863ce7a230f8.jpg",
+      "date": 1794053375000,
+      "nowPlaying": false
+    },
+    {
       "name": "Dancin (Krono Remix) (feat. Luvli)",
       "artist": "Aaron Smith",
       "url": "https://www.last.fm/music/Aaron+Smith/_/Dancin+(Krono+Remix)+(feat.+Luvli)",
@@ -171,27 +195,6 @@
       "url": "https://www.last.fm/music/The+Living+Tombstone/_/Die+In+a+Fire+(feat.+EileMonty+&+Orko)",
       "date": 1793954024000,
       "nowPlaying": false
-    },
-    {
-      "name": "Night Changes",
-      "artist": "One Direction",
-      "url": "https://www.last.fm/music/One+Direction/_/Night+Changes",
-      "date": 1793953783000,
-      "nowPlaying": false
-    },
-    {
-      "name": "言って。 - Say It.",
-      "artist": "Yorushika",
-      "url": "https://www.last.fm/music/Yorushika/_/%E8%A8%80%E3%81%A3%E3%81%A6%E3%80%82+-+Say+It.",
-      "date": 1793953540000,
-      "nowPlaying": false
-    },
-    {
-      "name": "再見",
-      "artist": "Ayal Komod",
-      "url": "https://www.last.fm/music/Ayal+Komod/_/%E5%86%8D%E8%A6%8B",
-      "date": 1793953354000,
-      "nowPlaying": false
     }
   ],
   "topArtists": [
@@ -203,7 +206,7 @@
     },
     {
       "name": "Yorushika",
-      "playcount": 34,
+      "playcount": 35,
       "url": "https://www.last.fm/music/Yorushika",
       "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png"
     },
@@ -328,5 +331,5 @@
       "playcount": 4
     }
   ],
-  "fetchedAt": "2026-11-06T23:36:06.711Z"
+  "fetchedAt": "2026-11-07T22:27:31.317Z"
 }
