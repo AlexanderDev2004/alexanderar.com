@@ -205,25 +205,25 @@
   "topArtists": [
     {
       "name": "*LUNA",
-      "playcount": 47,
+      "playcount": 40,
       "url": "https://www.last.fm/music/*LUNA",
       "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png"
     },
     {
       "name": "Yorushika",
-      "playcount": 40,
+      "playcount": 34,
       "url": "https://www.last.fm/music/Yorushika",
       "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png"
     },
     {
       "name": "kessoku band",
-      "playcount": 20,
+      "playcount": 18,
       "url": "https://www.last.fm/music/kessoku+band",
       "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png"
     },
     {
       "name": "YOASOBI",
-      "playcount": 18,
+      "playcount": 15,
       "url": "https://www.last.fm/music/YOASOBI",
       "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png"
     },
@@ -240,15 +240,15 @@
       "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png"
     },
     {
-      "name": "RADWIMPS",
-      "playcount": 13,
-      "url": "https://www.last.fm/music/RADWIMPS",
-      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png"
-    },
-    {
       "name": "Elevation Worship",
       "playcount": 11,
       "url": "https://www.last.fm/music/Elevation+Worship",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png"
+    },
+    {
+      "name": "RADWIMPS",
+      "playcount": 10,
+      "url": "https://www.last.fm/music/RADWIMPS",
       "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png"
     },
     {
@@ -336,5 +336,5 @@
       "playcount": 4
     }
   ],
-  "fetchedAt": "2026-11-10T23:50:56.183Z"
+  "fetchedAt": "2026-11-12T01:13:50.818Z"
 }
