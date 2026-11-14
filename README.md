@@ -18,7 +18,7 @@ Portfolio of Alexander Agung Raya — Software Developer.
   Posts can also be created from GitHub issues via the *Issue to Blog Post* workflow.
 - **Projects** — `src/content/projects/*.md` (frontmatter: `title`, `year`, `description`,
   `fullDescription`, `image`, `projectLink`, `repoLink`, `technologies[{name, icon, docLink}]`).
-- **Security reports** — `src/content/reports/*.md`.
+<!-- - **Security reports** — `src/content/reports/*.md`.  -->
 - **GitHub data** — `scripts/fetch-github.mjs` snapshots merged PRs + the contribution
   calendar into `src/data/github.json` at build time and nightly
   (see *Refresh GitHub Data* workflow); the site then refreshes client-side with a 24h cache.
