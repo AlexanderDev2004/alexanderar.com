@@ -188,7 +188,7 @@
     },
     {
       "name": "Yorushika",
-      "playcount": 33,
+      "playcount": 30,
       "url": "https://www.last.fm/music/Yorushika",
       "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png"
     },
@@ -217,15 +217,15 @@
       "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png"
     },
     {
-      "name": "Elevation Worship",
-      "playcount": 10,
-      "url": "https://www.last.fm/music/Elevation+Worship",
-      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png"
-    },
-    {
       "name": "One Direction",
       "playcount": 10,
       "url": "https://www.last.fm/music/One+Direction",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png"
+    },
+    {
+      "name": "Elevation Worship",
+      "playcount": 9,
+      "url": "https://www.last.fm/music/Elevation+Worship",
       "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png"
     },
     {
@@ -257,16 +257,16 @@
       "playcount": 9
     },
     {
-      "name": "Make-up Shadow",
-      "artist": "Yorushika",
-      "url": "https://www.last.fm/music/Yorushika/_/Make-up+Shadow",
-      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png",
-      "playcount": 8
-    },
-    {
       "name": "Night Changes",
       "artist": "One Direction",
       "url": "https://www.last.fm/music/One+Direction/_/Night+Changes",
+      "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png",
+      "playcount": 7
+    },
+    {
+      "name": "Make-up Shadow",
+      "artist": "Yorushika",
+      "url": "https://www.last.fm/music/Yorushika/_/Make-up+Shadow",
       "image": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png",
       "playcount": 7
     },
@@ -313,5 +313,5 @@
       "playcount": 5
     }
   ],
-  "fetchedAt": "2026-11-14T00:04:50.072Z"
+  "fetchedAt": "2026-11-14T22:50:08.367Z"
 }
