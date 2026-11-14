@@ -69,7 +69,7 @@
 - Managed PostgreSQL queries and schema updates to improve data reliability.
 - Implemented REST API endpoints and authentication flows for core features.
 
-#text(weight: "bold")[Stack:] Django,PostgreSQL, REST API, JavaScript
+#text(weight: "bold")[Stack:] Django, PostgreSQL, REST API, JavaScript
 
 #v(0.55em)
 
