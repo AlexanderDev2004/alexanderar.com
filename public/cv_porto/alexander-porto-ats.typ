@@ -1,6 +1,6 @@
-#set page(margin: (top: 1.6cm, bottom: 1.6cm, left: 1.8cm, right: 1.8cm))
+#set page(margin: (top: 1.3cm, bottom: 1.3cm, left: 1.8cm, right: 1.8cm))
 #set text(size: 10.8pt)
-#set par(justify: false)
+#set par(justify: false, leading: 0.6em)
 
 #let section-color = rgb("#7b1e3a")
 #let name-color = rgb("#1f3b82")
@@ -18,6 +18,28 @@
   gutter: 0.7em,
   [#left],
   [#right],
+)
+
+// Pill next to a role name; solid = current role, outline = secondary role.
+#let badge(label, solid: true) = box(
+  fill: if solid { section-color } else { none },
+  stroke: if solid { none } else { 0.5pt + section-color },
+  inset: (x: 0.5em, y: 0.1em),
+  radius: 1em,
+  text(
+    size: 7pt,
+    weight: "bold",
+    fill: if solid { white } else { section-color },
+    upper(label),
+  ),
+)
+
+// One role inside a company entry that covered several roles.
+#let subrole(name, label, solid, when) = grid(
+  columns: (1fr, auto),
+  gutter: 0.7em,
+  [#text(weight: "bold")[#name] #h(0.3em) #badge(label, solid: solid)],
+  [#text(size: 9.3pt, fill: rgb("#555555"))[#when]],
 )
 
 #align(center)[
@@ -52,11 +74,17 @@
 #v(0.55em)
 
 #two-col([
-  #text(weight: "bold")[Game Developer]
+  #text(weight: "bold")[Game Developer & Game Programmer Intern — Ariverse Studio]
 ], [Sep 2025 --- Present])
 #two-col([
-  Ariverse Studio - Contract (Remote)
+  Contract (Remote) & Campus Internship (On-site)
 ], [#emph[Indonesia]])
+
+#v(0.3em)
+#subrole([Game Developer], "Part-time · Remote", true, [Sep 2025 --- Present])
+#v(0.15em)
+#subrole([Game Programmer Intern], "Program internship Campus (Polinema)", false, [Jul 2026 --- Present])
+#v(0.4em)
 
 - Developed gameplay systems and interactive mechanics using Unity and C\#.
 - Collaborated with designers and artists to deliver immersive game experiences.

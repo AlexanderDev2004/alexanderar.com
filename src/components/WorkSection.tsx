@@ -20,8 +20,14 @@ function statusLine(work: WorkItem): string {
   return work.status.map(prettyStatus).join(' · ')
 }
 
-function period(work: WorkItem): string {
-  return `${work.startDate} — ${work.endDate ?? 'Present'}`
+/** Period of any dated entry (a work item or one of its sub-roles). */
+function period(entry: { startDate: string; endDate: string | null }): string {
+  return `${entry.startDate} — ${entry.endDate ?? 'Present'}`
+}
+
+/** Header meta: drops the separators that belong to empty parts. */
+function metaLine(work: WorkItem): string {
+  return [period(work), duration(work), statusLine(work)].filter(Boolean).join(' · ')
 }
 
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -54,12 +60,28 @@ export function WorkSection() {
             <h3>
               {work.jobTitle} <span className="co">· {work.company}</span>
             </h3>
-            <span className="when">
-              {period(work)} · {duration(work)} · {statusLine(work)}
-            </span>
+            <span className="when">{metaLine(work)}</span>
             <Icon className="chev" name="mdi:chevron-down" />
           </summary>
           <div className="body">
+            {work.roles && work.roles.length > 0 && (
+              <div className="roles">
+                {work.roles.map((role) => (
+                  <div className="role" key={role.title}>
+                    <span className="r-name">
+                      {role.title}
+                      {role.badge && (
+                        <span className={`badge${role.badgeStyle === 'outline' ? ' outline' : ''}`}>
+                          {role.badge}
+                        </span>
+                      )}
+                    </span>
+                    <span className="r-when">{period(role)}</span>
+                    <span className="r-mode">{role.mode}</span>
+                  </div>
+                ))}
+              </div>
+            )}
             <ul>
               {work.description.map((line) => (
                 <li key={line}>{line}</li>

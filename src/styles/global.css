@@ -310,6 +310,61 @@ details.job .when {
 details.job .body {
   padding: 2px 2px 22px;
 }
+/* sub-roles under one company (e.g. game dev + campus internship) */
+details.job .roles {
+  margin: 2px 0 14px;
+  padding-left: 14px;
+  border-left: 2px solid var(--sage);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+details.job .role {
+  display: flex;
+  justify-content: space-between;
+  gap: 6px 12px;
+  align-items: baseline;
+  flex-wrap: wrap;
+}
+details.job .role .r-name {
+  font-weight: 700;
+  font-size: 13.5px;
+  color: var(--olive);
+}
+details.job .role .r-name .badge {
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  background: var(--sage-deep);
+  color: #fbf8f2;
+  border-radius: 999px;
+  padding: 2px 8px;
+  margin-left: 8px;
+  vertical-align: 1px;
+  /* Drop to its own line as one unit on narrow screens instead of
+     splitting the pill across two lines. */
+  display: inline-block;
+  white-space: nowrap;
+}
+details.job .role .r-name .badge.outline {
+  background: none;
+  border: 1px solid var(--sage-deep);
+  color: var(--sage-deep);
+}
+details.job .role .r-when {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--stone);
+  white-space: nowrap;
+}
+details.job .role .r-mode {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  color: var(--stone);
+  width: 100%;
+}
 details.job ul {
   list-style: none;
   margin-top: 2px;
