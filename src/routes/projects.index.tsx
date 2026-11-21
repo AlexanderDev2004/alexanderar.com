@@ -29,7 +29,7 @@ function ProjectsPage() {
         </p>
       </header>
       <section className="block-section">
-        <ProjectsGrid items={projects} />
+        <ProjectsGrid items={projects} headingLevel={2} />
       </section>
     </div>
   )

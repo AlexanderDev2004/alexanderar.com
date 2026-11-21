@@ -15,7 +15,7 @@ export const certifications: CertificationItem[] = [
     year: "2023",
     description: "Certified Mikrotik Academy",
     certificateLink: "https://mikrotik.com/training/certificates/c256554c0bbc217fe241",
-    certificateImage: "Certifications/MTCNA_Mikrotik.png",
+    certificateImage: "Certifications/MTCNA_Mikrotik.webp",
     tags: ["Mikrotik", "Networking" ]
   },
   {
@@ -24,7 +24,7 @@ export const certifications: CertificationItem[] = [
     year: "2024",
     description: "Certified SQL Basic from Hackerrank",
     certificateLink: "https://www.hackerrank.com/certificates/iframe/f1568de0c5e5",
-    certificateImage: "Certifications/Sql_Basic.png",
+    certificateImage: "Certifications/Sql_Basic.webp",
     tags: ["SQL", "Hackerrank"]
   }
   

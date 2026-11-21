@@ -1,9 +1,7 @@
 import { createFileRoute, Link, useLoaderData } from '@tanstack/react-router'
-import { useEffect, useRef, useState } from 'react'
 import { getAdjacent, getProject, projects } from '../lib/content'
 import { seo } from '../lib/seo'
 import { Icon } from "../components/Icon"
-import { Skeleton } from '../components/Skeleton'
 import { PrevNext } from '../components/PrevNext'
 
 export const Route = createFileRoute('/projects/$slug')({
@@ -113,39 +111,47 @@ function ProjectDetailPage() {
   )
 }
 
+/** How wide the cover is laid out: full width on phones, ~900px on desktop. */
+const COVER_SIZES = '(max-width: 700px) 100vw, 900px'
+
+/** Responsive sources for a cover: the 960px build variant plus the original. */
+function coverSources(project: {
+  image: string
+  imageWidth?: number
+  imageSmall?: { src: string; width: number }
+}) {
+  if (!project.imageSmall) return { srcSet: undefined, sizes: undefined }
+  return {
+    srcSet: `${project.imageSmall.src} ${project.imageSmall.width}w, ${project.image} ${project.imageWidth ?? 1920}w`,
+    sizes: COVER_SIZES,
+  }
+}
+
 /**
  * Project cover. The build-time content pipeline stores the image's intrinsic
- * size, so the frame reserves the exact final box: the skeleton fills it while
- * the file is in flight and the photo fades in without any layout shift.
+ * size, so the frame reserves the exact final box (no layout shift) and the
+ * photo paints as soon as the browser decodes it — the image sits above its
+ * placeholder, so nothing waits for hydration to become visible.
  */
-function CoverImage({ project }: { project: { image: string; imageWidth?: number; imageHeight?: number; title: string } }) {
-  const [loaded, setLoaded] = useState(false)
-  const ref = useRef<HTMLImageElement>(null)
-
-  // If the image finished loading before hydration attached onLoad (fast
-  // cache, prerendered HTML), React never sees the event — check up front.
-  useEffect(() => {
-    if (ref.current?.complete) setLoaded(true)
-  }, [])
-
+function CoverImage({ project }: { project: Project }) {
   const style =
     project.imageWidth && project.imageHeight
       ? { aspectRatio: `${project.imageWidth} / ${project.imageHeight}` }
       : undefined
+  const { srcSet, sizes } = coverSources(project)
 
   return (
     <div className="cover-frame" style={style}>
-      {!loaded && <Skeleton className="cover-skeleton" />}
       <img
-        ref={ref}
-        className={`cover${loaded ? ' is-loaded' : ''}`}
-        src={project.image}
+        className="cover"
+        src={project.imageSmall?.src ?? project.image}
+        srcSet={srcSet}
+        sizes={sizes}
         alt={project.title}
         width={project.imageWidth}
         height={project.imageHeight}
         decoding="async"
         fetchPriority="high"
-        onLoad={() => setLoaded(true)}
       />
     </div>
   )

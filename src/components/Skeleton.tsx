@@ -88,6 +88,7 @@ export function AsyncImage({
   width,
   height,
   loading = 'lazy',
+  fetchPriority,
   radius = 8,
   className,
   fallback,
@@ -97,6 +98,8 @@ export function AsyncImage({
   width?: number
   height?: number
   loading?: 'lazy' | 'eager'
+  /** Priority hint for the browser's fetch scheduler. */
+  fetchPriority?: 'high' | 'low' | 'auto'
   radius?: number | string
   className?: string
   /** Rendered instead of the skeleton when there is no src at all. */
@@ -118,6 +121,7 @@ export function AsyncImage({
         width={width}
         height={height}
         loading={loading}
+        fetchPriority={fetchPriority}
         decoding="async"
         onLoad={() => setLoaded(true)}
         onError={() => setLoaded(true)}

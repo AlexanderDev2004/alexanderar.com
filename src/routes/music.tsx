@@ -5,15 +5,29 @@ import { seo } from '../lib/seo'
 import { Icon } from '../components/Icon'
 import { AsyncImage, SkeletonCard } from '../components/Skeleton'
 
+// The first track's album art is the page's largest paint. Preloading it here
+// (the <img> itself is eager, but the preload scanner cannot see it in a
+// client-rendered list) starts the CDN request with the document.
+const LCP_ART = data.recent.find((t) => !t.nowPlaying && t.image)?.image
+
 export const Route = createFileRoute('/music')({
-  head: () =>
-    seo({
+  head: () => ({
+    ...seo({
       title: 'Music - Alexander Agung Raya',
       description:
         "What I'm listening to right now, straight from my Last.fm scrobbles.",
       path: '/music',
       ogImage: '/og/music.png',
     }),
+    links: [
+      // Album art lives on Last.fm's CDN: open the connection while the HTML
+      // is still parsing instead of after the stylesheet and scripts.
+      { rel: 'preconnect', href: 'https://lastfm-img.freetls.fastly.net' },
+      ...(LCP_ART
+        ? [{ rel: 'preload', as: 'image', href: LCP_ART, fetchPriority: 'high' }]
+        : []),
+    ],
+  }),
   component: MusicPage,
 })
 
@@ -51,9 +65,9 @@ const data = music as {
 
 type Snapshot = typeof data
 
-function relTime(ms: number | null): string {
+function relTime(ms: number | null, now: number): string {
   if (!ms) return ''
-  const diff = Date.now() - ms
+  const diff = now - ms
   const mins = Math.floor(diff / 60_000)
   if (mins < 1) return 'just now'
   if (mins < 60) return `${mins}m ago`
@@ -66,14 +80,32 @@ function relTime(ms: number | null): string {
   return `${Math.floor(months / 12)}y ago`
 }
 
-/** Album art with a graceful icon fallback when Last.fm has no artwork. */
-function Artwork({ src, alt, className }: { src?: string; alt: string; className?: string }) {
+/**
+ * Album art with a graceful icon fallback when Last.fm has no artwork.
+ * `loading`/`fetchPriority` are forwarded so the first row can load eagerly —
+ * it holds the page's largest paint.
+ */
+function Artwork({
+  src,
+  alt,
+  className,
+  loading,
+  fetchPriority,
+}: {
+  src?: string
+  alt: string
+  className?: string
+  loading?: 'lazy' | 'eager'
+  fetchPriority?: 'high' | 'low' | 'auto'
+}) {
   return (
     <AsyncImage
       src={src}
       alt={alt}
       className={className}
       radius={8}
+      loading={loading}
+      fetchPriority={fetchPriority}
       fallback={
         <div className={`music-art-fallback ${className ?? ''}`} role="img" aria-label={alt}>
           <Icon name="mdi:music" />
@@ -91,7 +123,13 @@ function NowPlayingCard({ track }: { track: Track }) {
       target="_blank"
       rel="noopener noreferrer"
     >
-      <Artwork src={track.image} alt={`${track.name} album art`} className="np-art" />
+      <Artwork
+        src={track.image}
+        alt={`${track.name} album art`}
+        className="np-art"
+        loading="eager"
+        fetchPriority="high"
+      />
       <div className="np-body">
         <p className="np-label">
           <span className="np-pulse" aria-hidden="true" /> Scrobbling now
@@ -143,6 +181,11 @@ function useLiveSnapshot(): { snap: Snapshot; isLive: boolean; firstLoad: boolea
 function MusicPage() {
   const { snap, isLive, firstLoad } = useLiveSnapshot()
   const { recent, topArtists, topTracks, username, fetchedAt } = snap
+  // Relative times are measured from the snapshot's own timestamp rather than
+  // Date.now(): the server render and the hydration pass then produce the same
+  // strings (Date.now() differs by seconds between them, which React reports
+  // as a hydration mismatch), and the 30s poll keeps the numbers fresh.
+  const syncedAt = Date.parse(fetchedAt) || 0
   const nowPlaying = recent.find((t) => t.nowPlaying)
   const history = recent.filter((t) => !t.nowPlaying)
   const empty = recent.length === 0 && topArtists.length === 0 && topTracks.length === 0
@@ -222,11 +265,13 @@ function MusicPage() {
                       src={track.image}
                       alt={`${track.name} album art`}
                       className="music-card-art"
+                      loading={i === 0 ? 'eager' : 'lazy'}
+                      fetchPriority={i === 0 ? 'high' : 'auto'}
                     />
                     <p className="music-card-title">{track.name}</p>
                     <p className="music-card-sub">{track.artist}</p>
                     <p className="music-card-meta">
-                      {track.date ? relTime(track.date) : ''}
+                      {track.date ? relTime(track.date, syncedAt) : ''}
                     </p>
                   </a>
                 ))}
@@ -241,7 +286,7 @@ function MusicPage() {
                 <span className="thin">· 1 Month</span>
               </h2>
               <div className="music-grid artists">
-                {topArtists.map((artist) => (
+                {topArtists.map((artist, i) => (
                   <a
                     className="music-card"
                     key={artist.name}
@@ -253,6 +298,7 @@ function MusicPage() {
                       src={artist.image}
                       alt={`${artist.name} artist photo`}
                       className="music-card-art round"
+                      loading={i === 0 ? 'eager' : 'lazy'}
                     />
                     <p className="music-card-title">{artist.name}</p>
                     <p className="music-card-meta">
@@ -271,7 +317,7 @@ function MusicPage() {
                 <span className="thin">· 1 Month</span>
               </h2>
               <div className="music-grid">
-                {topTracks.map((track) => (
+                {topTracks.map((track, i) => (
                   <a
                     className="music-card"
                     key={`${track.name}-${track.artist}`}
@@ -283,6 +329,8 @@ function MusicPage() {
                       src={track.image}
                       alt={`${track.name} album art`}
                       className="music-card-art"
+                      loading={i === 0 ? 'eager' : 'lazy'}
+                      fetchPriority={i === 0 ? 'high' : 'auto'}
                     />
                     <p className="music-card-title">{track.name}</p>
                     <p className="music-card-sub">{track.artist}</p>
@@ -303,6 +351,8 @@ function MusicPage() {
           day: 'numeric',
           month: 'long',
           year: 'numeric',
+          // Fixed zone: the prerendered HTML and the browser must agree.
+          timeZone: 'UTC',
         })}
         {isLive ? ' · live, refreshes every 30s' : ''}
       </p>

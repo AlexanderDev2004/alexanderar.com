@@ -2,10 +2,19 @@ import { Link } from '@tanstack/react-router'
 import type { Project } from '../lib/content'
 import { Icon } from "./Icon"
 
-export function ProjectCard({ project }: { project: Project }) {
+export function ProjectCard({
+  project,
+  headingLevel = 3,
+}: {
+  project: Project
+  headingLevel?: 2 | 3
+}) {
+  // Index pages list projects as top-level content (h2 under the page h1);
+  // the home page nests them under its "Selected Projects" h2, so h3 there.
+  const Heading = headingLevel === 2 ? 'h2' : 'h3'
   return (
     <article className="proj">
-      <h3>
+      <Heading>
         <Link
           to="/projects/$slug"
           params={{ slug: project.slug }}
@@ -14,7 +23,7 @@ export function ProjectCard({ project }: { project: Project }) {
           {project.title}
         </Link>
         {project.year && <span className="year">{project.year}</span>}
-      </h3>
+      </Heading>
       <p className="desc">{project.description}</p>
       {project.technologies.length > 0 && (
         <div className="tags">
@@ -35,6 +44,9 @@ export function ProjectCard({ project }: { project: Project }) {
                 title={`${tech.name} — official site`}
               >
                 {tag}
+                {/* Keeps the chip label short but gives the link a real name:
+                    a bare "Go" or "C" reads as a generic link. */}
+                <span className="sr-only"> — official site</span>
               </a>
             ) : (
               <span className="tag" key={tech.name}>
@@ -70,11 +82,11 @@ export function ProjectCard({ project }: { project: Project }) {
   )
 }
 
-export function ProjectsGrid({ items }: { items: Project[] }) {
+export function ProjectsGrid({ items, headingLevel }: { items: Project[]; headingLevel?: 2 | 3 }) {
   return (
     <div className="proj-list">
       {items.map((project) => (
-        <ProjectCard key={project.slug} project={project} />
+        <ProjectCard key={project.slug} project={project} headingLevel={headingLevel} />
       ))}
     </div>
   )

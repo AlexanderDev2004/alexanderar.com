@@ -28,21 +28,24 @@ function CertificationsPage() {
       </header>
       <section className="block-section">
         <div className="grid-2">
-          {certifications.map((cert) => (
+          {certifications.map((cert, index) => (
             <article className="card" key={cert.id}>
               {cert.certificateImage && (
                 <AsyncImage
                   className="cert-image"
                   src={`/${cert.certificateImage}`}
                   alt={cert.title}
-                  loading="lazy"
+                  // The first card is the page's largest paint: load it eagerly
+                  // at high priority, and keep the rest lazy.
+                  loading={index === 0 ? 'eager' : 'lazy'}
+                  fetchPriority={index === 0 ? 'high' : 'auto'}
                   radius={10}
                 />
               )}
-              <h3 style={{ marginTop: 14 }}>
+              <h2 style={{ marginTop: 14 }}>
                 {cert.title}
                 <span className="year">{cert.year}</span>
-              </h3>
+              </h2>
               <p className="desc">{cert.description}</p>
               <div className="tags">
                 {cert.tags.map((tag) => (

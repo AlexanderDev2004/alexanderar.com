@@ -4,6 +4,13 @@ import viteReact from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
+  build: {
+    // Inline the woff2 as a data URI: the stylesheet is inlined into the
+    // prerendered HTML, so the first layout already has the real font. A
+    // separate font request made the text (the largest paint) wait for that
+    // request, which cost more than the extra few KB in the document.
+    assetsInlineLimit: (filePath) => (filePath.endsWith('.woff2') ? true : undefined),
+  },
   server: {
     port: 3000,
     // Local dev: the /api/lastfm live proxy only exists on the deployed
