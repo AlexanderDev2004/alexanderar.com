@@ -33,9 +33,21 @@ export interface Project {
   /** Cover intrinsic size, parsed at build time — reserves the exact box. */
   imageWidth?: number;
   imageHeight?: number;
+  /** 960px-wide sibling for phones, generated at build time (see scripts). */
+  imageSmall?: { src: string; width: number; height: number };
   projectLink?: string;
   repoLink?: string;
   technologies: ProjectTech[];
+}
+
+export interface ReportHeading {
+  id: string;
+  text: string;
+}
+
+export interface ReportAction {
+  title: string;
+  detail: string;
 }
 
 export interface Report {
@@ -48,6 +60,15 @@ export interface Report {
   owasp: string;
   tags: string[];
   pdf?: string;
+  /** One-line description for the findings list. */
+  summary: string;
+  /** Body headings, for the report page's "on this page" list. */
+  headings: ReportHeading[];
+  recommendedActions: ReportAction[];
+  /** Server-side fix shown under the recommended actions, pre-highlighted. */
+  fix?: { lang: string; html: string };
+  /** Prompt for an agent that can inspect the reader's infrastructure. */
+  prompt?: string;
   html: string;
 }
 

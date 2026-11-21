@@ -23,6 +23,10 @@ import remarkGfm from 'remark-gfm';
 import remarkRehype from 'remark-rehype';
 import rehypeRaw from 'rehype-raw';
 import rehypeStringify from 'rehype-stringify';
+import { createHighlighter, escapeHtml } from '@tanstack/highlight';
+import { diff } from '@tanstack/highlight/languages/diff';
+import { php } from '@tanstack/highlight/languages/php';
+import { shell } from '@tanstack/highlight/languages/shell';
 
 const root = process.cwd();
 const outPath = join(root, 'src', 'data', 'content.json');
@@ -35,21 +39,116 @@ const normalizeSlug = (value) =>
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-+|-+$/g, '');
 
-const processor = unified()
-  .use(remarkParse)
-  .use(remarkGfm)
-  .use(remarkRehype, { allowDangerousHtml: true })
-  .use(rehypeRaw)
-  .use(rehypeStringify);
+/**
+ * Markdown bodies are rendered under the page's own <h1> (the post title), so
+ * an author's `#` or `###` heading would break the document outline (Lighthouse
+ * heading-order). Re-level every heading in a body so its shallowest level is
+ * h2, keeping the relative nesting the author wrote.
+ */
+function normalizeHeadingLevels() {
+  return (tree) => {
+    const headings = []
+    const collect = (node) => {
+      if (node.type === 'heading') headings.push(node)
+      if (node.children) node.children.forEach(collect)
+    }
+    collect(tree)
+    if (headings.length === 0) return
+    const shift = 2 - Math.min(...headings.map((h) => h.depth))
+    if (shift === 0) return
+    for (const heading of headings) {
+      heading.depth = Math.min(6, Math.max(2, heading.depth + shift))
+    }
+  }
+}
+
+/**
+ * Gives every heading in the body an id so links can target it, and records the
+ * top-level sections for the report page's "on this page" list. Runs after
+ * normalizeHeadingLevels, so the top level is always h2.
+ */
+function collectHeadings(tree, sink) {
+  const seen = new Map()
+  const textOf = (node) => {
+    if (typeof node.value === 'string') return node.value
+    return (node.children ?? []).map(textOf).join('')
+  }
+  const visit = (node) => {
+    if (node.type === 'element' && /^h[2-4]$/.test(node.tagName)) {
+      const text = textOf(node).trim()
+      const base = normalizeSlug(text) || 'section'
+      const count = seen.get(base) ?? 0
+      seen.set(base, count + 1)
+      const id = count === 0 ? base : `${base}-${count + 1}`
+      node.properties = { ...node.properties, id }
+      if (text && node.tagName === 'h2') sink.push({ id, text })
+    }
+    for (const child of node.children ?? []) visit(child)
+  }
+  visit(tree)
+}
+
+/** The shared remark/rehype chain, plus any report-only plugins. */
+function markdownProcessor(...extra) {
+  let pipeline = unified()
+    .use(remarkParse)
+    .use(remarkGfm)
+    .use(normalizeHeadingLevels)
+    .use(remarkRehype, { allowDangerousHtml: true })
+    .use(rehypeRaw)
+  for (const plugin of extra) pipeline = pipeline.use(plugin)
+  return pipeline.use(rehypeStringify)
+}
+
+const processor = markdownProcessor();
 
 /** Blog media lives in src/content/blogs/media — served from /blogs/media. */
 function rewriteMedia(source) {
   return source.replaceAll('](./media/', '](/blogs/media/').replaceAll('](media/', '](/blogs/media/');
 }
 
-async function renderMarkdown(source) {
-  const file = await processor.process(rewriteMedia(source));
-  return String(file);
+/**
+ * Fenced code blocks are highlighted HERE, at build time, and stored in
+ * content.json as finished markup. Highlighting in the browser meant running a
+ * tokenizer over every block again during hydration — measured at ~170ms of
+ * main-thread blocking on the report page, which is exactly what Lighthouse's
+ * TBT counts. The token spans carry stable semantic classes (.th-comment,
+ * .th-keyword, …) that global.css themes with CSS variables.
+ */
+const highlighter = createHighlighter({
+  fallbackLanguage: 'plaintext',
+  languages: [shell, php, diff],
+});
+
+const CODE_BLOCK_RE = /<pre><code(?: class="language-([\w-]+)")?>([\s\S]*?)<\/code><\/pre>/g;
+
+function decodeEntities(text) {
+  return text
+    .replaceAll('&lt;', '<')
+    .replaceAll('&gt;', '>')
+    .replaceAll('&quot;', '"')
+    .replaceAll('&#39;', "'")
+    .replaceAll('&apos;', "'")
+    .replaceAll('&amp;', '&');
+}
+
+function highlightCode(code, lang) {
+  try {
+    return highlighter.highlightToHtml(code, { lang });
+  } catch {
+    return `<pre class="th-code"><code>${escapeHtml(code)}</code></pre>`;
+  }
+}
+
+function highlightCodeBlocks(html) {
+  return html.replace(CODE_BLOCK_RE, (_match, lang, encoded) =>
+    highlightCode(decodeEntities(encoded), lang),
+  );
+}
+
+async function renderMarkdown(source, proc = processor) {
+  const file = await proc.process(rewriteMedia(source));
+  return highlightCodeBlocks(String(file));
 }
 
 function asString(value, fallback = '') {
@@ -63,6 +162,19 @@ function asStringArray(value) {
 function isoDate(value) {
   const parsed = value instanceof Date ? value : new Date(String(value ?? ''));
   return Number.isNaN(parsed.getTime()) ? new Date(0).toISOString() : parsed.toISOString();
+}
+
+/**
+ * Plain-text stand-in for a report card's summary when the frontmatter has no
+ * `summary`. Reports are written with an executive summary first, so its
+ * opening sentence is the right thing to show.
+ */
+function firstParagraph(html) {
+  const match = /<p>([\s\S]*?)<\/p>/.exec(html);
+  if (!match) return '';
+  const text = decodeEntities(match[1].replace(/<[^>]+>/g, '')).replace(/\s+/g, ' ').trim();
+  if (text.length <= 180) return text;
+  return `${text.slice(0, 180).replace(/\s+\S*$/, '')}…`;
 }
 
 function readDir(dir) {
@@ -116,6 +228,21 @@ function imageSize(publicPath) {
   }
 }
 
+/**
+ * Mobile-sized cover, written by scripts/generate-image-variants.py. Returns
+ * null when there is no smaller sibling (the image is already small).
+ */
+function imageVariant(publicPath) {
+  const small = publicPath.replace(/\.webp$/, '-960.webp')
+  if (small === publicPath) return null
+  try {
+    const size = webpSize(readFileSync(join(root, 'public', small)))
+    return size ? { src: small.startsWith('/') ? small : `/${small}`, ...size } : null
+  } catch {
+    return null
+  }
+}
+
 const slugOf = (path) => normalizeSlug(basename(path, '.md'));
 
 const blogs = [];
@@ -157,6 +284,7 @@ for (const file of readDir(join(root, 'src', 'content', 'projects'))) {
     image,
     imageWidth: dims?.width,
     imageHeight: dims?.height,
+    imageSmall: image ? imageVariant(image) ?? undefined : undefined,
     projectLink: asString(data.projectLink) || undefined,
     repoLink: asString(data.repoLink) || undefined,
     technologies,
@@ -172,6 +300,22 @@ const reports = [];
 for (const file of readDir(join(root, 'src', 'content', 'reports'))) {
   const raw = readFileSync(join(root, 'src', 'content', 'reports', file), 'utf8');
   const { data, content } = matter(raw);
+  // Heading ids are written into the HTML so the report page's "on this page"
+  // list can link to them, and collected here for the same list.
+  const headings = [];
+  const html = await renderMarkdown(
+    content,
+    markdownProcessor(() => (tree) => collectHeadings(tree, headings)),
+  );
+  const recommendedActions = Array.isArray(data.recommendedActions)
+    ? data.recommendedActions
+        .map((action) => ({
+          title: asString(action?.title),
+          detail: asString(action?.detail),
+        }))
+        .filter((action) => action.title)
+    : [];
+  const fixCode = asString(data.fix?.code);
   reports.push({
     slug: slugOf(file),
     title: asString(data.title, 'Untitled'),
@@ -182,7 +326,14 @@ for (const file of readDir(join(root, 'src', 'content', 'reports'))) {
     owasp: asString(data.owasp),
     tags: asStringArray(data.tags),
     pdf: asString(data.pdf) || undefined,
-    html: await renderMarkdown(content),
+    summary: asString(data.summary) || firstParagraph(html),
+    headings,
+    recommendedActions,
+    fix: fixCode.trim()
+      ? { lang: asString(data.fix?.lang, 'text'), html: highlightCode(fixCode, asString(data.fix?.lang)) }
+      : undefined,
+    prompt: asString(data.prompt).trim() || undefined,
+    html,
   });
 }
 reports.sort((a, b) => b.date.localeCompare(a.date));

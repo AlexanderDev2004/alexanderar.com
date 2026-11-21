@@ -7,6 +7,66 @@ cwe: "CWE-639"
 owasp: "OWASP A01"
 tags: ["IDOR", "Broken Access Control", "Web Security", "Authorization Bypass"]
 pdf: "/reports/IDOR-Polinema-SIMMAGANG-2026.pdf"
+summary: "Authenticated students could read and modify other students' records by changing the ID parameter in the URL."
+recommendedActions:
+  - title: "Scope every lookup to the authenticated user"
+    detail: "Never resolve a record from the client-supplied key alone. Add the owner to the query so a foreign ID simply finds nothing."
+  - title: "Cover writes, not just reads"
+    detail: "The edit form and the update handler need the same check. A read-only fix still leaves document replacement open."
+  - title: "Authorise in one place"
+    detail: "Use a policy or a route-model binding scope so new endpoints inherit the rule instead of re-implementing it."
+  - title: "Fail closed, and do not confirm existence"
+    detail: "Return 404 for records the caller does not own, so the response cannot be used to enumerate valid IDs."
+  - title: "Replace guessable identifiers"
+    detail: "Sequential integers invite enumeration. Prefer UUIDs or signed URLs for anything a user can see in the address bar."
+  - title: "Lock it in with a regression test"
+    detail: "One test per protected route: authenticate as user A, request user B's record, assert 403 or 404."
+fix:
+  lang: php
+  code: |
+    // app/Http/Controllers/PendaftarController.php
+    public function show(string $id)
+    {
+        // Before: the row is fetched by the client-supplied key.
+        $magang = Magang::findOrFail($id);
+
+        // After: the row is scoped to the authenticated student.
+        $magang = Magang::where('user_id', auth()->id())
+            ->findOrFail($id);
+
+        return view('pendaftar.show', compact('magang'));
+    }
+prompt: |
+  You are auditing a web application for broken access control (IDOR, CWE-639).
+  Work read-only: report what you find, change nothing.
+
+  Target
+  - Application: Student Internship Information System (Laravel / PHP / MySQL)
+  - Bug class: an authenticated user can read or modify another user's record by
+    changing an object identifier in the URL, query string, or request body.
+  - Known-vulnerable shape: GET /mw/pendaftar/proses/pr1/{id} returns the record
+    for {id} with no ownership check.
+
+  What to do
+  1. Enumerate every route, controller action, and API endpoint that accepts an
+     identifier (path segment, query parameter, form field, JSON body key) and
+     resolves it to a database record.
+  2. For each one, state where authorization happens: middleware, policy, gate,
+     query scope, or nowhere.
+  3. Flag any handler that fetches by primary key and then renders or mutates the
+     record without comparing it to the authenticated principal.
+  4. Check the same handler for mass assignment on update: which fields are
+     fillable, and can a request set user_id, role, or ownership columns?
+  5. Look for indirect references that are guessable (sequential integers,
+     timestamps, short hashes) rather than unguessable.
+
+  Report back
+  - A table: endpoint, HTTP method, identifier, current check, verdict
+    (protected / unverified / exposed).
+  - For each exposed endpoint: the smallest server-side fix, as a diff.
+  - The regression test that would have caught it, written against the existing
+    test suite.
+  - Anything you could not verify, and what you would need to verify it.
 ---
 
 ## **Executive Summary**
@@ -170,28 +230,6 @@ curl -s "https://[REDACTED]/mw/pendaftar/proses/pr1/[ID_YYYYY]" \
 ```
 
 > **Note:** Sensitive personal information has been redacted for privacy.
-
----
-
-## **Recommendations**
-
-The backend must verify data ownership before displaying or modifying records.
-
-### Example Logic
-
-```php
-if ($magang->user_id != auth()->id()) {
-    abort(403);
-}
-```
-
-Or alternatively:
-
-```php
-if ($magang->nim != session('nim')) {
-    abort(403);
-}
-```
 
 ---
 
