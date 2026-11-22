@@ -1,12 +1,12 @@
-#set page(margin: (top: 1.3cm, bottom: 1.3cm, left: 1.8cm, right: 1.8cm))
-#set text(size: 10.8pt)
-#set par(justify: false, leading: 0.6em)
+#set page(margin: (top: 1.1cm, bottom: 1.1cm, left: 1.8cm, right: 1.8cm))
+#set text(size: 10pt)
+#set par(justify: false, leading: 0.45em)
 
 #let section-color = rgb("#7b1e3a")
 #let name-color = rgb("#1f3b82")
 
 #let section(title) = [
-  #v(0.95em)
+  #v(0.7em)
   #text(size: 12.5pt, weight: "bold", fill: section-color)[#title]
   #v(0.12em)
   #line(length: 100%, stroke: 0.8pt + rgb("#222222"))
@@ -39,6 +39,14 @@
   columns: (1fr, auto),
   gutter: 0.7em,
   [#text(weight: "bold")[#name] #h(0.3em) #badge(label, solid: solid)],
+  [#text(size: 9.3pt, fill: rgb("#555555"))[#when]],
+)
+
+// One role at an organization: italic title left, dates right.
+#let orgrole(name, when) = grid(
+  columns: (1fr, auto),
+  gutter: 0.7em,
+  [#emph[#name]],
   [#text(size: 9.3pt, fill: rgb("#555555"))[#when]],
 )
 
@@ -80,9 +88,9 @@
   Contract (Remote) & Campus Internship (On-site)
 ], [#emph[Indonesia]])
 
-#v(0.3em)
+#v(0.25em)
 #subrole([Game Developer], "Part-time · Remote", true, [Sep 2025 --- Present])
-#v(0.15em)
+#v(0.12em)
 #subrole([Game Programmer Intern], "Program internship Campus (Polinema)", false, [Jul 2026 --- Present])
 #v(0.4em)
 
@@ -105,7 +113,7 @@
 
 #text(weight: "bold")[Stack:] TypeScript, pnpm Workspaces, PixiJS, Effect, Vitest, Astro, Cloudflare Pages, npm Trusted Publishing
 
-#v(0.45em)
+#v(0.25em)
 
 #two-col([
   #text(weight: "bold")[LearnMap]
@@ -118,7 +126,7 @@
 
 #text(weight: "bold")[Stack:] TanStack Start, React, TypeScript, Effect, Drizzle ORM, LibSQL/Turso, Cloudflare Workers
 
-#v(0.45em)
+#v(0.25em)
 
 #two-col([
   #text(weight: "bold")[LogBook Internship]
@@ -131,7 +139,7 @@
 
 #text(weight: "bold")[Stack:] TanStack Start, React, TypeScript, Effect, Drizzle ORM, Cloudflare D1, Typst WASM, Alchemy
 
-#v(0.45em)
+#v(0.25em)
 
 #two-col([
   #text(weight: "bold")[Portofolio Alex]
@@ -144,7 +152,7 @@
 
 #text(weight: "bold")[Stack:] TanStack Start, React, Tailwind CSS, TypeScript, Bun, Cloudflare Workers
 
-#v(0.45em)
+#v(0.25em)
 
 
 #two-col([
@@ -158,7 +166,7 @@
 
 #text(weight: "bold")[Stack:] Bun, Tanstack, Effect, Hono, Drizzle, PostgreSQL, Tailwind CSS, Electron
 
-#v(0.45em)
+#v(0.25em)
 
 #two-col([
   #text(weight: "bold")[GitTrace]
@@ -171,7 +179,7 @@
 
 #text(weight: "bold")[Stack:] Flutter, Dart, Git
 
-#v(0.45em)
+#v(0.25em)
 
 #two-col([
   #text(weight: "bold")[Lapor Sana]
@@ -184,7 +192,7 @@
 
 #text(weight: "bold")[Stack:] Laravel, MySQL, Tailwind CSS, Python
 
-#v(0.45em)
+#v(0.25em)
 
 #two-col([
   #text(weight: "bold")[Ijen Driver]
@@ -208,3 +216,26 @@
 ], [#emph[2023 --- Present]])
 
 - Relevant focus: software engineering, web development, and databases.
+
+#section("ORGANIZATION EXPERIENCE")
+
+#two-col([
+  #text(weight: "bold")[Workshop Riset Informatika (WRI)]
+  #text(fill: rgb("#555555"))[ --- Malang, Indonesia]
+], [#emph[Oct 2023 --- Feb 2026]])
+
+#v(0.25em)
+#orgrole([Vice Head of Game Development Division], [Feb 2025 --- Feb 2026])
+- Co-led the Game Development miniclass: planned activities, coordinated mentors, and gathered feedback.
+
+#v(0.12em)
+#orgrole([Game Development Mentor], [Oct 2024 --- Feb 2026])
+- Mentored participants on Unity and C\#, reviewing code and game design and advising on technical growth.
+
+#v(0.12em)
+#orgrole([Head of Web Developer Division], [Feb 2024 --- Jan 2025])
+- Led the Web Developer Division: strategic planning, resource allocation, and a mentor team.
+
+#v(0.12em)
+#orgrole([Web Developer Mentor], [Oct 2023 --- Jan 2025])
+- Guided 100+ mentees in web development and supported their educational and professional growth.
