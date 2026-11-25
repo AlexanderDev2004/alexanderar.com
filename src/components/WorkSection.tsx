@@ -58,7 +58,22 @@ export function WorkSection() {
         <details className="job" key={`${work.company}-${work.startDate}`} open>
           <summary>
             <h3>
-              {work.jobTitle} <span className="co">· {work.company}</span>
+              {work.jobTitle}{' '}
+              <span className="co">
+                ·{' '}
+                {work.link ? (
+                  <a
+                    href={work.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    {work.company}
+                  </a>
+                ) : (
+                  work.company
+                )}
+              </span>
             </h3>
             <span className="when">{metaLine(work)}</span>
             <Icon className="chev" name="mdi:chevron-down" />

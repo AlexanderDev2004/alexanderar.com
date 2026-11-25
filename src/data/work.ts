@@ -72,7 +72,7 @@ export const works: WorkItem[] = [
     status: ["ON-SITE", "FULL-TIME"],
     startDate: "Jan 2026",
     endDate: "June 2026",
-    link: "",
+    link: "https://www.yazaki-group.com/en/company/index.html",
     description: [
       "Building scalable backend services with Django",
       "Managing PostgreSQL databases and optimization",

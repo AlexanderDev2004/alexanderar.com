@@ -339,6 +339,14 @@ details.job h3 .co {
   font-weight: 500;
   color: var(--olive);
 }
+details.job h3 .co a {
+  border-bottom: 1px dashed var(--line);
+  transition: color 0.15s, border-color 0.15s;
+}
+details.job h3 .co a:hover {
+  color: var(--sage-deep);
+  border-bottom-color: var(--sage);
+}
 details.job .when {
   font-family: var(--mono);
   font-size: 12px;
